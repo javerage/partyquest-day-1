@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>PartyQuest · Día 1 — Presentación para participantes</title>
+<!--
+  Presentación del Día 1 generada a partir de slide-outline.md.
+  Autocontenida: sin recursos externos, funciona sin conexión.
+  Teclas: → / espacio siguiente · ← anterior · Inicio / Fin · O vista general · F pantalla completa.
+-->
+<style>
+:root {
+  --bg: #0f1e1d;
+  --surface: #172927;
+  --sunken: #0b1716;
+  --border: #2a403d;
+  --border-strong: #5e7c77;
+  --text: #f4ede3;
+  --muted: #b5aa9c;
+  --brand: #f08a5d;
+  --brand-soft: #3b2219;
+  --action: #5cc8be;
+  --action-soft: #143a37;
+  --highlight: #f2c14e;
+  --highlight-soft: #3a2f12;
+  --info: #a9c0f0;
+  --info-soft: #1c2944;
+  --danger: #ff8fa6;
+  --danger-soft: #3e1421;
+  --focus: #6fd1c9;
+  --sans: "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; background: var(--sunken); color: var(--text); font-family: var(--sans); }
+body { overflow: hidden; }
+h1, h2, h3, p, ul, ol, pre, table { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+a { color: var(--action); text-underline-offset: 0.18em; }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 6px; }
+code, .mono { font-family: var(--mono); }
+code { color: var(--info); font-size: 0.92em; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* ---------- Stage: 1280×720 scaled to the viewport ---------- */
+.stage {
+  position: absolute; left: 50%; top: 50%;
+  width: 1280px; height: 720px;
+  transform: translate(-50%, -50%) scale(var(--scale, 1));
+  transform-origin: center;
+}
+.slide {
+  position: absolute; inset: 0;
+  display: none; flex-direction: column;
+  padding: 34px 64px 30px;
+  background:
+    radial-gradient(ellipse 620px 380px at 96% -6%, rgb(92 200 190 / 0.13), transparent 70%),
+    radial-gradient(ellipse 520px 340px at -4% 108%, rgb(240 138 93 / 0.10), transparent 70%),
+    linear-gradient(rgb(94 124 119 / 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgb(94 124 119 / 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--bg);
+  overflow: hidden;
+}
+.slide.is-active { display: flex; }
+
+.s-head { display: flex; align-items: center; gap: 12px; height: 36px; flex: none; font-family: var(--mono); font-size: 15px; color: var(--muted); }
+.s-head svg { width: 30px; height: 32px; flex: none; }
+.s-head .brandname { font-family: var(--sans); font-weight: 800; font-size: 17px; color: var(--text); }
+.s-head .tag { margin-left: 8px; padding: 3px 10px; border: 1px solid var(--border-strong); border-radius: 999px; color: var(--action); white-space: nowrap; }
+.s-head .secname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.s-head .num { margin-left: auto; color: var(--text); white-space: nowrap; }
+.s-head .num span { color: var(--muted); }
+
+.s-body { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; gap: 24px; padding: 14px 0 10px; zoom: var(--zoom, 1.14); }
+.slide[data-dense] .s-body { --zoom: 1.04; }
+.s-foot { flex: none; display: flex; justify-content: space-between; gap: 16px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--border); padding-top: 10px; }
+.s-foot b { color: var(--text); font-weight: 700; }
+
+h2.title { font-size: 44px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 800; max-width: 1060px; text-wrap: balance; }
+h2.title em { font-style: normal; color: var(--brand); }
+.lead { font-size: 25px; line-height: 1.4; max-width: 1000px; }
+.note { font-size: 20px; line-height: 1.4; color: var(--muted); max-width: 1040px; }
+.note b, .lead b { color: var(--text); }
+.label { font-family: var(--mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+
+.grid { display: grid; gap: 18px; }
+.g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.g5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
+
+.card { background: rgb(11 23 22 / 0.72); border: 1px solid var(--border); border-radius: 14px; padding: 18px 20px; display: flex; flex-direction: column; gap: 8px; }
+.card h3 { font-size: 24px; line-height: 1.2; font-weight: 800; }
+.card p, .card li { font-size: 19px; line-height: 1.4; color: var(--muted); }
+.card p b, .card li b { color: var(--text); }
+.card .label + h3 { margin-top: -2px; }
+.card.t-action { border-color: var(--action); background: var(--action-soft); }
+.card.t-brand { border-color: var(--brand); background: var(--brand-soft); }
+.card.t-info { border-color: var(--info); background: var(--info-soft); }
+.card.t-danger { border-color: var(--danger); background: var(--danger-soft); }
+.card.t-highlight { border-color: var(--highlight); background: var(--highlight-soft); }
+.card.t-dashed { border-style: dashed; border-color: var(--border-strong); background: transparent; }
+.c-action { color: var(--action); } .c-brand { color: var(--brand); } .c-info { color: var(--info); }
+.c-danger { color: var(--danger); } .c-highlight { color: var(--highlight); } .c-muted { color: var(--muted); }
+
+.list li { position: relative; padding-left: 26px; font-size: 21px; line-height: 1.45; }
+.list li::before { content: ""; position: absolute; left: 4px; top: 0.58em; width: 9px; height: 9px; border-radius: 2px; background: var(--action); }
+.list.no li::before { background: transparent; border: 2px solid var(--border-strong); }
+.checks li { position: relative; padding-left: 36px; font-size: 21px; line-height: 1.5; }
+.checks li::before { content: ""; position: absolute; left: 2px; top: 0.3em; width: 18px; height: 18px; border: 2px solid var(--border-strong); border-radius: 4px; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip { font-family: var(--mono); font-size: 17px; padding: 7px 13px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--sunken); white-space: nowrap; }
+
+.ask { display: flex; gap: 16px; align-items: baseline; border: 1px solid rgb(242 193 78 / 0.55); background: rgb(242 193 78 / 0.08); border-radius: 12px; padding: 13px 18px; font-size: 21px; line-height: 1.35; }
+.ask > b { flex: none; font-family: var(--mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--highlight); }
+
+/* Terminal-style code */
+.term { background: var(--sunken); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.term-bar { display: flex; align-items: center; gap: 7px; padding: 8px 14px; border-bottom: 1px solid var(--border); font-family: var(--mono); font-size: 14px; color: var(--muted); }
+.term-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--border-strong); }
+.term-bar span { margin-left: 8px; }
+.term pre { padding: 14px 18px; font-family: var(--mono); font-size: 19px; line-height: 1.5; color: var(--text); white-space: pre-wrap; overflow-wrap: anywhere; }
+.tk-key { color: var(--action); } .tk-str { color: var(--highlight); } .tk-num { color: var(--brand); } .tk-lit { color: var(--danger); } .tk-dim { color: var(--muted); }
+.http { color: var(--info); font-weight: 700; }
+
+/* Recurring route diagram: Persona → Navegador → API → Groq */
+.route { display: flex; align-items: stretch; }
+.r-node { flex: 1 1 0; min-width: 0; border: 1.5px solid var(--border-strong); border-radius: 12px; background: var(--surface); padding: 12px 10px; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 3px; }
+.r-node b { font-size: 21px; font-weight: 800; }
+.r-node small { font-family: var(--mono); font-size: 14px; color: var(--muted); overflow-wrap: anywhere; }
+.r-node.on { border-color: var(--action); background: var(--action-soft); box-shadow: 0 0 0 3px rgb(92 200 190 / 0.18); }
+.r-node.dim { opacity: 0.38; border-style: dashed; }
+.r-node .r-extra { margin-top: 5px; font-family: var(--mono); font-size: 13px; padding: 4px 6px; border-radius: 6px; border: 1px dashed var(--highlight); color: var(--highlight); }
+.r-link { flex: 0 0 74px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: center; }
+.r-link svg { width: 58px; height: 26px; color: var(--action); }
+.r-link.dim svg { color: var(--border-strong); opacity: 0.5; }
+.r-link.cut svg { color: var(--danger); }
+.route.sm .r-node { padding: 8px 8px; } .route.sm .r-node b { font-size: 18px; } .route.sm .r-node small { font-size: 12px; }
+
+.steps { display: flex; align-items: stretch; gap: 0; }
+.step { flex: 1 1 0; border: 1.5px solid var(--border-strong); background: var(--surface); border-radius: 12px; padding: 14px 12px; text-align: center; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.step b { font-size: 20px; font-weight: 800; line-height: 1.2; }
+.step small { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.step.on { border-color: var(--action); background: var(--action-soft); }
+.step.stop { border-color: var(--highlight); background: var(--highlight-soft); }
+.sep { flex: 0 0 34px; display: grid; place-items: center; color: var(--action); font-family: var(--mono); font-size: 22px; }
+
+table.t { width: 100%; border-collapse: collapse; font-size: 18px; }
+table.t th, table.t td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; vertical-align: top; }
+table.t th { font-family: var(--mono); font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--action); background: var(--sunken); }
+table.t td.blank { background: repeating-linear-gradient(135deg, transparent 0 8px, rgb(94 124 119 / 0.12) 8px 9px); }
+
+.bubble { max-width: 85%; padding: 9px 14px; border-radius: 14px; font-size: 18px; line-height: 1.35; }
+.bubble.me { align-self: flex-end; background: var(--action-soft); border: 1px solid var(--action); }
+.bubble.bot { align-self: flex-start; background: var(--surface); border: 1px solid var(--border-strong); }
+.panel { background: var(--surface); border: 1px solid var(--border-strong); border-radius: 12px; padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+
+/* Cover and closing */
+.cover .s-body { justify-content: center; }
+.cover-grid { display: grid; grid-template-columns: 1fr 300px; gap: 36px; align-items: center; }
+.cover h1 { font-size: 70px; line-height: 1.02; letter-spacing: -0.03em; font-weight: 800; text-wrap: balance; }
+.cover h1 em { font-style: normal; color: var(--brand); }
+.hero-pachi { width: 280px; height: auto; filter: drop-shadow(0 18px 40px rgb(240 138 93 / 0.28)); animation: bob 4.5s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.credit { display: flex; align-items: center; gap: 14px; font-size: 21px; }
+.credit .who { display: flex; flex-direction: column; }
+.credit .who b { font-size: 24px; }
+.credit .who span { color: var(--muted); font-size: 17px; }
+.credit::before { content: ""; width: 4px; align-self: stretch; background: var(--brand); border-radius: 2px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 999px; background: var(--action); color: #062624; font-weight: 800; font-size: 19px; text-decoration: none; }
+.btn svg { width: 18px; height: 18px; }
+.btn:hover { background: #7fd8cf; }
+
+/* ---------- Controls ---------- */
+.controls { position: fixed; right: 14px; bottom: 12px; z-index: 4; display: flex; gap: 6px; opacity: 0.55; transition: opacity 0.2s; }
+.controls:hover, .controls:focus-within { opacity: 1; }
+.controls button { width: 40px; height: 40px; display: grid; place-items: center; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 10px; cursor: pointer; }
+.controls button:hover { border-color: var(--action); color: var(--action); }
+.controls svg { width: 20px; height: 20px; }
+.progress { position: fixed; left: 0; right: 0; bottom: 0; height: 4px; z-index: 3; background: var(--border); }
+.progress span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--action), var(--brand)); transition: width 0.25s; }
+
+.overview { position: fixed; inset: 0; z-index: 6; display: none; overflow: auto; padding: 28px; background: rgb(11 23 22 / 0.97); }
+.overview.open { display: block; }
+.overview h2 { font-size: 22px; margin-bottom: 16px; }
+.ov-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
+.ov-item { min-height: 108px; text-align: left; padding: 12px 14px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font: inherit; display: flex; flex-direction: column; gap: 8px; }
+.ov-item:hover, .ov-item[aria-current="true"] { border-color: var(--action); }
+.ov-item small { font-family: var(--mono); font-size: 12px; color: var(--action); }
+.ov-item span { font-weight: 700; font-size: 15px; line-height: 1.3; }
+
+/* ---------- Narrow screens: stacked, scrollable slide ---------- */
+body.compact { overflow: auto; }
+body.compact .stage { position: static; width: 100%; height: auto; min-height: 100dvh; transform: none; }
+body.compact .slide { position: relative; inset: auto; min-height: 100dvh; padding: 16px 16px 76px; overflow: visible; }
+body.compact .s-head .secname { display: none; }
+body.compact .s-body { justify-content: flex-start; gap: 18px; padding-top: 18px; zoom: 1; }
+body.compact h2.title { font-size: 28px; }
+body.compact .cover h1 { font-size: 40px; }
+body.compact .lead { font-size: 19px; } body.compact .note { font-size: 17px; }
+body.compact .g2, body.compact .g3, body.compact .g4, body.compact .g5, body.compact .split, body.compact .cover-grid { grid-template-columns: minmax(0, 1fr); }
+body.compact .cover-grid .hero-pachi { width: 120px; order: -1; }
+body.compact .route, body.compact .steps { flex-direction: column; }
+body.compact .r-link { flex: 0 0 46px; } body.compact .r-link svg { transform: rotate(90deg); width: 40px; height: 18px; }
+body.compact table.t .mono { font-size: 13px; }
+body.compact .sep { flex: 0 0 26px; transform: rotate(90deg); }
+body.compact .card h3 { font-size: 21px; } body.compact .card p, body.compact .card li { font-size: 17px; }
+body.compact .list li, body.compact .checks li, body.compact .ask { font-size: 18px; }
+body.compact .ask { flex-direction: column; gap: 4px; }
+body.compact .term pre { font-size: 15px; }
+body.compact table.t { font-size: 15px; } body.compact table.t th, body.compact table.t td { padding: 7px 8px; }
+body.compact .tablewrap { overflow-x: auto; }
+body.compact .s-foot { flex-direction: column; gap: 2px; font-size: 12px; }
+body.compact .chip { white-space: normal; font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+@media print {
+  @page { size: 1280px 720px; margin: 0; }
+  .s-body { zoom: var(--zoom, 1.14); }
+  html, body { height: auto; overflow: visible; background: var(--bg); }
+  .controls, .progress, .overview { display: none !important; }
+  .stage { position: static; transform: none; width: 1280px; height: auto; }
+  .slide { display: flex !important; position: relative; inset: auto; width: 1280px; height: 720px; break-after: page; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .hero-pachi { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<svg class="sprite" aria-hidden="true">
+  <symbol id="pachi" viewBox="0 0 64 68">
+    <path fill="#f08a5d" d="M32 6C18.7 6 8 16.4 8 29.6 8 46.4 32 64 32 64s24-17.6 24-34.4C56 16.4 45.3 6 32 6Z"/>
+    <path d="M30 7c-1.5-3.5-5-4.6-7.5-3.6M33.5 6.6c1-3.8 4.6-5.4 7.6-4.6" fill="none" stroke="#f08a5d" stroke-width="2.6" stroke-linecap="round"/>
+    <circle cx="32" cy="29" r="16" fill="#fff6ea"/>
+    <ellipse cx="22.5" cy="34" rx="3.2" ry="2.1" fill="#f2c14e" opacity=".9"/>
+    <ellipse cx="41.5" cy="34" rx="3.2" ry="2.1" fill="#f2c14e" opacity=".9"/>
+    <ellipse cx="26" cy="27" rx="2.2" ry="2.9" fill="#2a1f1a"/>
+    <ellipse cx="38" cy="27" rx="2.2" ry="2.9" fill="#2a1f1a"/>
+    <path d="M26.5 33.5q5.5 5 11 0" fill="none" stroke="#2a1f1a" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="arrows" viewBox="0 0 58 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 8h48m-7-5 7 5-7 5"/><path d="M54 19H6m7-5-7 5 7 5" opacity=".55"/>
+  </symbol>
+  <symbol id="arrow-cut" viewBox="0 0 58 26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">
+    <path d="M4 13h14M40 13h14" opacity=".5"/><path d="m23 7 12 12m0-12L23 19"/>
+  </symbol>
+</svg>
+
+<main class="stage" id="stage" aria-live="polite">
+
+<!-- ============ APERTURA ============ -->
+<section class="slide cover" data-sec="Apertura" data-name="Qué vamos a construir" data-title="Una primera conversación con PartyQuest">
+  <div class="cover-grid">
+    <div class="grid" style="gap:22px">
+      <p class="label">BotMode Workshop · Día 1 · PartyQuest</p>
+      <h1>Una primera conversación con <em>PartyQuest</em></h1>
+      <p class="lead">Del mensaje a la respuesta: <b>comprender antes de automatizar.</b></p>
+      <div class="route sm" data-route></div>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;align-items:center;justify-content:space-between">
+        <div class="credit"><div class="who"><b>Joel Chuc</b><span>Diseño del taller e instructor del curso</span></div></div>
+        <a class="btn" href="pachi-intro.html"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>Ver a Pachi presentar el taller</a>
+      </div>
+    </div>
+    <svg class="hero-pachi" viewBox="0 0 64 68" role="img" aria-label="Pachi, la mascota de PartyQuest"><use href="#pachi"/></svg>
+  </div>
+</section>
+
+<section class="slide" data-sec="Apertura" data-name="Qué vamos a construir" data-title="El resultado de hoy y sus límites">
+  <h2 class="title">El resultado de hoy <em>y sus límites</em></h2>
+  <div class="grid g2">
+    <div class="card t-action">
+      <p class="label c-action">Hoy</p>
+      <ul class="list"><li>Enviar un mensaje</li><li>Recibir una respuesta</li><li>Manejar errores</li><li>Leer el consumo</li></ul>
+    </div>
+    <div class="card t-dashed">
+      <p class="label">Después · no forma parte de hoy</p>
+      <ul class="list no"><li>Memoria del modelo</li><li>Catálogo de lugares</li><li>Verificación de lugares</li></ul>
+    </div>
+  </div>
+  <div class="ask"><b>Pregunta</b><span>¿Qué diferencia hay entre conversar y recomendar con evidencia?</span></div>
+</section>
+
+<section class="slide" data-sec="Apertura" data-name="Qué vamos a construir" data-title="Cómo trabajaremos con el agente">
+  <h2 class="title">Cómo trabajaremos con el agente: <em>un incremento a la vez</em></h2>
+  <div class="steps">
+    <div class="step"><small>1</small><b>Explicar alcance y checks</b></div><div class="sep">→</div>
+    <div class="step stop"><small>2 · tú decides</small><b>Autorizar</b></div><div class="sep">→</div>
+    <div class="step"><small>3</small><b>Implementar un incremento</b></div><div class="sep">→</div>
+    <div class="step"><small>4</small><b>Verificar</b></div><div class="sep">→</div>
+    <div class="step stop"><small>5 · parada</small><b>Revisar</b></div>
+  </div>
+  <p class="lead">Ciclo corto con una parada de revisión. <b>El agente no decide ampliar el alcance.</b></p>
+</section>
+
+<!-- ============ D1·B1 ============ -->
+<section class="slide" data-sec="D1·B1" data-name="Crear la base y reconocer las piezas" data-title="Modelo, proveedor y producto no son lo mismo">
+  <h2 class="title">Modelo, proveedor y producto <em>no son lo mismo</em></h2>
+  <div class="grid g3">
+    <div class="card t-info"><p class="label c-info">Modelo</p><h3>Genera la salida</h3><p>Recibe texto y produce texto.</p></div>
+    <div class="card t-action"><p class="label c-action">Proveedor · Groq</p><h3>Presta el servicio</h3><p>Ejecuta el modelo y reporta el consumo.</p></div>
+    <div class="card t-brand"><p class="label c-brand">Producto · PartyQuest</p><h3>Organiza la experiencia</h3><p>Define la interfaz y sus reglas.</p></div>
+  </div>
+  <div class="grid g2">
+    <p class="note"><b>Chatbot:</b> el producto que conversa con la persona (Pachi).</p>
+    <p class="note"><b>Agente de desarrollo:</b> la herramienta con la que construimos ese producto.</p>
+  </div>
+</section>
+
+<section class="slide" data-sec="D1·B1" data-name="Crear la base y reconocer las piezas" data-title="Un mensaje cruza tres componentes">
+  <h2 class="title">Un mensaje cruza <em>tres componentes</em></h2>
+  <div class="route" data-route data-on="browser,api,groq"></div>
+  <div class="grid" style="gap:10px">
+    <p class="label">Dentro de la API propia</p>
+    <div class="steps">
+      <div class="step"><small>adaptador</small><b>HTTP · Hono</b></div><div class="sep">→</div>
+      <div class="step on"><small>sin React, Hono ni SDK de Groq</small><b>Lógica del caso de uso</b></div><div class="sep">→</div>
+      <div class="step"><small>adaptador</small><b>Proveedor · Groq</b></div>
+    </div>
+  </div>
+  <p class="note">Cada flecha es una frontera: la lógica del caso de uso es <b>independiente de los adaptadores</b>.</p>
+</section>
+
+<section class="slide" data-sec="D1·B1" data-name="Crear la base y reconocer las piezas" data-title="Crear no es copiar una solución">
+  <h2 class="title">Crear <em>no es copiar</em> una solución</h2>
+  <div class="grid g3">
+    <div class="card t-action"><p class="label c-action">Creado</p><h3>Workspaces y procesos</h3><p>Frontend y API como aplicaciones separadas.</p></div>
+    <div class="card t-info"><p class="label c-info">Incorporado</p><h3>Shell visual y documentos</h3><p>Presentación, datos y plantillas.</p></div>
+    <div class="card t-dashed"><p class="label c-highlight">Por implementar</p><h3>El comportamiento</h3><p>Sigue pendiente: lo construyes tú.</p></div>
+  </div>
+  <div class="ask"><b>Actividad</b><span>Identifica un <code>TODO</code> en el proyecto, sin resolverlo.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B1" data-name="Crear la base y reconocer las piezas" data-title="Health comprueba una cosa, no todas">
+  <h2 class="title">Health comprueba <em>una cosa</em>, no todas</h2>
+  <div class="route" data-route data-on="browser,api" data-dim="groq" data-cut="api" data-cutlabel="sin llamada"></div>
+  <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>health</span></div>
+<pre data-json><span class="http">GET</span> /api/health
+
+<span class="http">200</span> { "status": "ok" }</pre></div>
+  <div class="ask"><b>Comprobación</b><span>Ejecuta la solicitud y explica quién respondió.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B1" data-name="Crear la base y reconocer las piezas" data-title="Conectar una herramienta implica permisos">
+  <h2 class="title">Conectar una herramienta <em>implica permisos</em></h2>
+  <div class="split">
+    <div class="grid" style="gap:14px">
+      <p class="lead">MCP puede permitir <b>acciones</b> y <b>acceso a datos</b>.</p>
+      <ul class="list"><li>Cuenta de Vercel preparada.</li><li>La conexión es opcional.</li><li>No publicar recursos.</li></ul>
+    </div>
+    <div class="card">
+      <p class="label">Antes de conectar, pregunta por</p>
+      <ul class="checks"><li>Destino</li><li>Permisos</li><li>Datos</li><li>Autorización</li></ul>
+    </div>
+  </div>
+  <div class="ask"><b>Pausa</b><span>¿Qué <em>no</em> autoriza una conexión?</span></div>
+</section>
+
+<!-- ============ D1·B2 ============ -->
+<section class="slide" data-sec="D1·B2" data-name="Primera llamada a Groq" data-title="El contrato conecta equipos y componentes">
+  <h2 class="title">El contrato <em>conecta</em> equipos y componentes</h2>
+  <div class="grid g2">
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>solicitud</span></div>
+<pre data-json><span class="http">POST</span> /api/chat
+
+{ "message": "…" }</pre></div>
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>respuesta</span></div>
+<pre data-json><span class="http">200</span>
+
+{
+  "reply": "…",
+  "model": "openai/gpt-oss-20b",
+  "usage": {
+    "inputTokens": 157,
+    "outputTokens": 680,
+    "totalTokens": 837
+  }
+}</pre></div>
+  </div>
+  <p class="note">Sobres simplificados. Las reglas completas están en el <a href="../api-contract.md">contrato API del día 1</a>.</p>
+</section>
+
+<section class="slide" data-sec="D1·B2" data-name="Primera llamada a Groq" data-title="TypeScript no valida el JSON recibido">
+  <h2 class="title">TypeScript <em>no valida</em> el JSON recibido</h2>
+  <div class="chips">
+    <span class="chip">recortar espacios</span><span class="chip">cadena no vacía</span>
+    <span class="chip">hasta 2.000 puntos de código</span><span class="chip">rechazar propiedades adicionales</span>
+  </div>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th style="width:8%">Caso</th><th>Entrada recibida</th><th style="width:24%">¿Válida o inválida?</th></tr></thead>
+    <tbody>
+      <tr><td class="mono">A</td><td><code>{ "message": "Busco un lugar para cenar" }</code></td><td class="blank"></td></tr>
+      <tr><td class="mono">B</td><td><code>{ "message": "   " }</code></td><td class="blank"></td></tr>
+      <tr><td class="mono">C</td><td><code>{ "message": "Hola", "history": [] }</code></td><td class="blank"></td></tr>
+      <tr><td class="mono">D</td><td>Un mensaje de 2.001 puntos de código</td><td class="blank"></td></tr>
+    </tbody>
+  </table></div>
+  <div class="ask"><b>Actividad</b><span>Clasifica cada entrada y di qué regla aplicaste.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B2" data-name="Primera llamada a Groq" data-title="La clave nunca cruza hacia el navegador">
+  <h2 class="title">La clave <em>nunca cruza</em> hacia el navegador</h2>
+  <div class="route" data-route data-on="api" data-sub-browser="sin clave" data-extra-api="GROQ_API_KEY · GROQ_MODEL"></div>
+  <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>.env · solo en el servidor · valores ficticios</span></div>
+<pre><span class="tk-key">GROQ_API_KEY</span>=<span class="tk-str">clave-ficticia-no-es-real</span>   <span class="tk-dim"># ejemplo ficticio, nunca una clave real</span>
+<span class="tk-key">GROQ_MODEL</span>=<span class="tk-str">openai/gpt-oss-20b</span></pre></div>
+  <p class="note"><b><code>.env</code> no cifra</b> ni controla el acceso: solo es configuración local que debe quedar fuera de Git.</p>
+</section>
+
+<section class="slide" data-sec="D1·B2" data-name="Primera llamada a Groq" data-title="Primero una observación comprobable">
+  <h2 class="title">Primero, una <em>observación comprobable</em></h2>
+  <div class="grid g2">
+    <div class="card t-info"><p class="label c-info">Proveedor falso</p><h3>Evidencia del contrato</h3><p>Repetible y sin clave real. No demuestra conectividad.</p></div>
+    <div class="card t-action"><p class="label c-action">Llamada real manual</p><h3>Evidencia de conectividad</h3><p>Requiere configuración y autorización.</p></div>
+  </div>
+  <p class="lead"><b>Una</b> llamada al proveedor por solicitud válida; <b>ninguna</b> por solicitud inválida.</p>
+  <div class="ask"><b>Práctica</b><span>Acuerden un resultado HTTP antes de implementar.</span></div>
+</section>
+
+<!-- ============ D1·B3 ============ -->
+<section class="slide" data-sec="D1·B3" data-name="Tokens, costo y errores" data-title="Un token no es una palabra">
+  <h2 class="title">Un token <em>no es</em> una palabra</h2>
+  <div class="grid g3">
+    <div class="card"><p class="label">Entrada</p><h3 class="mono c-action">inputTokens</h3><p>Lo que enviamos.</p></div>
+    <div class="card"><p class="label">Salida</p><h3 class="mono c-brand">outputTokens</h3><p>Lo que genera el modelo.</p></div>
+    <div class="card"><p class="label">Total</p><h3 class="mono c-highlight">totalTokens</h3><p>Lo informa el proveedor.</p></div>
+  </div>
+  <div class="panel">
+    <p class="label c-highlight">Segmentación ilustrativa · no corresponde al tokenizer real</p>
+    <div class="chips"><span class="chip">Recom</span><span class="chip">ién</span><span class="chip">dame</span><span class="chip">␣un</span><span class="chip">␣lugar</span><span class="chip">␣para</span><span class="chip">␣cen</span><span class="chip">ar</span></div>
+  </div>
+  <p class="note">El consumo es un dato <b>informado por el proveedor</b>, no algo que contamos a mano.</p>
+</section>
+
+<section class="slide" data-sec="D1·B3" data-name="Tokens, costo y errores" data-title="Desconocido no significa cero">
+  <h2 class="title">Desconocido <em>no significa cero</em></h2>
+  <div class="grid g2">
+    <div class="panel"><p class="label">Panel A</p><p class="lead">Consumo no disponible</p></div>
+    <div class="panel"><p class="label">Panel B</p><p class="lead mono">0 tokens</p></div>
+  </div>
+  <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>respuesta 200 sin consumo informado</span></div>
+<pre data-json>{ "reply": "…", "model": "openai/gpt-oss-20b", "usage": null }</pre></div>
+  <p class="note"><code>usage: null</code> o campos incompletos <b>no eliminan</b> <code>reply</code>. No se inventan conteos ni se suma para completar campos faltantes.</p>
+  <div class="ask"><b>Pregunta</b><span>¿Cuál de los dos paneles sería honesto?</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B3" data-name="Tokens, costo y errores" data-title="Estimación no es factura">
+  <h2 class="title">Una estimación <em>no es</em> una factura</h2>
+  <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>estimación de costo</span></div>
+<pre>( <span class="tk-key">entrada</span> × <span class="tk-str">tarifaEntrada</span>  +  <span class="tk-key">salida</span> × <span class="tk-str">tarifaSalida</span> )  /  <span class="tk-num">1.000.000</span></pre></div>
+  <div class="chips"><span class="chip">tarifas por millón de tokens</span><span class="chip">fuente de la tarifa</span><span class="chip">fecha de consulta</span></div>
+  <div class="card t-highlight">
+    <p class="label c-highlight">Ejercicio con datos ficticios</p>
+    <p><b>1.000</b> tokens de entrada y <b>500</b> de salida. Tarifas ficticias: <b>1</b> unidad monetaria por millón de entrada y <b>2</b> por millón de salida.</p>
+  </div>
+  <div class="ask"><b>Actividad</b><span>Calcula la estimación y compárala con tu pareja.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B3" data-name="Tokens, costo y errores" data-title="Un fallo también tiene contrato">
+  <h2 class="title">Un fallo <em>también tiene contrato</em></h2>
+  <div class="split" style="align-items:start">
+    <div class="tablewrap"><table class="t">
+      <thead><tr><th>code</th><th>HTTP</th><th>retryable</th></tr></thead>
+      <tbody>
+        <tr><td class="mono">invalid_request</td><td class="mono">400</td><td class="mono">false</td></tr>
+        <tr><td class="mono">configuration_error</td><td class="mono">503</td><td class="mono">false</td></tr>
+        <tr><td class="mono">quota_exceeded</td><td class="mono">429</td><td class="mono">false</td></tr>
+        <tr><td class="mono">provider_error</td><td class="mono">502</td><td class="mono">true</td></tr>
+        <tr><td class="mono">internal_error</td><td class="mono">500</td><td class="mono">true</td></tr>
+      </tbody>
+    </table></div>
+    <div class="grid" style="gap:12px">
+      <p class="label"><code>code</code> y <code>retryable</code> guían la interfaz</p>
+      <div class="card"><p><b class="mono">retryable: true</b> → «Reintentar» manual y «Editar mensaje»</p></div>
+      <div class="card"><p><b class="mono">retryable: false</b> → «Editar mensaje», sin reintentar</p></div>
+      <div class="card t-danger"><p><b>No se muestra</b> el <code>message</code> técnico a la persona.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-sec="D1·B3" data-name="Tokens, costo y errores" data-title="La cuota no se arregla insistiendo">
+  <h2 class="title">La cuota <em>no se arregla</em> insistiendo</h2>
+  <div class="steps">
+    <div class="step"><small>proveedor</small><b>Límite de uso alcanzado</b></div><div class="sep">→</div>
+    <div class="step on"><small>API</small><b class="mono">429 quota_exceeded</b></div><div class="sep">→</div>
+    <div class="step stop"><small>interfaz</small><b>Sin «Reintentar» ni promesa de recuperación</b></div>
+  </div>
+  <p class="lead">En D1 <b>nada reintenta automáticamente</b>.</p>
+  <div class="ask"><b>Actividad</b><span>Con el proveedor simulado, provoca una respuesta con <code>usage</code> ausente y una cuota agotada. Explica ambas pantallas.</span></div>
+</section>
+
+<!-- ============ D1·B4 ============ -->
+<section class="slide" data-sec="D1·B4" data-name="Roles y prompting" data-title="El modelo sólo ve lo que enviamos">
+  <h2 class="title">El modelo solo ve <em>lo que enviamos</em></h2>
+  <div class="grid g2">
+    <div class="panel">
+      <p class="label">Lo que ves en pantalla</p>
+      <div class="bubble me">Busco algo para el sábado</div>
+      <div class="bubble bot">¡Claro! ¿Qué se te antoja?</div>
+      <div class="bubble me">Algo tranquilo</div>
+    </div>
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>paquete enviado al modelo en D1</span></div>
+<pre><span class="tk-key">system</span>     instrucciones del servidor
+<span class="tk-key">user</span>       "Algo tranquilo"
+
+<span class="tk-dim">assistant  ← la salida del modelo</span></pre></div>
+  </div>
+  <p class="note">En D1 el paquete <b>no incluye turnos previos</b>: solo el mensaje actual.</p>
+</section>
+
+<section class="slide" data-sec="D1·B4" data-name="Roles y prompting" data-title="Zero-shot y few-shot">
+  <h2 class="title">Zero-shot y few-shot: <em>con o sin ejemplos</em></h2>
+  <div class="grid g2">
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>zero-shot · instrucción sin ejemplos</span></div>
+<pre><span class="tk-key">system</span>  Responde en una sola frase,
+        con tono cercano.
+
+<span class="tk-key">user</span>    Quiero salir el sábado</pre></div>
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>few-shot · instrucción con ejemplos</span></div>
+<pre><span class="tk-key">system</span>  Responde en una sola frase,
+        con tono cercano.
+        <span class="tk-str">Ejemplo: «Tengo hambre» →
+        «¡Vamos por algo rico!»</span>
+
+<span class="tk-key">user</span>    Quiero salir el sábado</pre></div>
+  </div>
+  <p class="note">Los ejemplos orientan <b>formato o estilo</b>. El mensaje de usuario se mantiene constante para poder comparar.</p>
+</section>
+
+<section class="slide" data-sec="D1·B4" data-name="Roles y prompting" data-title="Descomponer y verificar, no pedir fe">
+  <h2 class="title">Descomponer y verificar, <em>no pedir fe</em></h2>
+  <div class="grid g2">
+    <div class="card t-danger"><p class="label c-danger">«Suena convincente»</p><h3>Fluidez</h3><p>Una explicación bien escrita no es evidencia.</p></div>
+    <div class="card t-action"><p class="label c-action">«Puedo comprobar esta afirmación»</p><h3>Verificabilidad</h3><p>Pasos de trabajo y una justificación breve que alguien puede revisar.</p></div>
+  </div>
+  <p class="lead">La cadena de razonamiento es un <b>concepto</b>: pedimos pasos y justificación verificable, <b>no el razonamiento interno privado</b> del modelo.</p>
+</section>
+
+<section class="slide" data-sec="D1·B4" data-name="Roles y prompting" data-title="Un mejor prompt no crea datos reales">
+  <h2 class="title">Un mejor prompt <em>no crea datos reales</em></h2>
+  <div class="grid g3">
+    <div class="card t-action"><p class="label c-action">El prompt puede cambiar</p><h3>Tono</h3></div>
+    <div class="card t-action"><p class="label c-action">El prompt puede cambiar</p><h3>Formato</h3></div>
+    <div class="card t-danger"><p class="label c-danger">El prompt no garantiza</p><h3>Factualidad</h3></div>
+  </div>
+  <p class="note">Las respuestas <b>varían</b> y pueden <b>alucinar</b>. En D1, Pachi no consulta ningún catálogo.</p>
+  <div class="ask"><b>Actividad</b><span>Compara dos respuestas: señala qué cambió y qué sigue sin evidencia.</span></div>
+</section>
+
+<!-- ============ D1·B5 ============ -->
+<section class="slide" data-sec="D1·B5" data-name="Especificar antes de construir" data-title="Una plantilla evita instrucciones ambiguas">
+  <h2 class="title">Una plantilla <em>evita</em> instrucciones ambiguas</h2>
+  <div class="split">
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>plantilla para pedir un incremento</span></div>
+<pre><span class="tk-key">Objetivo:</span>
+<span class="tk-key">Contexto:</span>
+<span class="tk-key">Restricciones:</span>
+<span class="tk-key">Formato:</span>
+<span class="tk-key">Criterio de aceptación:</span></pre></div>
+    <div class="grid" style="gap:14px">
+      <p class="lead">Objetivo + contexto + restricciones + formato + criterio de aceptación.</p>
+      <ul class="list"><li>La llenas tú, para un incremento.</li><li>Nunca incluye secretos.</li><li>No incluye la implementación resuelta.</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-sec="D1·B5" data-name="Especificar antes de construir" data-title="SDD, ODD y TDD responden preguntas distintas">
+  <h2 class="title">SDD, ODD y TDD responden <em>preguntas distintas</em></h2>
+  <div class="grid g3">
+    <div class="card t-info"><p class="label c-info">SDD</p><h3>¿Qué debe pasar?</h3></div>
+    <div class="card t-highlight"><p class="label c-highlight">ODD</p><h3>¿Qué incremento autorizamos?</h3></div>
+    <div class="card t-action"><p class="label c-action">TDD</p><h3>¿Cómo observamos el fallo y la corrección?</h3></div>
+  </div>
+  <div class="panel"><p class="label">Un mismo ejemplo del contrato D1</p><p class="lead">La regla del límite de <b>2.000 puntos de código</b> del mensaje.</p></div>
+</section>
+
+<section class="slide" data-sec="D1·B5" data-name="Especificar antes de construir" data-title="RED → GREEN → refactorizar">
+  <h2 class="title">RED → GREEN → <em>refactorizar</em></h2>
+  <div class="steps">
+    <div class="step" style="border-color:var(--danger);background:var(--danger-soft)"><small>1 · RED · falla</small><b>Observar un fallo por la regla que falta</b></div><div class="sep">→</div>
+    <div class="step on"><small>2 · GREEN · pasa</small><b>Implementar lo necesario</b></div><div class="sep">→</div>
+    <div class="step" style="border-color:var(--info);background:var(--info-soft)"><small>3 · REFACTOR · sigue pasando</small><b>Mejorar la estructura sin alterar el resultado</b></div>
+  </div>
+  <p class="lead">Un error de preparación <b>no es RED</b>: RED es el fallo de la regla que todavía no existe.</p>
+</section>
+
+<section class="slide" data-sec="D1·B5" data-name="Especificar antes de construir" data-title="Probar desde la frontera pública">
+  <h2 class="title">Probar desde la <em>frontera pública</em></h2>
+  <div class="steps">
+    <div class="step"><small>1</small><b>Entrada</b></div><div class="sep">→</div>
+    <div class="step on"><small>2</small><b>HTTP</b></div><div class="sep">→</div>
+    <div class="step"><small>3</small><b>Status y cuerpo</b></div><div class="sep">+</div>
+    <div class="step"><small>también</small><b>Invocaciones del fake</b></div><div class="sep">+</div>
+    <div class="step"><small>también</small><b>Ausencia de secretos</b></div>
+  </div>
+  <div class="tablewrap"><table class="t">
+    <thead><tr><th>Caso</th><th>Status</th><th>Cuerpo</th><th>Llamadas al fake</th></tr></thead>
+    <tbody>
+      <tr><td>Mensaje de 2.000 puntos de código</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Mensaje de 2.001 puntos de código</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Propiedad adicional</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+    </tbody>
+  </table></div>
+  <div class="ask"><b>Actividad</b><span>Completa la tabla con el contrato y redacta la prueba.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B5" data-name="Especificar antes de construir" data-title="Ninguna prueba demuestra todo">
+  <h2 class="title">Ninguna prueba <em>demuestra todo</em></h2>
+  <div class="grid g4">
+    <div class="card t-info"><p class="label c-info">Fake</p><h3>Contrato</h3></div>
+    <div class="card t-action"><p class="label c-action">Health</p><h3>Proceso</h3></div>
+    <div class="card t-highlight"><p class="label c-highlight">Llamada real</p><h3>Conexión en ese momento</h3></div>
+    <div class="card t-brand"><p class="label c-brand">Evaluación de contenido</p><h3>Calidad factual</h3></div>
+  </div>
+  <div class="ask"><b>Pregunta</b><span>¿Cuál evidencia falta si solo vimos un <code>200</code>?</span></div>
+</section>
+
+<!-- ============ D1·B6 ============ -->
+<section class="slide" data-sec="D1·B6" data-name="Conectar, observar y reiniciar" data-title="La interfaz tiene estados, no sólo mensajes">
+  <h2 class="title">La interfaz tiene <em>estados</em>, no solo mensajes</h2>
+  <div class="steps">
+    <div class="step"><small>estado</small><b>Vacío</b></div><div class="sep">→</div>
+    <div class="step"><small>estado</small><b>Envío</b></div><div class="sep">→</div>
+    <div class="step on"><small>estado</small><b>«Revisando opciones…»</b></div><div class="sep">→</div>
+    <div class="step"><small>resultado</small><b>Respuesta</b></div><div class="sep">o</div>
+    <div class="step" style="border-color:var(--danger);background:var(--danger-soft)"><small>resultado</small><b>Error</b></div>
+  </div>
+  <p class="lead">Ante un error, la interfaz ofrece <b>editar</b> o <b>reintentar</b> según el contrato.</p>
+  <p class="note">Demostración con errores simulados.</p>
+</section>
+
+<section class="slide" data-sec="D1·B6" data-name="Conectar, observar y reiniciar" data-title="Ubicación requiere permiso y alternativa">
+  <h2 class="title">La ubicación requiere <em>permiso y alternativa</em></h2>
+  <div class="steps">
+    <div class="step on"><small>camino 1 · con consentimiento</small><b>Coordenadas</b></div><div class="sep">→</div>
+    <div class="step stop"><small>D1</small><b>Permanecen en la interfaz</b></div><div class="sep">←</div>
+    <div class="step"><small>camino 2 · si falla o se niega</small><b>Zona escrita</b></div>
+  </div>
+  <p class="note">Dos caminos que convergen. Sin geocerca ni cálculo de distancias.</p>
+  <div class="ask"><b>Pregunta</b><span>¿Viaja este dato a Groq? Justifica con el contrato.</span></div>
+</section>
+
+<section class="slide" data-sec="D1·B6" data-name="Conectar, observar y reiniciar" data-title="Ver historial no significa enviarlo">
+  <h2 class="title">Ver historial <em>no significa</em> enviarlo</h2>
+  <div class="grid g2">
+    <div class="panel">
+      <p class="label">Pantalla · intercambios visibles locales</p>
+      <div class="bubble me">Busco algo para el sábado</div>
+      <div class="bubble bot">¡Claro! ¿Qué se te antoja?</div>
+      <div class="bubble me">Algo tranquilo</div>
+    </div>
+    <div class="term"><div class="term-bar"><i></i><i></i><i></i><span>solicitud · independiente de las anteriores</span></div>
+<pre data-json><span class="http">POST</span> /api/chat
+
+{ "message": "Algo tranquilo" }</pre></div>
+  </div>
+  <p class="note">La conversación <b>no persiste al recargar</b>. La preferencia de apariencia sí se guarda: es otro dato.</p>
+</section>
+
+<section class="slide" data-sec="D1·B6" data-name="Conectar, observar y reiniciar" data-title="Nuevo plan tiene un significado preciso">
+  <h2 class="title">«Nuevo plan» tiene un <em>significado preciso</em></h2>
+  <div class="split" style="align-items:start">
+    <div class="card t-action">
+      <p class="label c-action">Confirmar y limpiar</p>
+      <ul class="list"><li>Los intercambios</li><li>La ubicación o zona</li><li>El consumo acumulado de esta conversación</li></ul>
+    </div>
+    <div class="card">
+      <p class="label">Lista de observación</p>
+      <ul class="checks"><li>¿Qué cambia tras confirmar «Nuevo plan»?</li><li>¿Qué cambia tras recargar la página?</li><li>¿Qué permanece en ambos casos?</li></ul>
+    </div>
+  </div>
+  <div class="ask"><b>Actividad</b><span>Observa el reinicio y la recarga, y anota lo que viste.</span></div>
+</section>
+
+<!-- ============ CIERRE ============ -->
+<section class="slide" data-sec="Cierre" data-name="Demostrar comprensión" data-title="Explica tu recorrido completo">
+  <h2 class="title">Explica tu <em>recorrido completo</em></h2>
+  <div class="route sm" data-route data-on="browser,api,groq"></div>
+  <div class="grid g2" style="gap:12px">
+    <div class="card"><p><b>¿Qué envía el navegador?</b></p></div>
+    <div class="card"><p><b>¿Dónde queda la clave?</b></p></div>
+    <div class="card"><p><b>¿Qué recibe el modelo?</b></p></div>
+    <div class="card"><p><b>¿Qué pasa si falta <code>usage</code>?</b></p></div>
+  </div>
+  <div class="ask"><b>En parejas</b><span>Reconstruyan el diagrama inicial y señalen los límites de la evidencia.</span></div>
+</section>
+
+<section class="slide cover" data-dense data-sec="Cierre" data-name="Demostrar comprensión" data-title="Lo conseguido y el siguiente paso">
+  <div class="cover-grid">
+    <div class="grid" style="gap:20px">
+      <h2 class="title">Lo conseguido <em>y el siguiente paso</em></h2>
+      <div class="grid g2">
+        <div class="card t-action"><p class="label c-action">Hoy</p><p><b>Primera conversación independiente y comprobable.</b></p></div>
+        <div class="card t-dashed"><p class="label">Día 2</p><p>Incorporará catálogo y contexto según su especificación. <b>No están implementados por completar D1.</b></p></div>
+      </div>
+      <div class="card">
+        <p class="label">Autoevaluación</p>
+        <ul class="checks"><li>Puedo explicar el recorrido del mensaje.</li><li>Construí un incremento verificable.</li><li>Reconozco los límites de lo que observé.</li></ul>
+      </div>
+      <p class="note"><a href="../api-contract.md">Contrato API</a> · <a href="roadmap.md">Ruta del día 1</a> · <a href="theory.html">Índice teórico</a></p>
+      <div class="credit"><div class="who"><b>Joel Chuc</b><span>Diseño del taller e instructor del curso</span></div></div>
+    </div>
+    <svg class="hero-pachi" viewBox="0 0 64 68" role="img" aria-label="Pachi, la mascota de PartyQuest"><use href="#pachi"/></svg>
+  </div>
+</section>
+
+</main>
+
+<div class="progress" aria-hidden="true"><span id="bar"></span></div>
+<nav class="controls" aria-label="Controles de la presentación">
+  <button id="prev" type="button" aria-label="Diapositiva anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button id="next" type="button" aria-label="Diapositiva siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  <button id="ovbtn" type="button" aria-label="Ver todas las diapositivas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg></button>
+  <button id="fsbtn" type="button" aria-label="Pantalla completa"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+</nav>
+<div class="overview" id="overview" role="dialog" aria-modal="true" aria-label="Todas las diapositivas">
+  <h2>Día 1 · 32 diapositivas</h2>
+  <div class="ov-grid" id="ovgrid"></div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+  const stage = document.getElementById("stage");
+  const slides = [...stage.querySelectorAll(".slide")];
+  const total = slides.length;
+  const bar = document.getElementById("bar");
+  const overview = document.getElementById("overview");
+  const grid = document.getElementById("ovgrid");
+  const pad = (n) => String(n).padStart(2, "0");
+
+  // Recurring route diagram.
+  const NODES = [
+    { id: "persona", name: "Persona", sub: "escribe y lee" },
+    { id: "browser", name: "Navegador", sub: "React · frontend" },
+    { id: "api", name: "API propia", sub: "Hono · servidor" },
+    { id: "groq", name: "Groq", sub: "proveedor · modelo" },
+  ];
+  const listOf = (value) => (value ? value.split(",") : []);
+  for (const el of document.querySelectorAll("[data-route]")) {
+    const on = listOf(el.dataset.on);
+    const dim = listOf(el.dataset.dim);
+    const parts = [];
+    NODES.forEach((node, index) => {
+      const cls = ["r-node", on.includes(node.id) ? "on" : "", dim.includes(node.id) ? "dim" : ""].join(" ");
+      const sub = el.getAttribute("data-sub-" + node.id) || node.sub;
+      const extra = el.getAttribute("data-extra-" + node.id);
+      parts.push(`<div class="${cls}"><b>${node.name}</b><small>${sub}</small>${extra ? `<span class="r-extra">${extra}</span>` : ""}</div>`);
+      const next = NODES[index + 1];
+      if (!next) return;
+      const cut = el.dataset.cut === node.id;
+      const linkDim = !cut && (dim.includes(node.id) || dim.includes(next.id));
+      parts.push(`<div class="r-link ${cut ? "cut" : ""} ${linkDim ? "dim" : ""}"><svg aria-hidden="true"><use href="#${cut ? "arrow-cut" : "arrows"}"/></svg>${cut ? `<span>${el.dataset.cutlabel || ""}</span>` : ""}</div>`);
+    });
+    el.innerHTML = parts.join("");
+    el.setAttribute("role", "img");
+    el.setAttribute("aria-label", "Recorrido: persona, navegador, API propia y Groq");
+  }
+
+  // Light JSON tinting for text nodes inside <pre data-json>.
+  const tint = (text) => text
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+    .replace(/"([^"]*)"(\s*:)?|\b(null|true|false)\b|\b(\d+)\b/g, (m, s, colon, lit, num) => {
+      if (s !== undefined) return `<span class="${colon ? "tk-key" : "tk-str"}">"${s}"</span>${colon || ""}`;
+      if (lit) return `<span class="tk-lit">${lit}</span>`;
+      return `<span class="tk-num">${num}</span>`;
+    });
+  for (const pre of document.querySelectorAll("pre[data-json]")) {
+    for (const node of [...pre.childNodes]) {
+      if (node.nodeType !== Node.TEXT_NODE) continue;
+      const span = document.createElement("span");
+      span.innerHTML = tint(node.textContent);
+      node.replaceWith(span);
+    }
+  }
+
+  // Per-slide header, body wrapper and footer (kept inside each slide so print keeps them).
+  slides.forEach((slide, index) => {
+    const body = document.createElement("div");
+    body.className = "s-body";
+    body.append(...slide.childNodes);
+    const head = document.createElement("header");
+    head.className = "s-head";
+    head.innerHTML = `<svg aria-hidden="true"><use href="#pachi"/></svg><span class="brandname">PartyQuest · Día 1</span><span class="tag">${slide.dataset.sec}</span><span class="secname">${slide.dataset.name}</span><span class="num">${pad(index + 1)}<span> / ${total}</span></span>`;
+    const foot = document.createElement("footer");
+    foot.className = "s-foot";
+    foot.innerHTML = `<span>BotMode Workshop · Taller diseñado e impartido por <b>Joel Chuc</b></span>`;
+    slide.append(head, body, foot);
+    slide.setAttribute("aria-label", `Diapositiva ${index + 1} de ${total}: ${slide.dataset.title}`);
+
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "ov-item";
+    item.innerHTML = `<small>${pad(index + 1)} · ${slide.dataset.sec}</small><span>${slide.dataset.title}</span>`;
+    item.addEventListener("click", () => { go(index); toggleOverview(false); });
+    grid.append(item);
+  });
+
+  let current = 0;
+  function go(index) {
+    current = Math.max(0, Math.min(total - 1, index));
+    slides.forEach((slide, i) => slide.classList.toggle("is-active", i === current));
+    [...grid.children].forEach((item, i) => item.setAttribute("aria-current", String(i === current)));
+    bar.style.width = ((current + 1) / total) * 100 + "%";
+    document.title = `${pad(current + 1)} · ${slides[current].dataset.title} — PartyQuest Día 1`;
+    history.replaceState(null, "", "#" + (current + 1));
+    if (document.body.classList.contains("compact")) window.scrollTo(0, 0);
+  }
+  function toggleOverview(open) {
+    const next = open ?? !overview.classList.contains("open");
+    overview.classList.toggle("open", next);
+    if (next) grid.children[current].focus();
+  }
+  function toggleFullscreen() {
+    if (document.fullscreenElement) document.exitFullscreen?.();
+    else document.documentElement.requestFullscreen?.();
+  }
+  function fit() {
+    const compact = window.innerWidth < 720;
+    document.body.classList.toggle("compact", compact);
+    stage.style.setProperty("--scale", compact ? 1 : Math.min(window.innerWidth / 1280, window.innerHeight / 720));
+  }
+
+  document.getElementById("prev").addEventListener("click", () => go(current - 1));
+  document.getElementById("next").addEventListener("click", () => go(current + 1));
+  document.getElementById("ovbtn").addEventListener("click", () => toggleOverview());
+  document.getElementById("fsbtn").addEventListener("click", toggleFullscreen);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    if (overview.classList.contains("open")) {
+      if (event.key === "Escape" || event.key.toLowerCase() === "o") toggleOverview(false);
+      return;
+    }
+    const onControl = event.target.closest?.("a, button");
+    switch (event.key) {
+      case "ArrowRight": case "PageDown": go(current + 1); break;
+      case " ": if (onControl) return; go(current + 1); break;
+      case "ArrowLeft": case "PageUp": go(current - 1); break;
+      case "Home": go(0); break;
+      case "End": go(total - 1); break;
+      case "o": case "O": toggleOverview(true); break;
+      case "f": case "F": toggleFullscreen(); break;
+      default: return;
+    }
+    event.preventDefault();
+  });
+
+  let startX = 0, startY = 0;
+  document.addEventListener("touchstart", (event) => { startX = event.changedTouches[0].clientX; startY = event.changedTouches[0].clientY; }, { passive: true });
+  document.addEventListener("touchend", (event) => {
+    if (overview.classList.contains("open")) return;
+    const dx = event.changedTouches[0].clientX - startX;
+    const dy = event.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  window.addEventListener("resize", fit);
+  window.addEventListener("hashchange", () => {
+    const n = Number(location.hash.slice(1));
+    if (n >= 1 && n <= total && n - 1 !== current) go(n - 1);
+  });
+  fit();
+  const initial = Number(location.hash.slice(1));
+  go(initial >= 1 && initial <= total ? initial - 1 : 0);
+})();
+</script>
+</body>
+</html>

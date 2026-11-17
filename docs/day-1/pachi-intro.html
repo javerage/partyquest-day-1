@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Pachi presenta el taller — PartyQuest · Día 1</title>
+<!--
+  Animación de bienvenida en JavaScript, sin recursos externos.
+  Teclas: espacio reproducir/pausar · ← → cambiar de escena · R reiniciar.
+  La música y los efectos se generan con Web Audio (sin archivos) y solo suenan tras pulsar «Reproducir».
+  Lo que describe la escena 8 es el resultado previsto del curso según el itinerario,
+  no funcionalidad ya construida.
+-->
+<style>
+:root {
+  --bg: #0f1e1d; --surface: #172927; --sunken: #0b1716; --border: #2a403d; --border-strong: #5e7c77;
+  --text: #f4ede3; --muted: #b5aa9c; --brand: #f08a5d; --action: #5cc8be; --action-soft: #143a37;
+  --highlight: #f2c14e; --info: #a9c0f0; --danger: #ff8fa6; --focus: #6fd1c9;
+  --sans: "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  display: flex; flex-direction: column; min-height: 100dvh; color: var(--text); font-family: var(--sans);
+  background:
+    radial-gradient(ellipse 60vw 50vh at 18% 45%, rgb(240 138 93 / 0.14), transparent 70%),
+    radial-gradient(ellipse 50vw 40vh at 100% 0%, rgb(92 200 190 / 0.12), transparent 70%),
+    linear-gradient(rgb(94 124 119 / 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgb(94 124 119 / 0.07) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--bg);
+}
+h1, h2, p, ul, ol { margin: 0; } ul, ol { padding: 0; list-style: none; }
+a { color: var(--action); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; border-radius: 8px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.top { display: flex; justify-content: space-between; gap: 12px; padding: 14px clamp(16px, 4vw, 48px); font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.top b { color: var(--action); font-weight: 600; }
+
+.stage { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(16px, 4vw, 56px); padding: 0 clamp(16px, 5vw, 72px); max-width: 1320px; width: 100%; margin: 0 auto; }
+
+/* Pachi */
+.actor { display: grid; place-items: center; }
+.pachi { width: min(100%, 46vh, 400px); height: auto; overflow: visible; filter: drop-shadow(0 22px 46px rgb(240 138 93 / 0.3)); animation: float 4.2s ease-in-out infinite; }
+.pachi .eye { transform-box: fill-box; transform-origin: center; animation: blink 4.6s infinite; }
+.pachi .mouth { transform-box: fill-box; transform-origin: center top; }
+.pachi.talking .mouth { animation: talk 0.34s ease-in-out infinite; }
+.pachi.hop { animation: hop 0.55s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-14px) rotate(1.5deg); } }
+@keyframes blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+@keyframes talk { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.9); } }
+@keyframes hop { 0% { transform: translateY(0) scale(1); } 35% { transform: translateY(-34px) scale(1.04, 0.97); } 70% { transform: translateY(0) scale(0.97, 1.04); } 100% { transform: translateY(0) scale(1); } }
+
+/* Scene */
+.scene { display: flex; flex-direction: column; gap: clamp(12px, 2.2vh, 22px); min-width: 0; }
+.kicker { font-family: var(--mono); font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--action); }
+.scene h1 { font-size: clamp(28px, 4.4vw, 54px); line-height: 1.06; letter-spacing: -0.02em; font-weight: 800; text-wrap: balance; }
+.bubble { position: relative; background: var(--surface); border: 1.5px solid var(--border-strong); border-radius: 18px; padding: clamp(14px, 2vw, 22px) clamp(16px, 2.2vw, 26px); font-size: clamp(17px, 1.9vw, 24px); line-height: 1.42; }
+.bubble::before { content: ""; position: absolute; left: -11px; top: 34px; width: 20px; height: 20px; background: var(--surface); border-left: 1.5px solid var(--border-strong); border-bottom: 1.5px solid var(--border-strong); transform: rotate(45deg); }
+.bubble .rest { visibility: hidden; }
+.bubble .caret { display: inline-block; width: 2px; height: 1em; margin-left: 1px; vertical-align: -0.12em; background: var(--brand); animation: caret 0.8s steps(1) infinite; }
+@keyframes caret { 50% { opacity: 0; } }
+
+.visual { min-height: clamp(96px, 17vh, 150px); display: flex; flex-wrap: wrap; align-content: flex-start; align-items: stretch; gap: 10px; }
+.v-item { opacity: 0; transform: translateY(10px); animation: rise 0.45s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; animation-delay: calc(var(--i, 0) * 0.32s + 0.3s); }
+@keyframes rise { to { opacity: 1; transform: none; } }
+.chip { display: inline-flex; flex-direction: column; justify-content: center; gap: 2px; padding: 9px 15px; border-radius: 12px; border: 1.5px solid var(--border-strong); background: var(--sunken); font-size: clamp(15px, 1.5vw, 19px); font-weight: 700; }
+.chip small { font-family: var(--mono); font-weight: 500; font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--muted); }
+.chip.ok { border-color: var(--action); background: var(--action-soft); }
+.chip.no { border-style: dashed; color: var(--muted); }
+.chip.plan { border-style: dashed; border-color: var(--highlight); }
+.chip.plan small { color: var(--highlight); }
+.arrow { align-self: center; color: var(--action); font-family: var(--mono); font-size: 20px; }
+.node.pulse { animation: rise 0.45s forwards, pulse 4.8s ease-in-out infinite; animation-delay: calc(var(--i, 0) * 0.32s + 0.3s), calc(var(--p, 0) * 0.6s + 1.4s); }
+@keyframes pulse { 0%, 9%, 100% { border-color: var(--border-strong); box-shadow: none; } 3%, 6% { border-color: var(--highlight); box-shadow: 0 0 0 4px rgb(242 193 78 / 0.25); } }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border: 0; border-radius: 999px; background: var(--action); color: #062624; font: 800 19px var(--sans); text-decoration: none; cursor: pointer; }
+.btn:hover { background: #7fd8cf; }
+.btn svg { width: 18px; height: 18px; }
+.credit { font-size: 16px; color: var(--muted); } .credit b { color: var(--text); }
+
+/* Player bar */
+.bar { display: flex; align-items: center; gap: 10px; padding: 12px clamp(16px, 4vw, 48px) 16px; flex-wrap: wrap; }
+.bar button.ic { width: 42px; height: 42px; flex: none; display: grid; place-items: center; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); border-radius: 10px; cursor: pointer; }
+.bar button.ic:hover { border-color: var(--action); color: var(--action); }
+.bar svg { width: 20px; height: 20px; }
+.segs { flex: 1 1 160px; display: flex; gap: 5px; min-width: 120px; }
+.seg { flex: 1; height: 6px; border-radius: 3px; background: var(--border); overflow: hidden; }
+.seg i { display: block; height: 100%; width: 0; background: var(--action); }
+.count { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+.voice { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.voice input { width: 18px; height: 18px; accent-color: var(--action); }
+[hidden] { display: none !important; }
+
+/* Poster */
+body.poster .bar > :not(.count):not(.voice) { visibility: hidden; }
+body:not(.poster) .poster-only { display: none; }
+body.poster .scene > :not(.poster-only) { display: none; }
+
+@media (max-width: 760px) {
+  html, body { height: auto; }
+  .bar { position: sticky; bottom: 0; background: var(--bg); border-top: 1px solid var(--border); padding-top: 10px; padding-bottom: 10px; }
+  .stage { grid-template-columns: minmax(0, 1fr); align-content: start; gap: 14px; padding-top: 4px; }
+  .pachi { width: min(26vw, 104px); }
+  .stage { padding-bottom: 16px; }
+  .bubble::before { left: 40px; top: -11px; transform: rotate(135deg); }
+  .top span:last-child { display: none; }
+  .visual { min-height: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .v-item { opacity: 1; transform: none; }
+}
+</style>
+</head>
+<body class="poster">
+
+<header class="top"><span><b>PartyQuest</b> · Día 1 · BotMode Workshop</span><span>Taller diseñado e impartido por Joel Chuc</span></header>
+
+<main class="stage">
+  <div class="actor">
+    <svg class="pachi" id="pachi" viewBox="0 0 64 68" role="img" aria-label="Pachi, la mascota de PartyQuest">
+      <path fill="#f08a5d" d="M32 6C18.7 6 8 16.4 8 29.6 8 46.4 32 64 32 64s24-17.6 24-34.4C56 16.4 45.3 6 32 6Z"/>
+      <path d="M30 7c-1.5-3.5-5-4.6-7.5-3.6M33.5 6.6c1-3.8 4.6-5.4 7.6-4.6" fill="none" stroke="#f08a5d" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="32" cy="29" r="16" fill="#fff6ea"/>
+      <ellipse cx="22.5" cy="34" rx="3.2" ry="2.1" fill="#f2c14e" opacity=".9"/>
+      <ellipse cx="41.5" cy="34" rx="3.2" ry="2.1" fill="#f2c14e" opacity=".9"/>
+      <ellipse class="eye" cx="26" cy="27" rx="2.2" ry="2.9" fill="#2a1f1a"/>
+      <ellipse class="eye" cx="38" cy="27" rx="2.2" ry="2.9" fill="#2a1f1a"/>
+      <path class="mouth" d="M26.5 33.5q5.5 5 11 0" fill="none" stroke="#2a1f1a" stroke-width="2.4" stroke-linecap="round"/>
+    </svg>
+  </div>
+
+  <section class="scene" aria-label="Presentación del taller">
+    <p class="kicker poster-only">Bienvenida · 9 escenas · poco más de un minuto</p>
+    <h1 class="poster-only">Pachi te cuenta qué esperar del taller</h1>
+    <p class="poster-only credit">Qué construirás hoy, sus límites y el resultado previsto del curso.</p>
+    <p class="poster-only"><button class="btn" id="start" type="button"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>Reproducir</button></p>
+    <p class="poster-only credit">Taller diseñado e impartido por <b>Joel Chuc</b>, instructor del curso.</p>
+
+    <p class="kicker" id="kicker"></p>
+    <h1 id="title"></h1>
+    <div class="bubble" id="bubble" aria-hidden="true"><span id="typed"></span><span class="caret" id="caret"></span><span class="rest" id="rest"></span></div>
+    <p class="sr" id="live" aria-live="polite"></p>
+    <div class="visual" id="visual"></div>
+  </section>
+</main>
+
+<footer class="bar">
+  <button class="ic" id="play" type="button" aria-label="Pausar"></button>
+  <button class="ic" id="prev" type="button" aria-label="Escena anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button class="ic" id="next" type="button" aria-label="Escena siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7"/></svg></button>
+  <button class="ic" id="restart" type="button" aria-label="Reiniciar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 1 0 2.6-5.9M4 4v5h5"/></svg></button>
+  <div class="segs" id="segs" aria-hidden="true"></div>
+  <span class="count" id="count">0 / 9</span>
+  <label class="voice" id="musicwrap"><input type="checkbox" id="music" checked> Música</label>
+  <label class="voice" id="sfxwrap"><input type="checkbox" id="sfx" checked> Efectos</label>
+  <label class="voice" id="voicewrap" hidden><input type="checkbox" id="voice"> Narración por voz</label>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const chip = (text, small, cls = "", i = 0) => `<span class="chip v-item ${cls}" style="--i:${i}">${small ? `<small>${small}</small>` : ""}${text}</span>`;
+  const row = (items, cls, smallFor) => items.map((t, i) => chip(t, smallFor ? smallFor(i) : "", cls, i)).join("");
+
+  const SCENES = [
+    { title: "¡Hola! Soy Pachi",
+      text: "Soy Pachi, el asistente de PartyQuest. Este taller fue diseñado por Joel Chuc, tu instructor. Te cuento qué vamos a construir y cómo comprobaremos lo que hace.",
+      visual: () => chip("Pachi", "asistente de PartyQuest", "ok", 0) + chip("Joel Chuc", "diseño del taller e instructor", "", 1) },
+    { title: "Una pregunta guía todo el día",
+      text: "¿Qué ocurre desde que escribes a Pachi hasta que recibes una respuesta? Hoy vamos a seguir ese recorrido, paso a paso.",
+      visual: () => chip("Tu mensaje", "sale", "", 0) + `<span class="arrow v-item" style="--i:1">→</span>` + chip("¿ ? ? ?", "lo que vamos a entender", "plan", 2) + `<span class="arrow v-item" style="--i:3">→</span>` + chip("Una respuesta", "regresa", "", 4) },
+    { title: "El mensaje va y vuelve",
+      text: "Tu mensaje sale del navegador y llega a nuestra propia API. Solo la API habla con Groq, que ejecuta el modelo. La respuesta regresa por el mismo camino.",
+      visual: () => [["Persona", "escribe"], ["Navegador", "React"], ["API propia", "Hono"], ["Groq", "modelo"]]
+        .map(([n, s], i) => (i ? `<span class="arrow v-item" style="--i:${i}">⇄</span>` : "") + `<span class="chip v-item node pulse" style="--i:${i};--p:${i}"><small>${s}</small>${n}</span>`).join("") },
+    { title: "Lo que construirás hoy",
+      text: "Una conversación mínima y comprobable: enviar un mensaje, recibir una respuesta, manejar los errores y leer el consumo de tokens cuando el proveedor lo informa.",
+      visual: () => row(["Enviar", "Responder", "Manejar errores", "Leer consumo"], "ok", (i) => "paso " + (i + 1)) },
+    { title: "Los límites de hoy",
+      text: "En el Día 1 no tengo memoria del modelo, no consulto un catálogo y no verifico lugares. Que una respuesta suene bien no demuestra que sea verdadera.",
+      visual: () => row(["Memoria del modelo", "Catálogo", "Verificación de lugares"], "no", () => "hoy no") },
+    { title: "Cómo trabajarás con el agente",
+      text: "Primero se explica el alcance y los checks, y tú autorizas. Después se implementa un solo incremento, se verifica y se revisa. El agente no decide ampliar el alcance.",
+      visual: () => row(["Explicar", "Autorizar", "Implementar", "Verificar", "Revisar"], "", (i) => String(i + 1)) },
+    { title: "Lo que se espera de ti",
+      text: "Que puedas explicar el recorrido, construir un incremento verificable y reconocer los límites de lo que observaste. Ninguna prueba lo demuestra todo.",
+      visual: () => row(["Explicar el recorrido", "Construir un incremento verificable", "Reconocer los límites"], "ok", (i) => "resultado " + (i + 1)) },
+    { title: "El resultado final del curso",
+      text: "Según el itinerario, al final del curso PartyQuest recomendará lugares con un catálogo, respuestas fundamentadas y entrada por voz. Hoy eso es un plan: todavía no está construido.",
+      visual: () => chip("Conversación comprobable", "día 1 · hoy", "ok", 0) + row(["Catálogo y corpus", "Respuestas fundamentadas", "Entrada por voz"], "plan", () => "previsto").replace(/--i:(\d)/g, (m, d) => "--i:" + (Number(d) + 1)) },
+    { title: "¡Empecemos!",
+      text: "Sigue las diapositivas para recorrer el Día 1. Nos vemos en la primera conversación.",
+      visual: () => `<a class="btn v-item" style="--i:0" href="slides.html">Ir a las diapositivas</a><p class="credit v-item" style="--i:1;flex-basis:100%">Taller diseñado e impartido por <b>Joel Chuc</b>, instructor del curso.</p>` },
+  ];
+
+  const CHAR_MS = 30, HOLD_MS = 3200;
+  const $ = (id) => document.getElementById(id);
+  const pachi = $("pachi"), typed = $("typed"), rest = $("rest"), caret = $("caret"), live = $("live");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ICON = {
+    play: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12.5-7.5a1 1 0 0 0 0-1.72L8.5 3.64A1 1 0 0 0 7 4.5Z"/></svg>',
+    pause: '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>',
+  };
+  $("segs").innerHTML = SCENES.map(() => '<div class="seg"><i></i></div>').join("");
+  const fills = [...$("segs").querySelectorAll("i")];
+
+  let index = -1, elapsed = 0, playing = false, last = 0, speaking = false, spanishVoice = null, lastShown = 0;
+
+  // ---- Sound: synthesized with Web Audio, no audio files ----
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const STEP = 60 / 92 / 2; // eighth note at 92 bpm
+  const CHORDS = [[261.63, 329.63, 392.0], [220.0, 261.63, 329.63], [174.61, 220.0, 261.63], [196.0, 246.94, 293.66]];
+  const ARP = [0, 1, 2, 1, 0, 2, 1, 2];
+  const MUSIC_LEVEL = 0.55;
+  let audio = null;
+
+  function initAudio() {
+    if (audio || !AudioCtx) return;
+    const ctx = new AudioCtx();
+    const master = ctx.createGain(); master.gain.value = 0.9; master.connect(ctx.destination);
+    const music = ctx.createGain(); music.gain.value = 0; music.connect(master);
+    const sfx = ctx.createGain(); sfx.gain.value = 1; sfx.connect(master);
+    audio = { ctx, music, sfx, next: 0, step: 0 };
+    setInterval(scheduleMusic, 80);
+  }
+  function tone(dest, freq, start, dur, type, peak, slideTo) {
+    const osc = audio.ctx.createOscillator(), gain = audio.ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, start);
+    if (slideTo) osc.frequency.exponentialRampToValueAtTime(slideTo, start + dur);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(peak, start + Math.min(0.02, dur / 3));
+    gain.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+    osc.connect(gain); gain.connect(dest);
+    osc.start(start); osc.stop(start + dur + 0.03);
+  }
+  function scheduleMusic() {
+    if (!audio || audio.ctx.state !== "running" || !$("music").checked || !playing) return;
+    const now = audio.ctx.currentTime;
+    if (audio.next < now) audio.next = now + 0.05;
+    while (audio.next < now + 0.3) {
+      const chord = CHORDS[Math.floor(audio.step / 8) % CHORDS.length], beat = audio.step % 8, at = audio.next;
+      tone(audio.music, chord[ARP[beat]] * 2, at, STEP * 1.6, "triangle", 0.05);
+      if (beat === 0 || beat === 4) tone(audio.music, chord[0] / 2, at, STEP * 3.6, "sine", 0.1);
+      if (beat === 0) chord.forEach((freq) => tone(audio.music, freq, at, STEP * 8, "sine", 0.022));
+      audio.next += STEP; audio.step = (audio.step + 1) % 32;
+    }
+  }
+  function musicFade(level, seconds) {
+    if (!audio) return;
+    const now = audio.ctx.currentTime;
+    audio.music.gain.cancelScheduledValues(now);
+    audio.music.gain.setValueAtTime(audio.music.gain.value, now);
+    audio.music.gain.linearRampToValueAtTime(level, now + seconds);
+  }
+  function fx(name) {
+    if (!audio || !$("sfx").checked || audio.ctx.state !== "running") return;
+    const now = audio.ctx.currentTime + 0.01, out = audio.sfx;
+    if (name === "blip") tone(out, 480 + Math.random() * 160, now, 0.05, "triangle", 0.03);
+    else if (name === "pop") tone(out, 320, now, 0.18, "sine", 0.13, 760);
+    else if (name === "start") [523.25, 659.25, 783.99].forEach((f, i) => tone(out, f, now + i * 0.09, 0.3, "triangle", 0.1));
+    else if (name === "fanfare") [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => tone(out, f, now + i * 0.12, i === 3 ? 0.7 : 0.25, "triangle", 0.11));
+    else if (name === "items") document.querySelectorAll("#visual .v-item").forEach((el, i) => tone(out, 880 + i * 60, now + i * 0.32 + 0.3, 0.09, "sine", 0.045));
+  }
+  const duration = (i) => SCENES[i].text.length * CHAR_MS + HOLD_MS;
+
+  function setPlaying(value, ended = false) {
+    playing = value && !reduced;
+    $("play").innerHTML = playing ? ICON.pause : ICON.play;
+    $("play").setAttribute("aria-label", playing ? "Pausar" : "Reproducir");
+    if ("speechSynthesis" in window) { if (playing) speechSynthesis.resume(); else speechSynthesis.pause(); }
+    if (audio) {
+      if (playing) { audio.ctx.resume(); musicFade($("music").checked ? MUSIC_LEVEL : 0, 0.4); }
+      else if (ended) musicFade(0, 1.6);
+      else audio.ctx.suspend();
+    }
+    last = performance.now();
+  }
+
+  function speak(text) {
+    if (!("speechSynthesis" in window)) return;
+    speechSynthesis.cancel(); speaking = false;
+    if (!$("voice").checked || !spanishVoice) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = spanishVoice; utterance.lang = spanishVoice.lang; utterance.rate = 1;
+    utterance.onend = utterance.onerror = () => { speaking = false; };
+    speaking = true;
+    speechSynthesis.speak(utterance);
+  }
+
+  function show(i, autoplay = true) {
+    index = Math.max(0, Math.min(SCENES.length - 1, i));
+    elapsed = 0; lastShown = 0;
+    const scene = SCENES[index];
+    document.body.classList.remove("poster");
+    $("kicker").textContent = `Escena ${String(index + 1).padStart(2, "0")} de ${String(SCENES.length).padStart(2, "0")}`;
+    $("title").textContent = scene.title;
+    $("visual").innerHTML = scene.visual();
+    $("count").textContent = `${index + 1} / ${SCENES.length}`;
+    live.textContent = scene.text;
+    fills.forEach((fill, n) => { fill.style.width = n < index ? "100%" : "0"; });
+    pachi.classList.remove("hop"); void pachi.getBoundingClientRect(); pachi.classList.add("hop");
+    speak(scene.text);
+    setPlaying(autoplay);
+    fx(index === 0 ? "start" : index === SCENES.length - 1 ? "fanfare" : "pop");
+    if (!reduced) fx("items");
+    render();
+  }
+
+  function render() {
+    const scene = SCENES[index];
+    const typing = scene.text.length * CHAR_MS;
+    const shown = reduced ? scene.text.length : Math.min(scene.text.length, Math.floor(elapsed / CHAR_MS));
+    typed.textContent = scene.text.slice(0, shown);
+    rest.textContent = scene.text.slice(shown);
+    if (shown > lastShown && shown % 3 === 0 && !speaking && /\S/.test(scene.text[shown - 1] || "")) fx("blip");
+    lastShown = shown;
+    const done = shown >= scene.text.length;
+    caret.hidden = done;
+    pachi.classList.toggle("talking", playing && (!done || speaking));
+    fills[index].style.width = reduced ? "100%" : Math.min(100, (elapsed / duration(index)) * 100) + "%";
+    return elapsed >= typing + HOLD_MS && !speaking;
+  }
+
+  function tick(now) {
+    if (playing && index >= 0) {
+      elapsed += now - last;
+      if (render()) {
+        if (index < SCENES.length - 1) show(index + 1);
+        else setPlaying(false, true);
+      }
+    }
+    last = now;
+    requestAnimationFrame(tick);
+  }
+
+  function restart() { initAudio(); show(0); }
+  function togglePlay() {
+    if (index < 0) return restart();
+    if (!playing && index === SCENES.length - 1 && elapsed >= duration(index)) return restart();
+    setPlaying(!playing); render();
+  }
+
+  $("start").addEventListener("click", restart);
+  $("play").addEventListener("click", togglePlay);
+  $("prev").addEventListener("click", () => show(index - 1, playing));
+  $("next").addEventListener("click", () => show(index + 1, playing));
+  $("restart").addEventListener("click", restart);
+  $("voice").addEventListener("change", () => { if (index >= 0) show(index, playing); });
+  $("music").addEventListener("change", () => { if (playing) musicFade($("music").checked ? MUSIC_LEVEL : 0, 0.3); });
+  if (!AudioCtx) { $("musicwrap").hidden = true; $("sfxwrap").hidden = true; }
+  pachi.addEventListener("animationend", (event) => { if (event.animationName === "hop") pachi.classList.remove("hop"); });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.metaKey || event.ctrlKey || event.altKey) return;
+    const onControl = event.target.closest?.("a, button, input, label");
+    if (event.key === " " && !onControl) { event.preventDefault(); togglePlay(); }
+    else if (event.key === "ArrowRight") show(index + 1, playing);
+    else if (event.key === "ArrowLeft") show(index - 1, playing);
+    else if (event.key.toLowerCase() === "r") restart();
+  });
+
+  if ("speechSynthesis" in window) {
+    const pickVoice = () => {
+      const voices = speechSynthesis.getVoices().filter((voice) => voice.lang && voice.lang.toLowerCase().startsWith("es"));
+      spanishVoice = voices.find((voice) => /es[-_]mx/i.test(voice.lang)) || voices.find((voice) => /es[-_](us|419)/i.test(voice.lang)) || voices[0] || null;
+      $("voicewrap").hidden = !spanishVoice;
+    };
+    pickVoice();
+    speechSynthesis.addEventListener?.("voiceschanged", pickVoice);
+    window.addEventListener("pagehide", () => speechSynthesis.cancel());
+  }
+
+  if (reduced) $("play").hidden = true;
+  $("play").innerHTML = ICON.play;
+  $("play").setAttribute("aria-label", "Reproducir");
+  requestAnimationFrame((now) => { last = now; requestAnimationFrame(tick); });
+})();
+</script>
+</body>
+</html>

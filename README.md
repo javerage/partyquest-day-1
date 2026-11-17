@@ -6,10 +6,16 @@ Material para preparar el entorno y construir una primera conversación con Pach
 
 ## Empieza aquí
 
-1. [Prepara Windows, OpenCode y las cuentas](docs/onboarding/README.md).
+1. [Prepara Windows, OpenCode y las cuentas](docs/onboarding/README.md):
+   - [Instalar Node.js y OpenCode en Windows](docs/onboarding/windows.md)
+   - [Crear tu cuenta de Groq](docs/onboarding/groq.md)
+   - [Crear tu cuenta de Cohere](docs/onboarding/cohere.md)
+   - [Crear tu cuenta de Vercel](docs/onboarding/vercel.md)
 2. [Revisa las cuatro skills incluidas](docs/onboarding/skills.md).
 3. [Ejecuta el diagnóstico local](#diagnóstico-del-equipo).
 4. [Consulta la guía del aula](docs/onboarding/classroom-guide.md) y el [roadmap D1](docs/day-1/roadmap.md).
+   - [Presentación del Día 1](docs/day-1/slides.html) y [animación de bienvenida de Pachi](docs/day-1/pachi-intro.html): material de apoyo sin ensayar en clase.
+   - [Teoría: del mensaje al modelo](docs/day-1/theory.html).
 5. Cuando el facilitador lo indique, [crea PartyQuest desde una carpeta vacía](docs/day-1/setup-from-scratch.md). Un incremento por autorización; no ejecutes todo el roadmap en cadena.
 
 ## Qué vas a construir
