@@ -1,99 +1,93 @@
 # PartyQuest — Día 1 del taller BotMode
 
-Material para preparar el entorno y construir una primera conversación con Pachi, paso a paso y con ayuda de OpenCode. **No es la solución del ejercicio:** recibes presentación, referencias, skills y un esqueleto sin chat conectado.
+¡Bienvenido! En este taller construirás una primera conversación con **Pachi**, el personaje de PartyQuest, con ayuda de **OpenCode**, un asistente de programación.
 
-> **Estado de esta entrega.** El proyecto base está completo: presentación, tipos de los contratos, dependencias fijadas y archivos con `TODO` para cada incremento. En macOS se comprobaron instalación, tipos, build, health y la pantalla inicial. **Aún no se ha ensayado** el recorrido de las fichas con un agente, ni la ejecución en Windows, OpenCode o las cuentas reales. Consulta la [evidencia y sus límites](docs/onboarding/verification-status.md).
+La pantalla y la estructura inicial del proyecto ya están preparadas para que puedas concentrarte en los ejercicios. Tú conectarás el chat, aprenderás a manejar sus respuestas y comprobarás su funcionamiento, paso a paso junto con el instructor.
 
 ## Empieza aquí
 
-1. [Prepara Windows, OpenCode y las cuentas](docs/onboarding/README.md):
-   - [Instalar Node.js y OpenCode en Windows](docs/onboarding/windows.md)
-   - [Crear tu cuenta de Groq](docs/onboarding/groq.md)
-   - [Crear tu cuenta de Cohere](docs/onboarding/cohere.md)
-   - [Crear tu cuenta de Vercel](docs/onboarding/vercel.md)
-2. [Revisa las cuatro skills incluidas](docs/onboarding/skills.md).
-3. [Ejecuta el diagnóstico local](#diagnóstico-del-equipo).
-4. [Consulta la guía del aula](docs/onboarding/classroom-guide.md) y el [roadmap D1](docs/day-1/roadmap.md).
-   - [Presentación del Día 1](docs/day-1/slides.html) y [animación de bienvenida de Pachi](docs/day-1/pachi-intro.html): material de apoyo sin ensayar en clase.
-   - [Teoría: del mensaje al modelo](docs/day-1/theory.html).
-5. Avanza por las [fichas del roadmap](docs/day-1/roadmap.md#5-fichas-por-incremento): abres el archivo con el `TODO`, envías el prompt de la ficha a OpenCode, autorizas ese incremento y compruebas el resultado. Un incremento por autorización; no ejecutes el roadmap en cadena.
+1. **Prepara tu equipo.** Sigue la [guía de preparación](docs/onboarding/README.md), que reúne la instalación de herramientas y la creación de cuentas. Si usas Windows, comienza por [instalar Node.js y OpenCode](docs/onboarding/windows.md).
+2. **Comprueba las herramientas.** Ejecuta el [diagnóstico del equipo](#diagnóstico-del-equipo) y consulta al instructor si aparece algún problema.
+3. **Abre la guía del taller.** Lee la [guía del aula](docs/onboarding/classroom-guide.md) y sigue la [hoja de ruta paso a paso](docs/day-1/roadmap.md). Allí encontrarás qué archivo abrir, qué pedirle a OpenCode y cómo revisar cada resultado.
 
-## Qué vas a construir
+Las guías de cuentas explican cómo preparar [Groq](docs/onboarding/groq.md), [Cohere](docs/onboarding/cohere.md) y [Vercel](docs/onboarding/vercel.md). Durante el primer día usarás Groq para conectar el chat; Cohere y Vercel se utilizarán en etapas posteriores.
 
-- Un frontend separado de una API propia.
-- Envío del mensaje actual a la API, sin historial ni ubicación en la petición de D1.
-- Una llamada del **servidor** a Groq; nunca desde el navegador.
-- Estados de espera, respuesta, errores, cuota y consumo, según el contrato.
-- Ubicación o zona local y «Nuevo plan», en sus incrementos.
-- Pruebas deterministas que puedas explicar y distinguir de una llamada real.
+## Qué vas a aprender
 
-D1 no incluye catálogo, RAG, filtrado, distancias, streaming, voz ni persistencia de conversaciones. No presentes respuestas del modelo como recomendaciones verificadas. Cohere y Vercel se preparan como cuentas en D1, pero se usan en etapas posteriores.
+- Enviar un mensaje desde la pantalla y recibir una respuesta del modelo a través del servidor de PartyQuest.
+- Mostrar cuándo Pachi está respondiendo y qué hacer si ocurre un error o se alcanza un límite de uso.
+- Consultar el consumo de la conversación y comenzar un «Nuevo plan».
+- Trabajar con una ubicación o zona local cuando llegues al ejercicio correspondiente.
+- Pedir cambios acotados al asistente de programación y comprobarlos con pruebas.
 
-## Qué recibes y qué no
+El primer día se centra en esta primera conexión: cada petición envía el mensaje actual, sin historial ni ubicación. La búsqueda en un catálogo, las respuestas con fuentes, la voz y el guardado de conversaciones se trabajarán después. Por ahora, no tomes las respuestas del modelo como recomendaciones verificadas de lugares.
 
-| Incluido | Lo construyes durante el ejercicio |
+## Cómo usar los ejercicios
+
+Los archivos contienen comentarios **`TODO`**: son marcas que indican el trabajo que realizarás durante el taller, no errores de instalación.
+
+Para cada [ficha de la hoja de ruta](docs/day-1/roadmap.md#5-fichas-por-incremento):
+
+1. Lee el objetivo y abre el archivo indicado.
+2. Copia en OpenCode la instrucción propuesta en la ficha.
+3. Revisa lo que propone el asistente y autoriza **solo ese paso**.
+4. Comprueba el resultado antes de avanzar con el instructor.
+
+No pidas al agente que complete todo el taller de una vez. Lo importante es entender cada cambio y comprobar qué hace. Las [reglas de trabajo con el agente](docs/day-1/agent-prompts.md) y las [skills incluidas](docs/onboarding/skills.md) —instrucciones especializadas para OpenCode— apoyan este proceso.
+
+### Qué significan las claves de los archivos
+
+En los comentarios y las guías encontrarás identificadores para localizar cada ejercicio:
+
+| Clave | Significado |
 |---|---|
-| Guías de entorno, cuentas y uso de OpenCode | Configuración autorizada del adaptador Groq en el servidor |
-| Cuatro skills originales y reglas `AGENTS.md` | Pruebas del contrato e implementación por incremento |
-| Pantalla, Pachi, componentes visuales y Apariencia | Comportamiento real del chat, errores, usage y reinicio |
-| Tipos de los contratos y archivos con `TODO` por incremento | El código que cada `TODO` describe |
-| API base y health sin clave | `/api/chat`, que todavía no existe en el starter |
-| Contrato, arquitectura, referencia visual y teoría | Evidencia del resultado en tu propio equipo |
+| `D1` | Día 1 |
+| `B1` | Bloque 1 del taller |
+| `D1·B2.1` | Día 1, bloque 2, incremento 1: un paso concreto del ejercicio |
 
-La [referencia visual](docs/day-1/interface-reference.html) muestra los estados objetivo; no significa que estén implementados. El [mapa de archivos](docs/day-1/template-file-map.md) lista qué entrega cada archivo y dónde está cada `TODO`. Las guías y pruebas de solución docentes no se distribuyen aquí.
+No necesitas memorizarlos. Cada ficha te indica cuál corresponde y dónde trabajar. Puedes consultar el [mapa de archivos y tareas](docs/day-1/template-file-map.md) si necesitas ubicarte.
+
+## Material para consultar
+
+- [Presentación del Día 1](docs/day-1/slides.html).
+- [Bienvenida de Pachi](docs/day-1/pachi-intro.html).
+- [Libro de consulta: del mensaje al modelo](docs/day-1/theory.html), para leer en el navegador o imprimir como PDF.
+- [Referencia visual del chat](docs/day-1/interface-reference.html), para ver los estados que construirás.
+
+Cuando una ficha lo indique, consulta también la [guía del ejercicio de conexión](docs/01-chat-integration.md), el [contrato de la API](docs/api-contract.md) —las reglas de comunicación entre pantalla y servidor— y la [arquitectura del proyecto](docs/architecture.md).
 
 ## Diagnóstico del equipo
 
-Primero verifica Node y npm en PowerShell:
+Después de instalar Node.js, abre PowerShell en la carpeta del proyecto y ejecuta:
 
 ```powershell
 node --version
 npm.cmd --version
-```
-
-Desde la raíz del proyecto:
-
-```powershell
 node ./scripts/check-environment.mjs
-$LASTEXITCODE
 ```
 
-Comprueba herramientas y una selección de archivos, sin instalar, consultar cuentas ni pedir claves. `0` indica que esas comprobaciones pasaron; `1` indica ausencias o versiones no reconocidas. **No acredita compatibilidad completa, una instalación correcta ni conexión a proveedores.** Si falta Node, sigue [Windows](docs/onboarding/windows.md) antes de intentar el script.
+El diagnóstico revisa herramientas y archivos necesarios; no instala programas ni solicita claves. Si informa que falta algo, sigue la [guía de Windows](docs/onboarding/windows.md) o pide ayuda al instructor. La conexión con el modelo se comprobará en su ejercicio correspondiente.
 
-## Comandos del proyecto
+## Comandos que usarás durante el taller
 
-En PowerShell se escribe `npm.cmd` en lugar de `npm` para no depender de la ejecución de scripts `.ps1`; no hace falta cambiar ExecutionPolicy. Estos comandos se comprobaron en macOS (como `npm`); en Windows aún no.
+Ejecuta los comandos desde la carpeta principal del proyecto, cuando lo indique la guía. En PowerShell usamos `npm.cmd` para evitar problemas con la ejecución de scripts; no necesitas cambiar la política de seguridad de Windows. En macOS o Linux se escribe `npm` en su lugar.
 
-| Comando en PowerShell | Propósito |
+| Comando en PowerShell | Para qué sirve |
 |---|---|
-| `npm.cmd ci` | Instalar exactamente el lockfile raíz; no requiere clave Groq |
-| `npm.cmd run dev:api` | Iniciar API local, terminal A |
-| `npm.cmd run dev:frontend` | Iniciar frontend, terminal B |
-| `npm.cmd run dev` | Alias de frontend solamente; no inicia la API |
-| `npm.cmd test` | Pruebas de API y frontend; el proyecto empieza sin pruebas y las creas en las fichas |
-| `npm.cmd run typecheck` | Comprobar tipos de ambos workspaces |
-| `npm.cmd run build` | Comprobar API y generar build frontend |
-| `npm.cmd run test:setup` | Pruebas del diagnóstico, **no** aceptación del ejercicio |
+| `npm.cmd ci` | Instalar las dependencias del proyecto |
+| `npm.cmd run dev:api` | Iniciar el servidor en una terminal |
+| `npm.cmd run dev:frontend` | Iniciar la pantalla en otra terminal |
+| `npm.cmd test` | Ejecutar las pruebas que crearás durante los ejercicios |
+| `npm.cmd run typecheck` | Revisar los tipos del código |
+| `npm.cmd run build` | Comprobar que el proyecto puede compilarse |
 
-La configuración usa API `http://127.0.0.1:8787` y frontend `http://127.0.0.1:5173`. Health directo y por el proxy deben devolver HTTP `200` y `{"status":"ok"}` sin clave. Chat ausente/404 es esperado hasta su implementación. No cambies CORS ni puertos para ocultar errores sin revisar el problema.
+Con ambos procesos iniciados, abre **http://127.0.0.1:5173** en el navegador. Al principio verás la pantalla preparada; el envío de mensajes se conectará durante los ejercicios. Mantén abiertas ambas terminales mientras trabajas.
 
-Las pruebas del diagnóstico usan fixtures de shell Unix y se ejecutaron en macOS. No las presentes como una suite validada en Windows ni como pruebas de la app.
+## Cuida tus claves y tus cuentas
 
-## Documentos
+- Usa tus propias cuentas. No compartas claves de acceso, contraseñas ni tokens en OpenCode, capturas o mensajes del taller; tampoco los subas al repositorio.
+- Configura la clave de Groq únicamente en el servidor, siguiendo la guía. La configuración de OpenCode y la de PartyQuest son distintas.
+- Si una plataforma solicita un pago o un permiso inesperado, consulta al instructor antes de continuar. Las modalidades gratuitas y los límites pueden variar.
+- No autorices al agente a publicar el proyecto, conectar repositorios o crear recursos remotos como parte de un ejercicio local.
 
-- [Contrato API D1](docs/api-contract.md).
-- [Arquitectura](docs/architecture.md).
-- [Ejercicio E1](docs/01-chat-integration.md).
-- [Roadmap y seguimiento](docs/day-1/roadmap.md).
-- [Reglas para trabajar con el agente](docs/day-1/agent-prompts.md).
-- [Mapa de archivos y TODO](docs/day-1/template-file-map.md).
-- [Referencia de interfaz](docs/day-1/interface-reference.md) y [galería HTML](docs/day-1/interface-reference.html).
-- [Teoría del Día 1](docs/day-1/theory.html): abre el HTML en el navegador.
-
-## Seguridad y cuentas
-
-Usa cuentas personales. No subas claves, contraseñas, tokens ni archivos `.env` reales al repositorio. No pegues credenciales en prompts, capturas, pruebas o mensajes del taller. La configuración del proveedor del agente y la del servidor PartyQuest son distintas.
-
-Las páginas de Groq, Cohere, Vercel y OpenCode pueden cambiar. No se promete una modalidad gratuita, cuota o modelo disponible para todos. Si aparece un pago o un permiso inesperado, detente y consulta al facilitador.
-
-Crear una cuenta o descargar este material no autoriza al agente a publicar, conectar repositorios, crear recursos remotos ni desplegar.
+**Tu siguiente paso:** abre la [guía de preparación](docs/onboarding/README.md).
