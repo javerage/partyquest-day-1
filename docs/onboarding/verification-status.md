@@ -28,6 +28,7 @@ Las pruebas del diagnóstico usan herramientas falsas en un entorno Unix. No pru
 - **Cuentas:** alta e inicio de sesión reales en Groq, Cohere y Vercel; disponibilidad, modelos, precios y cuotas.
 - **Conectividad con Groq:** no se hicieron llamadas reales ni se usaron claves.
 - **Tiempos de aula:** no hay ensayo de cuánto tarda cada incremento.
+- **Gentle AI:** la [guía](gentle-ai.md) se basa en la documentación oficial del 17 de noviembre de 2026 (versión 4.5.0). No se ensayó en Windows la instalación con Go ni la configuración de OpenCode, ni cuánto tarda en la red del aula. La [guía de Go](go.md) se basa en la documentación oficial de esa fecha (Go 1.27.4); tampoco se ensayó su instalador en Windows.
 
 ## Cómo registrar tu propia evidencia
 

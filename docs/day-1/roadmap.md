@@ -109,6 +109,8 @@ tienen TODO y a qué incremento pertenecen, y por qué POST /api/chat responde 4
 
 Arranque en dos terminales: `npm.cmd run dev:api` y `npm.cmd run dev:frontend`. La API escucha en `http://127.0.0.1:8787` y el frontend en `http://127.0.0.1:5173`.
 
+En este bloque también instalas **Gentle AI** en OpenCode, junto con el instructor, siguiendo su [guía](../onboarding/gentle-ai.md). Lo instalas tú desde tu terminal, no el agente. Cierre: `gentle-ai doctor` sin errores y `gentle-ai review mode status` con la revisión desactivada.
+
 ### D1·B2.1 — Fijar el contrato con una prueba
 
 - **Abre:** `api/src/features/chat/presentation/http/chat-route.ts`

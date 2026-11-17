@@ -10,15 +10,19 @@ Prepara este entorno en el Día 1. Las instalaciones y los registros los realiza
 4. [Crear o revisar tu cuenta de Vercel](vercel.md).
 5. Abrir la carpeta del proyecto en OpenCode y [comprobar las cuatro skills](skills.md).
 6. Ejecutar el diagnóstico y seguir la [guía del aula](classroom-guide.md).
+7. [Instalar Go en Windows](go.md). Si puedes, descarga su instalador antes de la clase.
+8. En el bloque 1, con el instructor: [instalar Gentle AI en OpenCode](gentle-ai.md).
 
 | Herramienta o cuenta | Preparación D1 | Uso en el taller |
 |---|---|---|
 | Node.js y npm | Instalados y disponibles en una terminal nueva | Ejecutar frontend, API y herramientas locales |
 | OpenCode | Instalar, abrir proyecto y revisar acceso a un modelo de programación | Trabajar con el agente por incrementos |
+| Gentle AI | Se instala en clase durante el bloque 1 | Método de trabajo del agente, memoria del proyecto y protección de credenciales |
+| Go 1.25.10+ | [Instalar si falta](go.md), para compilar Gentle AI en Windows | Solo para instalar o actualizar Gentle AI |
 | Groq | Crear cuenta y comprobar acceso al panel | Configurar la clave **solo en el servidor**, al autorizar D1·B2.3 |
 | Cohere | Crear cuenta y comprobar acceso al panel | Embeddings en D2; no instalar SDK ni crear índices en D1 |
 | Vercel | Crear cuenta y comprobar acceso al panel | Despliegue posterior, con autorización específica; no importar proyectos en D1 |
-| Git | Opcional para descargar por ZIP; útil si vas a usar Git | Versionar el trabajo, no necesario para ejecutar el diagnóstico |
+| Git | Necesario para instalar Gentle AI; la descarga del proyecto puede hacerse por ZIP | Versionar el trabajo, no necesario para ejecutar el diagnóstico |
 
 ## Diagnóstico desde la carpeta del proyecto
 

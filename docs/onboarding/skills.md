@@ -1,6 +1,6 @@
 # Skills del proyecto
 
-Estas skills son material original del taller, escrito para los incrementos D1 y guardado dentro del proyecto. OpenCode descubre `.opencode/skills/<id>/SKILL.md`; no se requiere instalador, configuración global ni cambio de registro. En un prompt puedes invocar `@<id>` explícitamente. Referencia de formato y descubrimiento: [documentación oficial de OpenCode](https://opencode.ai/docs/skills/).
+Estas skills son material original del taller, escrito para los incrementos D1 y guardado dentro del proyecto. OpenCode descubre `.opencode/skills/<id>/SKILL.md`; no se requiere instalador, configuración global ni cambio de registro. En un prompt puedes invocar `@<id>` explícitamente. [Gentle AI](gentle-ai.md) agrega sus propias skills generales; las cuatro del taller siguen disponibles y las fichas las invocan por su nombre. Referencia de formato y descubrimiento: [documentación oficial de OpenCode](https://opencode.ai/docs/skills/).
 
 | ID | Ruta exacta | Activación / uso |
 |---|---|---|

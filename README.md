@@ -8,7 +8,8 @@ La pantalla y la estructura inicial del proyecto ya están preparadas para que p
 
 1. **Prepara tu equipo.** Sigue la [guía de preparación](docs/onboarding/README.md), que reúne la instalación de herramientas y la creación de cuentas. Si usas Windows, comienza por [instalar Node.js y OpenCode](docs/onboarding/windows.md).
 2. **Comprueba las herramientas.** Ejecuta el [diagnóstico del equipo](#diagnóstico-del-equipo) y consulta al instructor si aparece algún problema.
-3. **Abre la guía del taller.** Lee la [guía del aula](docs/onboarding/classroom-guide.md) y sigue la [hoja de ruta paso a paso](docs/day-1/roadmap.md). Allí encontrarás qué archivo abrir, qué pedirle a OpenCode y cómo revisar cada resultado.
+3. **Instala Gentle AI en OpenCode.** En Windows necesitas primero [instalar Go](docs/onboarding/go.md). Después, durante el primer bloque y junto con el instructor, sigue la [guía de Gentle AI](docs/onboarding/gentle-ai.md): ordena la forma de trabajar del agente, recuerda las decisiones del proyecto y protege tus claves.
+4. **Abre la guía del taller.** Lee la [guía del aula](docs/onboarding/classroom-guide.md) y sigue la [hoja de ruta paso a paso](docs/day-1/roadmap.md). Allí encontrarás qué archivo abrir, qué pedirle a OpenCode y cómo revisar cada resultado.
 
 Las guías de cuentas explican cómo preparar [Groq](docs/onboarding/groq.md), [Cohere](docs/onboarding/cohere.md) y [Vercel](docs/onboarding/vercel.md). Durante el primer día usarás Groq para conectar el chat; Cohere y Vercel se utilizarán en etapas posteriores.
 

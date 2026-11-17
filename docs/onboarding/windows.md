@@ -75,4 +75,4 @@ El primer prompt con un modelo puede consumir cuota. No presupongas acceso gratu
 - **Permiso o política de empresa:** solicita apoyo del responsable del equipo.
 - **Proveedor/modelo no disponible:** registra el mensaje sin datos privados; no sustituyas proveedor ni aceptes costos sin decidirlo.
 
-Continúa con [las cuentas y el diagnóstico](README.md). La instalación real y el funcionamiento de OpenCode en Windows siguen pendientes de un ensayo en ese sistema.
+Continúa con [las cuentas y el diagnóstico](README.md). En el bloque 1 instalarás [Gentle AI](gentle-ai.md) sobre este OpenCode; antes necesitas [instalar Go](go.md), y la guía de Gentle AI explica cómo instalar Git si falta. La instalación real y el funcionamiento de OpenCode en Windows siguen pendientes de un ensayo en ese sistema.
