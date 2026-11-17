@@ -58,44 +58,18 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 
 ## 4. Cómo trabajar con el agente
 
-**Una ficha, un incremento, una autorización.** Para cada fila:
+**Una ficha, un incremento, una autorización.** Cada ficha de la sección 5 trae su **paso a paso** con dos prompts ya completos, listos para copiar en OpenCode:
 
-1. Abre el archivo que indica la ficha y lee su `TODO` con ese ID.
-2. Envía al agente el **prompt de alcance**, con el objetivo de la ficha. El agente explica y no edita.
-3. Revisa que las rutas y comprobaciones coincidan con la ficha. Si falta una decisión, el agente pregunta.
-4. Envía el **prompt de autorización**. El agente hace solo ese incremento.
-5. Ejecuta o presencia las comprobaciones y compáralas con la fila.
-6. Anota estado y evidencia. Solo entonces pasa a la siguiente ficha.
+1. **Prompt 1 (alcance):** el agente lee la ficha y explica qué va a hacer, sin editar.
+2. **Prompt 2 (autorización):** después de revisar la explicación, autorizas solo esa ficha. Si hay una prueba aplicable, el agente la escribe primero y la ve fallar; luego implementa.
 
-### Prompt de alcance (antes de autorizar)
-
-```text
-Vamos a trabajar únicamente en [ID]. Lee AGENTS.md, la ficha de [ID] en
-docs/day-1/roadmap.md, los TODO([ID]) de los archivos que indica y sus lecturas.
-Objetivo: [objetivo de la ficha].
-Todavía no edites ni ejecutes cambios. Explícame el resultado observable, el
-concepto, los archivos que vas a tocar, las pruebas y comprobaciones, y cualquier
-decisión que falte. Espera mi autorización explícita.
-```
-
-### Prompt de autorización
-
-```text
-Autorizo únicamente [ID] según el alcance que explicaste. Usa los archivos,
-nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-la prueba y observa que falle; después implementa y mantén las comprobaciones en
-verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-ejecutadas. No marques el roadmap por mí y detente antes del siguiente incremento.
-```
+Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en la sección 3. No necesitas armar ni modificar los prompts: copia el bloque completo.
 
 No pegues varias fichas como una orden para ejecutar en cadena. Las [reglas para trabajar con el agente](agent-prompts.md) explican qué hacer cuando la evidencia no alcanza.
 
 ## 5. Fichas por incremento
 
-Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TODO` lees primero; «También» son los demás archivos con `TODO` del mismo ID; «Pruebas» es el archivo de pruebas que el agente crea.
+Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TODO` lees primero; «También» son los demás archivos con `TODO` del mismo ID; «Pruebas» es el archivo de pruebas que el agente crea. Sigue el **paso a paso** de cada ficha en orden.
 
 ### D1·B1 — Instalar y comprobar la base (sin editar)
 
@@ -113,98 +87,471 @@ En este bloque también instalas **Gentle AI** en OpenCode, junto con el instruc
 
 ### D1·B2.1 — Fijar el contrato con una prueba
 
+**Datos de la ficha**
+
 - **Abre:** `api/src/features/chat/presentation/http/chat-route.ts`
 - **Pruebas:** `api/src/features/chat/tests/chat-http.test.ts`
 - **Lectura:** [contrato API](../api-contract.md), secciones de solicitud, respuesta y errores; [E1](../01-chat-integration.md)
-- **Objetivo:** «Especificar y probar solo el contrato del mensaje actual por la API pública, con un gateway falso. Propón las pruebas deterministas y sus resultados observables. No implementes la ruta todavía.»
-- **Para cerrar:** `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
+
+**Paso a paso**
+
+1. Abre `api/src/features/chat/presentation/http/chat-route.ts` y lee su `TODO(D1·B2.1)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B2.1. Lee AGENTS.md, la ficha de D1·B2.1 en
+   docs/day-1/roadmap.md, los TODO(D1·B2.1) de los archivos que indica y sus
+   lecturas. Objetivo: Especificar y probar solo el contrato del mensaje actual por
+   la API pública, con un gateway falso. Propón las pruebas deterministas y sus
+   resultados observables. No implementes la ruta todavía. Todavía no edites ni
+   ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
+   que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
+   Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-route.ts`, `chat-http.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B2.1 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.2 — Validación y respuesta con gateway sustituible
+
+**Datos de la ficha**
 
 - **Abre:** `api/src/features/chat/presentation/http/parse-chat-request.ts`
 - **También:** `api/src/features/chat/application/generate-reply.ts`, `api/src/features/chat/presentation/http/chat-route.ts`, `api/src/shared/http/api-error.ts`, `api/src/app/create-app.ts`
 - **Pruebas:** las de B2.1 y `api/src/features/chat/tests/generate-reply.test.ts`
 - **Lectura:** [contrato API](../api-contract.md), validación y errores; [arquitectura](../architecture.md)
-- **Objetivo:** «Implementar solo la validación HTTP, el caso de uso y la ruta sobre el puerto del gateway ya definido. No conectes el proveedor real ni la interfaz. Lo inválido se rechaza antes de llamar al gateway.»
-- **Para cerrar:** `npm.cmd test --workspace api` y `npm.cmd run typecheck` con código 0. Con el servidor en marcha, `POST /api/chat` responde `configuration_error`, nunca una respuesta inventada.
+
+**Paso a paso**
+
+1. Abre `api/src/features/chat/presentation/http/parse-chat-request.ts` y lee su `TODO(D1·B2.2)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B2.2. Lee AGENTS.md, la ficha de D1·B2.2 en
+   docs/day-1/roadmap.md, los TODO(D1·B2.2) de los archivos que indica y sus
+   lecturas. Objetivo: Implementar solo la validación HTTP, el caso de uso y la
+   ruta sobre el puerto del gateway ya definido. No conectes el proveedor real ni
+   la interfaz. Lo inválido se rechaza antes de llamar al gateway. Todavía no
+   edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
+   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
+   falte. Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `parse-chat-request.ts`, `generate-reply.ts`, `chat-route.ts`, `api-error.ts`, `create-app.ts`, `generate-reply.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B2.2 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: `npm.cmd test --workspace api` y `npm.cmd run typecheck` con código 0. Con el servidor en marcha, `POST /api/chat` responde `configuration_error`, nunca una respuesta inventada.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.3 — Adaptador Groq en el servidor
+
+**Datos de la ficha**
 
 - **Abre:** `api/src/features/chat/infrastructure/groq/groq-text-generation-adapter.ts`
 - **También:** `api/src/features/chat/application/pachi-system-instruction.ts`, `api/src/app/create-app.ts`, `api/src/app/server.ts`
 - **Pruebas:** `api/src/features/chat/tests/groq-text-generation-adapter.test.ts`
 - **Lectura:** [contrato API](../api-contract.md), respuesta exitosa, usage y errores; [E1](../01-chat-integration.md)
-- **Objetivo:** «Conectar el adaptador de Groq exclusivamente en el servidor, con `groq-sdk` ya instalado. Las pruebas usan un `fetch` falso y nunca llaman al proveedor. Explica primero cómo se maneja la configuración ausente.»
 - **Preparación manual:** copia `api/.env.example` como `api/.env` y escribe ahí tu clave y `GROQ_MODEL=openai/gpt-oss-20b`. Hazlo tú; no le pidas al agente leer ni mostrar ese archivo.
-- **Para cerrar:** pruebas en verde; sin `api/.env`, `POST /api/chat` responde `configuration_error`. Una llamada real es opcional, la autorizas tú y se registra aparte de las pruebas.
+
+**Paso a paso**
+
+1. Abre `api/src/features/chat/infrastructure/groq/groq-text-generation-adapter.ts` y lee su `TODO(D1·B2.3)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B2.3. Lee AGENTS.md, la ficha de D1·B2.3 en
+   docs/day-1/roadmap.md, los TODO(D1·B2.3) de los archivos que indica y sus
+   lecturas. Objetivo: Conectar el adaptador de Groq exclusivamente en el servidor,
+   con `groq-sdk` ya instalado. Las pruebas usan un `fetch` falso y nunca llaman al
+   proveedor. Explica primero cómo se maneja la configuración ausente. Todavía no
+   edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
+   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
+   falte. Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `groq-text-generation-adapter.ts`, `pachi-system-instruction.ts`, `create-app.ts`, `server.ts`, `groq-text-generation-adapter.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B2.3 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: pruebas en verde; sin `api/.env`, `POST /api/chat` responde `configuration_error`. Una llamada real es opcional, la autorizas tú y se registra aparte de las pruebas.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.4 — Conectar el envío desde la interfaz
+
+**Datos de la ficha**
 
 - **Abre:** `frontend/src/features/chat/components/ChatPage.tsx`
 - **También:** `frontend/src/features/chat/api/chat-client.ts`, `frontend/src/features/chat/model/message-rules.ts`, `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/app/App.tsx`
 - **Pruebas:** `frontend/src/features/chat/tests/chat-client.test.ts` y `frontend/src/features/chat/tests/chat-page.test.tsx`
 - **Lectura:** [E1](../01-chat-integration.md); [contrato API](../api-contract.md), responsabilidades de la interfaz; [referencia de interfaz](interface-reference.md)
-- **Objetivo:** «Conectar el formulario al endpoint y mostrar la respuesta con los componentes entregados. Se envía solo el mensaje actual: sin historial, ubicación ni clave. No agregues todavía errores, usage, ubicación ni reinicio.»
 - **Textos:** marcador de posición con conversación vacía «Ej.: el domingo a mediodía, somos 4…» y con mensajes «Escribe un mensaje…»; espera «Revisando opciones…»; aviso bajo el campo «El mensaje supera 2000 caracteres.»
-- **Para cerrar:** `npm.cmd test --workspace frontend`; en el navegador, a 360 px y en escritorio, la respuesta aparece y la pestaña de red muestra solo `{ "message": "…" }`.
+
+**Paso a paso**
+
+1. Abre `frontend/src/features/chat/components/ChatPage.tsx` y lee su `TODO(D1·B2.4)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B2.4. Lee AGENTS.md, la ficha de D1·B2.4 en
+   docs/day-1/roadmap.md, los TODO(D1·B2.4) de los archivos que indica y sus
+   lecturas. Objetivo: Conectar el formulario al endpoint y mostrar la respuesta
+   con los componentes entregados. Se envía solo el mensaje actual: sin historial,
+   ubicación ni clave. No agregues todavía errores, usage, ubicación ni reinicio.
+   Todavía no edites ni ejecutes cambios. Explícame el resultado observable, el
+   concepto, los archivos que vas a tocar, las pruebas y comprobaciones, y
+   cualquier decisión que falte. Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `chat-client.ts`, `message-rules.ts`, `use-chat.ts`, `App.tsx`, `chat-client.test.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B2.4 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: `npm.cmd test --workspace frontend`; en el navegador, a 360 px y en escritorio, la respuesta aparece y la pestaña de red muestra solo `{ "message": "…" }`.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.1 — Error recuperable y cuota agotada
+
+**Datos de la ficha**
 
 - **Abre:** `frontend/src/features/chat/api/chat-client.ts`
 - **También:** `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/features/chat/components/ChatPage.tsx` (usa `InlineNotice`)
 - **Pruebas:** las de B2.4, ampliadas
 - **Lectura:** [contrato API](../api-contract.md), errores; [referencia de interfaz](interface-reference.md)
-- **Objetivo:** «Representar solo los errores de red o contrato y la cuota agotada. Las pruebas usan respuestas falsas; no provoques errores reales de cuota ni reintentes automáticamente.»
 - **Textos:** cuota agotada: título «Se alcanzó el límite de uso», cuerpo «Por ahora no puedo responder. Tu conversación sigue visible en esta página.», sin acciones. Otros fallos: título «No pude obtener respuesta», cuerpo «Tu conversación sigue visible en esta página.», acción «Editar mensaje» y, solo si el error es reintentable, «Reintentar».
-- **Para cerrar:** pruebas en verde; revisión en navegador de ambos avisos a 360 px y en escritorio.
+
+**Paso a paso**
+
+1. Abre `frontend/src/features/chat/api/chat-client.ts` y lee su `TODO(D1·B3.1)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B3.1. Lee AGENTS.md, la ficha de D1·B3.1 en
+   docs/day-1/roadmap.md, los TODO(D1·B3.1) de los archivos que indica y sus
+   lecturas. Objetivo: Representar solo los errores de red o contrato y la cuota
+   agotada. Las pruebas usan respuestas falsas; no provoques errores reales de
+   cuota ni reintentes automáticamente. Todavía no edites ni ejecutes cambios.
+   Explícame el resultado observable, el concepto, los archivos que vas a tocar,
+   las pruebas y comprobaciones, y cualquier decisión que falte. Espera mi
+   autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-client.ts`, `use-chat.ts`, `ChatPage.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B3.1 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: pruebas en verde; revisión en navegador de ambos avisos a 360 px y en escritorio.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.2 — Usage y costo teórico
+
+**Datos de la ficha**
 
 - **Abre:** `frontend/src/features/chat/model/session-usage.ts`
 - **También:** `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/features/chat/components/ChatPage.tsx` (usa `UsagePanel`)
 - **Pruebas:** `frontend/src/features/chat/tests/session-usage.test.ts`
 - **Lectura:** [contrato API](../api-contract.md), usage y costo; sección 6 de este roadmap
-- **Objetivo:** «Mostrar y acumular usage y costo según el contrato. Prueba usage completo, parcial y ausente. Una respuesta válida no se pierde si falta usage y un campo desconocido no se convierte en cero.»
-- **Para cerrar:** pruebas en verde; el panel muestra «no disponible» cuando falta un dato. La tarifa ya está en `frontend/src/features/chat/model/model-rates.ts`.
+
+**Paso a paso**
+
+1. Abre `frontend/src/features/chat/model/session-usage.ts` y lee su `TODO(D1·B3.2)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B3.2. Lee AGENTS.md, la ficha de D1·B3.2 en
+   docs/day-1/roadmap.md, los TODO(D1·B3.2) de los archivos que indica y sus
+   lecturas. Objetivo: Mostrar y acumular usage y costo según el contrato. Prueba
+   usage completo, parcial y ausente. Una respuesta válida no se pierde si falta
+   usage y un campo desconocido no se convierte en cero. Todavía no edites ni
+   ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
+   que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
+   Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `session-usage.ts`, `use-chat.ts`, `ChatPage.tsx`, `session-usage.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B3.2 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: pruebas en verde; el panel muestra «no disponible» cuando falta un dato. La tarifa ya está en `frontend/src/features/chat/model/model-rates.ts`.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B4.1 — Comparar instrucciones de sistema
 
+**Datos de la ficha**
+
 - **Abre:** `api/src/features/chat/application/pachi-system-instruction.ts`
 - **Lectura:** [E1](../01-chat-integration.md)
-- **Objetivo:** «Preparar una comparación controlada de instrucciones de sistema con el mismo mensaje de usuario. No modifiques el contrato ni presentes una salida convincente como verificación de hechos. Explica qué evidencia registrar.»
-- **Para cerrar:** registro de cada instrucción, el mensaje usado y lo observado. Sin clave o sin tu permiso no hay llamada.
+
+**Paso a paso**
+
+1. Abre `api/src/features/chat/application/pachi-system-instruction.ts` y lee su `TODO(D1·B4.1)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B4.1. Lee AGENTS.md, la ficha de D1·B4.1 en
+   docs/day-1/roadmap.md, los TODO(D1·B4.1) de los archivos que indica y sus
+   lecturas. Objetivo: Preparar una comparación controlada de instrucciones de
+   sistema con el mismo mensaje de usuario. No modifiques el contrato ni presentes
+   una salida convincente como verificación de hechos. Explica qué evidencia
+   registrar. Todavía no edites ni ejecutes cambios. Explícame el resultado
+   observable, el concepto, los archivos que vas a tocar, las pruebas y
+   comprobaciones, y cualquier decisión que falte. Espera mi autorización
+   explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `pachi-system-instruction.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B4.1 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: registro de cada instrucción, el mensaje usado y lo observado. Sin clave o sin tu permiso no hay llamada.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B5.1 — Completar las pruebas del contrato
 
+**Datos de la ficha**
+
 - **Abre:** [contrato API](../api-contract.md), sección de comprobaciones de aceptación
 - **Pruebas:** las carpetas `tests/` ya creadas en `api/` y `frontend/`
-- **Objetivo:** «Completar únicamente la cobertura determinista que deriva del contrato y revisar las regresiones de lo ya construido. No agregues capacidades. Enumera requisito por requisito la evidencia que falta antes de editar.»
-- **Para cerrar:** `npm.cmd test` con código 0 y una nota de qué no demuestran esas pruebas (no prueban conectividad real).
+
+**Paso a paso**
+
+1. Abre el [contrato API](../api-contract.md) en la sección de comprobaciones de aceptación y repasa los requisitos que deben quedar cubiertos.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B5.1. Lee AGENTS.md, la ficha de D1·B5.1 en
+   docs/day-1/roadmap.md, los TODO(D1·B5.1) de los archivos que indica y sus
+   lecturas. Objetivo: Completar únicamente la cobertura determinista que deriva
+   del contrato y revisar las regresiones de lo ya construido. No agregues
+   capacidades. Enumera requisito por requisito la evidencia que falta antes de
+   editar. Todavía no edites ni ejecutes cambios. Explícame el resultado
+   observable, el concepto, los archivos que vas a tocar, las pruebas y
+   comprobaciones, y cualquier decisión que falte. Espera mi autorización
+   explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B5.1 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: `npm.cmd test` con código 0 y una nota de qué no demuestran esas pruebas (no prueban conectividad real).
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.1 — Ubicación con permiso o zona escrita
+
+**Datos de la ficha**
 
 - **Abre:** `frontend/src/features/location/model/use-location.ts`
 - **También:** `frontend/src/features/chat/components/ChatPage.tsx` (usa `LocationPrompt`), `frontend/src/app/App.tsx`
 - **Pruebas:** `frontend/src/features/location/tests/location.test.tsx`, con una geolocalización falsa en `frontend/src/test/fake-geolocation.ts`
 - **Lectura:** [E1](../01-chat-integration.md); [referencia de interfaz](interface-reference.md)
-- **Objetivo:** «Implementar ubicación con permiso o zona escrita, guardada solo en el navegador. No se envía al endpoint ni al prompt. Prueba permiso concedido, denegado y no disponible con una API falsa.»
 - **Textos:** al escribir la zona, el campo usa la etiqueta «Zona de referencia», el marcador «O escribe una zona, por ejemplo «centro»…» y el botón «Guardar zona». Los demás textos ya están en `LocationPrompt`.
-- **Para cerrar:** pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
+
+**Paso a paso**
+
+1. Abre `frontend/src/features/location/model/use-location.ts` y lee su `TODO(D1·B6.1)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B6.1. Lee AGENTS.md, la ficha de D1·B6.1 en
+   docs/day-1/roadmap.md, los TODO(D1·B6.1) de los archivos que indica y sus
+   lecturas. Objetivo: Implementar ubicación con permiso o zona escrita, guardada
+   solo en el navegador. No se envía al endpoint ni al prompt. Prueba permiso
+   concedido, denegado y no disponible con una API falsa. Todavía no edites ni
+   ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
+   que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
+   Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `use-location.ts`, `ChatPage.tsx`, `App.tsx`, `location.test.tsx`, `fake-geolocation.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B6.1 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.2 — Confirmar «Nuevo plan»
+
+**Datos de la ficha**
 
 - **Abre:** `frontend/src/features/chat/components/ChatPage.tsx` (usa `ConfirmDialog`)
 - **También:** `frontend/src/features/chat/model/use-chat.ts`
 - **Pruebas:** `frontend/src/features/chat/tests/chat-page.test.tsx`, ampliada
 - **Lectura:** [E1](../01-chat-integration.md); [referencia de interfaz](interface-reference.md)
-- **Objetivo:** «Implementar solo confirmar o cancelar «Nuevo plan». Confirmar limpia intercambios, ubicación o zona y usage de esta sesión; no cambia permisos, cuota ni tema, y nada persiste al recargar.»
 - **Textos:** título «¿Empezar otra conversación?», descripción «Esta se borrará.», botones «Cancelar» y «Empezar otra conversación». Sin mensajes no se pide confirmación.
-- **Para cerrar:** pruebas en verde; revisión en navegador de cancelar y confirmar.
+
+**Paso a paso**
+
+1. Abre `frontend/src/features/chat/components/ChatPage.tsx` (usa `ConfirmDialog`) y lee su `TODO(D1·B6.2)`.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B6.2. Lee AGENTS.md, la ficha de D1·B6.2 en
+   docs/day-1/roadmap.md, los TODO(D1·B6.2) de los archivos que indica y sus
+   lecturas. Objetivo: Implementar solo confirmar o cancelar «Nuevo plan».
+   Confirmar limpia intercambios, ubicación o zona y usage de esta sesión; no
+   cambia permisos, cuota ni tema, y nada persiste al recargar. Todavía no edites
+   ni ejecutes cambios. Explícame el resultado observable, el concepto, los
+   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
+   falte. Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `use-chat.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B6.2 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: pruebas en verde; revisión en navegador de cancelar y confirmar.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.3 — Cierre local
 
-- **Objetivo:** «Cerrar las comprobaciones locales de D1 sin ampliar el alcance. Separa pruebas deterministas, arranque y health, build y llamada real. No afirmes una llamada real que no se autorizó ni se observó.»
-- **Para cerrar:** `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.
+**Paso a paso**
+
+1. Revisa en la tabla de la sección 3 que todas las fichas anteriores estén cerradas.
+2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
+
+   ```text
+   Vamos a trabajar únicamente en D1·B6.3. Lee AGENTS.md, la ficha de D1·B6.3 en
+   docs/day-1/roadmap.md, los TODO(D1·B6.3) de los archivos que indica y sus
+   lecturas. Objetivo: Cerrar las comprobaciones locales de D1 sin ampliar el
+   alcance. Separa pruebas deterministas, arranque y health, build y llamada real.
+   No afirmes una llamada real que no se autorizó ni se observó. Todavía no edites
+   ni ejecutes cambios. Explícame el resultado observable, el concepto, los
+   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
+   falte. Espera mi autorización explícita.
+   ```
+
+3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
+
+   ```text
+   Autorizo únicamente D1·B6.3 según el alcance que explicaste. Usa los archivos,
+   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+   la prueba y observa que falle; después implementa y mantén las comprobaciones en
+   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
+   ```
+
+5. Comprueba: `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.
+6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ## 6. Modelo, consumo y cuotas
 

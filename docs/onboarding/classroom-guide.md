@@ -6,9 +6,9 @@ Esta guía acompaña la implementación incremental; no contiene la solución ni
 
 1. Abre `docs/day-1/roadmap.md` y elige con el facilitador un ID pendiente; confirma prerrequisitos y criterios completos.
 2. Lee el documento público enlazado por esa fila y las reglas de `AGENTS.md`.
-3. Pide al agente: «Trabajemos únicamente en [ID]. Lee la fila completa, prerrequisitos y documentos enlazados; todavía no edites. Explica resultado observable, criterios, rutas candidatas y checks. Señala decisiones faltantes y espera autorización explícita».
+3. Copia en el agente el **prompt 1 (alcance)** de la ficha, en la sección 5 del roadmap. Ya está completo: no hace falta modificarlo.
 4. Comprueba que no falte una decisión. Si falta, detente y pregunta al facilitador.
-5. Autoriza explícitamente solo ese ID. No autorices varios bloques con una misma instrucción.
+5. Autoriza solo ese ID copiando el **prompt 2 (autorización)** de la misma ficha. No autorices varios bloques con una misma instrucción.
 
 ## Recorrido por los IDs del roadmap
 
