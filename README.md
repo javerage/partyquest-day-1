@@ -4,12 +4,13 @@
 
 La pantalla y la estructura inicial del proyecto ya están preparadas para que puedas concentrarte en los ejercicios. Tú conectarás el chat, aprenderás a manejar sus respuestas y comprobarás su funcionamiento, paso a paso junto con el instructor.
 
-## Empieza aquí
+## Ya cloné el repositorio: empieza aquí
 
-1. **Prepara tu equipo.** Sigue la [guía de preparación](docs/onboarding/README.md), que reúne la instalación de herramientas y la creación de cuentas. Si usas Windows, comienza por [instalar Node.js y OpenCode](docs/onboarding/windows.md).
-2. **Comprueba las herramientas.** Ejecuta el [diagnóstico del equipo](#diagnóstico-del-equipo) y consulta al instructor si aparece algún problema.
-3. **Instala Gentle AI en OpenCode.** En Windows necesitas primero [instalar Go](docs/onboarding/go.md). Después, durante el primer bloque y junto con el instructor, sigue la [guía de Gentle AI](docs/onboarding/gentle-ai.md): ordena la forma de trabajar del agente, recuerda las decisiones del proyecto y protege tus claves.
-4. **Abre la guía del taller.** Lee la [guía del aula](docs/onboarding/classroom-guide.md) y sigue la [hoja de ruta paso a paso](docs/day-1/roadmap.md). Allí encontrarás qué archivo abrir, qué pedirle a OpenCode y cómo revisar cada resultado.
+Sigue [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias) y después B1.2–B1.4 en orden. Las fichas explican qué ejecutar, en qué carpeta y terminal, qué resultado esperar y cuándo detenerte si algo falla.
+
+**Primero comprobarás Node.js y npm; después ejecutarás `npm.cmd ci` desde la raíz.** No empieces por implementar el chat ni por copiar los prompts de B2. El bloque B1 indica cuándo arrancar las dos aplicaciones y cuándo preparar Gentle AI antes de los ejercicios.
+
+Si faltan herramientas, consulta la [guía de preparación](docs/onboarding/README.md); en Windows, la [guía de Node.js y OpenCode](docs/onboarding/windows.md). Después vuelve a B1.1. La [guía del aula](docs/onboarding/classroom-guide.md) explica la dinámica del taller.
 
 Las guías de cuentas explican cómo preparar [Groq](docs/onboarding/groq.md), [Cohere](docs/onboarding/cohere.md) y [Vercel](docs/onboarding/vercel.md). Durante el primer día usarás Groq para conectar el chat; Cohere y Vercel se utilizarán en etapas posteriores.
 
@@ -91,4 +92,4 @@ Con ambos procesos iniciados, abre **http://127.0.0.1:5173** en el navegador. Al
 - Si una plataforma solicita un pago o un permiso inesperado, consulta al instructor antes de continuar. Las modalidades gratuitas y los límites pueden variar.
 - No autorices al agente a publicar el proyecto, conectar repositorios o crear recursos remotos como parte de un ejercicio local.
 
-**Tu siguiente paso:** abre la [guía de preparación](docs/onboarding/README.md).
+**Tu siguiente paso:** sigue [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias).

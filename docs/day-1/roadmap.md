@@ -40,10 +40,10 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 
 | ID | Resultado observable | Previo | Checks para cerrar | Estado / evidencia personal |
 |---|---|---|---|---|
-| D1·B1.1 | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | Pendiente — |
-| D1·B1.2 | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | Pendiente — |
-| D1·B1.3 | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | Pendiente — |
-| D1·B1.4 | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | Pendiente — |
+| [D1·B1.1](#d1b11--instalar-dependencias) | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | Pendiente — |
+| [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | Pendiente — |
+| [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | Pendiente — |
+| [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | Pendiente — |
 | D1·B2.1 | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | Pendiente — |
 | D1·B2.2 | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | Pendiente — |
 | D1·B2.3 | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | Pendiente — |
@@ -73,7 +73,97 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 ### D1·B1 — Instalar y comprobar la base (sin editar)
 
-B1.1 a B1.4 no cambian archivos: ejecutas los comandos de la tabla y registras el resultado. Puedes pedir al agente una explicación, sin edición:
+**Si ya clonaste el repositorio, empieza aquí.** Tú ejecutas estos pasos en PowerShell, no el agente. La sección 3 sirve para registrar resultados; esta sección explica cómo obtenerlos. No modificarás el código ni resolverás los `TODO`; instalar dependencias sí crea archivos locales en `node_modules`.
+
+#### D1·B1.1 — Instalar dependencias
+
+1. Abre PowerShell en la raíz del repositorio clonado, no dentro de `api/` ni de `frontend/`. Comprueba:
+
+   ```powershell
+   Get-Location
+   Test-Path package.json
+   Test-Path package-lock.json
+   ```
+
+   Los dos últimos comandos deben devolver `True`. Si no, abre la carpeta correcta antes de seguir.
+
+2. Comprueba Node.js y npm:
+
+   ```powershell
+   node --version
+   npm.cmd --version
+   ```
+
+   Ambos deben imprimir una versión. Node.js ejecuta JavaScript fuera del navegador; npm viene con Node.js y administra las dependencias. Si no se reconocen, sigue la [guía de Windows](../onboarding/windows.md) y vuelve a abrir PowerShell después de instalar las herramientas.
+
+   Usamos `npm.cmd` para evitar el bloqueo de `npm.ps1` en PowerShell, sin cambiar la política de seguridad de Windows. En macOS/Linux usa `npm`; para comprobar la carpeta, usa `pwd` y `ls package.json package-lock.json`.
+
+3. Desde esa misma raíz, instala las versiones fijadas en el proyecto:
+
+   ```powershell
+   npm.cmd ci
+   ```
+
+   Clonar descarga el código, pero no sus dependencias. Este comando necesita conexión para descargarlas y prepara ambas aplicaciones. Espera a que termine y vuelva el prompt; ejecuta inmediatamente `$LASTEXITCODE`: debe mostrar `0`. Si falla, conserva el error y consulta al instructor; no borres el lockfile ni actualices dependencias para intentar resolverlo.
+
+4. Ejecuta `npm.cmd ls --depth=0`. Debe mostrar los dos workspaces, API y frontend, sin dependencias faltantes. Anota el resultado en B1.1 de la sección 3.
+
+#### D1·B1.2 — Comprobar la base
+
+1. En la misma terminal y carpeta, ejecuta `npm.cmd run check:env`. Al terminar, consulta `$LASTEXITCODE`: debe ser `0`. El diagnóstico comprueba herramientas y archivos, no credenciales ni conectividad con Groq. También requiere OpenCode: si falta, sigue la guía de Windows.
+2. Ejecuta `npm.cmd run typecheck`. Debe terminar sin errores de TypeScript y con `$LASTEXITCODE` igual a `0`.
+3. Lee `AGENTS.md` y comprueba en el editor los criterios de configuración de la fila B1.2 de la sección 3. No necesitas una clave de Groq para comprobar la base. Registra el resultado.
+
+**Si una comprobación falla, detente antes de la siguiente:** conserva el mensaje sin claves y consulta al instructor. No pidas al agente que implemente ejercicios para corregir un problema de preparación.
+
+#### D1·B1.3 — Abrir la pantalla
+
+1. En esta terminal, desde la raíz, ejecuta:
+
+   ```powershell
+   npm.cmd run dev:frontend
+   ```
+
+   El proceso permanece ejecutándose: no esperes a que vuelva el prompt ni cierres esta terminal. Debe indicar la dirección local; si el puerto está ocupado o muestra otro, consulta al instructor.
+
+2. Abre **http://127.0.0.1:5173** en el navegador. Debes ver la pantalla inicial de Pachi. Abre el menú y prueba «Apariencia». **«Enviar» está deshabilitado intencionalmente**: conectar el chat es un ejercicio posterior.
+3. Comprueba la pantalla en escritorio y a 360 px de ancho con el modo de dispositivos de las herramientas del navegador. No debe haber desplazamiento horizontal. Anota B1.3 y deja la terminal abierta.
+
+#### D1·B1.4 — Comprobar API y proxy
+
+1. Abre una **segunda terminal PowerShell en la misma raíz** y ejecuta:
+
+   ```powershell
+   npm.cmd run dev:api
+   ```
+
+   Déjala abierta. Ahora el frontend y la API se ejecutan en terminales separadas. Al terminar el trabajo podrás detener cada proceso con `Ctrl+C`.
+
+2. Abre ambas direcciones en el navegador:
+
+   - **http://127.0.0.1:8787/api/health**: API directa.
+   - **http://127.0.0.1:5173/api/health**: API mediante el proxy del frontend.
+
+   Las dos deben mostrar `{"status":"ok"}`. Si solo funciona la primera, consulta al instructor antes de avanzar.
+
+3. Abre una **tercera terminal PowerShell**, dejando las otras dos en ejecución, y comprueba las respuestas HTTP:
+
+   ```powershell
+   curl.exe -i http://127.0.0.1:8787/api/health
+   curl.exe -i http://127.0.0.1:5173/api/health
+   curl.exe -i -X POST http://127.0.0.1:8787/api/chat
+   curl.exe -i -H "Origin: https://example.com" http://127.0.0.1:8787/api/health
+   ```
+
+   Las dos primeras deben responder HTTP `200` con `{"status":"ok"}`. El POST debe responder `404`: aún no existe la ruta del chat; **no es un fallo de instalación**. La última respuesta no debe incluir `Access-Control-Allow-Origin: *` ni autorizar `https://example.com`. En macOS/Linux usa `curl` en lugar de `curl.exe`.
+
+4. Anota B1.4 en la sección 3. Si los resultados no coinciden, detente y consulta al instructor.
+
+#### Antes de B2 — Preparar el agente
+
+Después de comprobar B1.1–B1.4, prepara Gentle AI siguiendo la guía enlazada abajo. Usa la tercera terminal desde la raíz. Es una instalación distinta de las dependencias de PartyQuest: `npm.cmd ci` prepara la aplicación; Gentle AI prepara tu asistente. Si ya lo instalaste, compruébalo sin repetir la instalación.
+
+Después puedes pedir al agente esta explicación, sin edición:
 
 ```text
 Sin editar ni ejecutar cambios: lee AGENTS.md, docs/architecture.md y la
@@ -81,9 +171,9 @@ estructura de api/ y frontend/. Explícame qué hace cada carpeta, qué archivos
 tienen TODO y a qué incremento pertenecen, y por qué POST /api/chat responde 404.
 ```
 
-Arranque en dos terminales: `npm.cmd run dev:api` y `npm.cmd run dev:frontend`. La API escucha en `http://127.0.0.1:8787` y el frontend en `http://127.0.0.1:5173`.
+Mantén abiertas las terminales de la API y el frontend mientras trabajas con el agente.
 
-En este bloque también instalas **Gentle AI** en OpenCode, junto con el instructor, siguiendo su [guía](../onboarding/gentle-ai.md). Lo instalas tú desde tu terminal, no el agente. Cierre: `gentle-ai doctor` sin errores y `gentle-ai review mode status` con la revisión desactivada.
+Antes de comenzar B2 instalas **Gentle AI** en OpenCode, junto con el instructor, siguiendo su [guía](../onboarding/gentle-ai.md). En Windows prepara primero [Go](../onboarding/go.md). Lo instalas tú desde tu terminal, no el agente. Cierre: `gentle-ai doctor` sin errores y `gentle-ai review mode status` con la revisión desactivada.
 
 ### D1·B2.1 — Fijar el contrato con una prueba
 
