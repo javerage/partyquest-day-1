@@ -9,6 +9,7 @@
     "dev": "npm run dev:frontend",
     "dev:api": "npm run dev --workspace api",
     "dev:frontend": "npm run dev --workspace frontend",
+    "test": "npm run test --workspaces",
     "typecheck": "npm run typecheck --workspaces",
     "build": "npm run build --workspaces"
   }

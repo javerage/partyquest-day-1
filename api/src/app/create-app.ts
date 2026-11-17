@@ -1,8 +1,21 @@
 import { Hono } from "hono";
+import { healthRoute } from "../features/health/presentation/http/health-route";
 
-// Liveness only. Keep health independent of model configuration and providers.
+// Composition root: builds concrete dependencies and registers routes.
+// Health stays independent of model configuration and providers.
+//
+// TODO(D1·B2.2): Accept `{ textGeneration }` (a `TextGenerationGateway`) so tests can
+// pass a fake, build the use case with `createGenerateReply`, mount
+// `createChatRoute(generateReply)` at `/api/chat` and register the common error
+// handler with `app.onError`. Until D1·B2.3, when no gateway is injected use an inline
+// gateway that returns the `configuration` failure, so the running server answers
+// `configuration_error` and never a made-up reply. Read docs/architecture.md.
+//
+// TODO(D1·B2.3): Accept `{ env, fetch? }` and build `GroqTextGenerationAdapter` from
+// `env.GROQ_API_KEY` and `env.GROQ_MODEL` when no gateway is injected. Missing Groq
+// configuration must not prevent startup: chat reports it, health keeps working.
 export function createApp() {
   const app = new Hono();
-  app.get("/api/health", (context) => context.json({ status: "ok" }, 200));
+  app.route("/api/health", healthRoute);
   return app;
 }
