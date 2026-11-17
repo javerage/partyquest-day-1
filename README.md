@@ -2,7 +2,7 @@
 
 Material para preparar el entorno y construir una primera conversación con Pachi, paso a paso y con ayuda de OpenCode. **No es la solución del ejercicio:** recibes presentación, referencias, skills y un esqueleto sin chat conectado.
 
-> **Estado de esta entrega: preparación parcial.** Ya hay guías iniciales y código base, pero faltan el ejemplo `api/.env.example`, algunas plantillas visuales del mapa y el ensayo completo de instalación/arranque. Windows, OpenCode y los flujos reales de cuentas no están verificados. No confundas este estado con un starter terminado.
+> **Estado de esta entrega.** El proyecto base está completo: presentación, tipos de los contratos, dependencias fijadas y archivos con `TODO` para cada incremento. En macOS se comprobaron instalación, tipos, build, health y la pantalla inicial. **Aún no se ha ensayado** el recorrido de las fichas con un agente, ni la ejecución en Windows, OpenCode o las cuentas reales. Consulta la [evidencia y sus límites](docs/onboarding/verification-status.md).
 
 ## Empieza aquí
 
@@ -16,7 +16,7 @@ Material para preparar el entorno y construir una primera conversación con Pach
 4. [Consulta la guía del aula](docs/onboarding/classroom-guide.md) y el [roadmap D1](docs/day-1/roadmap.md).
    - [Presentación del Día 1](docs/day-1/slides.html) y [animación de bienvenida de Pachi](docs/day-1/pachi-intro.html): material de apoyo sin ensayar en clase.
    - [Teoría: del mensaje al modelo](docs/day-1/theory.html).
-5. Cuando el facilitador lo indique, [crea PartyQuest desde una carpeta vacía](docs/day-1/setup-from-scratch.md). Un incremento por autorización; no ejecutes todo el roadmap en cadena.
+5. Avanza por las [fichas del roadmap](docs/day-1/roadmap.md#5-fichas-por-incremento): abres el archivo con el `TODO`, envías el prompt de la ficha a OpenCode, autorizas ese incremento y compruebas el resultado. Un incremento por autorización; no ejecutes el roadmap en cadena.
 
 ## Qué vas a construir
 
@@ -35,11 +35,12 @@ D1 no incluye catálogo, RAG, filtrado, distancias, streaming, voz ni persistenc
 |---|---|
 | Guías de entorno, cuentas y uso de OpenCode | Configuración autorizada del adaptador Groq en el servidor |
 | Cuatro skills originales y reglas `AGENTS.md` | Pruebas del contrato e implementación por incremento |
-| Shell, Pachi, tokens y Apariencia | Comportamiento real del chat, errores, usage y reinicio |
+| Pantalla, Pachi, componentes visuales y Apariencia | Comportamiento real del chat, errores, usage y reinicio |
+| Tipos de los contratos y archivos con `TODO` por incremento | El código que cada `TODO` describe |
 | API base y health sin clave | `/api/chat`, que todavía no existe en el starter |
 | Contrato, arquitectura, referencia visual y teoría | Evidencia del resultado en tu propio equipo |
 
-La [referencia visual](docs/day-1/interface-reference.html) muestra los estados objetivo; no significa que estén implementados. El [mapa de archivos](docs/day-1/template-file-map.md) conserva el checklist de lo que falta preparar. Las guías y pruebas de solución docentes no se distribuyen aquí.
+La [referencia visual](docs/day-1/interface-reference.html) muestra los estados objetivo; no significa que estén implementados. El [mapa de archivos](docs/day-1/template-file-map.md) lista qué entrega cada archivo y dónde está cada `TODO`. Las guías y pruebas de solución docentes no se distribuyen aquí.
 
 ## Diagnóstico del equipo
 
@@ -59,9 +60,9 @@ $LASTEXITCODE
 
 Comprueba herramientas y una selección de archivos, sin instalar, consultar cuentas ni pedir claves. `0` indica que esas comprobaciones pasaron; `1` indica ausencias o versiones no reconocidas. **No acredita compatibilidad completa, una instalación correcta ni conexión a proveedores.** Si falta Node, sigue [Windows](docs/onboarding/windows.md) antes de intentar el script.
 
-## Comandos del esqueleto
+## Comandos del proyecto
 
-La receta de instalación todavía debe ensayarse con el paquete completo. Cuando estén presentes manifiestos y lockfile coherentes, los comandos previstos son:
+En PowerShell se escribe `npm.cmd` en lugar de `npm` para no depender de la ejecución de scripts `.ps1`; no hace falta cambiar ExecutionPolicy. Estos comandos se comprobaron en macOS (como `npm`); en Windows aún no.
 
 | Comando en PowerShell | Propósito |
 |---|---|
@@ -69,6 +70,7 @@ La receta de instalación todavía debe ensayarse con el paquete completo. Cuand
 | `npm.cmd run dev:api` | Iniciar API local, terminal A |
 | `npm.cmd run dev:frontend` | Iniciar frontend, terminal B |
 | `npm.cmd run dev` | Alias de frontend solamente; no inicia la API |
+| `npm.cmd test` | Pruebas de API y frontend; el proyecto empieza sin pruebas y las creas en las fichas |
 | `npm.cmd run typecheck` | Comprobar tipos de ambos workspaces |
 | `npm.cmd run build` | Comprobar API y generar build frontend |
 | `npm.cmd run test:setup` | Pruebas del diagnóstico, **no** aceptación del ejercicio |
@@ -83,7 +85,8 @@ Las pruebas del diagnóstico usan fixtures de shell Unix y se ejecutaron en macO
 - [Arquitectura](docs/architecture.md).
 - [Ejercicio E1](docs/01-chat-integration.md).
 - [Roadmap y seguimiento](docs/day-1/roadmap.md).
-- [Prompts por incremento](docs/day-1/agent-prompts.md).
+- [Reglas para trabajar con el agente](docs/day-1/agent-prompts.md).
+- [Mapa de archivos y TODO](docs/day-1/template-file-map.md).
 - [Referencia de interfaz](docs/day-1/interface-reference.md) y [galería HTML](docs/day-1/interface-reference.html).
 - [Teoría del Día 1](docs/day-1/theory.html): abre el HTML en el navegador.
 
@@ -93,8 +96,4 @@ Usa cuentas personales. No subas claves, contraseñas, tokens ni archivos `.env`
 
 Las páginas de Groq, Cohere, Vercel y OpenCode pueden cambiar. No se promete una modalidad gratuita, cuota o modelo disponible para todos. Si aparece un pago o un permiso inesperado, detente y consulta al facilitador.
 
-## Copiar este material a tu repositorio
-
-Copia **el contenido** de esta carpeta a la raíz de tu nuevo repositorio `partyquest-day-1`, no la carpeta contenedora como una subcarpeta. Conserva `.opencode/` y `.gitignore`. No uses enlaces simbólicos hacia otro checkout ni copies `.git`, `node_modules`, credenciales o material docente.
-
-Crear una cuenta o descargar este material no autoriza al agente a publicar, conectar repositorios, crear recursos remotos ni desplegar. La publicación del repositorio del taller la hace su responsable por separado.
+Crear una cuenta o descargar este material no autoriza al agente a publicar, conectar repositorios, crear recursos remotos ni desplegar.

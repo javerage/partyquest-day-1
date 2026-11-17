@@ -52,7 +52,7 @@ Una suscripción, autorización OAuth o clave del agente no debe colocarse en Pa
 
 ## Qué copiar y qué no
 
-El repositorio es material para construir el ejercicio, no una solución de chat. Sigue la [creación desde carpeta vacía](../day-1/setup-from-scratch.md) y el [roadmap](../day-1/roadmap.md). No copies encima una aplicación docente resuelta.
+El repositorio es material para construir el ejercicio, no una solución de chat. Sigue las fichas del [roadmap](../day-1/roadmap.md), una por una. No copies encima una aplicación docente resuelta.
 
 Conserva `.opencode/` y `.gitignore` al descargar/copiar archivos. No copies `.git`, `node_modules`, archivos de entorno reales ni credenciales. El ejemplo `api/.env.example` está pendiente en esta entrega por un bloqueo de escritura; no se necesita una clave ni un archivo `.env` para health.
 

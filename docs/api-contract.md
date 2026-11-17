@@ -1,6 +1,6 @@
 # Contrato de la API — Día 1
 
-Este documento define cómo se comunican la interfaz web y la API de PartyQuest durante el Día 1. Implementá este contrato con tu agente: el documento fija **qué** debe ocurrir, pero no entrega el código ni las pruebas resueltas.
+Este documento define cómo se comunican la interfaz web y la API de PartyQuest durante el Día 1. Implementa este contrato con tu agente: el documento fija **qué** debe ocurrir, pero no entrega el código ni las pruebas resueltas.
 
 La conversación del Día 1 no tiene memoria en el modelo: cada solicitud contiene solo el mensaje actual. La interfaz puede conservar los intercambios visibles mientras la página esté abierta, pero no los envía a la API como historial.
 

@@ -1,8 +1,8 @@
 # PartyQuest: roadmap para construir el Día 1
 
-Guía pública para cada participante y su agente de IA. Define el objetivo, la secuencia, qué hacer y qué evidencia permite marcar un incremento como completado. Trabajá sobre una copia propia de esta hoja: el estado empieza pendiente y se actualiza solo con evidencia observada.
+Guía pública para cada participante y su agente de código. Define el objetivo, la secuencia, qué pedir al agente en cada paso y qué evidencia permite marcar un incremento como completado. Trabaja sobre tu copia: el estado empieza pendiente y se actualiza solo con evidencia observada.
 
-**Alcance:** crear el proyecto base en clase, incorporar las plantillas de presentación y los documentos entregados, e implementar PartyQuest D1 mediante incrementos pequeños y autorizados. La [guía de creación desde carpeta vacía](setup-from-scratch.md) explica el arranque. Al cierre, el facilitador puede observar una llamada manual real con Groq; su guía y la solución de referencia son material docente, no se incluyen en el paquete estudiante.
+**Alcance:** recibes el proyecto base ya creado, con la presentación, los documentos y archivos con `TODO`. Durante D1 completas esos `TODO` con ayuda del agente, un incremento autorizado a la vez. La [guía de creación desde carpeta vacía](setup-from-scratch.md) queda como referencia de cómo se construyó la base. Al cierre, el facilitador puede observar una llamada manual real con Groq; su guía y la solución de referencia son material docente y no se incluyen en este paquete.
 
 ## 1. Resultado del día
 
@@ -14,96 +14,210 @@ Al terminar, la aplicación debe permitir:
 4. mostrar los intercambios mientras la página permanezca abierta, sin enviar turnos anteriores al modelo ni persistirlos al recargar;
 5. presentar los estados vacío, espera, error recuperable y cuota agotada;
 6. capturar ubicación solo con permiso del navegador o permitir escribir una zona; D1 no clasifica cobertura, consulta catálogo ni calcula distancias;
-7. confirmar «Nuevo plan» y limpiar intercambios, ubicación/zona y consumo de la sesión, sin revocar el permiso ni cambiar cuota;
-8. mostrar tokens y costo teórico cuando hay usage. Si falta, conservar la respuesta e indicar datos incompletos/no disponibles, nunca inventar cero;
+7. confirmar «Nuevo plan» y limpiar intercambios, ubicación o zona y consumo de la sesión, sin revocar el permiso ni cambiar la cuota;
+8. mostrar tokens y costo teórico cuando hay usage. Si falta, conservar la respuesta e indicar datos incompletos o no disponibles, nunca inventar cero;
 9. escribir pruebas deterministas del contrato y explicar qué comprueban.
 
 **Límite:** D1 no consulta catálogo ni corpus. Las respuestas pueden incluir datos no verificados; no las presentes como recomendaciones fundamentadas. La ubicación tampoco se envía al prompt de Groq.
 
 ## 2. Punto de partida y separación de responsabilidades
 
-| Lo que creás o recibís | Lo que implementás durante D1 |
+| Lo que recibes | Lo que implementas durante D1 |
 |---|---|
-| Desde una carpeta vacía, proyecto npm workspace con frontend y API, comandos y configuración inicial | Pruebas deterministas del contrato entregado y comportamiento de cada bloque |
-| Documentos D1 (roadmap, contrato, arquitectura, E1 e instrucciones de agente) | API propia, llamada del servidor a Groq y conexión del chat |
-| Archivos de presentación: tokens, shell, Pachi, componentes visuales y menú Apariencia ya funcional | Estados de conversación, errores, usage/costo, ubicación/zona y «Nuevo plan» |
-| Puntos `TODO(D1·B#.#)` sin algoritmo resuelto | Solo comportamiento del incremento autorizado, en orden |
-| Catálogo/corpus de referencia sin uso en D1 | Nada de RAG, filtrado ni distancias durante D1 |
+| Proyecto npm con workspaces `frontend/` y `api/`, dependencias fijadas, comandos y configuración | Pruebas deterministas del contrato y el comportamiento de cada incremento |
+| Documentos D1: roadmap, contrato, arquitectura, E1 y reglas del agente | API propia, llamada del servidor a Groq y conexión del chat |
+| Presentación: tokens, Pachi, componentes visuales y menú «Apariencia» ya funcional | Estados de conversación, errores, usage y costo, ubicación o zona y «Nuevo plan» |
+| Tipos de los contratos (DTO, puerto del gateway, resultados) y archivos con `TODO(D1·B#.#)` | Solo el comportamiento del incremento autorizado, en orden |
+| Health sin clave; `POST /api/chat` responde 404 | Nada de RAG, catálogo, filtrado ni distancias durante D1 |
 
-**No rediseñes la interfaz.** Las plantillas visuales se copian como materiales de presentación; los `TODO` señalan dónde se trabajará, no implementan la solución ni autorizan al agente a seguir al próximo bloque.
+**Las decisiones de diseño ya están tomadas.** Cada `TODO` nombra el archivo, la función que falta y el documento que la define; el agente no elige estructura, nombres, librerías ni textos. Si falta una decisión, el agente se detiene y pregunta. **No rediseñes la interfaz.** Un `TODO` señala dónde se trabaja; no autoriza a continuar con el siguiente incremento.
 
 ## 3. Estado personal de incrementos
 
-El estado pertenece a tu copia de este roadmap. Antes de trabajar, copiá el bloque al final en una sección «Mi seguimiento» si preferís preservar la fuente original. Estados permitidos: **pendiente**, **en curso**, **bloqueado** (anotá qué decisión/dato externo falta), **completado** (solo tras cumplir evidencia). No marques completo por quitar un TODO o por el reporte del agente.
+Estados permitidos: **pendiente**, **en curso**, **bloqueado** (anota qué falta) y **completado** (solo con la evidencia de la fila). No marques completado por quitar un `TODO` ni por el informe del agente. Anota en cada cierre el comando o acción, el resultado y los fallos.
 
-El avance se registra **por incremento**, no por sesión ni por mensaje al agente. En cada cierre anotá comando/acción, resultado y fallos. Una evidencia ausente deja el incremento pendiente.
+En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 
 | ID | Resultado observable | Previo | Checks para cerrar | Estado / evidencia personal |
 |---|---|---|---|---|
-| D1·B1.1 | Crear `partyquest/` y workspaces `frontend/` y `api/`; instalar dependencias fijadas | Node/npm disponibles | `npm ls --depth=0`; manifiestos de ambos workspaces y lockfile raíz presentes | Pendiente — |
-| D1·B1.2 | Incorporar configuración mínima y archivos de proyecto | B1.1 | TypeScript reconoce frontend/API; `.gitignore` excluye `.env`; `.env.example` solo tiene valores falsos | Pendiente — |
-| D1·B1.3 | Incorporar shell visual y documentos estudiante; presentar la pantalla sin comportamiento de chat | B1.2 | Revisar archivos copiados y enlaces; `npm run dev`; pantalla carga; sin llamada a Groq | Pendiente — |
-| D1·B1.4 | Añadir `GET /api/health` y proxy same-origin | B1.3 | Health HTTP 200 `{ "status": "ok" }` sin clave; browser usa `/api`; sin CORS permisivo | Pendiente — |
-| D1·B2.1 | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por interfaz pública; status/cuerpo exactos; observar RED antes de comportamiento | Pendiente — |
-| D1·B2.2 | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido/campos extra rechazados antes del proveedor; tests con fake; no secretos en errores | Pendiente — |
-| D1·B2.3 | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce error de configuración; fake determinista sigue siendo la prueba normal; no clave en bundle/request | Pendiente — |
-| D1·B2.4 | Conectar envío desde UI y representar respuesta | B2.3 | Cuerpo del browser contiene solo `{ "message": "…" }`; respuesta aparece; no se envía historial | Pendiente — |
-| D1·B3.1 | Mostrar estados de error recuperable y cuota agotada | B2.4 | Proveedor/HTTP falso; copy seguro, retry solo manual cuando procede | Pendiente — |
-| D1·B3.2 | Mostrar y acumular usage/costo cuando sean completos | B2.4 | Usage parcial o ausente no pierde respuesta ni se vuelve cero; cálculo contra tarifa fechada | Pendiente — |
-| D1·B4.1 | Comparar instrucciones de sistema manteniendo igual el mensaje de usuario | B2.4 | Registrar prompt y observación sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso/clave | Pendiente — |
-| D1·B5.1 | Completar pruebas deterministas del contrato y revisar RED → GREEN | B2.1–B3.2 | Probar límites y errores nombrados por el contrato; documentar qué la prueba no demuestra | Pendiente — |
-| D1·B6.1 | Capturar ubicación con permiso o permitir zona escrita sin enviarla a Groq | B2.4 | Permiso concedido/denegado/no disponible; inspeccionar que request/prompt no incluye ubicación | Pendiente — |
-| D1·B6.2 | Confirmar «Nuevo plan» y reiniciar solo estado de la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios/ubicación/usage, no cuota ni tema; sin persistencia al recargar | Pendiente — |
-| D1·B6.3 | Ejecutar cierre local completo con mocks; llamada real opcional y separada | B1–B6 | Tests, typecheck/build, recorrido manual; si Groq se prueba, registrar evidencia sin credenciales | Pendiente — |
+| D1·B1.1 | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | Pendiente — |
+| D1·B1.2 | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | Pendiente — |
+| D1·B1.3 | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | Pendiente — |
+| D1·B1.4 | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | Pendiente — |
+| D1·B2.1 | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | Pendiente — |
+| D1·B2.2 | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | Pendiente — |
+| D1·B2.3 | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | Pendiente — |
+| D1·B2.4 | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | Pendiente — |
+| D1·B3.1 | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | Pendiente — |
+| D1·B3.2 | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | Pendiente — |
+| D1·B4.1 | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | Pendiente — |
+| D1·B5.1 | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | Pendiente — |
+| D1·B6.1 | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | Pendiente — |
+| D1·B6.2 | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | Pendiente — |
+| D1·B6.3 | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | Pendiente — |
 
 ## 4. Cómo trabajar con el agente
 
-**Un prompt, un incremento, una autorización.** En cada fila del roadmap seguí este ciclo:
+**Una ficha, un incremento, una autorización.** Para cada fila:
 
-1. Pedí al agente que lea `AGENTS.md`, el incremento elegido, el contrato y la guía pública vinculada.
-2. El agente explica objetivo, comportamiento observable, rutas previstas y checks. No modifica archivos todavía.
-3. Autorizá ese incremento explícitamente. Si falta una decisión, el agente se detiene y pregunta.
-4. El agente hace solo ese incremento. Los TODO de otros IDs no son autorización.
-5. Corré o presenciá los checks; compará la evidencia con la fila del roadmap.
-6. Anotá estado/evidencia. Solo entonces autorizá el siguiente incremento.
+1. Abre el archivo que indica la ficha y lee su `TODO` con ese ID.
+2. Envía al agente el **prompt de alcance**, con el objetivo de la ficha. El agente explica y no edita.
+3. Revisa que las rutas y comprobaciones coincidan con la ficha. Si falta una decisión, el agente pregunta.
+4. Envía el **prompt de autorización**. El agente hace solo ese incremento.
+5. Ejecuta o presencia las comprobaciones y compáralas con la fila.
+6. Anota estado y evidencia. Solo entonces pasa a la siguiente ficha.
 
-### Prompt para solicitar el alcance antes de autorizar
-
-```text
-Vamos a trabajar únicamente en [ID del incremento] del roadmap.
-Leé AGENTS.md, la fila completa de ese incremento y sus documentos previos.
-Todavía no cambies archivos. Explicame el objetivo observable, el concepto,
-las rutas que pensás tocar y cómo vas a comprobarlo. Señalá cualquier decisión
-que falte. Esperá mi autorización explícita para implementar.
-```
-
-### Prompt después de autorizar
+### Prompt de alcance (antes de autorizar)
 
 ```text
-Autorizo únicamente [ID del incremento]. Implementá ese alcance y nada más.
-Si corresponde, primero agregá la prueba determinista y observá que falle antes
-de implementar. Ejecutá solo los checks definidos para este incremento; reportá
-archivos, comandos, resultados y cualquier check pendiente. No marques otro
-incremento como completo y detenete antes del siguiente.
+Vamos a trabajar únicamente en [ID]. Lee AGENTS.md, la ficha de [ID] en
+docs/day-1/roadmap.md, los TODO([ID]) de los archivos que indica y sus lecturas.
+Objetivo: [objetivo de la ficha].
+Todavía no edites ni ejecutes cambios. Explícame el resultado observable, el
+concepto, los archivos que vas a tocar, las pruebas y comprobaciones, y cualquier
+decisión que falte. Espera mi autorización explícita.
 ```
 
-No pegues una lista de prompts como una orden para ejecutar en cadena. Usá el siguiente prompt únicamente después de revisar la evidencia y autorizar el nuevo alcance.
+### Prompt de autorización
 
-## 5. Modelo, consumo y cuotas
+```text
+Autorizo únicamente [ID] según el alcance que explicaste. Usa los archivos,
+nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
+agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
+la prueba y observa que falle; después implementa y mantén las comprobaciones en
+verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
+push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
+lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
+ejecutadas. No marques el roadmap por mí y detente antes del siguiente incremento.
+```
 
-- Modelo del ejercicio: `openai/gpt-oss-20b`; API selecciona con `GROQ_MODEL`, secreto `GROQ_API_KEY`.
-- Tarifa consultada el **2026-10-27**, USD por millón de tokens: entrada **$0.075**, entrada cacheada **$0.037**, salida **$0.30**. Estimación no es factura; los precios pueden cambiar.
-- Revisá [ficha pública del modelo](https://console.groq.com/docs/model/openai/gpt-oss-20b) y [límites Groq](https://console.groq.com/docs/rate-limits); cada persona revisa su propia organización.
-- Uso o tarifa ausente no bloquea respuesta válida ni se inventa como cero.
+No pegues varias fichas como una orden para ejecutar en cadena. Las [reglas para trabajar con el agente](agent-prompts.md) explican qué hacer cuando la evidencia no alcanza.
 
-## 6. Referencias del paquete estudiante
+## 5. Fichas por incremento
+
+Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TODO` lees primero; «También» son los demás archivos con `TODO` del mismo ID; «Pruebas» es el archivo de pruebas que el agente crea.
+
+### D1·B1 — Instalar y comprobar la base (sin editar)
+
+B1.1 a B1.4 no cambian archivos: ejecutas los comandos de la tabla y registras el resultado. Puedes pedir al agente una explicación, sin edición:
+
+```text
+Sin editar ni ejecutar cambios: lee AGENTS.md, docs/architecture.md y la
+estructura de api/ y frontend/. Explícame qué hace cada carpeta, qué archivos
+tienen TODO y a qué incremento pertenecen, y por qué POST /api/chat responde 404.
+```
+
+Arranque en dos terminales: `npm.cmd run dev:api` y `npm.cmd run dev:frontend`. La API escucha en `http://127.0.0.1:8787` y el frontend en `http://127.0.0.1:5173`.
+
+### D1·B2.1 — Fijar el contrato con una prueba
+
+- **Abre:** `api/src/features/chat/presentation/http/chat-route.ts`
+- **Pruebas:** `api/src/features/chat/tests/chat-http.test.ts`
+- **Lectura:** [contrato API](../api-contract.md), secciones de solicitud, respuesta y errores; [E1](../01-chat-integration.md)
+- **Objetivo:** «Especificar y probar solo el contrato del mensaje actual por la API pública, con un gateway falso. Propón las pruebas deterministas y sus resultados observables. No implementes la ruta todavía.»
+- **Para cerrar:** `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
+
+### D1·B2.2 — Validación y respuesta con gateway sustituible
+
+- **Abre:** `api/src/features/chat/presentation/http/parse-chat-request.ts`
+- **También:** `api/src/features/chat/application/generate-reply.ts`, `api/src/features/chat/presentation/http/chat-route.ts`, `api/src/shared/http/api-error.ts`, `api/src/app/create-app.ts`
+- **Pruebas:** las de B2.1 y `api/src/features/chat/tests/generate-reply.test.ts`
+- **Lectura:** [contrato API](../api-contract.md), validación y errores; [arquitectura](../architecture.md)
+- **Objetivo:** «Implementar solo la validación HTTP, el caso de uso y la ruta sobre el puerto del gateway ya definido. No conectes el proveedor real ni la interfaz. Lo inválido se rechaza antes de llamar al gateway.»
+- **Para cerrar:** `npm.cmd test --workspace api` y `npm.cmd run typecheck` con código 0. Con el servidor en marcha, `POST /api/chat` responde `configuration_error`, nunca una respuesta inventada.
+
+### D1·B2.3 — Adaptador Groq en el servidor
+
+- **Abre:** `api/src/features/chat/infrastructure/groq/groq-text-generation-adapter.ts`
+- **También:** `api/src/features/chat/application/pachi-system-instruction.ts`, `api/src/app/create-app.ts`, `api/src/app/server.ts`
+- **Pruebas:** `api/src/features/chat/tests/groq-text-generation-adapter.test.ts`
+- **Lectura:** [contrato API](../api-contract.md), respuesta exitosa, usage y errores; [E1](../01-chat-integration.md)
+- **Objetivo:** «Conectar el adaptador de Groq exclusivamente en el servidor, con `groq-sdk` ya instalado. Las pruebas usan un `fetch` falso y nunca llaman al proveedor. Explica primero cómo se maneja la configuración ausente.»
+- **Preparación manual:** copia `api/.env.example` como `api/.env` y escribe ahí tu clave y `GROQ_MODEL=openai/gpt-oss-20b`. Hazlo tú; no le pidas al agente leer ni mostrar ese archivo.
+- **Para cerrar:** pruebas en verde; sin `api/.env`, `POST /api/chat` responde `configuration_error`. Una llamada real es opcional, la autorizas tú y se registra aparte de las pruebas.
+
+### D1·B2.4 — Conectar el envío desde la interfaz
+
+- **Abre:** `frontend/src/features/chat/components/ChatPage.tsx`
+- **También:** `frontend/src/features/chat/api/chat-client.ts`, `frontend/src/features/chat/model/message-rules.ts`, `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/app/App.tsx`
+- **Pruebas:** `frontend/src/features/chat/tests/chat-client.test.ts` y `frontend/src/features/chat/tests/chat-page.test.tsx`
+- **Lectura:** [E1](../01-chat-integration.md); [contrato API](../api-contract.md), responsabilidades de la interfaz; [referencia de interfaz](interface-reference.md)
+- **Objetivo:** «Conectar el formulario al endpoint y mostrar la respuesta con los componentes entregados. Se envía solo el mensaje actual: sin historial, ubicación ni clave. No agregues todavía errores, usage, ubicación ni reinicio.»
+- **Textos:** marcador de posición con conversación vacía «Ej.: el domingo a mediodía, somos 4…» y con mensajes «Escribe un mensaje…»; espera «Revisando opciones…»; aviso bajo el campo «El mensaje supera 2000 caracteres.»
+- **Para cerrar:** `npm.cmd test --workspace frontend`; en el navegador, a 360 px y en escritorio, la respuesta aparece y la pestaña de red muestra solo `{ "message": "…" }`.
+
+### D1·B3.1 — Error recuperable y cuota agotada
+
+- **Abre:** `frontend/src/features/chat/api/chat-client.ts`
+- **También:** `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/features/chat/components/ChatPage.tsx` (usa `InlineNotice`)
+- **Pruebas:** las de B2.4, ampliadas
+- **Lectura:** [contrato API](../api-contract.md), errores; [referencia de interfaz](interface-reference.md)
+- **Objetivo:** «Representar solo los errores de red o contrato y la cuota agotada. Las pruebas usan respuestas falsas; no provoques errores reales de cuota ni reintentes automáticamente.»
+- **Textos:** cuota agotada: título «Se alcanzó el límite de uso», cuerpo «Por ahora no puedo responder. Tu conversación sigue visible en esta página.», sin acciones. Otros fallos: título «No pude obtener respuesta», cuerpo «Tu conversación sigue visible en esta página.», acción «Editar mensaje» y, solo si el error es reintentable, «Reintentar».
+- **Para cerrar:** pruebas en verde; revisión en navegador de ambos avisos a 360 px y en escritorio.
+
+### D1·B3.2 — Usage y costo teórico
+
+- **Abre:** `frontend/src/features/chat/model/session-usage.ts`
+- **También:** `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/features/chat/components/ChatPage.tsx` (usa `UsagePanel`)
+- **Pruebas:** `frontend/src/features/chat/tests/session-usage.test.ts`
+- **Lectura:** [contrato API](../api-contract.md), usage y costo; sección 6 de este roadmap
+- **Objetivo:** «Mostrar y acumular usage y costo según el contrato. Prueba usage completo, parcial y ausente. Una respuesta válida no se pierde si falta usage y un campo desconocido no se convierte en cero.»
+- **Para cerrar:** pruebas en verde; el panel muestra «no disponible» cuando falta un dato. La tarifa ya está en `frontend/src/features/chat/model/model-rates.ts`.
+
+### D1·B4.1 — Comparar instrucciones de sistema
+
+- **Abre:** `api/src/features/chat/application/pachi-system-instruction.ts`
+- **Lectura:** [E1](../01-chat-integration.md)
+- **Objetivo:** «Preparar una comparación controlada de instrucciones de sistema con el mismo mensaje de usuario. No modifiques el contrato ni presentes una salida convincente como verificación de hechos. Explica qué evidencia registrar.»
+- **Para cerrar:** registro de cada instrucción, el mensaje usado y lo observado. Sin clave o sin tu permiso no hay llamada.
+
+### D1·B5.1 — Completar las pruebas del contrato
+
+- **Abre:** [contrato API](../api-contract.md), sección de comprobaciones de aceptación
+- **Pruebas:** las carpetas `tests/` ya creadas en `api/` y `frontend/`
+- **Objetivo:** «Completar únicamente la cobertura determinista que deriva del contrato y revisar las regresiones de lo ya construido. No agregues capacidades. Enumera requisito por requisito la evidencia que falta antes de editar.»
+- **Para cerrar:** `npm.cmd test` con código 0 y una nota de qué no demuestran esas pruebas (no prueban conectividad real).
+
+### D1·B6.1 — Ubicación con permiso o zona escrita
+
+- **Abre:** `frontend/src/features/location/model/use-location.ts`
+- **También:** `frontend/src/features/chat/components/ChatPage.tsx` (usa `LocationPrompt`), `frontend/src/app/App.tsx`
+- **Pruebas:** `frontend/src/features/location/tests/location.test.tsx`, con una geolocalización falsa en `frontend/src/test/fake-geolocation.ts`
+- **Lectura:** [E1](../01-chat-integration.md); [referencia de interfaz](interface-reference.md)
+- **Objetivo:** «Implementar ubicación con permiso o zona escrita, guardada solo en el navegador. No se envía al endpoint ni al prompt. Prueba permiso concedido, denegado y no disponible con una API falsa.»
+- **Textos:** al escribir la zona, el campo usa la etiqueta «Zona de referencia», el marcador «O escribe una zona, por ejemplo «centro»…» y el botón «Guardar zona». Los demás textos ya están en `LocationPrompt`.
+- **Para cerrar:** pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
+
+### D1·B6.2 — Confirmar «Nuevo plan»
+
+- **Abre:** `frontend/src/features/chat/components/ChatPage.tsx` (usa `ConfirmDialog`)
+- **También:** `frontend/src/features/chat/model/use-chat.ts`
+- **Pruebas:** `frontend/src/features/chat/tests/chat-page.test.tsx`, ampliada
+- **Lectura:** [E1](../01-chat-integration.md); [referencia de interfaz](interface-reference.md)
+- **Objetivo:** «Implementar solo confirmar o cancelar «Nuevo plan». Confirmar limpia intercambios, ubicación o zona y usage de esta sesión; no cambia permisos, cuota ni tema, y nada persiste al recargar.»
+- **Textos:** título «¿Empezar otra conversación?», descripción «Esta se borrará.», botones «Cancelar» y «Empezar otra conversación». Sin mensajes no se pide confirmación.
+- **Para cerrar:** pruebas en verde; revisión en navegador de cancelar y confirmar.
+
+### D1·B6.3 — Cierre local
+
+- **Objetivo:** «Cerrar las comprobaciones locales de D1 sin ampliar el alcance. Separa pruebas deterministas, arranque y health, build y llamada real. No afirmes una llamada real que no se autorizó ni se observó.»
+- **Para cerrar:** `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.
+
+## 6. Modelo, consumo y cuotas
+
+- Modelo del ejercicio: `openai/gpt-oss-20b`. La API lo selecciona con `GROQ_MODEL`; el secreto es `GROQ_API_KEY`.
+- Tarifa consultada el **2026-10-27**, en USD por millón de tokens: entrada **$0.075**, entrada en caché **$0.037**, salida **$0.30**. Una estimación no es una factura; los precios pueden cambiar.
+- Revisa la [ficha pública del modelo](https://console.groq.com/docs/model/openai/gpt-oss-20b) y los [límites de Groq](https://console.groq.com/docs/rate-limits); cada persona revisa su propia organización.
+- Usage o tarifa ausente no bloquea una respuesta válida ni se inventa como cero.
+
+## 7. Referencias del paquete estudiante
 
 - [Contrato API D1](../api-contract.md)
 - [Arquitectura D1](../architecture.md)
-- [Matriz de interfaz D1](interface-reference.md) y [referencia HTML](interface-reference.html)
-- [Construcción desde carpeta vacía](setup-from-scratch.md)
-- [Mapa de archivos del bundle y TODOs](template-file-map.md)
+- [Referencia de interfaz D1](interface-reference.md) y [versión HTML](interface-reference.html)
+- [Reglas para trabajar con el agente](agent-prompts.md)
+- [Mapa de archivos y TODO](template-file-map.md)
+- [Cómo se creó la base desde una carpeta vacía](setup-from-scratch.md)
 - [E1](../01-chat-integration.md)
-- `AGENTS.md` (archivo raíz que entrega el facilitador con el bundle)
-- [Modelo Groq](https://console.groq.com/docs/model/openai/gpt-oss-20b)
-- [Límites Groq](https://console.groq.com/docs/rate-limits)
+- `AGENTS.md`, en la raíz del proyecto

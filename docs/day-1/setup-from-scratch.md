@@ -1,6 +1,8 @@
 # Crear PartyQuest desde una carpeta vacía — Windows
 
-Esta es la receta de B1, no la solución de chat. **El paquete está en preparación:** faltan el ejemplo de entorno y algunas plantillas de presentación; la receta completa aún no se ensayó en Windows. No marques B1 completo solo por copiar archivos.
+> **Referencia opcional.** El repositorio que recibes ya contiene la base creada; en clase B1 consiste en instalarla y comprobarla según el [roadmap](roadmap.md). Esta página explica cómo se arma esa base paso a paso. Algunas rutas que menciona pueden diferir del proyecto entregado; cuando difieran, vale el [mapa de archivos](template-file-map.md).
+
+Esta es la receta de B1, no la solución de chat. La receta completa aún no se ensayó en Windows.
 
 ## Antes de empezar
 

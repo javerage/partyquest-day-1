@@ -6,7 +6,7 @@ La galería visual reducida está en [`interface-reference.html`](interface-refe
 
 ## Qué implementar en D1
 
-Implementá una pantalla de chat cuyas piezas cambian según el estado. Las primeras nueve muestras describen estados o variantes visuales, no nueve rutas; la décima muestra el menú de D1:
+Implementa una pantalla de chat cuyas piezas cambian según el estado. Las primeras nueve muestras describen estados o variantes visuales, no nueve rutas; la décima muestra el menú de D1:
 
 | Ref. | Estado o variante | Composición visible | Qué demuestra |
 | --- | --- | --- | --- |
