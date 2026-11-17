@@ -117,7 +117,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 #### D1·B1.2 — Comprobar la base
 
-1. En la misma terminal y carpeta, ejecuta `npm.cmd run check:env`. Al terminar, consulta `$LASTEXITCODE`: debe ser `0`. El diagnóstico comprueba herramientas y archivos, no credenciales ni conectividad con Groq. También requiere OpenCode: si falta, sigue la guía de Windows.
+1. En la misma terminal y carpeta, ejecuta `npm.cmd run check:env`. Al terminar, consulta `$LASTEXITCODE`: debe ser `0`. El diagnóstico comprueba herramientas y archivos, no credenciales ni conectividad con Groq. Si informa `OpenCode: no disponible (requerido)`, OpenCode no quedó listo en la preparación del equipo: comprueba `opencode --version` en una terminal nueva y sigue [«Si algo falla» de la guía de Windows](../onboarding/windows.md#si-algo-falla). No continúes con B1.3 hasta que el diagnóstico termine en `0`. `Git (opcional)` no hace fallar el diagnóstico.
 2. Ejecuta `npm.cmd run typecheck`. Debe terminar sin errores de TypeScript y con `$LASTEXITCODE` igual a `0`.
 3. Lee `AGENTS.md` y comprueba en el editor los criterios de configuración de la fila B1.2 de la sección 3. No necesitas una clave de Groq para comprobar la base. Registra el resultado.
 

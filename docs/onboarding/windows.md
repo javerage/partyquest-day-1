@@ -64,6 +64,7 @@ Cuando `node --version`, `npm.cmd --version` y `opencode --version` funcionen en
 ## Si algo falla
 
 - **Comando no encontrado:** vuelve a abrir la terminal y revisa la ruta de usuario; no reinstales todo automáticamente.
+- **`opencode` falla con «not a valid application for this OS platform» y la ruta está en `C:\Program Files\nodejs`:** tienes una instalación de OpenCode hecha con npm, que esta guía no utiliza, y PowerShell la encuentra antes que la versión nativa. Identifícala con `Get-Command opencode -All` y `npm.cmd ls -g --depth=0`. Desinstala ese paquete global solo después de confirmar su nombre en esa lista, con `npm.cmd uninstall -g NOMBRE_DEL_PAQUETE`; si Windows pide permisos de administrador, consulta al facilitador. Después instala OpenCode nativo con el [paso 3](#3-instalar-opencode-nativo) y comprueba `opencode --version` en una terminal nueva.
 - **Arquitectura incorrecta o binario bloqueado:** vuelve a la fuente oficial y consulta al facilitador. No desactives protecciones del equipo ni añadas exclusiones de seguridad.
 - **Permiso o política de empresa:** solicita apoyo del responsable del equipo.
 - **Proveedor/modelo no disponible:** registra el mensaje sin datos privados; no sustituyas proveedor ni aceptes costos sin decidirlo.

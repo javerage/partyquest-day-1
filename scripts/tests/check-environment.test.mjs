@@ -9,7 +9,7 @@ import assert from 'node:assert/strict';
 const sourceScript = fileURLToPath(new URL('../check-environment.mjs', import.meta.url));
 const secret = 'fake-secret-must-not-appear';
 
-function fixture(t, { missing = [], failure = [], unexpected = [], hanging = [] } = {}) {
+function fixture(t, { missing = [], failure = [], unexpected = [], hanging = [], versionOverrides = {} } = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), 'partyquest-check-'));
   t.after(() => rmSync(dir, { recursive: true, force: true }));
   const bin = path.join(dir, 'bin');
@@ -30,7 +30,7 @@ function fixture(t, { missing = [], failure = [], unexpected = [], hanging = [] 
   for (const name of ['node', 'npm', 'opencode', 'git']) {
     if (missing.includes(name)) continue;
     const file = path.join(bin, name);
-    const versions = { node: 'v26.13.1', npm: '11.20.0', opencode: '2.0.0', git: 'git version 2.50.0' };
+    const versions = { node: 'v26.13.1', npm: '11.20.0', opencode: '2.0.0', git: 'git version 2.50.0', ...versionOverrides };
     const output = failure.includes(name) || unexpected.includes(name) ? secret : versions[name];
     writeFileSync(file, `#!/bin/sh\n${hanging.includes(name) ? 'exec /bin/sleep 4' : ''}\nif [ "$1" = "--version" ]; then echo '${output}'; ${failure.includes(name) ? 'exit 7' : 'exit 0'}; fi\nexit 0\n`);
     chmodSync(file, 0o755);
@@ -67,6 +67,16 @@ test('reports successful tool versions and optional Git without treating Git as 
   assert.match(result.stdout, /Git \(opcional\): (?:git version )?2\.50\.0/);
   assert.equal(result.stderr, '');
   assert.equal(result.stdout.includes(secret), false);
+});
+
+test('recognizes the Git for Windows version format', (t) => {
+  const setup = fixture(t, { versionOverrides: { git: 'git version 2.47.1.windows.1' } });
+  const result = run(setup);
+  assert.equal(result.status, 0);
+  assert.match(result.stdout, /Git \(opcional\): 2\.47\.1\n/);
+  assert.doesNotMatch(result.stdout, /no se pudo consultar la versión/);
+  assert.equal(result.stdout.includes('windows'), false);
+  assert.equal(result.stderr, '');
 });
 
 test('reports failed version commands using a nonsensitive diagnostic', (t) => {

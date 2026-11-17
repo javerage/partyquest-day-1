@@ -60,7 +60,8 @@ function version(command) {
     child.once('error', () => finish({ available: false }));
     child.once('close', (code) => {
       // Report only a numeric version, never arbitrary subprocess output.
-      const match = output.trim().match(/^(?:v|git version |opencode(?: version)? )?(\d+\.\d+\.\d+)(?:[-+][a-zA-Z0-9.-]+)?(?: \(Apple Git-[\d.]+\))?$/);
+      // Git for Windows appends ".windows.N" (for example "2.47.1.windows.1").
+      const match = output.trim().match(/^(?:v|git version |opencode(?: version)? )?(\d+\.\d+\.\d+)(?:\.windows\.\d+)?(?:[-+][a-zA-Z0-9.-]+)?(?: \(Apple Git-[\d.]+\))?$/);
       finish(code === 0 && match
         ? { available: true, version: match[1] }
         : { available: true, versionFailed: true });
