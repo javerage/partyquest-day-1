@@ -29,7 +29,9 @@ export const Composer = forwardRef<HTMLTextAreaElement, ComposerProps>(function 
 
   return (
     <form onSubmit={submit}>
-      <div className="flex min-h-12 items-end gap-2 rounded-md border-[1.5px] border-border-strong bg-surface py-1.5 pr-2 pl-3">
+      {/* The focus ring is drawn on the field container (design system: 2 px focus
+          ring separated 2 px), because the textarea itself has no outline. */}
+      <div className="flex min-h-12 items-end gap-2 rounded-md border-[1.5px] border-border-strong bg-surface py-1.5 pr-2 pl-3 has-[textarea:focus-visible]:outline-2 has-[textarea:focus-visible]:outline-offset-2 has-[textarea:focus-visible]:outline-focus">
         <textarea
           ref={ref}
           rows={1}

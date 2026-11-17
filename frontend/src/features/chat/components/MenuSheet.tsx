@@ -1,4 +1,6 @@
+import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { Button } from "../../../components/ui/button";
 import { ThemeSelector } from "../../theme/ThemeSelector";
 
 type MenuSheetProps = { onClose: () => void };
@@ -28,21 +30,27 @@ export function MenuSheet({ onClose }: MenuSheetProps) {
   return (
     <div
       ref={sheet}
-      id="d1-menu"
-      role="menu"
-      aria-label="Menú"
       className="absolute inset-x-3 top-14 z-20 rounded-b-lg border border-border bg-surface p-3.5 shadow-2"
     >
-      <button
-        type="button"
-        role="menuitem"
-        disabled
-        className="block min-h-11 w-full bg-transparent p-3 text-left text-body text-text-muted"
-      >
-        Historial y favoritos
-      </button>
-      <div role="separator" className="my-2 border-t border-border" />
-      <ThemeSelector />
+      {/* Design system §7.2: the menu closes with Esc, this close button or a tap outside.
+          The button sits outside role="menu", which may only contain menu items. */}
+      <div className="flex justify-end">
+        <Button variant="text" className="min-w-11 p-2" aria-label="Cerrar menú" onClick={onClose}>
+          <X aria-hidden="true" className="size-5" />
+        </Button>
+      </div>
+      <div id="d1-menu" role="menu" aria-label="Menú">
+        <button
+          type="button"
+          role="menuitem"
+          disabled
+          className="block min-h-11 w-full bg-transparent p-3 text-left text-body text-text-muted"
+        >
+          Historial y favoritos
+        </button>
+        <div role="separator" className="my-2 border-t border-border" />
+        <ThemeSelector />
+      </div>
     </div>
   );
 }
