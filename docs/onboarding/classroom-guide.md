@@ -2,6 +2,10 @@
 
 Esta guía acompaña la implementación incremental; no contiene la solución ni las pruebas de aceptación completas. El facilitador autoriza cada bloque por separado. El roadmap y el [contrato API](../api-contract.md) son la fuente de alcance y comportamiento.
 
+## Punto de entrada
+
+Primero completa la [preparación del equipo](README.md), aunque ya hayas clonado. Después ejecuta B1.1–B1.4 tú mismo siguiendo el roadmap. El ciclo de dos prompts de esta guía comienza en B2.1; no se aplica a instalar herramientas.
+
 ## Antes de cada incremento
 
 1. Abre `docs/day-1/roadmap.md` y elige con el facilitador un ID pendiente; confirma prerrequisitos y criterios completos.
@@ -14,7 +18,7 @@ Esta guía acompaña la implementación incremental; no contiene la solución ni
 
 Sigue el orden y las dependencias de la tabla oficial; una fila no es una autorización para la siguiente:
 
-1. **D1·B1.1:** verifica workspaces, manifiestos y lockfile. Con el facilitador, [instala Gentle AI en OpenCode](gentle-ai.md) y comprueba `gentle-ai doctor`; detente antes de B1.2.
+1. **D1·B1.1:** con las herramientas ya preparadas, instala las dependencias desde la raíz y verifica los workspaces; detente antes de B1.2.
 2. **D1·B1.2:** revisa configuración, `.gitignore` y `.env.example` falso; detente antes de B1.3.
 3. **D1·B1.3:** revisa plantillas y enlaces, inicia la presentación y confirma que no llama a Groq; detente antes de B1.4.
 4. **D1·B1.4:** comprueba health/proxy sin clave; detente antes de B2.1.
@@ -49,7 +53,7 @@ Sigue el orden y las dependencias de la tabla oficial; una fila no es una autori
 
 - Windows/OpenCode o una cuenta no disponible: registra la limitación; no declares ese entorno verificado.
 - Solicitud de clave, pago, verificación de identidad o gasto no esperado: pausa y consulta al facilitador.
-- Petición de historial, geolocalización en la API, catálogo, memoria de conversaciones, RAG, streaming, autenticación, instalación de CLI/MCP o despliegue antes del ID correspondiente: no la implementes. La instalación de Gentle AI en B1 es la excepción: la realizas tú, en tu terminal, siguiendo su guía; no le pidas al agente que la haga.
+- Petición de historial, geolocalización en la API, catálogo, memoria de conversaciones, RAG, streaming, autenticación, instalación de CLI/MCP o despliegue antes del ID correspondiente: no la implementes. La instalación de Gentle AI durante la preparación del equipo, antes de B1.1, es la excepción: la realizas tú, en tu terminal, siguiendo su guía; no le pidas al agente que la haga.
 - Una prueba simulada valida el contrato bajo el fake; no demuestra conectividad real con Groq.
 
 Para preparación del entorno y cuentas, consulta [onboarding](README.md). Para solicitar trabajo incremental, usa los prompts de [agent-prompts.md](../day-1/agent-prompts.md).

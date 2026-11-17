@@ -2,7 +2,7 @@
 
 **Gentle AI** agrega a OpenCode una forma de trabajo más ordenada: el agente explora el código antes de cambiarlo, mantiene los cambios pequeños, escribe primero una prueba cuando corresponde y comprueba el resultado antes de darlo por terminado. Además, recuerda decisiones del proyecto entre sesiones y protege tus archivos de claves.
 
-Lo instalarás durante el **bloque 1**, después de tener OpenCode funcionando. Calcula unos 20 minutos, sin contar la velocidad de la red del aula.
+Lo instalarás durante la **preparación del equipo del bloque 1**, después de tener OpenCode funcionando y antes de ejecutar las fichas B1.1–B1.4 del proyecto. Calcula unos 20 minutos, sin contar la velocidad de la red del aula.
 
 ## Qué cambia en tu forma de trabajar
 

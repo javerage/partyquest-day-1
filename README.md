@@ -4,15 +4,20 @@
 
 La pantalla y la estructura inicial del proyecto ya están preparadas para que puedas concentrarte en los ejercicios. Tú conectarás el chat, aprenderás a manejar sus respuestas y comprobarás su funcionamiento, paso a paso junto con el instructor.
 
-## Ya cloné el repositorio: empieza aquí
+## Empieza aquí
 
-Sigue [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias) y después B1.2–B1.4 en orden. Las fichas explican qué ejecutar, en qué carpeta y terminal, qué resultado esperar y cuándo detenerte si algo falla.
+**Completa la preparación del equipo antes de empezar el proyecto, aunque ya hayas clonado el repositorio.** Sigue este orden. Si una herramienta ya está instalada, comprueba su funcionamiento; no la reinstales.
 
-**Primero comprobarás Node.js y npm; después ejecutarás `npm.cmd ci` desde la raíz.** No empieces por implementar el chat ni por copiar los prompts de B2. El bloque B1 indica cuándo arrancar las dos aplicaciones y cuándo preparar Gentle AI antes de los ejercicios.
+| Etapa | Qué harás | Dónde seguir |
+|---|---|---|
+| 1. Preparar el equipo | Comprobar Git, Node.js/npm, OpenCode y Go; instalar y configurar Gentle AI; preparar el acceso al modelo de OpenCode | [Preparación del equipo](docs/onboarding/README.md) |
+| 2. Preparar el proyecto | Clonar, o usar la carpeta ya clonada, e instalar las dependencias desde la raíz | [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias) |
+| 3. Comprobar la base | Ejecutar diagnóstico y typecheck, abrir frontend/API y comprobar pantalla y health | [B1.2](docs/day-1/roadmap.md#d1b12--comprobar-la-base), después B1.3 y B1.4 |
+| 4. Empezar los ejercicios | Abrir OpenCode en el proyecto y seguir una ficha a la vez, empezando por B2.1 | [Roadmap](docs/day-1/roadmap.md) |
 
-Si faltan herramientas, consulta la [guía de preparación](docs/onboarding/README.md); en Windows, la [guía de Node.js y OpenCode](docs/onboarding/windows.md). Después vuelve a B1.1. La [guía del aula](docs/onboarding/classroom-guide.md) explica la dinámica del taller.
+La guía de preparación termina con una lista de comprobación y el enlace a B1.1. No empieces los ejercicios hasta completar ese recorrido. La [guía del aula](docs/onboarding/classroom-guide.md) explica cómo trabajar por incrementos.
 
-Las guías de cuentas explican cómo preparar [Groq](docs/onboarding/groq.md), [Cohere](docs/onboarding/cohere.md) y [Vercel](docs/onboarding/vercel.md). Durante el primer día usarás Groq para conectar el chat; Cohere y Vercel se utilizarán en etapas posteriores.
+El acceso al modelo de **OpenCode** se prepara en la etapa 1. La clave de **Groq para PartyQuest** se configura al llegar a B2.3. Cohere y Vercel corresponden a etapas posteriores: no necesitas preparar esas cuentas para comenzar D1.
 
 ## Qué vas a aprender
 
@@ -92,4 +97,4 @@ Con ambos procesos iniciados, abre **http://127.0.0.1:5173** en el navegador. Al
 - Si una plataforma solicita un pago o un permiso inesperado, consulta al instructor antes de continuar. Las modalidades gratuitas y los límites pueden variar.
 - No autorices al agente a publicar el proyecto, conectar repositorios o crear recursos remotos como parte de un ejercicio local.
 
-**Tu siguiente paso:** sigue [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias).
+**Tu siguiente paso:** completa la [preparación del equipo](docs/onboarding/README.md).

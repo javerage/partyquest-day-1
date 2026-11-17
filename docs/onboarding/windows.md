@@ -57,16 +57,9 @@ Resultado esperado: una versión, no una solicitud de credenciales. El binario n
 
 Para el diagnóstico automático, `opencode` debe estar disponible en el PATH. Si usas solo la ruta completa, registra esa limitación: el diagnóstico reportará la herramienta como ausente.
 
-## 4. Abrir el proyecto y comprobar las skills
+## 4. Continuar la preparación del equipo
 
-1. Descarga el repositorio o ZIP que entregue el facilitador y extrae **todos** los archivos, incluidos `.opencode/` y `.gitignore`.
-2. Abre PowerShell en la carpeta que contiene `package.json` y `AGENTS.md`.
-3. Ejecuta `opencode`, o usa su ruta completa desde esa misma carpeta.
-4. Sigue la distinción entre [proveedor del agente y API del ejercicio](README.md#opencode-y-el-modelo-de-partyquest-son-cosas-distintas).
-5. Pide: `Carga @increment-scope y lee AGENTS.md y docs/day-1/roadmap.md. No modifiques archivos; explica únicamente D1·B1.1.`
-6. Revisa que el agente reconozca la skill y se detenga antes de editar. Consulta [skills](skills.md) si no aparece.
-
-El primer prompt con un modelo puede consumir cuota. No presupongas acceso gratuito ni uses una cuenta ajena.
+Cuando `node --version`, `npm.cmd --version` y `opencode --version` funcionen en una terminal nueva, continúa con **Go y Gentle AI**, pasos 4 y 5 de la [preparación del equipo](README.md#1-preparar-las-herramientas-en-este-orden). Todavía no abras los ejercicios ni pidas cambios al agente.
 
 ## Si algo falla
 
@@ -75,4 +68,4 @@ El primer prompt con un modelo puede consumir cuota. No presupongas acceso gratu
 - **Permiso o política de empresa:** solicita apoyo del responsable del equipo.
 - **Proveedor/modelo no disponible:** registra el mensaje sin datos privados; no sustituyas proveedor ni aceptes costos sin decidirlo.
 
-Continúa con [las cuentas y el diagnóstico](README.md). En el bloque 1 instalarás [Gentle AI](gentle-ai.md) sobre este OpenCode; antes necesitas [instalar Go](go.md), y la guía de Gentle AI explica cómo instalar Git si falta. La instalación real y el funcionamiento de OpenCode en Windows siguen pendientes de un ensayo en ese sistema.
+Continúa en la [preparación del equipo](README.md#1-preparar-las-herramientas-en-este-orden), no en los ejercicios. La instalación real y el funcionamiento de OpenCode en Windows siguen pendientes de un ensayo en ese sistema.

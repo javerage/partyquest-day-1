@@ -73,11 +73,18 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 ### D1·B1 — Instalar y comprobar la base (sin editar)
 
-**Si ya clonaste el repositorio, empieza aquí.** Tú ejecutas estos pasos en PowerShell, no el agente. La sección 3 sirve para registrar resultados; esta sección explica cómo obtenerlos. No modificarás el código ni resolverás los `TODO`; instalar dependencias sí crea archivos locales en `node_modules`.
+**Requisito de entrada:** completa primero la [preparación del equipo](../onboarding/README.md), incluso si ya clonaste. Git, Node.js/npm, OpenCode y Gentle AI deben estar preparados; en Windows también Go para instalar Gentle AI. Este bloque comienza con el equipo listo. Tú ejecutas estos pasos en PowerShell, no el agente. La sección 3 sirve para registrar resultados; esta sección explica cómo obtenerlos. No modificarás el código ni resolverás los `TODO`; instalar dependencias sí crea archivos locales en `node_modules`.
 
 #### D1·B1.1 — Instalar dependencias
 
-1. Abre PowerShell en la raíz del repositorio clonado, no dentro de `api/` ni de `frontend/`. Comprueba:
+1. Si ya clonaste, usa esa carpeta y no repitas la descarga. Si aún no tienes el proyecto, abre PowerShell en la carpeta donde quieras guardarlo y ejecuta:
+
+   ```powershell
+   git clone https://github.com/javerage/partyquest-day-1.git
+   cd partyquest-day-1
+   ```
+
+   Abre PowerShell en la raíz del repositorio clonado, no dentro de `api/` ni de `frontend/`. Comprueba:
 
    ```powershell
    Get-Location
@@ -159,21 +166,11 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 4. Anota B1.4 en la sección 3. Si los resultados no coinciden, detente y consulta al instructor.
 
-#### Antes de B2 — Preparar el agente
+#### Equipo y base comprobados: comenzar los ejercicios
 
-Después de comprobar B1.1–B1.4, prepara Gentle AI siguiendo la guía enlazada abajo. Usa la tercera terminal desde la raíz. Es una instalación distinta de las dependencias de PartyQuest: `npm.cmd ci` prepara la aplicación; Gentle AI prepara tu asistente. Si ya lo instalaste, compruébalo sin repetir la instalación.
+Gentle AI y el acceso al modelo de OpenCode ya se prepararon antes de B1.1. No necesitas instalarlos de nuevo. Mantén las terminales de API y frontend abiertas y usa una tercera terminal en la raíz para ejecutar `opencode`.
 
-Después puedes pedir al agente esta explicación, sin edición:
-
-```text
-Sin editar ni ejecutar cambios: lee AGENTS.md, docs/architecture.md y la
-estructura de api/ y frontend/. Explícame qué hace cada carpeta, qué archivos
-tienen TODO y a qué incremento pertenecen, y por qué POST /api/chat responde 404.
-```
-
-Mantén abiertas las terminales de la API y el frontend mientras trabajas con el agente.
-
-Antes de comenzar B2 instalas **Gentle AI** en OpenCode, junto con el instructor, siguiendo su [guía](../onboarding/gentle-ai.md). En Windows prepara primero [Go](../onboarding/go.md). Lo instalas tú desde tu terminal, no el agente. Cierre: `gentle-ai doctor` sin errores y `gentle-ai review mode status` con la revisión desactivada.
+Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar cambios. Después sigue D1·B2.1, empezando por su prompt 1. No autorices varias fichas a la vez.
 
 ### D1·B2.1 — Fijar el contrato con una prueba
 

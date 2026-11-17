@@ -2,31 +2,40 @@
 
 Prepara este entorno en el Día 1. Las instalaciones y los registros los realiza cada participante, conscientemente y con su propia cuenta. **El diagnóstico no instala nada ni valida cuentas o claves.**
 
-## Orden recomendado
+## 1. Preparar las herramientas, en este orden
 
-1. [Instalar Node.js y OpenCode en Windows](windows.md).
-2. [Crear o revisar tu cuenta de Groq](groq.md).
-3. [Crear o revisar tu cuenta de Cohere](cohere.md).
-4. [Crear o revisar tu cuenta de Vercel](vercel.md).
-5. Abrir la carpeta del proyecto en OpenCode y [comprobar las cuatro skills](skills.md).
-6. Ejecutar el diagnóstico y seguir la [guía del aula](classroom-guide.md).
-7. [Instalar Go en Windows](go.md). Si puedes, descarga su instalador antes de la clase.
-8. En el bloque 1, con el instructor: [instalar Gentle AI en OpenCode](gentle-ai.md).
+Esta es la primera etapa, incluso si ya clonaste el repositorio. Tú haces las instalaciones, no el agente. Durante la preparación de B1, junto con el instructor, completa cada paso antes del siguiente. Todavía no ejecutes las fichas del proyecto.
 
-| Herramienta o cuenta | Preparación D1 | Uso en el taller |
-|---|---|---|
-| Node.js y npm | Instalados y disponibles en una terminal nueva | Ejecutar frontend, API y herramientas locales |
-| OpenCode | Instalar, abrir proyecto y revisar acceso a un modelo de programación | Trabajar con el agente por incrementos |
-| Gentle AI | Se instala en clase durante el bloque 1 | Método de trabajo del agente, memoria del proyecto y protección de credenciales |
-| Go 1.25.10+ | [Instalar si falta](go.md), para compilar Gentle AI en Windows | Solo para instalar o actualizar Gentle AI |
-| Groq | Crear cuenta y comprobar acceso al panel | Configurar la clave **solo en el servidor**, al autorizar D1·B2.3 |
-| Cohere | Crear cuenta y comprobar acceso al panel | Embeddings en D2; no instalar SDK ni crear índices en D1 |
-| Vercel | Crear cuenta y comprobar acceso al panel | Despliegue posterior, con autorización específica; no importar proyectos en D1 |
-| Git | Necesario para instalar Gentle AI; la descarga del proyecto puede hacerse por ZIP | Versionar el trabajo, no necesario para ejecutar el diagnóstico |
+1. **Git.** Ejecuta `git --version`. Si falta, sigue [instalar Git](gentle-ai.md#1-instalar-git-si-falta) y vuelve a esta lista. Lo necesitas para clonar y para la instalación de Gentle AI.
+2. **Node.js y npm.** Sigue [el paso 2 de Windows](windows.md#2-instalar-nodejs-y-npm-si-faltan). En una terminal nueva, `node --version` y `npm.cmd --version` deben mostrar sus versiones.
+3. **OpenCode.** Sigue [el paso 3 de Windows](windows.md#3-instalar-opencode-nativo). Comprueba `opencode --version` en una terminal nueva; debe estar en el PATH para el diagnóstico y Gentle AI.
+4. **Go en Windows.** Sigue la [guía de Go](go.md). `go version` debe mostrar la versión mínima indicada en esa guía. Go se usa para instalar Gentle AI, no para ejecutar PartyQuest.
+5. **Gentle AI.** Sigue su [guía desde el paso 3](gentle-ai.md#3-instalar-gentle-ai), incluidos configuración, desactivación de RDD y comprobaciones. Git y Go ya deben estar preparados. No repitas instalaciones si ya funcionan. En macOS usa la alternativa indicada en esa guía.
+6. **Acceso al modelo de OpenCode.** Abre `opencode`, prepara `/connect` y comprueba `/models` con el proveedor acordado con el instructor. Lee la distinción de proveedores más abajo. Una llamada de prueba requiere tu autorización y puede consumir cuota; no confundas ver el modelo en la lista con haber comprobado una respuesta.
 
-## Diagnóstico desde la carpeta del proyecto
+## 2. Confirmar que el equipo está listo
 
-En PowerShell, primero comprueba que Node exista:
+Antes de pasar al proyecto, confirma:
+
+- [ ] `git --version`, `node --version`, `npm.cmd --version` y `opencode --version` funcionan en una terminal nueva.
+- [ ] En Windows, `go version` cumple el requisito de la guía.
+- [ ] `gentle-ai version` funciona y `gentle-ai doctor` no informa errores.
+- [ ] `gentle-ai review mode status` indica revisión desactivada.
+- [ ] Tienes configurado el proveedor/modelo de OpenCode acordado; cualquier problema de acceso está resuelto con el instructor antes de usarlo en ejercicios.
+
+Si algo falla, detente aquí y consulta al instructor. No avances al roadmap para descubrir después qué herramienta falta.
+
+**Equipo listo: continúa con [B1.1: preparar el proyecto e instalar dependencias](../day-1/roadmap.md#d1b11--instalar-dependencias).** Si ya clonaste el repositorio, usa esa carpeta: no lo clones otra vez. B1.1 muestra cómo obtenerlo si aún no lo tienes. Después sigue B1.2–B1.4 y, finalmente, B2.1.
+
+## Cuentas que se usan después
+
+- **Groq para PartyQuest:** sigue su [guía](groq.md) al preparar B2.3; la clave se configura solo en el servidor. No hace falta para instalar dependencias, abrir la pantalla ni comprobar health.
+- **Cohere:** [guía de cuenta](cohere.md) para embeddings en D2; no es un prerrequisito de D1.
+- **Vercel:** [guía de cuenta](vercel.md) para despliegue posterior con autorización específica; no es un prerrequisito de D1.
+
+## Referencia: diagnóstico del proyecto en B1.2
+
+Este diagnóstico corresponde a B1.2, después de preparar el equipo e instalar dependencias. No es otro paso previo. En PowerShell puedes consultar las herramientas con:
 
 ```powershell
 Get-Command node, npm.cmd, opencode -ErrorAction SilentlyContinue
