@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es-MX" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PartyQuest · Referencia visual D1</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --color-bg: #FFF9F1;
+      --color-surface: #FFFFFF;
+      --color-surface-sunken: #F6EEE2;
+      --color-border: #E6D8C5;
+      --color-border-strong: #94806A;
+      --color-text: #2A1F1A;
+      --color-text-muted: #6B5A4E;
+      --color-brand: #B5401A;
+      --color-brand-soft: #FBE3D6;
+      --color-on-brand: #FFFFFF;
+      --color-action: #0B6E6E;
+      --color-action-hover: #085858;
+      --color-action-soft: #DDF1EF;
+      --color-on-action: #FFFFFF;
+      --color-highlight: #E2A72E;
+      --color-info: #2F4F8F;
+      --color-info-soft: #E3EAF8;
+      --color-danger: #A3173D;
+      --color-danger-soft: #FBE1E7;
+      --color-warning: #7E4C00;
+      --color-warning-soft: #FFF0C7;
+      --color-success: #2E6B34;
+      --color-success-soft: #E1F1DF;
+      --color-unknown-soft: #EFE7DC;
+      --color-focus: #0B6E6E;
+      --pachi-body: #B5401A;
+      --pachi-face: #FFF6EA;
+      --pachi-ink: #2A1F1A;
+      --shadow-1: 0 2px 8px rgb(79 50 28 / .12);
+      --shadow-2: 0 8px 24px rgb(79 50 28 / .2);
+      --page-bg: #E9E1D7;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px;
+      --space-4: 16px; --space-5: 24px; --space-6: 32px;
+      --radius-sm: 6px; --radius-md: 12px; --radius-lg: 18px; --radius-pill: 999px;
+      --duration-fast: 120ms; --duration-base: 200ms; --duration-slow: 320ms;
+      --ease-out: cubic-bezier(.2,.8,.2,1);
+      font-family: "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--color-text);
+      background: var(--page-bg);
+    }
+    html[data-theme="dark"] {
+      color-scheme: dark;
+      --color-bg: #0F1E1D;
+      --color-surface: #172927;
+      --color-surface-sunken: #0B1716;
+      --color-border: #2A403D;
+      --color-border-strong: #5E7C77;
+      --color-text: #F4EDE3;
+      --color-text-muted: #B5AA9C;
+      --color-brand: #F08A5D;
+      --color-brand-soft: #3B2219;
+      --color-on-brand: #2A120A;
+      --color-action: #5CC8BE;
+      --color-action-hover: #7FD8CF;
+      --color-action-soft: #143A37;
+      --color-on-action: #062624;
+      --color-highlight: #F2C14E;
+      --color-info: #A9C0F0;
+      --color-info-soft: #1C2944;
+      --color-danger: #FF8FA6;
+      --color-danger-soft: #3E1421;
+      --color-warning: #F4C35A;
+      --color-warning-soft: #3A2C0C;
+      --color-success: #8BD48F;
+      --color-success-soft: #16301A;
+      --color-unknown-soft: #22312F;
+      --color-focus: #6FD1C9;
+      --pachi-body: #F08A5D;
+      --pachi-face: #FFF6EA;
+      --pachi-ink: #2A1F1A;
+      --shadow-1: none;
+      --shadow-2: none;
+      --page-bg: #091211;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--page-bg); color: var(--color-text); }
+    button { font: inherit; }
+    a { color: var(--color-action); }
+    .page { max-width: 1320px; margin: auto; padding: 24px; }
+    .masthead { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin-bottom: 24px; }
+    .identity { display: flex; align-items: center; gap: 12px; }
+    .identity svg { width: 42px; height: 44px; }
+    h1 { margin: 0; font-size: 28px; line-height: 34px; font-weight: 800; }
+    .intro { max-width: 760px; color: var(--color-text-muted); line-height: 1.55; margin: 4px 0 0; }
+    .theme-toggle { border: 1px solid var(--color-border-strong); color: var(--color-action); background: var(--color-surface); border-radius: var(--radius-md); padding: 9px 14px; cursor: pointer; }
+    button:focus-visible, a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
+    .notice { border-left: 4px solid var(--color-info); background: var(--color-info-soft); border-radius: var(--radius-sm); padding: 12px 16px; margin: 20px 0 28px; }
+    .section-title { margin: 32px 0 8px; font-size: 20px; line-height: 26px; font-weight: 800; }
+    .section-note { margin: 0 0 16px; color: var(--color-text-muted); }
+    .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr)); gap: 20px; align-items: start; }
+    .sample { min-width: 0; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-1); overflow: hidden; }
+    .sample-meta { padding: 16px 18px 12px; border-bottom: 1px solid var(--color-border); }
+    .sample-meta h3 { margin: 0 0 4px; font-size: 17px; line-height: 24px; font-weight: 700; }
+    .sample-meta p { margin: 0; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+    .phone { width: min(100%, 390px); height: 600px; margin: 14px auto; padding: 0 12px 12px; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 24px; overflow: hidden; position: relative; }
+    .topbar { height: 56px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; border-bottom: 1px solid var(--color-border); color: var(--color-text); font-size: 14px; font-weight: 700; }
+    .topbar .start { justify-self: start; }
+    .topbar .brand { display: flex; align-items: center; gap: 5px; justify-self: center; }
+    .topbar .brand svg { width: 24px; height: 26px; }
+    .topbar .menu { justify-self: end; padding: 8px; }
+    .icon { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+    .text-button { display: inline-flex; align-items: center; gap: 5px; border: 0; background: transparent; color: var(--color-action); padding: 8px 4px; font-weight: 700; cursor: default; }
+    .chat { height: calc(100% - 56px); min-height: 425px; overflow-y: auto; padding: 22px 5px 160px; display: flex; flex-direction: column; gap: 12px; }
+    .empty { min-height: 410px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; text-align: center; padding: 20px; }
+    .empty svg { width: 96px; height: 102px; }
+    .empty h2 { margin: 0; font-size: 28px; line-height: 34px; font-weight: 800; }
+    .bubble { max-width: 85%; border-radius: 18px; padding: 10px 13px; line-height: 24px; font-size: 16px; overflow-wrap: anywhere; }
+    .bubble.bot { align-self: start; background: var(--color-surface); border: 1px solid var(--color-border); border-bottom-left-radius: 6px; }
+    .bubble.user { align-self: end; background: var(--color-brand-soft); border-bottom-right-radius: 6px; }
+    .bubble.thinking { color: var(--color-text-muted); }
+    .dots { display: inline-flex; gap: 4px; margin-right: 8px; vertical-align: middle; }
+    .dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--color-text-muted); animation: pulse 1s ease-in-out infinite alternate; }
+    .dots i:nth-child(2) { animation-delay: 140ms; }.dots i:nth-child(3) { animation-delay: 280ms; }
+    @keyframes pulse { to { opacity: .25; transform: translateY(-2px); } }
+    .composer { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 12px calc(12px + env(safe-area-inset-bottom)); background: var(--color-surface-sunken); border-top: 1px solid var(--color-border); }
+    .field { display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 6px 8px 6px 12px; border: 1.5px solid var(--color-border-strong); border-radius: var(--radius-md); background: var(--color-surface); }
+    .field .placeholder { flex: 1; color: var(--color-text-muted); font-size: 14px; line-height: 20px; }
+    .field .draft { flex: 1; font-size: 16px; line-height: 24px; }
+    .send { border: 0; border-radius: var(--radius-md); background: var(--color-action); color: var(--color-on-action); min-width: 44px; min-height: 44px; padding: 0 12px; font-weight: 700; }
+    .send.disabled { opacity: .5; }
+    .usage { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 14px; padding: 10px 12px; margin: 0 0 10px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); font-size: 13px; line-height: 18px; }
+    .usage b { font-size: 14px; }
+    .usage .muted { color: var(--color-text-muted); }
+    .usage .incomplete { color: var(--color-info); }
+    .prompt { display: flex; flex-direction: column; gap: 10px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+    .btn { min-height: 44px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); padding: 8px 12px; background: var(--color-surface); color: var(--color-action); font-size: 14px; font-weight: 700; }
+    .btn.primary { border-color: var(--color-action); background: var(--color-action); color: var(--color-on-action); }
+    .chip { display: inline-flex; align-items: center; min-height: 36px; border: 1px solid var(--color-border-strong); border-radius: var(--radius-pill); padding: 0 12px; color: var(--color-action); font-size: 14px; font-weight: 700; }
+    .notice-inline { width: 100%; border-radius: var(--radius-md); padding: 13px 14px; background: var(--color-danger-soft); color: var(--color-text); border-left: 4px solid var(--color-danger); }
+    .notice-inline .title { display: block; font-weight: 800; margin-bottom: 4px; }
+    .notice-inline p { margin: 0; font-size: 14px; line-height: 20px; }
+    .dialog-scrim { position: absolute; inset: 56px 0 0; display: grid; place-items: center; padding: 18px; background: rgb(0 0 0 / .45); }
+    .dialog { width: 100%; padding: 18px; border: 1px solid var(--color-border); border-radius: var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-2); }
+    .dialog h3 { margin: 0 0 8px; font-size: 20px; line-height: 26px; }
+    .dialog p { margin: 0 0 16px; line-height: 24px; }
+    .dialog .actions { justify-content: flex-end; }
+    .menu-sheet { position: absolute; top: 56px; left: 12px; right: 12px; padding: 14px; border: 1px solid var(--color-border); border-radius: 0 0 var(--radius-lg) var(--radius-lg); background: var(--color-surface); box-shadow: var(--shadow-2); }
+    .appearance { padding: 8px 12px 4px; border-top: 1px solid var(--color-border); margin-top: 8px; }
+    .appearance p { margin: 0 0 8px; font-size: 14px; font-weight: 700; }
+    .appearance-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; border-radius: 12px; background: var(--color-surface-sunken); }
+    .appearance-options button { min-height: 44px; border: 1px solid transparent; border-radius: 6px; background: transparent; color: var(--color-text-muted); font: inherit; font-size: 14px; font-weight: 700; }
+    .appearance-options button[aria-checked="true"] { border-color: var(--color-border-strong); background: var(--color-surface); color: var(--color-action); }
+    .menu-item { display: block; width: 100%; border: 0; background: transparent; text-align: left; padding: 12px; color: var(--color-text-muted); font: inherit; }
+    .disabled-tag { display: block; padding: 0 12px 8px; color: var(--color-text-muted); font-size: 13px; }
+    .specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+    .spec { padding: 14px 16px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+    .spec h3 { margin: 0 0 5px; font-size: 16px; }
+    .spec p { margin: 0; color: var(--color-text-muted); font-size: 14px; line-height: 21px; }
+    .footer { padding: 24px 0 8px; color: var(--color-text-muted); font-size: 13px; }
+    @media (max-width: 600px) { .page { padding: 16px 12px; }.masthead { align-items: flex-start; }.identity { align-items: flex-start; }.theme-toggle { white-space: nowrap; }.phone { margin: 10px auto; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; } }
+  </style>
+</head>
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="pachi-body" d="M32 6C18.7 6 8 16.4 8 29.6 8 46.4 32 64 32 64s24-17.6 24-34.4C56 16.4 45.3 6 32 6Z"/>
+      <g id="pachi-base"><use href="#pachi-body" style="fill:var(--pachi-body)"/><path d="M30 7c-1.5-3.5-5-4.6-7.5-3.6M33.5 6.6c1-3.8 4.6-5.4 7.6-4.6" fill="none" style="stroke:var(--pachi-body)" stroke-width="2.6" stroke-linecap="round"/><circle cx="32" cy="29" r="16" style="fill:var(--pachi-face)"/><ellipse cx="22.5" cy="34" rx="3.2" ry="2.1" style="fill:var(--color-highlight)" opacity=".9"/><ellipse cx="41.5" cy="34" rx="3.2" ry="2.1" style="fill:var(--color-highlight)" opacity=".9"/></g>
+    </defs>
+    <symbol id="pachi-default" viewBox="0 0 64 68"><use href="#pachi-base"/><ellipse cx="26" cy="27" rx="2.2" ry="2.9" style="fill:var(--pachi-ink)"/><ellipse cx="38" cy="27" rx="2.2" ry="2.9" style="fill:var(--pachi-ink)"/><path d="M26.5 33.5q5.5 5 11 0" fill="none" style="stroke:var(--pachi-ink)" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="pachi-thinking" viewBox="0 0 64 68"><use href="#pachi-base"/><ellipse cx="27.2" cy="25.2" rx="2.2" ry="2.9" style="fill:var(--pachi-ink)"/><ellipse cx="39.2" cy="25.2" rx="2.2" ry="2.9" style="fill:var(--pachi-ink)"/><path d="M35.6 19.8q3-1.8 5.8 0M28.5 35h7" fill="none" style="stroke:var(--pachi-ink)" stroke-width="2.4" stroke-linecap="round"/></symbol>
+    <symbol id="pachi-sorry" viewBox="0 0 64 68"><use href="#pachi-base"/><ellipse cx="26" cy="28" rx="2" ry="2.5" style="fill:var(--pachi-ink)"/><ellipse cx="38" cy="28" rx="2" ry="2.5" style="fill:var(--pachi-ink)"/><path d="M22.4 23.6l5.4-2.4M41.6 23.6l-5.4-2.4M27 35.5q2.5-2 5 0t5 0" fill="none" style="stroke:var(--pachi-ink)" stroke-width="2.4" stroke-linecap="round"/></symbol>
+  </svg>
+  <main class="page">
+    <header class="masthead">
+      <div class="identity"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg><div><h1>PartyQuest · Interfaz D1</h1><p class="intro">Referencia visual estática de los estados del chat y la composición por componentes. Derivada del diseño aprobado; no representa una implementación funcional.</p></div></div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false">Ver modo oscuro</button>
+    </header>
+    <p class="notice"><strong>Alcance:</strong> D1 crea una sola interfaz de chat con estados, no páginas separadas. Los textos y lugares de muestra son ilustrativos. La fuente normativa son el <a href="interface-reference.md">mapa de pantallas/componentes</a>, el sistema de diseño aprobado (documentado en el repositorio) y el <a href="../api-contract.md">contrato D1</a>.</p>
+
+    <h2 class="section-title">Estados del chat</h2>
+    <p class="section-note">Vistas de referencia para la columna móvil de hasta 480 px. El modo oscuro conserva los mismos componentes y tokens aprobados.</p>
+    <section class="gallery" aria-label="Estados visuales de D1">
+      <article class="sample"><header class="sample-meta"><h3>D1-01 · Conversación nueva</h3><p>Shell vacío; el envío no está disponible hasta escribir.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="empty"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg><h2>¿Qué se arma hoy?</h2></div><div class="composer"><div class="field"><span class="placeholder">Ej.: el domingo a mediodía, somos 4…</span><button class="send disabled" disabled>Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-02 · Mensaje escrito</h3><p>El estudiante conecta el Composer al envío de un solo mensaje.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="empty"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg><h2>¿Qué se arma hoy?</h2></div><div class="composer"><div class="field"><span class="draft">Hola, Pachi, ¿a dónde podemos ir?</span><button class="send">Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-03 · Esperando respuesta</h3><p>Estado ocupado, sin reintento automático ni turno anterior enviado.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-thinking"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log" aria-live="polite"><div class="bubble user">Hola, Pachi, ¿a dónde podemos ir?</div><div class="bubble bot thinking"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>Revisando opciones…</div></div><div class="composer"><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send disabled" disabled>Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-04 · Respuesta con usage completo</h3><p>La respuesta se conserva; el panel muestra valores disponibles.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log" aria-live="polite"><div class="bubble user">Hola, Pachi, ¿a dónde podemos ir?</div><div class="bubble bot">¡Va! ¿Qué tipo de plan tienen en mente?</div></div><div class="composer"><div class="usage"><b>Consumo de esta conversación</b><span>Entrada: 157 tokens</span><span>Salida: 680 tokens</span><span>Total: 837 tokens</span><span class="muted">Costo teórico: según tarifa vigente</span></div><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send">Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-05 · Usage incompleto o no disponible</h3><p>Un campo faltante no se convierte en cero ni elimina la respuesta; si no hay datos, mostrar «no disponible».</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log" aria-live="polite"><div class="bubble user">Hola, Pachi, ¿a dónde podemos ir?</div><div class="bubble bot">¡Va! ¿Qué tipo de plan tienen en mente?</div></div><div class="composer"><div class="usage"><b>Consumo incompleto</b><span>Entrada: 157 tokens</span><span>Salida: no disponible</span><span class="incomplete">No se recibió todo el usage.</span><span class="muted">Sin datos de usage: no disponible.</span></div><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send">Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-06 · Solicitud de ubicación</h3><p>La zona escrita queda en la interfaz y no se adjunta a la API.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log"><div class="bubble user">Quiero salir este domingo.</div><div class="bubble bot prompt"><span>Para ordenar las opciones por cercanía puedo usar tu ubicación. ¿O prefieres escribir la zona?</span><div class="actions"><button class="btn primary">Usar mi ubicación</button><button class="btn">Escribir una zona</button></div></div></div><div class="composer"><div class="field"><span class="placeholder">O escribe una zona, por ejemplo «centro»…</span><button class="send disabled" disabled>Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-07 · Error recuperable</h3><p>La persona elige si reintenta; puede editar el mensaje.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-sorry"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log" aria-live="polite"><div class="bubble user">Quiero salir este domingo.</div><div class="notice-inline" role="alert"><span class="title">No pude obtener respuesta</span><p>Tu conversación sigue visible en esta página.</p><div class="actions" style="margin-top:10px"><button class="btn">Editar mensaje</button><button class="btn primary">Reintentar</button></div></div></div><div class="composer"><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send">Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-08 · Cuota agotada</h3><p>Se informa el límite sin ofrecer un reintento.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-sorry"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat" role="log" aria-live="polite"><div class="bubble user">Quiero salir este domingo.</div><div class="notice-inline" role="alert"><span class="title">Se alcanzó el límite de uso</span><p>Por ahora no puedo responder. Tu conversación sigue visible en esta página.</p></div></div><div class="composer"><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send">Enviar</button></div></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-09 · Confirmar «Nuevo plan»</h3><p>La confirmación evita borrar la sesión por accidente.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat"><div class="bubble user">Quiero salir este domingo.</div><div class="bubble bot">¡Va! ¿Qué tipo de plan tienen en mente?</div></div><div class="dialog-scrim"><section class="dialog" role="alertdialog" aria-labelledby="reset-title"><h3 id="reset-title">¿Empezar otra conversación?</h3><p>Esta se borrará.</p><div class="actions"><button class="btn">Cancelar</button><button class="btn primary">Empezar otra conversación</button></div></section></div></div></article>
+
+      <article class="sample"><header class="sample-meta"><h3>D1-10 · Menú abierto</h3><p>La opción de historial permanece deshabilitada en D1. «Apariencia» llega funcionando con el shell; «Sistema» es el valor inicial.</p></header><div class="phone"><div class="topbar"><button class="text-button start"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>Nuevo plan</button><span class="brand"><svg viewBox="0 0 64 68" aria-hidden="true"><use href="#pachi-default"/></svg>Pachi</span><button class="text-button menu" aria-label="Menú" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16M4 12h16M4 19h16"/></svg></button></div><div class="chat"><div class="bubble bot">¿Qué se arma hoy?</div></div><div class="menu-sheet" role="menu"><button class="menu-item" role="menuitem" type="button" disabled>Historial y favoritos</button><div class="appearance" role="group" aria-label="Apariencia"><p>Apariencia</p><div class="appearance-options"><button type="button" role="menuitemradio" aria-checked="false">Claro</button><button type="button" role="menuitemradio" aria-checked="false">Oscuro</button><button type="button" role="menuitemradio" aria-checked="true">Sistema</button></div></div></div><div class="composer"><div class="field"><span class="placeholder">Escribe un mensaje…</span><button class="send disabled" disabled>Enviar</button></div></div></div></article>
+    </section>
+
+    <h2 class="section-title">Componentes que forman la vista</h2>
+    <p class="section-note">Responsabilidades de presentación; el estado real y la coordinación se construyen en el slice `chat`.</p>
+    <section class="specs" aria-label="Responsabilidades de los componentes">
+      <article class="spec"><h3>TopBar</h3><p>Acciones «Nuevo plan» y menú; identidad de Pachi al centro, no interactiva.</p></article>
+      <article class="spec"><h3>MessageList + MessageBubble</h3><p>Orden de mensajes. Cada burbuja representa persona, Pachi o espera; la lista anuncia mensajes nuevos con `role="log"` y `aria-live="polite"`.</p></article>
+      <article class="spec"><h3>Composer</h3><p>Edita y emite el mensaje actual. En D1 no lleva micrófono ni contiene lógica de proveedor.</p></article>
+      <article class="spec"><h3>LocationPrompt</h3><p>Expone permiso y alternativa de zona; no envía ubicación a API ni al prompt.</p></article>
+      <article class="spec"><h3>UsagePanel</h3><p>Representa usage completo, parcial o no disponible. No inventa tokens ni costo.</p></article>
+      <article class="spec"><h3>InlineNotice + ConfirmDialog</h3><p>Muestran error/cuota y confirmación de reinicio; el cliente define acciones y el slice administra el estado.</p></article>
+    </section>
+    <footer class="footer">Derivada del sistema visual aprobado y de <a href="interface-reference.md">interface-reference.md</a>. Prototipo estático, sin llamadas de red ni comportamiento de producto.</footer>
+  </main>
+  <script>
+    const toggle = document.getElementById("theme-toggle");
+    toggle.addEventListener("click", () => {
+      const dark = document.documentElement.dataset.theme !== "dark";
+      document.documentElement.dataset.theme = dark ? "dark" : "light";
+      toggle.setAttribute("aria-pressed", String(dark));
+      toggle.textContent = dark ? "Ver modo claro" : "Ver modo oscuro";
+    });
+  </script>
+</body>
+</html>

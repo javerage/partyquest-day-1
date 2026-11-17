@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* Approved PartyQuest tokens (03-design-system.md §4, D1 interface reference).
+   The default Tailwind palette is removed so only approved colors exist. */
+@theme {
+  --color-*: initial;
+  --color-bg: #fff9f1;
+  --color-surface: #ffffff;
+  --color-surface-sunken: #f6eee2;
+  --color-border: #e6d8c5;
+  --color-border-strong: #94806a;
+  --color-text: #2a1f1a;
+  --color-text-muted: #6b5a4e;
+  --color-brand: #b5401a;
+  --color-brand-soft: #fbe3d6;
+  --color-on-brand: #ffffff;
+  --color-action: #0b6e6e;
+  --color-action-hover: #085858;
+  --color-action-soft: #ddf1ef;
+  --color-on-action: #ffffff;
+  --color-highlight: #e2a72e;
+  --color-info: #2f4f8f;
+  --color-info-soft: #e3eaf8;
+  --color-danger: #a3173d;
+  --color-danger-soft: #fbe1e7;
+  --color-focus: #0b6e6e;
+  --color-pachi-body: #b5401a;
+  --color-pachi-face: #fff6ea;
+  --color-pachi-ink: #2a1f1a;
+  --color-scrim: rgb(0 0 0 / 0.45);
+
+  --font-sans: "Nunito Variable", "Nunito", ui-rounded, "SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --text-display: 28px;
+  --text-display--line-height: 34px;
+  --text-title: 20px;
+  --text-title--line-height: 26px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-small: 14px;
+  --text-small--line-height: 20px;
+  --text-caption: 13px;
+  --text-caption--line-height: 18px;
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+
+  --shadow-1: 0 2px 8px rgb(79 50 28 / 0.12);
+  --shadow-2: 0 8px 24px rgb(79 50 28 / 0.2);
+
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Light is the base. The theme is chosen in MenuSheet («Apariencia»); index.html
+   sets data-theme before the first paint from the stored choice or the OS scheme. */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-bg: #0f1e1d;
+  --color-surface: #172927;
+  --color-surface-sunken: #0b1716;
+  --color-border: #2a403d;
+  --color-border-strong: #5e7c77;
+  --color-text: #f4ede3;
+  --color-text-muted: #b5aa9c;
+  --color-brand: #f08a5d;
+  --color-brand-soft: #3b2219;
+  --color-on-brand: #2a120a;
+  --color-action: #5cc8be;
+  --color-action-hover: #7fd8cf;
+  --color-action-soft: #143a37;
+  --color-on-action: #062624;
+  --color-highlight: #f2c14e;
+  --color-info: #a9c0f0;
+  --color-info-soft: #1c2944;
+  --color-danger: #ff8fa6;
+  --color-danger-soft: #3e1421;
+  --color-focus: #6fd1c9;
+  --color-pachi-body: #f08a5d;
+  --shadow-1: none;
+  --shadow-2: none;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+@keyframes thinking-pulse {
+  to {
+    opacity: 0.25;
+    transform: translateY(-2px);
+  }
+}
+
+.thinking-dot {
+  animation: thinking-pulse 1s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

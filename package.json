@@ -1,0 +1,15 @@
+{
+  "name": "partyquest",
+  "private": true,
+  "type": "module",
+  "workspaces": ["api", "frontend"],
+  "scripts": {
+    "check:env": "node scripts/check-environment.mjs",
+    "test:setup": "node --test scripts/tests/check-environment.test.mjs",
+    "dev": "npm run dev:frontend",
+    "dev:api": "npm run dev --workspace api",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "typecheck": "npm run typecheck --workspaces",
+    "build": "npm run build --workspaces"
+  }
+}
