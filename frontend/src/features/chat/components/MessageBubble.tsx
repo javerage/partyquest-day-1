@@ -17,7 +17,9 @@ export function MessageBubble({ variant, text }: MessageBubbleProps) {
       )}
     >
       {variant === "thinking" && (
-        <span className="mr-2 inline-flex gap-1 align-middle" aria-hidden="true">
+        // Design system §4.3: with prefers-reduced-motion the waiting state is
+        // communicated only with text, so the dots are hidden, not just stopped.
+        <span className="mr-2 inline-flex gap-1 align-middle motion-reduce:hidden" aria-hidden="true">
           {[0, 140, 280].map((delay) => (
             <i
               key={delay}
