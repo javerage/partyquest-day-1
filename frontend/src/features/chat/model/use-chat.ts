@@ -24,4 +24,5 @@ export type ChatFailure = { code: string; retryable: boolean; messageId: number;
 // change them.
 //
 // TODO(D1·B6.2): Add `reset()`. A reply that arrives after the reset belongs to a
-// discarded conversation and must be ignored.
+// discarded conversation and must be ignored. `reset()` clears the messages, the
+// pending reply, the failure, and the accumulated usage with its model.

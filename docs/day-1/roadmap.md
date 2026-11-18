@@ -117,11 +117,23 @@ dice que […]. Mantén el resto del alcance de la ficha.
 
 **Comprueba qué archivos cambió la ficha.** Antes de pegar el prompt 2, ejecuta en la raíz `git diff --stat` y `git status --short -uall`, y guarda la salida en tus notas. Al terminar, ejecútalos de nuevo y compara: los archivos que aparecen o cambian de número de líneas son los de esta ficha. No necesitas hacer commits. `git status --short -uall` muestra uno por uno los archivos nuevos, que `git diff` no incluye.
 
-**La línea `Risk:` del informe.** El agente termina con `Risk: none` o `Risk: item N (motivo)`. Es su propia valoración de qué podría romperse sin que una prueba lo detecte. Léela como un aviso, no como una aprobación: la revisión del informe y las comprobaciones de la ficha siguen siendo tuyas.
+**La línea `Risk:` del informe.** El agente termina con `Risk: none` o `Risk: item N (motivo)`. Es su propia valoración de qué podría romperse sin que una prueba lo detecte. Léela como un aviso, no como una aprobación: la revisión del informe y las comprobaciones de la ficha siguen siendo tuyas. A veces el agente lanza por su cuenta una «verificación independiente» con otro agente; si no regresa, no bloquea la ficha. La evidencia son las pruebas, el typecheck y tu revisión.
 
-**Una sesión nueva de OpenCode por ficha.** Si continúas en la misma sesión, el agente puede seguir razonando con versiones de archivos que ya cambiaron.
+**Una sesión nueva de OpenCode por ficha.** Si continúas en la misma sesión, el agente puede seguir razonando con versiones de archivos que ya cambiaron. Los **ajustes de la ficha en curso** sí van en la misma sesión: la sesión nueva es para la ficha siguiente.
 
-**Un fallo intermedio es normal.** Que el agente vea fallar su primera implementación y la corrija con las pruebas es buena señal. Desconfía si **cambia una prueba para que pase** sin explicar por qué.
+**Cómo pedir un ajuste.** Si al revisar el informe encuentras algo que corregir, describe el escenario **en pasos, en el orden en que ocurren**, no como una condición. «Si el campo está abierto y el navegador concede» admite dos lecturas; «1. Abro el campo. 2. Pulso «Usar mi ubicación». 3. El navegador concede» admite una sola. Usa esta plantilla:
+
+```text
+Un ajuste dentro de D1·Bx.y, en la misma sesión.
+Escenario:
+1. […]
+2. […]
+Debe pasar: […]
+Toca solo [archivos]. Escribe primero la prueba y observa que falle.
+Ejecuta npm test y npm run typecheck, informa los resultados y detente.
+```
+
+**Un fallo intermedio es normal.** Que el agente vea fallar su primera implementación y la corrija con las pruebas es buena señal. Desconfía si **cambia una prueba para que pase** sin explicar por qué. Cambiar una prueba es válido cuando **tú corregiste la regla**: el agente debe explicarlo y conservar el escenario anterior con la expectativa correcta. Y una prueba que protege una regla que el código ya cumple puede pasar al primer intento: no hace falta provocar un fallo.
 
 No pegues varias fichas como una orden para ejecutar en cadena. Las [reglas para trabajar con el agente](agent-prompts.md) explican qué hacer cuando la evidencia no alcanza.
 
@@ -1015,6 +1027,16 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `use-chat.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas en los `TODO(D1·B6.2)`; indícale la fuente:
+
+   - **Sin mensajes, no hay diálogo:** «Nuevo plan» reinicia directamente.
+   - **Qué se reinicia al confirmar:** los mensajes, la respuesta en espera, el aviso de error, el borrador del mensaje, la ubicación o zona (con el `reset()` de `useLocation` de B6.1, que también cierra un campo de zona abierto y su borrador) y el consumo acumulado con su modelo.
+   - **Qué no se reinicia:** el tema, el permiso del navegador ni la cuota de Groq. Nada se guarda: recargar tampoco restaura la conversación.
+   - **Respuestas tardías:** una respuesta de Pachi que llega después de confirmar pertenece a una conversación descartada y se ignora. Lo mismo con una respuesta del navegador sobre la ubicación: el `reset()` de B6.1 ya la descarta, y se prueba en `chat-page.test.tsx`.
+   - **«Nuevo plan» sigue disponible mientras Pachi responde.** Si se confirma en ese momento, se aplica la regla anterior.
+   - **No toques `ConfirmDialog`:** ya da el foco inicial a «Cancelar», cierra con Escape y devuelve el foco al cancelar.
+   - **Después de confirmar,** el foco pasa al campo de mensaje.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -1030,8 +1052,41 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    incremento.
    ```
 
-5. Comprueba: pruebas en verde; revisión en navegador de cancelar y confirmar.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - pruebas de: sin mensajes no hay diálogo; «Cancelar» conserva la conversación; confirmar limpia mensajes, aviso, borrador, ubicación o zona y consumo; el foco pasa al campo de mensaje;
+   - una prueba de respuesta tardía de Pachi: con un cliente falso que responde **después** de confirmar, la respuesta no aparece y el consumo sigue vacío;
+   - una prueba de respuesta tardía del navegador después de confirmar: la ubicación no reaparece;
+   - cambios solo en los archivos de la ficha; `ConfirmDialog.tsx` sin modificar.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Comprueba en el navegador**, a 360 px y en escritorio. No necesitas llamadas reales: sin `api/.env`, la respuesta falla con el aviso de error, y eso basta para tener mensajes.
+
+   | Caso | Cómo provocarlo | Qué debes ver |
+   | --- | --- | --- |
+   | Sin mensajes | Abre la página y pulsa «Nuevo plan» | No aparece el diálogo |
+   | Cancelar | Envía un mensaje, guarda una zona y pulsa «Nuevo plan» → «Cancelar» | El diálogo se cierra; la conversación, la zona y el aviso siguen ahí |
+   | Escape | Abre el diálogo y pulsa Escape | Igual que «Cancelar» |
+   | Foco inicial | Abre el diálogo con el teclado | El foco está en «Cancelar» |
+   | Confirmar | «Nuevo plan» → «Empezar otra conversación» | Vuelve la pantalla inicial: sin mensajes, sin zona, sin aviso ni panel de consumo; el foco queda en el campo de mensaje |
+   | Lo que se conserva | Después de confirmar | El tema elegido no cambia |
+   | Diseño a 360 px | Con el diálogo abierto | El diálogo cabe, los dos botones se leen y no hay desplazamiento horizontal |
+
+   **Lo que puede confundirte:**
+
+   - **La respuesta tardía casi no se puede provocar a mano:** sin clave, el error llega enseguida. La cubren las pruebas; anótalo así.
+   - **El permiso del navegador no se reinicia:** si concediste la ubicación, la próxima vez «Usar mi ubicación» no vuelve a preguntar. Es lo esperado.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: sin mensajes, cancelar, Escape, foco en «Cancelar» y confirmar; respuestas tardías: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.3 — Cierre local
 

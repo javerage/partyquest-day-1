@@ -29,6 +29,10 @@ export function ChatPage() {
 
   // TODO(D1·B6.2): Ask for confirmation with `ConfirmDialog` when there are messages;
   // confirming resets the conversation, the location or zone and the session usage.
+  // Without messages, reset directly. Also clear the draft, the zone draft and an open
+  // zone entry (`reset()` from `useLocation`); keep the theme. Do not change
+  // `ConfirmDialog`: it already focuses «Cancelar», cancels on Escape and returns the
+  // focus. After confirming, move the focus to the message field.
   const requestNewPlan = () => setMenuOpen(false);
 
   return (
