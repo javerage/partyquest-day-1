@@ -773,7 +773,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 5. **Revisa el informe del agente.** Confirma que solo cambió `pachi-system-instruction.ts`, que no hizo llamadas reales y que la variante B difiere de A en un solo aspecto.
 
-6. **Haz la comparación tú.** Con `api/.env` y la API en marcha, deja activa la variante A, envía el mensaje del protocolo desde la interfaz y copia la respuesta. Cambia a la variante B, espera a que la API se recargue y repite. ⚠️ Cada envío es una llamada real a Groq.
+6. **Compara las respuestas en el navegador.** No necesitas repetir el ejercicio a 360 px y en escritorio: esta ficha cambia la instrucción del servidor, no la interfaz. Con `api/.env` y la API en marcha, deja activa la variante A, envía el mensaje del protocolo desde la interfaz y copia la respuesta. Cambia a la variante B, espera a que la API se recargue y repite. ⚠️ Cada envío es una llamada real a Groq.
 
 7. **Registra la evidencia** en tus notas con esta tabla:
 
@@ -786,7 +786,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    **Lo que puede confundirte:**
 
-   - El modelo no responde igual dos veces, ni siquiera con la misma instrucción: una sola llamada por variante muestra una tendencia, no una prueba.
+   - Una llamada por variante permite describir esas dos respuestas, no establecer una tendencia. Si no ves una diferencia clara, anótalo así. Puedes conservar A sin hacer más llamadas.
    - Una respuesta convincente no verifica nada: los lugares que mencione siguen siendo ideas sin verificar.
    - Sin clave no hay comparación: marca la ficha como **bloqueada** y anota que falta la observación.
 
@@ -806,8 +806,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Vamos a trabajar únicamente en D1·B5.1. Lee AGENTS.md, la ficha de D1·B5.1 en
-   docs/day-1/roadmap.md, los TODO(D1·B5.1) de los archivos que indica y sus
-   lecturas. Objetivo: Completar únicamente la cobertura determinista que deriva
+   docs/day-1/roadmap.md y las ocho comprobaciones de aceptación del contrato. Objetivo: Completar únicamente la cobertura determinista que deriva
    del contrato y revisar las regresiones de lo ya construido. No agregues
    capacidades. Enumera requisito por requisito la evidencia que falta antes de
    editar. Todavía no edites ni ejecutes cambios. Explícame el resultado
@@ -843,9 +842,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```text
    Autorizo únicamente D1·B5.1 según el alcance que explicaste. Usa los archivos,
    nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
-   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
-   deterministas aplicables, escribe primero la prueba y observa que falle; después
-   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   escritas; no elijas otra estructura ni agregues dependencias. Agrega solo las pruebas que falten. Si pasan
+   al primer intento, repórtalo sin provocar un fallo. Si una prueba revela un
+   incumplimiento, conserva la prueba, informa el resultado esperado y el observado
+   y detente sin modificar producción. No resuelvas TODO de otros ID,
    no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
    proveedor ni revisión en navegador: las hago yo después; repórtalas como
    pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
@@ -856,7 +856,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 5. **Revisa el informe del agente.** Confirma que muestra:
 
    - el mapa completo de las 8 comprobaciones, con el archivo y el nombre de la prueba que cubre cada una;
-   - las pruebas nuevas fallando (RED) solo si cubren algo que no estaba probado; si el código ya cumplía, la prueba nueva pasa desde el principio y el agente lo dice;
+   - el primer resultado de cada prueba nueva: puede pasar si el código ya cumple el contrato; no se exige un RED artificial;
    - que no cambió código de producción y que ninguna prueba llama a Groq;
    - una nota de lo que estas pruebas **no** demuestran: la conectividad real con Groq, la validez de una clave real ni la calidad de las respuestas.
 
