@@ -921,6 +921,17 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `use-location.ts`, `ChatPage.tsx`, `App.tsx`, `location.test.tsx`, `fake-geolocation.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas en los `TODO(D1·B6.1)`; indícale la fuente:
+
+   - **Cuándo se ofrece:** después del primer mensaje enviado, una sola vez. `offer()` solo actúa si la ubicación está en `idle`.
+   - **Campo de zona:** mientras se escribe la zona, el campo de zona **reemplaza** al de mensaje (nunca hay dos campos a la vez) y recibe el foco. Al guardar, vuelve el campo de mensaje.
+   - **Zona:** se recorta antes de guardar; «Guardar zona» está deshabilitado si está vacía. No hay límite de longitud en D1.
+   - **«Escribir una zona» sigue disponible** mientras se espera el permiso. `LocationPrompt` ya lo hace así: no lo deshabilites.
+   - **Respuesta tardía del navegador:** el navegador puede responder después de que la persona eligió escribir o guardó una zona. Esa respuesta, de éxito o de error, se descarta: cada solicitud lleva un número y solo se aplica el resultado de la más reciente. Una solicitud que ya estaba pendiente nunca cierra el campo de zona mientras la persona escribe. Solo si la persona pulsa «Usar mi ubicación» **con el campo abierto** y el navegador concede, el campo se cierra y vuelve el de mensaje.
+   - **Sin opciones en `getCurrentPosition`:** ninguna fuente fija un tiempo de espera; un error por tiempo agotado termina en `unavailable` como cualquier otro.
+   - **`reset()`** se implementa, pero se conecta en B6.2.
+   - **Sin «Cancelar»** en el campo de zona: es una limitación aceptada de D1. Mientras escribes una zona, no puedes enviar mensajes hasta guardarla.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -936,8 +947,43 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    incremento.
    ```
 
-5. Comprueba: pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - pruebas de permiso concedido, denegado y navegador sin geolocalización, y de la zona escrita con sus tres textos;
+   - pruebas de respuesta tardía con una geolocalización falsa que responde después: tras **guardar** la zona y con el campo de zona **abierto**, el estado no cambia y se conserva lo escrito (para éxito y para error);
+   - una prueba de que pulsar «Usar mi ubicación» con el campo de zona abierto, si el navegador concede, cierra el campo y vuelve el de mensaje;
+   - que lo enviado contiene solo el texto del mensaje, tanto con ubicación capturada como con zona guardada;
+   - cambios solo en los cinco archivos de la ficha; `LocationPrompt.tsx` sin modificar.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Comprueba en el navegador**, a 360 px y en escritorio. No necesitas llamadas reales: sin `api/.env`, la respuesta falla con el aviso de error, pero la ubicación se ofrece igual.
+
+   | Caso | Cómo provocarlo | Qué debes ver |
+   | --- | --- | --- |
+   | Oferta | Envía el primer mensaje | La burbuja de Pachi con «Usar mi ubicación» y «Escribir una zona» |
+   | Permiso concedido | «Usar mi ubicación» → Permitir | «Listo, tengo tu ubicación en este navegador…» |
+   | Permiso denegado | En una ventana de incógnito, «Usar mi ubicación» → Bloquear | «No pude obtener tu ubicación…» y solo «Escribir una zona» |
+   | Zona escrita | «Escribir una zona», escribe `centro`, «Guardar zona» | El campo de zona reemplaza al de mensaje y recibe el foco; al guardar, «Zona de referencia: «centro»…» y vuelve el campo de mensaje |
+   | No se envía | Herramientas de desarrollo → Red; envía otro mensaje | El cuerpo de `POST /api/chat` es solo `{"message":"…"}` |
+   | Recargar | Recarga la página | La ubicación y la zona desaparecen |
+   | Diseño a 360 px | Con la burbuja y el campo de zona visibles | Los botones no se cortan y no hay desplazamiento horizontal |
+
+   **Lo que puede confundirte:**
+
+   - **El permiso queda recordado.** Si ya lo concediste o bloqueaste, el navegador no vuelve a preguntar. Para repetir la prueba, usa una ventana de incógnito o restablece el permiso desde el icono junto a la dirección.
+   - **Sin «Cancelar».** Mientras escribes una zona no puedes enviar mensajes hasta guardarla. Es lo esperado en D1.
+   - **La respuesta tardía no se ve a mano** con facilidad: el navegador responde rápido. La cubren las pruebas; anótalo así.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: concedido, denegado (incógnito) y zona escrita; red: solo `message`; respuesta tardía: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.2 — Confirmar «Nuevo plan»
 

@@ -73,8 +73,10 @@ export function ChatPage() {
         {/* TODO(D1·B2.4): `canSubmit` is true for a valid message with no pending
             request; `hint` shows the length notice below the field when the message
             exceeds the limit. Submitting sends the message and clears the draft.
-            TODO(D1·B6.1): While the zone is being written, render a second `Composer`
-            with the zone labels from the D1·B6.1 card of docs/day-1/roadmap.md. */}
+            TODO(D1·B6.1): While the zone is being written, render the zone `Composer`
+            instead of the message one (never both at once) with the zone labels from
+            the D1·B6.1 card of docs/day-1/roadmap.md, and move the focus to it. After
+            saving, the message `Composer` comes back. */}
         <Composer
           ref={composer}
           value={draft}
