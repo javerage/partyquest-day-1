@@ -76,6 +76,12 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 | [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | Pendiente — |
 | [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | Pendiente — |
 
+**Registro de llamadas reales.** Las pruebas simuladas no gastan cuota; cada llamada real a Groq sí. Anota aquí las que hagas, aparte de la evidencia de las pruebas, y nunca copies la clave:
+
+| Ficha | Llamadas | Modelo | Resultado | Nota |
+| --- | --- | --- | --- | --- |
+| Ejemplo: D1·B3.2 | 2 | `openai/gpt-oss-20b` | 200 con usage | El costo acumulado aumentó |
+
 ## 4. Cómo trabajar con el agente
 
 **Una ficha, un incremento, una autorización.** Cada ficha de la sección 5 trae su **paso a paso** (índice: [prompts para copiar, ficha por ficha](#prompts-para-copiar-ficha-por-ficha)) con dos prompts ya completos, listos para copiar en OpenCode:
@@ -84,6 +90,21 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 2. **Prompt 2 (autorización):** después de revisar la explicación, autorizas solo esa ficha. Si hay una prueba aplicable, el agente la escribe primero y la ve fallar; luego implementa.
 
 Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en la sección 3. No necesitas armar ni modificar los prompts: copia el bloque completo.
+
+**Qué hace cada quien:**
+
+| El agente | Tú |
+| --- | --- |
+| Lee la ficha, propone el alcance y lo explica sin editar | Revisas la propuesta y autorizas solo esa ficha |
+| Escribe las pruebas, las ve fallar e implementa | Revisas su informe con la lista de la ficha |
+| Ejecuta pruebas y typecheck con proveedores falsos | Haces la revisión en el navegador y las llamadas reales a Groq |
+| Informa como pendiente lo que no observó | Marcas el estado y la evidencia en la sección 3 |
+
+El agente no hace llamadas reales ni revisión en navegador, y no necesita pedirte permiso para ellas: si te lo pregunta, respóndele que las haces tú.
+
+**Una sesión nueva de OpenCode por ficha.** Si continúas en la misma sesión, el agente puede seguir razonando con versiones de archivos que ya cambiaron.
+
+**Un fallo intermedio es normal.** Que el agente vea fallar su primera implementación y la corrija con las pruebas es buena señal. Desconfía si **cambia una prueba para que pase** sin explicar por qué.
 
 No pegues varias fichas como una orden para ejecutar en cadena. Las [reglas para trabajar con el agente](agent-prompts.md) explican qué hacer cuando la evidencia no alcanza.
 
@@ -228,10 +249,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. Comprueba: `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
@@ -280,10 +302,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Antes de comprobar, confirma que muestra:
@@ -378,10 +401,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que muestra:
@@ -465,10 +489,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que muestra:
@@ -560,10 +585,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que muestra:
@@ -652,10 +678,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que muestra:
@@ -687,7 +714,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    **Lo que puede confundirte:**
 
-   - El costo de un mensaje es muy pequeño (por ejemplo, US$0.000150): se muestra con seis decimales y es una estimación, no una factura.
+   - El costo se muestra con seis decimales y es una estimación, no una factura. Si todas las respuestas usaron `openai/gpt-oss-20b`, puedes comprobarlo con los totales del panel: (entrada × 0.075 + salida × 0.30) / 1 000 000 USD. Si cambió el modelo, calcula el costo por respuesta con su propia tarifa y suma los resultados.
    - Si apartaste `api/.env`, la respuesta falla y el consumo no cambia: es lo esperado.
    - El panel se reinicia con «Nuevo plan» hasta B6.2; por ahora, recargar la página lo limpia porque nada se guarda.
 
@@ -737,10 +764,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que solo cambió `pachi-system-instruction.ts`, que no hizo llamadas reales y que la variante B difiere de A en un solo aspecto.
@@ -818,10 +846,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. **Revisa el informe del agente.** Confirma que muestra:
@@ -880,10 +909,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. Comprueba: pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
@@ -927,10 +957,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. Comprueba: pruebas en verde; revisión en navegador de cancelar y confirmar.
@@ -966,10 +997,11 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
    deterministas aplicables, escribe primero la prueba y observa que falle; después
    implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
-   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
-   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
-   roadmap por mí y detente antes del siguiente incremento.
+   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
+   proveedor ni revisión en navegador: las hago yo después; repórtalas como
+   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
+   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   incremento.
    ```
 
 5. Comprueba: `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.

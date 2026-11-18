@@ -14,7 +14,7 @@ Trabaja únicamente en el incremento D1 autorizado por la persona estudiante. El
 
 - Mantén frontend y API separados; solo el servidor comunica con Groq. La lógica central no depende de React, Hono ni SDK de proveedor.
 - Antes de tocar UI, lee la referencia de interfaz del día. Reutiliza componentes, tokens e iconos; respeta `aria-label`, layout estable y movimiento reducido definidos por el contrato.
-- Una UI requiere revisión en navegador a unos 360 px y escritorio. Pruebas simuladas no sustituyen esa revisión; informa como pendiente lo no observado.
+- La persona estudiante hace la revisión en navegador a unos 360 px y en escritorio, y realiza las llamadas reales a Groq que indique la ficha. El agente no las ejecuta ni pide permiso para hacerlas: las informa como pendientes cuando correspondan. Las pruebas simuladas no sustituyen esa evidencia.
 - Las credenciales se leen solo en el servidor. Nunca las pongas en código, frontend, peticiones del navegador, fixtures, logs, capturas, respuestas ni documentación. `.env` local no es cifrado y debe estar ignorado; `.env.example` usa únicamente valores falsos.
 - No agregues comportamiento futuro D2/D3 a D1. No instales software, accedas a cuentas, llames proveedores o despliegues sin autorización explícita.
 
