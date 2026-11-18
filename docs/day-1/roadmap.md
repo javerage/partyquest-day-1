@@ -54,27 +54,27 @@ Al terminar, la aplicación debe permitir:
 
 ## 3. Estado personal de incrementos
 
-Estados permitidos: **pendiente**, **en curso**, **bloqueado** (anota qué falta) y **completado** (solo con la evidencia de la fila). No marques completado por quitar un `TODO` ni por el informe del agente. Anota en cada cierre el comando o acción, el resultado y los fallos.
+Estados permitidos: **pendiente**, **en curso**, **bloqueado** (anota qué falta) y **completado** (solo con la evidencia de la fila). No marques completado por quitar un `TODO` ni por el informe del agente. Anota en cada cierre el comando o acción, el resultado, los fallos y el tiempo que te llevó la ficha, desde el prompt 1 hasta tu última comprobación.
 
 En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 
-| ID | Resultado observable | Previo | Checks para cerrar | Estado / evidencia personal |
-|---|---|---|---|---|
-| [D1·B1.1](#d1b11--instalar-dependencias) | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | Pendiente — |
-| [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | Pendiente — |
-| [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | Pendiente — |
-| [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | Pendiente — |
-| [D1·B2.1](#d1b21--fijar-el-contrato-con-una-prueba) | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | Pendiente — |
-| [D1·B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | Pendiente — |
-| [D1·B2.3](#d1b23--adaptador-groq-en-el-servidor) | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | Pendiente — |
-| [D1·B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | Pendiente — |
-| [D1·B3.1](#d1b31--error-recuperable-y-cuota-agotada) | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | Pendiente — |
-| [D1·B3.2](#d1b32--usage-y-costo-teórico) | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | Pendiente — |
-| [D1·B4.1](#d1b41--comparar-instrucciones-de-sistema) | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | Pendiente — |
-| [D1·B5.1](#d1b51--completar-las-pruebas-del-contrato) | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | Pendiente — |
-| [D1·B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | Pendiente — |
-| [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | Pendiente — |
-| [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | Pendiente — |
+| ID | Resultado observable | Previo | Checks para cerrar | Tiempo | Estado / evidencia personal |
+|---|---|---|---|---|---|
+| [D1·B1.1](#d1b11--instalar-dependencias) | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | — | Pendiente — |
+| [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | — | Pendiente — |
+| [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | — | Pendiente — |
+| [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | — | Pendiente — |
+| [D1·B2.1](#d1b21--fijar-el-contrato-con-una-prueba) | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | — | Pendiente — |
+| [D1·B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | — | Pendiente — |
+| [D1·B2.3](#d1b23--adaptador-groq-en-el-servidor) | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | — | Pendiente — |
+| [D1·B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | — | Pendiente — |
+| [D1·B3.1](#d1b31--error-recuperable-y-cuota-agotada) | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | — | Pendiente — |
+| [D1·B3.2](#d1b32--usage-y-costo-teórico) | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | — | Pendiente — |
+| [D1·B4.1](#d1b41--comparar-instrucciones-de-sistema) | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | — | Pendiente — |
+| [D1·B5.1](#d1b51--completar-las-pruebas-del-contrato) | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | — | Pendiente — |
+| [D1·B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | — | Pendiente — |
+| [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | — | Pendiente — |
+| [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | — | Pendiente — |
 
 **Registro de llamadas reales.** Las pruebas simuladas no gastan cuota; cada llamada real a Groq sí. Anota aquí las que hagas, aparte de la evidencia de las pruebas, y nunca copies la clave:
 
@@ -89,7 +89,7 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 1. **Prompt 1 (alcance):** el agente lee la ficha y explica qué va a hacer, sin editar.
 2. **Prompt 2 (autorización):** después de revisar la explicación, autorizas solo esa ficha. Si hay una prueba aplicable, el agente la escribe primero y la ve fallar; luego implementa.
 
-Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en la sección 3. No necesitas armar ni modificar los prompts: copia el bloque completo.
+Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en la sección 3. No modifiques los prompts: copia el bloque completo. Si el agente te planteó decisiones, escribe tu respuesta en el mismo mensaje, antes del prompt 2.
 
 **Qué hace cada quien:**
 
@@ -101,6 +101,23 @@ Entre los dos prompts revisas la propuesta. Después compruebas con los checks d
 | Informa como pendiente lo que no observó | Marcas el estado y la evidencia en la sección 3 |
 
 El agente no hace llamadas reales ni revisión en navegador, y no necesita pedirte permiso para ellas: si te lo pregunta, respóndele que las haces tú.
+
+**Si el agente propone decisiones.** Es habitual que el prompt 1 termine con una lista de propuestas (por ejemplo, D1–D5) y te pida elegir. Revisa cada una así:
+
+1. **Ya está en la ficha** (en «Si el agente pregunta…» o en su protocolo): respóndele con lo que dice la ficha.
+2. **No amplía el alcance:** no toca archivos fuera de la ficha, no cambia producción cuando la ficha solo pide pruebas y no hace llamadas reales. Puedes aprobarla.
+3. **Amplía el alcance o contradice la ficha:** recházala y pídele que se ajuste.
+
+Escribe tu respuesta antes del prompt 2, en el mismo mensaje:
+
+```text
+Apruebo [D1, D2, …] tal como las propusiste. Rechazo [Dx] porque la ficha
+dice que […]. Mantén el resto del alcance de la ficha.
+```
+
+**Comprueba qué archivos cambió la ficha.** Antes de pegar el prompt 2, ejecuta en la raíz `git diff --stat` y `git status --short -uall`, y guarda la salida en tus notas. Al terminar, ejecútalos de nuevo y compara: los archivos que aparecen o cambian de número de líneas son los de esta ficha. No necesitas hacer commits. `git status --short -uall` muestra uno por uno los archivos nuevos, que `git diff` no incluye.
+
+**La línea `Risk:` del informe.** El agente termina con `Risk: none` o `Risk: item N (motivo)`. Es su propia valoración de qué podría romperse sin que una prueba lo detecte. Léela como un aviso, no como una aprobación: la revisión del informe y las comprobaciones de la ficha siguen siendo tuyas.
 
 **Una sesión nueva de OpenCode por ficha.** Si continúas en la misma sesión, el agente puede seguir razonando con versiones de archivos que ya cambiaron.
 
@@ -824,10 +841,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    | # | Comprobación del contrato | Dónde suele estar cubierta |
    | --- | --- | --- |
    | 1 | `GET /api/health` responde 200 sin clave y no llama a Groq | Puede faltar: el starter no trae prueba de health |
-   | 2 | Solicitud válida → `reply`, `model` y usage; una sola llamada con el mensaje de sistema y el mensaje actual recortado | B2.1/B2.2 (ruta) y B2.3 (adaptador) |
+   | 2 | Solicitud válida → `reply`, `model` y usage; una sola llamada con el mensaje de sistema y el mensaje actual recortado | Por partes: la ruta con gateway falso (B2.2) y el adaptador con una instrucción de prueba (B2.3). Suele faltar el recorrido HTTP completo |
    | 3 | Campos extra, JSON inválido, mensaje no textual, vacío o largo → `400 invalid_request` sin llamar a Groq; 2000 sí, 2001 no | B2.2 |
    | 4 | La validación ocurre antes de comprobar la configuración | B2.2 |
-   | 5 | Falta `GROQ_API_KEY` o `GROQ_MODEL` → `503 configuration_error` sin llamar a Groq | B2.2 (ruta) y B2.3 (adaptador) |
+   | 5 | Falta `GROQ_API_KEY` o `GROQ_MODEL` → `503 configuration_error` sin llamar a Groq | B2.2 prueba el 503 y B2.3 el «sin llamar» en el adaptador. Suele faltar comprobar por HTTP que no hubo llamada |
    | 6 | 429 de Groq → `429 quota_exceeded`; fallo del proveedor o de red → `502 provider_error` | B2.3 (adaptador); puede faltar el recorrido HTTP completo |
    | 7 | Usage ausente o parcial no elimina la respuesta ni se convierte en cero | B2.3 (adaptador) y B3.2 (interfaz) |
    | 8 | Una clave de prueba nunca aparece en cuerpos de respuesta ni en mensajes de error | B2.3 (resultado del adaptador); puede faltar en la respuesta HTTP |
@@ -837,6 +854,9 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - **Dónde van las pruebas que faltan:** en `api/src/features/chat/tests/chat-http.test.ts` (o un archivo nuevo en esa carpeta para health), por la interfaz HTTP pública: `createApp({ env, fetch })` con una clave y un modelo de prueba y un `fetch` falso. Así recorren la ruta, el caso de uso y el adaptador real sin llamar a Groq.
    - **Sin cambios de comportamiento:** esta ficha solo agrega pruebas. Si una prueba nueva falla porque el código no cumple el contrato, el agente **se detiene y te lo informa**; la corrección se autoriza aparte.
    - **Sin duplicar:** si una comprobación ya está cubierta, se cita la prueba existente y no se escribe otra.
+   - **Siempre un `fetch` falso:** toda prueba que pase una clave y un modelo debe pasar también un `fetch` falso. Sin él, el SDK haría una llamada real a Groq con una clave inventada.
+   - **Instrucción de Pachi:** la prueba del recorrido completo compara el mensaje de sistema con la constante exportada `PACHI_SYSTEM_INSTRUCTION`, no con el texto de una variante. Así sigue siendo válida si en B4.1 elegiste otra variante.
+   - **Clave en los errores:** busca la clave de prueba en el `503` del caso «clave presente, modelo ausente» y en un `502` cuyo error simulado incluya esa clave. En un `503` sin clave, la búsqueda no demuestra nada.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -869,7 +889,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`. Esta ficha no necesita revisión en el navegador.
 
-7. Anota en la tabla de la sección 3 el estado, el mapa resumido y la nota de lo que no demuestran. Ejemplo de evidencia: «8/8 comprobaciones cubiertas (3 pruebas nuevas: health, 429 HTTP, clave ausente en el cuerpo); N/N pruebas; typecheck 0; no demuestran conectividad real». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+7. Anota en la tabla de la sección 3 el estado, el mapa resumido y la nota de lo que no demuestran. Ejemplo de evidencia: «8/8 comprobaciones con evidencia (health en un archivo nuevo; recorrido HTTP completo con `fetch` falso en `chat-http.test.ts`; 3 y 4 ya cubiertas); N/N pruebas; typecheck 0; no demuestran conectividad real». Lo que cuenta son las 8 comprobaciones con evidencia, no el número de pruebas nuevas. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.1 — Ubicación con permiso o zona escrita
 
