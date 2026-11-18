@@ -34,7 +34,8 @@ export function ChatPage() {
   return (
     <div className="relative mx-auto flex h-dvh max-w-[480px] flex-col bg-bg px-4">
       {/* TODO(D1·B2.4): Pachi's expression is "thinking" while a request is pending.
-          TODO(D1·B3.1): It is "sorry" while a failure is visible. */}
+          TODO(D1·B3.1): It is "sorry" while a failure is visible; "thinking" wins while a
+          request is pending. */}
       <TopBar
         expression="default"
         menuOpen={menuOpen}
@@ -58,13 +59,17 @@ export function ChatPage() {
             `MessageList` (messages, waiting) instead of the empty state above.
             TODO(D1·B3.1): Inside `MessageList`, render `InlineNotice` for the visible
             failure: quota exhausted has no actions; other failures offer «Editar
-            mensaje» and, only when retryable, «Reintentar». Titles and bodies are in the
+            mensaje» and, only when retryable, «Reintentar». Order: «Editar mensaje»
+            (secondary), then «Reintentar» (`primary: true`). «Editar mensaje» puts the
+            returned text in the composer and focuses it. Titles and bodies are in the
             D1·B3.1 card of docs/day-1/roadmap.md.
             TODO(D1·B6.1): Inside `MessageList`, render `LocationPrompt`. */}
       </main>
 
       <footer className="-mx-4 shrink-0 border-t border-border bg-surface-sunken px-3 pt-2.5 pb-[calc(12px+env(safe-area-inset-bottom))]">
-        {/* TODO(D1·B3.2): Render `UsagePanel` above the composer when usage exists. */}
+        {/* TODO(D1·B3.2): Render `UsagePanel` above the composer when usage exists, that
+            is, from the first reply on, even when that reply had no usage (the panel
+            then says it is not available). Do not change `UsagePanel` or its copy. */}
         {/* TODO(D1·B2.4): `canSubmit` is true for a valid message with no pending
             request; `hint` shows the length notice below the field when the message
             exceeds the limit. Submitting sends the message and clears the draft.

@@ -13,9 +13,15 @@ export type ChatFailure = { code: string; retryable: boolean; messageId: number;
 //
 // TODO(D1·B3.1): Keep the `failure` of the last request and add `retry()` (only when
 // the failure is retryable, and only on a manual action) and `edit()`.
+// - `send()` and `retry()` clear the failure when the request starts, so the notice
+//   and «Revisando opciones…» are never visible together.
+// - `retry()` resends the failed message without adding a second user bubble.
+// - `edit()` clears the failure, removes the failed user message and returns its
+//   text, so the view can put it back in the composer.
 //
 // TODO(D1·B3.2): Keep the accumulated `usage` and the `model` of the latest reply,
-// using `addUsage` from `session-usage.ts`.
+// using `addUsage` from `session-usage.ts`. Both start as `null`; a failure does not
+// change them.
 //
 // TODO(D1·B6.2): Add `reset()`. A reply that arrives after the reset belongs to a
 // discarded conversation and must be ignored.

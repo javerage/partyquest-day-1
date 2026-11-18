@@ -11,4 +11,8 @@
 //
 // TODO(D1·B3.1): Translate contract errors (`ApiErrorDto`), network failures and
 // invalid responses into the `failure` result, keeping the contract `code` and
-// `retryable` values. Never retry automatically.
+// `retryable` values. Never retry automatically. From now on the client never throws:
+// replace the D1·B2.4 test that expected a thrown error. The contract has no code for
+// a network failure or an invalid body (2xx or not), so both use
+// `code: "provider_error"`, `retryable: true` and `source: "network"` or
+// `"invalid_response"`; never invent other codes.

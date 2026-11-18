@@ -539,6 +539,19 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-client.ts`, `use-chat.ts`, `ChatPage.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   Las pruebas de B2.4 (`chat-client.test.ts` y `chat-page.test.tsx`) se amplían; no hace falta modificar `MessageList.tsx`, porque ya acepta el aviso como contenido (`children`).
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas; indícale la fuente:
+
+   - **Fallo de red o respuesta inválida:** el contrato no les asigna código, así que el cliente usa `code: "provider_error"` y `retryable: true`, y distingue el origen con `source` (`"network"` o `"invalid_response"`), que ya existe en `ChatClientResult`. No se inventan códigos nuevos. Lo indica el `TODO(D1·B3.1)` de `chat-client.ts`.
+   - **El cliente ya no lanza errores:** toda respuesta se traduce a un resultado. La prueba de B2.4 que esperaba el error (`rejects.toThrow()`) se reemplaza a propósito.
+   - **Cuota agotada:** se reconoce por `code: "quota_exceeded"`, nunca por el estado HTTP.
+   - **«Editar mensaje»:** quita el aviso y la burbuja del mensaje fallido, devuelve su texto al campo y deja el foco ahí.
+   - **«Reintentar»:** reenvía el mismo mensaje sin duplicar su burbuja y **quita el aviso al empezar**; si vuelve a fallar, aparece el aviso nuevo. Nunca se ven a la vez el aviso y «Revisando opciones…».
+   - **Enviar con un aviso visible:** el aviso se quita al enviar el mensaje nuevo.
+   - **Expresión de Pachi:** «pensando» mientras hay una petición en curso; «apenado» mientras hay un aviso visible. La espera manda sobre la disculpa.
+   - **Botones del aviso:** primero «Editar mensaje» (secundario) y después «Reintentar» (principal, `primary: true` en `InlineNotice`).
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -553,8 +566,44 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: pruebas en verde; revisión en navegador de ambos avisos a 360 px y en escritorio.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas nuevas fallando (RED) antes de implementar y después en verde;
+   - pruebas del cliente para 429, 502, 503, fallo de red, respuesta 200 con cuerpo inválido y error que no es JSON, y que en cada caso `fetch` se llama **una sola vez** (sin reintentos automáticos);
+   - pruebas de la página para la cuota (sin botones), un error no reintentable (solo «Editar mensaje») y uno reintentable (los dos botones);
+   - una prueba de que durante «Reintentar» se ve «Revisando opciones…» y no el aviso, y otra de que enviar un mensaje nuevo quita el aviso;
+   - cambios solo en los archivos de esta ficha y sus pruebas.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`; `npm.cmd test` corre las pruebas de la API y del frontend. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Comprueba en el navegador**, a 360 px y en escritorio, provocando cada caso así:
+
+   | Caso | Cómo provocarlo | Qué debes ver |
+   | --- | --- | --- |
+   | Error no reintentable | Aparta `api/.env` (`Rename-Item api\.env .env.off`), reinicia la API y envía un mensaje | «No pude obtener respuesta» con solo «Editar mensaje»; Pachi apenado |
+   | «Editar mensaje» | Púlsalo en el caso anterior | Desaparecen el aviso y tu burbuja; el texto vuelve al campo con el foco |
+   | Enviar con aviso visible | Con el aviso en pantalla, envía otro mensaje | El aviso anterior desaparece al enviar; se ve «Revisando opciones…» y, como la configuración sigue apartada, después un aviso nuevo para ese mensaje |
+   | Error reintentable | Restaura `api/.env` (`Rename-Item api\.env.off .env`), detén la API con `Ctrl+C` y envía un mensaje | «Editar mensaje» y «Reintentar», este como botón principal |
+   | «Reintentar» | Inicia la API de nuevo y pulsa «Reintentar». ⚠️ Es una llamada real a Groq | El aviso desaparece, se ve «Revisando opciones…» y llega la respuesta sin duplicar tu burbuja |
+   | Cuota agotada | No se puede provocar con seguridad | Solo la cubren las pruebas; anótalo así |
+   | Diseño a 360 px | Cualquiera de los avisos | El aviso queda dentro de la conversación; los botones caben o bajan de línea sin desbordar |
+
+   En macOS/Linux, aparta y restaura la configuración con `mv api/.env api/.env.off` y `mv api/.env.off api/.env`.
+
+   **Lo que puede confundirte:**
+
+   - Con la API detenida, el proxy del frontend responde con un error que no sigue el contrato. El cliente lo trata como respuesta inválida reintentable, así que **debe** aparecer «Reintentar».
+   - Tras «Editar mensaje», tu burbuja desaparece **a propósito**: el texto vuelve al campo para que lo corrijas y lo envíes de nuevo.
+   - La prueba de B2.4 que esperaba que el cliente lanzara un error cambia en esta ficha: no es una regresión.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: no reintentable, editar, reintentable y reintentar correctos; cuota: solo pruebas; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.2 — Usage y costo teórico
 
@@ -562,7 +611,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 - **Abre:** `frontend/src/features/chat/model/session-usage.ts`
 - **También:** `frontend/src/features/chat/model/use-chat.ts`, `frontend/src/features/chat/components/ChatPage.tsx` (usa `UsagePanel`)
-- **Pruebas:** `frontend/src/features/chat/tests/session-usage.test.ts`
+- **Pruebas:** `frontend/src/features/chat/tests/session-usage.test.ts` y la ampliación de `chat-page.test.tsx`
 - **Lectura:** [contrato API](../api-contract.md), usage y costo; sección 6 de este roadmap
 
 **Paso a paso**
@@ -584,7 +633,17 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    autorización explícita.
    ```
 
-3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `session-usage.ts`, `use-chat.ts`, `ChatPage.tsx`, `session-usage.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `session-usage.ts`, `use-chat.ts`, `ChatPage.tsx`, `session-usage.test.ts` y `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas en los `TODO(D1·B3.2)`; indícale la fuente:
+
+   - **Antes de la primera respuesta** no hay consumo (`null`) y no se muestra `UsagePanel`. Desde la primera respuesta, el panel aparece siempre encima del campo, aunque esa respuesta no traiga usage.
+   - **Estado del consumo:** `"unavailable"` si ninguna respuesta de la conversación trajo usage; `"incomplete"` si alguna lo trajo, pero falta al menos un campo en alguna respuesta (incluida una respuesta sin usage); `"complete"` si todas las respuestas trajeron los tres campos.
+   - **Campos:** se suman respuesta por respuesta. Un campo que falta en cualquier respuesta queda `null` para toda la conversación: nunca se cuenta como cero ni se calcula a partir de los otros.
+   - **Costo:** se calcula por respuesta con la tarifa de **su** modelo en `MODEL_RATES` (entrada y salida, en USD por millón de tokens) y se acumula. Existe solo si el estado es `"complete"` y todas las respuestas usaron un modelo con tarifa; si no, es `null` y el panel muestra «Costo teórico: no disponible».
+   - **Entrada en caché:** la sección 6 menciona su tarifa, pero el usage del contrato no informa tokens en caché, así que la estimación usa solo la tarifa estándar de entrada y salida.
+   - **Modelo del panel:** el de la última respuesta. Un fallo no cambia el consumo acumulado.
+   - **Textos del panel:** ya están en `UsagePanel.tsx` («Consumo de esta conversación», «Consumo incompleto», «No se recibió todo el usage.», «Sin datos de usage: no disponible.»). No se modifican.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -599,8 +658,40 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: pruebas en verde; el panel muestra «no disponible» cuando falta un dato. La tarifa ya está en `frontend/src/features/chat/model/model-rates.ts`.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - pruebas de `addUsage` para usage completo, parcial y ausente, para dos respuestas seguidas (suma) y para una respuesta sin usage después de una completa (el estado pasa a `"incomplete"` y los campos quedan `null`);
+   - una prueba del costo con valores concretos calculados a mano con la tarifa de `model-rates.ts`, y otra de un modelo sin tarifa (costo `null`);
+   - una prueba de la página: con un cliente falso, el panel aparece tras la primera respuesta y muestra «no disponible» cuando falta usage;
+   - cambios solo en los archivos de esta ficha y su prueba; `UsagePanel.tsx` y `model-rates.ts` sin modificar.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Comprueba en el navegador**, a 360 px y en escritorio:
+
+   | Caso | Cómo provocarlo | Qué debes ver |
+   | --- | --- | --- |
+   | Sin conversación | Abre la página | No hay panel de consumo |
+   | Usage completo | Con `api/.env`, envía un mensaje. ⚠️ Es una llamada real | Encima del campo, «Consumo de esta conversación» con entrada, salida, total y «Costo teórico: US$…» con la fecha de la tarifa |
+   | Acumulado | Envía un segundo mensaje. ⚠️ Otra llamada real | Los tokens y el costo aumentan; no se reinician |
+   | Usage parcial o ausente | No se puede provocar con Groq | Solo lo cubren las pruebas; anótalo así |
+   | Diseño a 360 px | Con el panel visible | El panel no tapa el campo ni provoca desplazamiento horizontal |
+
+   **Lo que puede confundirte:**
+
+   - El costo de un mensaje es muy pequeño (por ejemplo, US$0.000150): se muestra con seis decimales y es una estimación, no una factura.
+   - Si apartaste `api/.env`, la respuesta falla y el consumo no cambia: es lo esperado.
+   - El panel se reinicia con «Nuevo plan» hasta B6.2; por ahora, recargar la página lo limpia porque nada se guarda.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: panel completo con costo y acumulado tras 2 llamadas reales; parcial y ausente: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B4.1 — Comparar instrucciones de sistema
 
@@ -629,6 +720,15 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `pachi-system-instruction.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Protocolo de la comparación** (ya decidido; si el agente pregunta, indícale esta ficha):
+
+   - **Dos variantes:** **A** es la instrucción actual de B2.3; **B** cambia **una sola cosa** respecto de A, por ejemplo pedir que Pachi haga una sola pregunta cuando falte información. Así la diferencia observada tiene una causa clara.
+   - **Mismo mensaje para ambas:** «¿A dónde podemos ir el domingo a mediodía? Somos 4 y no queremos gastar mucho.»
+   - **Quién hace las llamadas:** tú, no el agente. El agente solo redacta la variante B y deja en el archivo cómo alternar entre A y B. Con la API en marcha (`npm.cmd run dev:api`), al cambiar la instrucción la API se recarga sola.
+   - **Tope:** una llamada por variante; como máximo, dos por variante si quieres ver cuánto cambia la respuesta con la misma instrucción.
+   - **Qué observar:** si aclara que los lugares son ideas sin verificar, si inventa horarios o precios, si hace preguntas, el tono y la longitud. **No** juzgues si los lugares existen: el modelo no comprueba hechos.
+   - **Al terminar:** el archivo queda con la variante que elijas, y esa variante debe seguir diciendo que Pachi no tiene catálogo, horarios, precios ni ubicación. Las pruebas existentes no cambian.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -643,8 +743,26 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: registro de cada instrucción, el mensaje usado y lo observado. Sin clave o sin tu permiso no hay llamada.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que solo cambió `pachi-system-instruction.ts`, que no hizo llamadas reales y que la variante B difiere de A en un solo aspecto.
+
+6. **Haz la comparación tú.** Con `api/.env` y la API en marcha, deja activa la variante A, envía el mensaje del protocolo desde la interfaz y copia la respuesta. Cambia a la variante B, espera a que la API se recargue y repite. ⚠️ Cada envío es una llamada real a Groq.
+
+7. **Registra la evidencia** en tus notas con esta tabla:
+
+   | Variante | Instrucción (texto completo) | Mensaje | Respuesta | Observación |
+   | --- | --- | --- | --- | --- |
+   | A | … | «¿A dónde podemos ir el domingo a mediodía? Somos 4 y no queremos gastar mucho.» | … | … |
+   | B | … | (el mismo) | … | … |
+
+   Después, comprueba que todo sigue en verde con `npm.cmd test` y `npm.cmd run typecheck` (en macOS/Linux, `npm`).
+
+   **Lo que puede confundirte:**
+
+   - El modelo no responde igual dos veces, ni siquiera con la misma instrucción: una sola llamada por variante muestra una tendencia, no una prueba.
+   - Una respuesta convincente no verifica nada: los lugares que mencione siguen siendo ideas sin verificar.
+   - Sin clave no hay comparación: marca la ficha como **bloqueada** y anota que falta la observación.
+
+8. Anota en la tabla de la sección 3 el estado, qué variante quedó y por qué. Ejemplo de evidencia: «2 variantes, 2 llamadas reales; tabla registrada; quedó B porque pregunta por el presupuesto antes de sugerir; pruebas y typecheck 0». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B5.1 — Completar las pruebas del contrato
 
@@ -672,7 +790,26 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    anterior ya fija un valor, úsalo. Espera mi autorización explícita.
    ```
 
-3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+3. Revisa la respuesta. Debe limitarse a esta ficha: solo archivos de pruebas en las carpetas `tests/` de `api/` y `frontend/`. Esta ficha no tiene `TODO`: la guía es la sección de comprobaciones de aceptación del contrato. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   El agente debe presentar, **antes de editar**, este mapa con la prueba que ya cubre cada comprobación o «falta»:
+
+   | # | Comprobación del contrato | Dónde suele estar cubierta |
+   | --- | --- | --- |
+   | 1 | `GET /api/health` responde 200 sin clave y no llama a Groq | Puede faltar: el starter no trae prueba de health |
+   | 2 | Solicitud válida → `reply`, `model` y usage; una sola llamada con el mensaje de sistema y el mensaje actual recortado | B2.1/B2.2 (ruta) y B2.3 (adaptador) |
+   | 3 | Campos extra, JSON inválido, mensaje no textual, vacío o largo → `400 invalid_request` sin llamar a Groq; 2000 sí, 2001 no | B2.2 |
+   | 4 | La validación ocurre antes de comprobar la configuración | B2.2 |
+   | 5 | Falta `GROQ_API_KEY` o `GROQ_MODEL` → `503 configuration_error` sin llamar a Groq | B2.2 (ruta) y B2.3 (adaptador) |
+   | 6 | 429 de Groq → `429 quota_exceeded`; fallo del proveedor o de red → `502 provider_error` | B2.3 (adaptador); puede faltar el recorrido HTTP completo |
+   | 7 | Usage ausente o parcial no elimina la respuesta ni se convierte en cero | B2.3 (adaptador) y B3.2 (interfaz) |
+   | 8 | Una clave de prueba nunca aparece en cuerpos de respuesta ni en mensajes de error | B2.3 (resultado del adaptador); puede faltar en la respuesta HTTP |
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas:
+
+   - **Dónde van las pruebas que faltan:** en `api/src/features/chat/tests/chat-http.test.ts` (o un archivo nuevo en esa carpeta para health), por la interfaz HTTP pública: `createApp({ env, fetch })` con una clave y un modelo de prueba y un `fetch` falso. Así recorren la ruta, el caso de uso y el adaptador real sin llamar a Groq.
+   - **Sin cambios de comportamiento:** esta ficha solo agrega pruebas. Si una prueba nueva falla porque el código no cumple el contrato, el agente **se detiene y te lo informa**; la corrección se autoriza aparte.
+   - **Sin duplicar:** si una comprobación ya está cubierta, se cita la prueba existente y no se escribe otra.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -687,8 +824,23 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: `npm.cmd test` con código 0 y una nota de qué no demuestran esas pruebas (no prueban conectividad real).
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - el mapa completo de las 8 comprobaciones, con el archivo y el nombre de la prueba que cubre cada una;
+   - las pruebas nuevas fallando (RED) solo si cubren algo que no estaba probado; si el código ya cumplía, la prueba nueva pasa desde el principio y el agente lo dice;
+   - que no cambió código de producción y que ninguna prueba llama a Groq;
+   - una nota de lo que estas pruebas **no** demuestran: la conectividad real con Groq, la validez de una clave real ni la calidad de las respuestas.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`. Esta ficha no necesita revisión en el navegador.
+
+7. Anota en la tabla de la sección 3 el estado, el mapa resumido y la nota de lo que no demuestran. Ejemplo de evidencia: «8/8 comprobaciones cubiertas (3 pruebas nuevas: health, 429 HTTP, clave ausente en el cuerpo); N/N pruebas; typecheck 0; no demuestran conectividad real». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.1 — Ubicación con permiso o zona escrita
 

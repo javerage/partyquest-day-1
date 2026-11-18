@@ -7,4 +7,8 @@
 // section 3 of docs/api-contract.md before this increment.
 //
 // TODO(D1·B4.1): Compare instruction variants with the same user message and record
-// the observations. This does not change the API contract.
+// the observations. This does not change the API contract. Keep variant A (the current
+// text) and write variant B, which changes exactly one aspect; leave a clear way to
+// switch between them. The student makes the real calls, not the agent. The final text
+// must still state the four limits above. The protocol is in the D1·B4.1 card of
+// docs/day-1/roadmap.md.
