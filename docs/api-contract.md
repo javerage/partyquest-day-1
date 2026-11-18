@@ -115,6 +115,20 @@ Usa los textos de `message` de la tabla tal cual. Solo `invalid_request` describ
 
 La API no reintenta automáticamente en D1. Todo 429 de Groq se representa como `quota_exceeded`; no hace falta distinguir entre límite por minuto y cuota diaria.
 
+### Errores de Groq
+
+El adaptador traduce la respuesta de Groq al fallo de la aplicación y la ruta lo convierte en el código de esta sección:
+
+| Situación en Groq | Fallo del adaptador | `code` de la API |
+| --- | --- | --- |
+| Falta la clave o el modelo (no se llama a Groq) | `configuration` | `configuration_error` |
+| HTTP 401, 403 o 404: credencial o modelo rechazados | `configuration` | `configuration_error` |
+| HTTP 429: límite por minuto o cuota diaria | `quota` | `quota_exceeded` |
+| Otro 4xx (por ejemplo, 400), cualquier 5xx o fallo de red | `provider` | `provider_error` |
+| Respuesta sin texto utilizable | `provider` | `provider_error` |
+
+El cliente de Groq se crea sin reintentos automáticos (en `groq-sdk`, `maxRetries: 0`): una solicitud válida produce una sola llamada al proveedor.
+
 ## 6. Responsabilidades de la interfaz
 
 | Respuesta o situación | Comportamiento esperado |
@@ -138,7 +152,7 @@ La ubicación capturada por el navegador o escrita por la persona permanece en l
 
 ## 8. Comprobaciones de aceptación
 
-Escribí pruebas deterministas contra la interfaz HTTP pública y simulá Groq; no necesitás una clave real para estas pruebas. Como mínimo, comprobá que:
+Escribe pruebas deterministas contra la interfaz HTTP pública y simula Groq; no necesitas una clave real para estas pruebas. Como mínimo, comprueba que:
 
 1. `GET /api/health` devuelve 200 incluso sin clave y no llama a Groq.
 2. Una solicitud válida devuelve `reply`, `model` y usage normalizado; Groq recibe una sola llamada con el mensaje de sistema y solo el mensaje actual ya recortado.

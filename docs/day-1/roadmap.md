@@ -266,6 +266,12 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `parse-chat-request.ts`, `generate-reply.ts`, `chat-route.ts`, `api-error.ts`, `create-app.ts`, `generate-reply.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están fijadas; si las presenta como abiertas, indícale la fuente:
+
+   - `systemInstruction: ""` hasta B2.3: lo indica el `TODO(D1·B2.2)` de `create-app.ts`. No se redacta un texto provisional.
+   - El `message` de cada error: columna `message` de la tabla de errores del [contrato API](../api-contract.md).
+   - El cuerpo se lee con `c.req.text()`, no con `c.req.json()`, para que el JSON inválido responda `400 invalid_request`: lo indica el `TODO(D1·B2.2)` de `chat-route.ts`.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -280,8 +286,52 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: `npm.cmd test --workspace api` y `npm.cmd run typecheck` con código 0. Con el servidor en marcha, `POST /api/chat` responde `configuration_error`, nunca una respuesta inventada.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Antes de comprobar, confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - los `message` exactos de la tabla de errores del contrato;
+   - que la ruta lee el cuerpo con `c.req.text()`;
+   - cambios solo en los archivos de esta ficha y sus pruebas.
+
+6. **Comprueba tú**, desde la raíz:
+
+   ```powershell
+   npm.cmd test --workspace api
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. Después, con la API en marcha en su terminal (`npm.cmd run dev:api`; si ya estaba abierta, se recarga sola), ejecuta en otra terminal los comandos siguientes. Las comillas del JSON cambian entre versiones de PowerShell, así que el cuerpo se escribe primero en un archivo temporal y `curl.exe` lo envía tal cual.
+
+   ```powershell
+   $body = Join-Path $env:TEMP "partyquest-chat.json"
+   [IO.File]::WriteAllText($body, '{"message":"Hola, Pachi"}')
+   curl.exe -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" --data-binary "@$body"
+   [IO.File]::WriteAllText($body, '{"message":"Hola","history":[]}')
+   curl.exe -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" --data-binary "@$body"
+   ```
+
+   En macOS/Linux:
+
+   ```bash
+   curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola, Pachi"}'
+   curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola","history":[]}'
+   ```
+
+   **Resultado esperado:**
+
+   | Petición | Respuesta |
+   | --- | --- |
+   | Mensaje válido | `HTTP/1.1 503` con `"code":"configuration_error"` y `"retryable":false` |
+   | Mensaje con `history` | `HTTP/1.1 400` con `"code":"invalid_request"` |
+
+   **Lo que puede confundirte:**
+
+   - El `503` es el resultado **correcto** en esta ficha: todavía no hay adaptador de Groq (llega en B2.3), así que la API informa que falta configuración en lugar de inventar una respuesta.
+   - En macOS, zsh muestra un `%` al final cuando la respuesta no termina con salto de línea; no forma parte del cuerpo. Si ejecutas dos `curl` seguidos, sus salidas pueden aparecer pegadas.
+   - Copia solo los comandos, no el resultado esperado.
+   - `Failed to connect` significa que la API no está en marcha en `:8787`.
+
+7. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas en verde; typecheck 0; chat válido → 503 `configuration_error`; con `history` → 400 `invalid_request`». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.3 — Adaptador Groq en el servidor
 
@@ -291,7 +341,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 - **También:** `api/src/features/chat/application/pachi-system-instruction.ts`, `api/src/app/create-app.ts`, `api/src/app/server.ts`
 - **Pruebas:** `api/src/features/chat/tests/groq-text-generation-adapter.test.ts`
 - **Lectura:** [contrato API](../api-contract.md), respuesta exitosa, usage y errores; [E1](../01-chat-integration.md)
-- **Preparación manual:** copia `api/.env.example` como `api/.env` y escribe ahí tu clave y `GROQ_MODEL=openai/gpt-oss-20b`. Hazlo tú; no le pidas al agente leer ni mostrar ese archivo.
+- **Preparación manual:** crearás `api/.env` en el paso 7, **después** de comprobar el caso sin configuración. Hazlo tú; no le pidas al agente leer ni mostrar ese archivo.
 
 **Paso a paso**
 
@@ -313,6 +363,13 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `groq-text-generation-adapter.ts`, `pachi-system-instruction.ts`, `create-app.ts`, `server.ts`, `groq-text-generation-adapter.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas; indícale la fuente:
+
+   - **Texto de `PACHI_SYSTEM_INSTRUCTION`:** ningún documento fija la redacción; la decides tú a partir de la propuesta del agente. Debe decir que Pachi no tiene catálogo, horarios, precios ni ubicación, y que cualquier lugar que mencione es una idea sin verificar. Escríbelo en español neutro, con tuteo. En B4.1 compararás variantes.
+   - **Estados de Groq:** tabla «Errores de Groq» del [contrato API](../api-contract.md): 401, 403 y 404 → `configuration`; 429 → `quota`; otros 4xx, 5xx y fallos de red → `provider`.
+   - **Sin reintentos:** el SDK reintenta por defecto y D1 no reintenta, así que el cliente se crea con `maxRetries: 0`.
+   - **Entorno:** `createApp()` sin argumentos no lee el entorno (`env` vacío por defecto); solo `server.ts` le pasa `process.env`. Así las pruebas existentes no llaman al proveedor aunque haya una clave en la terminal.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -327,8 +384,41 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: pruebas en verde; sin `api/.env`, `POST /api/chat` responde `configuration_error`. Una llamada real es opcional, la autorizas tú y se registra aparte de las pruebas.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - que las pruebas cuentan las llamadas al `fetch` falso: **0** cuando falta configuración y **exactamente 1** con 429, 5xx o error de red (eso demuestra que no hay reintentos);
+   - `maxRetries: 0` al crear el cliente y ningún `console.` en el adaptador;
+   - que no hizo llamadas reales ni leyó `api/.env`;
+   - cambios solo en los archivos de esta ficha y su prueba.
+
+6. **Comprueba tú sin configuración**, desde la raíz:
+
+   ```powershell
+   npm.cmd test --workspace api
+   npm.cmd run typecheck
+   npm.cmd run build
+   Get-ChildItem -Recurse -File frontend\dist | Select-String -Pattern "GROQ","gsk_" -List
+   ```
+
+   Los tres primeros terminan con `$LASTEXITCODE` igual a `0`; el último **no debe mostrar nada**: ni la clave ni su nombre llegan al bundle del navegador. En macOS/Linux, el último es `grep -rlE "GROQ|gsk_" frontend/dist`.
+
+   Si ya tenías `api/.env`, apártalo un momento con `Rename-Item api\.env .env.off` (macOS/Linux: `mv api/.env api/.env.off`). Detén la API con `Ctrl+C`, vuelve a iniciarla con `npm.cmd run dev:api` y, en otra terminal, envía el mismo mensaje que en B2.2:
+
+   ```powershell
+   $body = Join-Path $env:TEMP "partyquest-chat.json"
+   [IO.File]::WriteAllText($body, '{"message":"Hola, Pachi"}')
+   curl.exe -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" --data-binary "@$body"
+   curl.exe -i http://127.0.0.1:8787/api/health
+   ```
+
+   Esperado: `HTTP/1.1 503` con `"code":"configuration_error"` y `"retryable":false`, y health `HTTP/1.1 200` con `{"status":"ok"}`. La API arranca y responde aunque falte la clave. En macOS/Linux usa los comandos `curl` de B2.2 y `curl -i http://127.0.0.1:8787/api/health`.
+
+7. **Prepara la configuración.** Si la apartaste, restáurala con `Rename-Item api\.env.off .env` (macOS/Linux: `mv api/.env.off api/.env`). Si aún no existe, créala con `Copy-Item api\.env.example api\.env` (macOS/Linux: `cp api/.env.example api/.env`) y escribe en el editor tu clave y `GROQ_MODEL=openai/gpt-oss-20b`. Comprueba con `git status --short` que `api/.env` **no aparece**: `.gitignore` lo excluye. Reinicia la API para que cargue el archivo.
+
+8. **Llamada real (opcional).** ⚠️ Repetir el `POST` con la API configurada hace una llamada real a Groq y consume tu cuota; hazlo solo si quieres comprobar la conectividad. Esperado: `HTTP/1.1 200` con `reply`, `"model":"openai/gpt-oss-20b"` y `usage`. La respuesta puede mencionar lugares: en D1 son ideas sin verificar, no un error. Anota estado, modelo y si llegó usage, **sin copiar la clave**, y regístralo aparte de las pruebas simuladas.
+
+9. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck y build 0; bundle sin `GROQ`; sin configuración: chat 503 `configuration_error`, health 200; llamada real: no realizada / 200 con usage». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.4 — Conectar el envío desde la interfaz
 

@@ -68,7 +68,7 @@ api/src/
         └── tests/
 ```
 
-No crees todos los directorios si el comportamiento aún no los necesita. Manten juntas las partes de una funcionalidad y usá los puntos de extensión reales del esqueleto.
+No crees todos los directorios si el comportamiento aún no los necesita. Mantén juntas las partes de una funcionalidad y usa los puntos de extensión reales del esqueleto.
 
 ## Límites de responsabilidad
 
@@ -159,4 +159,4 @@ La ubicación o zona es estado del frontend durante D1. No se envía al endpoint
 
 ## Cuándo agregar una capa
 
-Antes de agregar un módulo o una interfaz, identifica qué dependencia concreta separa y qué prueba o cambio futuro hace posible. Si no podés nombrar ese límite, mantené el código en la slice actual. No agregues D1 código de catálogo, persistencia, RAG, streaming, tools, dominio de lugares ni abstracciones para una base de datos que no existe.
+Antes de agregar un módulo o una interfaz, identifica qué dependencia concreta separa y qué prueba o cambio futuro hace posible. Si no puedes nombrar ese límite, mantén el código en la slice actual. No agregues D1 código de catálogo, persistencia, RAG, streaming, tools, dominio de lugares ni abstracciones para una base de datos que no existe.
