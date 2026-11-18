@@ -4,6 +4,26 @@ Guía pública para cada participante y su agente de código. Define el objetivo
 
 **Alcance:** recibes el proyecto base ya creado, con la presentación, los documentos y archivos con `TODO`. Durante D1 completas esos `TODO` con ayuda del agente, un incremento autorizado a la vez. La [guía de creación desde carpeta vacía](setup-from-scratch.md) queda como referencia de cómo se construyó la base. Al cierre, el facilitador puede observar una llamada manual real con Groq; su guía y la solución de referencia son material docente y no se incluyen en este paquete.
 
+## Prompts para copiar, ficha por ficha
+
+**Los prompts que copias en OpenCode están en la [sección 5](#5-fichas-por-incremento) de este documento**, dentro de cada ficha: el **prompt 1 (alcance)** en el paso 2 y el **prompt 2 (autorización)** en el paso 4. Usa esta tabla para llegar directo a la ficha que te toca. Antes de B2.1 completa las fichas de [B1](#d1b1--instalar-y-comprobar-la-base-sin-editar), que se ejecutan en la terminal y no usan esos prompts.
+
+| Ficha | Qué harás | Prompts |
+|---|---|---|
+| D1·B2.1 | Fijar el contrato con una prueba | [Ir a los prompts de B2.1](#d1b21--fijar-el-contrato-con-una-prueba) |
+| D1·B2.2 | Validación y respuesta | [Ir a los prompts de B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) |
+| D1·B2.3 | Adaptador Groq en el servidor | [Ir a los prompts de B2.3](#d1b23--adaptador-groq-en-el-servidor) |
+| D1·B2.4 | Conectar el envío desde la interfaz | [Ir a los prompts de B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) |
+| D1·B3.1 | Error recuperable y cuota agotada | [Ir a los prompts de B3.1](#d1b31--error-recuperable-y-cuota-agotada) |
+| D1·B3.2 | Usage y costo teórico | [Ir a los prompts de B3.2](#d1b32--usage-y-costo-teórico) |
+| D1·B4.1 | Comparar instrucciones de sistema | [Ir a los prompts de B4.1](#d1b41--comparar-instrucciones-de-sistema) |
+| D1·B5.1 | Completar las pruebas del contrato | [Ir a los prompts de B5.1](#d1b51--completar-las-pruebas-del-contrato) |
+| D1·B6.1 | Ubicación con permiso o zona escrita | [Ir a los prompts de B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) |
+| D1·B6.2 | Confirmar «Nuevo plan» | [Ir a los prompts de B6.2](#d1b62--confirmar-nuevo-plan) |
+| D1·B6.3 | Cierre local | [Ir a los prompts de B6.3](#d1b63--cierre-local) |
+
+En GitHub, cada bloque de prompt tiene un botón de copiar en su esquina superior derecha. Copia el bloque completo; no necesitas modificarlo.
+
 ## 1. Resultado del día
 
 Al terminar, la aplicación debe permitir:
@@ -44,21 +64,21 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 | [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | Pendiente — |
 | [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | Pendiente — |
 | [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | Pendiente — |
-| D1·B2.1 | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | Pendiente — |
-| D1·B2.2 | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | Pendiente — |
-| D1·B2.3 | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | Pendiente — |
-| D1·B2.4 | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | Pendiente — |
-| D1·B3.1 | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | Pendiente — |
-| D1·B3.2 | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | Pendiente — |
-| D1·B4.1 | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | Pendiente — |
-| D1·B5.1 | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | Pendiente — |
-| D1·B6.1 | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | Pendiente — |
-| D1·B6.2 | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | Pendiente — |
-| D1·B6.3 | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | Pendiente — |
+| [D1·B2.1](#d1b21--fijar-el-contrato-con-una-prueba) | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | Pendiente — |
+| [D1·B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | Pendiente — |
+| [D1·B2.3](#d1b23--adaptador-groq-en-el-servidor) | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | Pendiente — |
+| [D1·B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | Pendiente — |
+| [D1·B3.1](#d1b31--error-recuperable-y-cuota-agotada) | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | Pendiente — |
+| [D1·B3.2](#d1b32--usage-y-costo-teórico) | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | Pendiente — |
+| [D1·B4.1](#d1b41--comparar-instrucciones-de-sistema) | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | Pendiente — |
+| [D1·B5.1](#d1b51--completar-las-pruebas-del-contrato) | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | Pendiente — |
+| [D1·B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | Pendiente — |
+| [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | Pendiente — |
+| [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | Pendiente — |
 
 ## 4. Cómo trabajar con el agente
 
-**Una ficha, un incremento, una autorización.** Cada ficha de la sección 5 trae su **paso a paso** con dos prompts ya completos, listos para copiar en OpenCode:
+**Una ficha, un incremento, una autorización.** Cada ficha de la sección 5 trae su **paso a paso** (índice: [prompts para copiar, ficha por ficha](#prompts-para-copiar-ficha-por-ficha)) con dos prompts ya completos, listos para copiar en OpenCode:
 
 1. **Prompt 1 (alcance):** el agente lee la ficha y explica qué va a hacer, sin editar.
 2. **Prompt 2 (autorización):** después de revisar la explicación, autorizas solo esa ficha. Si hay una prueba aplicable, el agente la escribe primero y la ve fallar; luego implementa.

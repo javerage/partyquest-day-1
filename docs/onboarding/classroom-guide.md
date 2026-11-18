@@ -10,7 +10,7 @@ Primero completa la [preparación del equipo](README.md), aunque ya hayas clonad
 
 1. Abre `docs/day-1/roadmap.md` y elige con el facilitador un ID pendiente; confirma prerrequisitos y criterios completos.
 2. Lee el documento público enlazado por esa fila y las reglas de `AGENTS.md`.
-3. Copia en el agente el **prompt 1 (alcance)** de la ficha, en la sección 5 del roadmap. Ya está completo: no hace falta modificarlo.
+3. Copia en el agente el **prompt 1 (alcance)** de la ficha. Llega a ella desde el [índice de prompts del roadmap](../day-1/roadmap.md#prompts-para-copiar-ficha-por-ficha). Ya está completo: no hace falta modificarlo.
 4. Comprueba que no falte una decisión. Si falta, detente y pregunta al facilitador.
 5. Autoriza solo ese ID copiando el **prompt 2 (autorización)** de la misma ficha. No autorices varios bloques con una misma instrucción.
 

@@ -13,7 +13,7 @@ La pantalla y la estructura inicial del proyecto ya están preparadas para que p
 | 1. Preparar el equipo | Comprobar Git, Node.js/npm, OpenCode y Go; instalar y configurar Gentle AI; preparar el acceso al modelo de OpenCode | [Preparación del equipo](docs/onboarding/README.md) |
 | 2. Preparar el proyecto | Clonar, o usar la carpeta ya clonada, e instalar las dependencias desde la raíz | [B1.1: instalar dependencias](docs/day-1/roadmap.md#d1b11--instalar-dependencias) |
 | 3. Comprobar la base | Ejecutar diagnóstico y typecheck, abrir frontend/API y comprobar pantalla y health | [B1.2](docs/day-1/roadmap.md#d1b12--comprobar-la-base), después B1.3 y B1.4 |
-| 4. Empezar los ejercicios | Abrir OpenCode en el proyecto y seguir una ficha a la vez, empezando por B2.1 | [Roadmap](docs/day-1/roadmap.md) |
+| 4. Empezar los ejercicios | Abrir OpenCode en el proyecto y seguir una ficha a la vez, empezando por B2.1 | [Prompts para copiar, ficha por ficha](docs/day-1/roadmap.md#prompts-para-copiar-ficha-por-ficha) |
 
 La guía de preparación termina con una lista de comprobación y el enlace a B1.1. No empieces los ejercicios hasta completar ese recorrido. La [guía del aula](docs/onboarding/classroom-guide.md) explica cómo trabajar por incrementos.
 
@@ -32,6 +32,8 @@ El primer día se centra en esta primera conexión: cada petición envía el men
 ## Cómo usar los ejercicios
 
 Los archivos contienen comentarios **`TODO`**: son marcas que indican el trabajo que realizarás durante el taller, no errores de instalación.
+
+**Los prompts para copiar en OpenCode están en el roadmap:** usa el [índice de prompts, ficha por ficha](docs/day-1/roadmap.md#prompts-para-copiar-ficha-por-ficha), que te lleva directo a cada ficha.
 
 Para cada [ficha de la hoja de ruta](docs/day-1/roadmap.md#5-fichas-por-incremento):
 
