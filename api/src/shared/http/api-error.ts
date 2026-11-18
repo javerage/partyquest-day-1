@@ -12,5 +12,5 @@ export type ApiErrorDto = { error: { code: ApiErrorCode; message: string; retrya
 // TODO(D1·B2.2): Export `respondWithApiError(context, code, message)`, which builds this
 // envelope with the HTTP status and `retryable` value the contract assigns to each code,
 // and `handleUnexpectedError(error, context)` for the app-level error handler.
-// Read the error table in docs/api-contract.md before this increment. Messages are
-// technical and must never contain secrets, stack traces or raw provider bodies.
+// Read the error table in docs/api-contract.md before this increment and use the
+// `message` it fixes for each code. Messages are technical and must never contain secrets, stack traces or raw provider bodies.

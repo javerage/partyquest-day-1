@@ -213,7 +213,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    resultados observables. No implementes la ruta todavía. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
-   Espera mi autorización explícita.
+   Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
+   ya fijan el contrato, los TODO o las pruebas existentes de lo que propones tú.
+   Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera mi
+   autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-route.ts`, `chat-http.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -221,14 +224,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B2.1 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
@@ -256,7 +259,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    la interfaz. Lo inválido se rechaza antes de llamar al gateway. Todavía no
    edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
    archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Espera mi autorización explícita.
+   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
+   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
+   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
+   mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `parse-chat-request.ts`, `generate-reply.ts`, `chat-route.ts`, `api-error.ts`, `create-app.ts`, `generate-reply.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -264,14 +270,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B2.2 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: `npm.cmd test --workspace api` y `npm.cmd run typecheck` con código 0. Con el servidor en marcha, `POST /api/chat` responde `configuration_error`, nunca una respuesta inventada.
@@ -300,7 +306,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    proveedor. Explica primero cómo se maneja la configuración ausente. Todavía no
    edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
    archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Espera mi autorización explícita.
+   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
+   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
+   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
+   mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `groq-text-generation-adapter.ts`, `pachi-system-instruction.ts`, `create-app.ts`, `server.ts`, `groq-text-generation-adapter.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -308,14 +317,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B2.3 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: pruebas en verde; sin `api/.env`, `POST /api/chat` responde `configuration_error`. Una llamada real es opcional, la autorizas tú y se registra aparte de las pruebas.
@@ -344,7 +353,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ubicación ni clave. No agregues todavía errores, usage, ubicación ni reinicio.
    Todavía no edites ni ejecutes cambios. Explícame el resultado observable, el
    concepto, los archivos que vas a tocar, las pruebas y comprobaciones, y
-   cualquier decisión que falte. Espera mi autorización explícita.
+   cualquier decisión que falte. Para cada decisión, cita el archivo y la línea que
+   la definen, y separa lo que ya fijan el contrato, los TODO o las pruebas
+   existentes de lo que propones tú. Si una prueba de una ficha anterior ya fija un
+   valor, úsalo. Espera mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `chat-client.ts`, `message-rules.ts`, `use-chat.ts`, `App.tsx`, `chat-client.test.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -352,14 +364,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B2.4 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: `npm.cmd test --workspace frontend`; en el navegador, a 360 px y en escritorio, la respuesta aparece y la pestaña de red muestra solo `{ "message": "…" }`.
@@ -387,8 +399,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    agotada. Las pruebas usan respuestas falsas; no provoques errores reales de
    cuota ni reintentes automáticamente. Todavía no edites ni ejecutes cambios.
    Explícame el resultado observable, el concepto, los archivos que vas a tocar,
-   las pruebas y comprobaciones, y cualquier decisión que falte. Espera mi
-   autorización explícita.
+   las pruebas y comprobaciones, y cualquier decisión que falte. Para cada
+   decisión, cita el archivo y la línea que la definen, y separa lo que ya fijan el
+   contrato, los TODO o las pruebas existentes de lo que propones tú. Si una prueba
+   de una ficha anterior ya fija un valor, úsalo. Espera mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-client.ts`, `use-chat.ts`, `ChatPage.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -396,14 +410,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B3.1 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: pruebas en verde; revisión en navegador de ambos avisos a 360 px y en escritorio.
@@ -431,7 +445,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    usage y un campo desconocido no se convierte en cero. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
-   Espera mi autorización explícita.
+   Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
+   ya fijan el contrato, los TODO o las pruebas existentes de lo que propones tú.
+   Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera mi
+   autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `session-usage.ts`, `use-chat.ts`, `ChatPage.tsx`, `session-usage.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -439,14 +456,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B3.2 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: pruebas en verde; el panel muestra «no disponible» cuando falta un dato. La tarifa ya está en `frontend/src/features/chat/model/model-rates.ts`.
@@ -472,8 +489,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    una salida convincente como verificación de hechos. Explica qué evidencia
    registrar. Todavía no edites ni ejecutes cambios. Explícame el resultado
    observable, el concepto, los archivos que vas a tocar, las pruebas y
-   comprobaciones, y cualquier decisión que falte. Espera mi autorización
-   explícita.
+   comprobaciones, y cualquier decisión que falte. Para cada decisión, cita el
+   archivo y la línea que la definen, y separa lo que ya fijan el contrato, los
+   TODO o las pruebas existentes de lo que propones tú. Si una prueba de una ficha
+   anterior ya fija un valor, úsalo. Espera mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `pachi-system-instruction.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -481,14 +500,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B4.1 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: registro de cada instrucción, el mensaje usado y lo observado. Sin clave o sin tu permiso no hay llamada.
@@ -514,8 +533,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    capacidades. Enumera requisito por requisito la evidencia que falta antes de
    editar. Todavía no edites ni ejecutes cambios. Explícame el resultado
    observable, el concepto, los archivos que vas a tocar, las pruebas y
-   comprobaciones, y cualquier decisión que falte. Espera mi autorización
-   explícita.
+   comprobaciones, y cualquier decisión que falte. Para cada decisión, cita el
+   archivo y la línea que la definen, y separa lo que ya fijan el contrato, los
+   TODO o las pruebas existentes de lo que propones tú. Si una prueba de una ficha
+   anterior ya fija un valor, úsalo. Espera mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -523,14 +544,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B5.1 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: `npm.cmd test` con código 0 y una nota de qué no demuestran esas pruebas (no prueban conectividad real).
@@ -559,7 +580,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    concedido, denegado y no disponible con una API falsa. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
-   Espera mi autorización explícita.
+   Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
+   ya fijan el contrato, los TODO o las pruebas existentes de lo que propones tú.
+   Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera mi
+   autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `use-location.ts`, `ChatPage.tsx`, `App.tsx`, `location.test.tsx`, `fake-geolocation.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -567,14 +591,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B6.1 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: pruebas en verde; en el navegador, la pestaña de red confirma que la petición sigue teniendo solo `message`.
@@ -603,7 +627,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    cambia permisos, cuota ni tema, y nada persiste al recargar. Todavía no edites
    ni ejecutes cambios. Explícame el resultado observable, el concepto, los
    archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Espera mi autorización explícita.
+   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
+   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
+   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
+   mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `use-chat.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -611,14 +638,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B6.2 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: pruebas en verde; revisión en navegador de cancelar y confirmar.
@@ -639,7 +666,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    No afirmes una llamada real que no se autorizó ni se observó. Todavía no edites
    ni ejecutes cambios. Explícame el resultado observable, el concepto, los
    archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Espera mi autorización explícita.
+   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
+   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
+   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
+   mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -647,14 +677,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Autorizo únicamente D1·B6.3 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO y la ficha; no elijas otra estructura ni
-   agregues dependencias. Si hay pruebas deterministas aplicables, escribe primero
-   la prueba y observa que falle; después implementa y mantén las comprobaciones en
-   verde. No resuelvas TODO de otros ID, no cambies contratos y no hagas commits,
-   push ni llamadas reales al proveedor salvo que este incremento las requiera y yo
-   lo autorice. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
+   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
+   deterministas aplicables, escribe primero la prueba y observa que falle; después
+   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
+   no cambies contratos y no hagas commits, push ni llamadas reales al proveedor
+   salvo que este incremento las requiera y yo lo autorice. Informa archivos,
+   comandos, resultados, fallos y comprobaciones no ejecutadas. No marques el
+   roadmap por mí y detente antes del siguiente incremento.
    ```
 
 5. Comprueba: `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.

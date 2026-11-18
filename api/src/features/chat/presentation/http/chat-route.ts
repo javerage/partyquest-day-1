@@ -6,8 +6,9 @@
 // (`createApp().request(...)`) with a fake gateway. Observe them fail before B2.2.
 // Read docs/01-chat-integration.md and docs/api-contract.md before this increment.
 //
-// TODO(D1·B2.2): Export `createChatRoute(generateReply)`. It parses the body with
-// `parse-chat-request.ts`, calls the use case from `application/generate-reply.ts` and
+// TODO(D1·B2.2): Export `createChatRoute(generateReply)`. It reads the raw body with
+// `c.req.text()` (not `c.req.json()`), so invalid JSON reaches the parser and answers
+// `400 invalid_request`. It parses the body with `parse-chat-request.ts`, calls the use case from `application/generate-reply.ts` and
 // maps the result to `ChatResponseDto` or to the error envelope in
 // `shared/http/api-error.ts`. Mount it at `/api/chat` in `app/create-app.ts`.
 // Read docs/api-contract.md and docs/architecture.md before this increment.

@@ -103,13 +103,15 @@ Toda respuesta no exitosa usa el mismo sobre JSON:
 
 El cliente usa `code` para elegir el estado y el texto visible. `message` es información técnica para depuración: **no se muestra a la persona**. Nunca incluyas secretos, trazas de pila ni respuestas crudas del proveedor.
 
-| `code` | HTTP | `retryable` | Significado |
-| --- | --- | --- | --- |
-| `invalid_request` | 400 | `false` | El cuerpo no cumple las reglas de solicitud. |
-| `configuration_error` | 503 | `false` | Falta `GROQ_API_KEY` o `GROQ_MODEL`, o la credencial/modelo configurado no es aceptado. |
-| `quota_exceeded` | 429 | `false` | Groq alcanzó un límite de uso o tasa. No se promete cuándo estará disponible de nuevo. |
-| `provider_error` | 502 | `true` | Falló la comunicación con Groq, hubo un error del proveedor o no se recibió texto utilizable. |
-| `internal_error` | 500 | `true` | Ocurrió un error inesperado en la API. |
+| `code` | HTTP | `retryable` | Significado | `message` |
+| --- | --- | --- | --- | --- |
+| `invalid_request` | 400 | `false` | El cuerpo no cumple las reglas de solicitud. | Motivo técnico del rechazo, en inglés; por ejemplo, `Body must be valid JSON`. |
+| `configuration_error` | 503 | `false` | Falta `GROQ_API_KEY` o `GROQ_MODEL`, o la credencial/modelo configurado no es aceptado. | `GROQ_API_KEY or GROQ_MODEL is missing or was rejected by the provider` |
+| `quota_exceeded` | 429 | `false` | Groq alcanzó un límite de uso o tasa. No se promete cuándo estará disponible de nuevo. | `Provider quota or rate limit reached` |
+| `provider_error` | 502 | `true` | Falló la comunicación con Groq, hubo un error del proveedor o no se recibió texto utilizable. | `Provider request failed or returned no usable text` |
+| `internal_error` | 500 | `true` | Ocurrió un error inesperado en la API. | `Unexpected API error` |
+
+Usa los textos de `message` de la tabla tal cual. Solo `invalid_request` describe el motivo concreto del rechazo; sus pruebas comprueban `code`, estado y `retryable`, y que `message` sea un texto, sin fijar la redacción.
 
 La API no reintenta automáticamente en D1. Todo 429 de Groq se representa como `quota_exceeded`; no hace falta distinguir entre límite por minuto y cuota diaria.
 
