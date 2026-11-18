@@ -1034,9 +1034,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - **Qué se reinicia al confirmar:** los mensajes, la respuesta en espera, el aviso de error, el borrador del mensaje, la ubicación o zona (con el `reset()` de `useLocation` de B6.1, que también cierra un campo de zona abierto y su borrador) y el consumo acumulado con su modelo.
    - **Qué no se reinicia:** el tema, el permiso del navegador ni la cuota de Groq. Nada se guarda: recargar tampoco restaura la conversación.
    - **Respuestas tardías:** una respuesta de Pachi que llega después de confirmar pertenece a una conversación descartada y se ignora. Lo mismo con una respuesta del navegador sobre la ubicación: el `reset()` de B6.1 ya la descarta, y se prueba en `chat-page.test.tsx`.
-   - **«Nuevo plan» sigue disponible mientras Pachi responde.** Si se confirma en ese momento, se aplica la regla anterior.
+   - **«Nuevo plan» sigue disponible mientras Pachi responde.** Si se confirma en ese momento, se aplica la regla anterior y **la espera termina**: la conversación nueva puede enviar mensajes aunque la petición anterior siga en curso. Para distinguirlas, `useChat` lleva un contador que `reset()` incrementa; una petición solo aplica su respuesta, y solo termina la espera, si el contador no cambió desde que se envió.
+   - **La oferta de ubicación reaparece** con el primer mensaje del plan siguiente, porque la ubicación vuelve a `idle`. Si el navegador ya recordó el permiso, «Usar mi ubicación» no vuelve a preguntar.
    - **No toques `ConfirmDialog`:** ya da el foco inicial a «Cancelar», cierra con Escape y devuelve el foco al cancelar.
-   - **Después de confirmar,** el foco pasa al campo de mensaje.
+   - **Después de confirmar,** el foco pasa al campo de mensaje. Radix devuelve el foco al botón que abrió el diálogo dentro de un temporizador; por eso el foco al campo se programa en un temporizador posterior, desde `ChatPage`, sin tocar `ConfirmDialog`.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -1058,6 +1059,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - pruebas de: sin mensajes no hay diálogo; «Cancelar» conserva la conversación; confirmar limpia mensajes, aviso, borrador, ubicación o zona y consumo; el foco pasa al campo de mensaje;
    - una prueba de respuesta tardía de Pachi: con un cliente falso que responde **después** de confirmar, la respuesta no aparece y el consumo sigue vacío;
    - una prueba de respuesta tardía del navegador después de confirmar: la ubicación no reaparece;
+   - una prueba de dos mensajes, en este orden: 1. envías un mensaje que queda pendiente; 2. confirmas «Nuevo plan»; 3. envías un mensaje nuevo; 4. llega la respuesta del primero. Esa respuesta no aparece, el consumo no cambia y el segundo sigue esperando; cuando llega su respuesta, sí aparece;
    - cambios solo en los archivos de la ficha; `ConfirmDialog.tsx` sin modificar.
 
 6. **Comprueba las pruebas**, desde la raíz:
@@ -1077,7 +1079,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    | Cancelar | Envía un mensaje, guarda una zona y pulsa «Nuevo plan» → «Cancelar» | El diálogo se cierra; la conversación, la zona y el aviso siguen ahí |
    | Escape | Abre el diálogo y pulsa Escape | Igual que «Cancelar» |
    | Foco inicial | Abre el diálogo con el teclado | El foco está en «Cancelar» |
-   | Confirmar | «Nuevo plan» → «Empezar otra conversación» | Vuelve la pantalla inicial: sin mensajes, sin zona, sin aviso ni panel de consumo; el foco queda en el campo de mensaje |
+   | Confirmar | «Nuevo plan» → «Empezar otra conversación» | Vuelve la pantalla inicial: sin mensajes, sin zona, sin aviso ni panel de consumo; puedes escribir de inmediato, sin hacer clic en el campo |
+   | Plan siguiente | Envía el primer mensaje del plan nuevo | Pachi vuelve a ofrecer la ubicación |
    | Lo que se conserva | Después de confirmar | El tema elegido no cambia |
    | Diseño a 360 px | Con el diálogo abierto | El diálogo cabe, los dos botones se leen y no hay desplazamiento horizontal |
 
@@ -1090,43 +1093,80 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 ### D1·B6.3 — Cierre local
 
+**Datos de la ficha**
+
+- **Abre:** la tabla de la sección 3 y el [contrato API](../api-contract.md)
+- **Archivos:** ninguno. Esta ficha **no tiene `TODO` ni cambia código**: comprueba que todo lo anterior funciona junto.
+- **Quién hace qué:** el agente ejecuta las comprobaciones automáticas e informa; tú haces el arranque, el recorrido en el navegador y, si quieres, una llamada real.
+
 **Paso a paso**
 
-1. Revisa en la tabla de la sección 3 que todas las fichas anteriores estén cerradas.
+1. Revisa en la tabla de la sección 3 que todas las fichas anteriores estén cerradas. Si alguna está **bloqueada** o **pendiente**, ciérrala antes o anota aquí por qué sigue abierta.
 2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
 
    ```text
-   Vamos a trabajar únicamente en D1·B6.3. Lee AGENTS.md, la ficha de D1·B6.3 en
-   docs/day-1/roadmap.md, los TODO(D1·B6.3) de los archivos que indica y sus
-   lecturas. Objetivo: Cerrar las comprobaciones locales de D1 sin ampliar el
-   alcance. Separa pruebas deterministas, arranque y health, build y llamada real.
-   No afirmes una llamada real que no se autorizó ni se observó. Todavía no edites
-   ni ejecutes cambios. Explícame el resultado observable, el concepto, los
-   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
-   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
-   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
-   mi autorización explícita.
+   Vamos a trabajar únicamente en D1·B6.3. Lee AGENTS.md y la ficha de D1·B6.3 en
+   docs/day-1/roadmap.md. Esta ficha no tiene TODO ni cambia código. Objetivo:
+   cerrar las comprobaciones locales de D1 sin ampliar el alcance. Separa lo que
+   ejecutarás tú (pruebas, typecheck, build, búsqueda de TODO pendientes y de
+   secretos en el bundle) de lo que haré yo (arranque, health, recorrido en el
+   navegador y llamada real opcional). No afirmes una llamada real que no se
+   autorizó ni se observó. Todavía no ejecutes nada. Explícame qué comprobarás,
+   con qué comando y qué resultado esperas, y qué harás si una comprobación falla.
+   Espera mi autorización explícita.
    ```
 
-3. Revisa la respuesta. Debe limitarse a esta ficha. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+3. Revisa la respuesta. Debe limitarse a ejecutar comprobaciones, sin editar archivos. Si propone cambiar código o menciona otro ID, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas:
+
+   - **Comprobaciones del agente**, desde la raíz: `npm test`, `npm run typecheck` y `npm run build`, cada uno con código 0; una búsqueda de `TODO(D1·` en `api/src` y `frontend/src`, que no debe encontrar nada; y una búsqueda de `GROQ` y `gsk_` en `frontend/dist`, que tampoco debe encontrar nada.
+   - **Si una comprobación falla,** el agente no corrige: informa el comando, lo esperado y lo obtenido, y se detiene. La corrección pertenece a la ficha que introdujo el fallo y se autoriza aparte.
+   - **`npm run build`** solo comprueba tipos en `api/` (no genera archivos) y genera el bundle en `frontend/dist`, que está ignorado por Git.
+   - **Arranque, health, recorrido en el navegador y llamada real** son tuyos. El agente los informa como pendientes.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
-   Autorizo únicamente D1·B6.3 según el alcance que explicaste. Usa los archivos,
-   nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
-   escritas; no elijas otra estructura ni agregues dependencias. Si hay pruebas
-   deterministas aplicables, escribe primero la prueba y observa que falle; después
-   implementa y mantén las comprobaciones en verde. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
-   proveedor ni revisión en navegador: las hago yo después; repórtalas como
-   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
-   incremento.
+   Autorizo únicamente D1·B6.3 según el alcance que explicaste. Ejecuta las
+   comprobaciones de la ficha sin editar archivos ni agregar dependencias. Si una
+   falla, no la corrijas: informa el comando, lo esperado y lo obtenido, y
+   detente. No hagas commits ni push. No hagas llamadas reales al proveedor ni
+   revisión en navegador: las hago yo después; repórtalas como pendientes. Informa
+   comandos, códigos de salida, resultados y comprobaciones no ejecutadas. No
+   marques el roadmap por mí y detente al terminar.
    ```
 
-5. Comprueba: `npm.cmd test`, `npm.cmd run typecheck`, `npm.cmd run build` y el recorrido manual en navegador. Si pruebas Groq, registra la evidencia sin credenciales.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra cada comando con su código de salida, que las dos búsquedas no encontraron nada y que `git status` no lista archivos nuevos modificados por esta ficha.
+
+6. **Repite las comprobaciones automáticas tú**, desde la raíz:
+
+   ```powershell
+   npm.cmd test
+   npm.cmd run typecheck
+   npm.cmd run build
+   ```
+
+   Los tres deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Arranca y recorre la aplicación**, a 360 px y en escritorio. En dos terminales, desde la raíz: `npm.cmd run dev:api` y `npm.cmd run dev:frontend`.
+
+   | Caso | Cómo provocarlo | Qué debes ver |
+   | --- | --- | --- |
+   | Health | Abre `http://localhost:5173/api/health` | `{"status":"ok"}` |
+   | Error recuperable | Sin `api/.env`, envía un mensaje | Aviso de error con «Editar mensaje» y «Reintentar» |
+   | Solo el mensaje | Herramientas de desarrollo → Red, en el envío anterior | El cuerpo de `POST /api/chat` es solo `{"message":"…"}` |
+   | Ubicación y zona | Después del primer mensaje | La oferta de ubicación; «Escribir una zona» y «Guardar zona» funcionan |
+   | Nuevo plan | «Nuevo plan» → «Empezar otra conversación» | Vuelve la pantalla inicial y puedes escribir de inmediato |
+   | Recargar | Recarga la página | No se restaura nada |
+   | Respuesta real (opcional) | Con `api/.env`, envía un mensaje. ⚠️ Es una llamada real | La respuesta de Pachi y el panel de consumo con costo teórico |
+
+   **Lo que puede confundirte:**
+
+   - **La cuota agotada (429) y las respuestas tardías** no se provocan a mano: las cubren las pruebas. Anótalo así.
+   - **La llamada real es opcional.** Si la haces, anótala en el registro de llamadas reales de la sección 3. Si no, la ficha se puede cerrar con las comprobaciones simuladas y el recorrido sin clave.
+   - **Lo que no demuestra este cierre:** la conectividad real con Groq (salvo que hagas la llamada opcional), la validez de una clave ni la calidad o veracidad de las respuestas de Pachi.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «test, typecheck y build 0; sin `TODO(D1·` ni secretos en el bundle; recorrido sin clave a 360 px y escritorio; llamada real: 1, registrada (u omitida)». Con esta ficha termina el Día 1.
 
 ## 6. Modelo, consumo y cuotas
 
