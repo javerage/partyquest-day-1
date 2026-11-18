@@ -450,6 +450,13 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `chat-client.ts`, `message-rules.ts`, `use-chat.ts`, `App.tsx`, `chat-client.test.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
+
+   **Si el agente pregunta…** Estas decisiones ya están resueltas; indícale la fuente:
+
+   - **Errores antes de B3.1:** una respuesta que no sea 2xx o un fallo de red **nunca** se muestra como respuesta de Pachi. El cliente comprueba `response.ok` y, si no, lanza un error; `useChat` solo apaga la espera. No se inventan `code` ni `retryable`: traducirlos es B3.1. Lo indica el `TODO(D1·B2.4)` de `chat-client.ts`.
+   - **Nota del starter:** se quita sin texto de reemplazo; la muestra D1-01 de la referencia de interfaz solo tiene el saludo.
+   - **Límite del mensaje:** se cuenta en puntos de código Unicode (`[...texto].length`), no con `.length`. Las pruebas lo fijan con emoji: 2000 se aceptan y 2001 no.
+   - **Borrador:** se limpia al enviar.
 4. Copia el **prompt 2 (autorización)**. El agente implementa solo esta ficha.
 
    ```text
@@ -464,8 +471,44 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    roadmap por mí y detente antes del siguiente incremento.
    ```
 
-5. Comprueba: `npm.cmd test --workspace frontend`; en el navegador, a 360 px y en escritorio, la respuesta aparece y la pestaña de red muestra solo `{ "message": "…" }`.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+5. **Revisa el informe del agente.** Confirma que muestra:
+
+   - las pruebas fallando (RED) antes de implementar y después en verde;
+   - que el cliente comprueba `response.ok` y una prueba con un `fetch` falso que responde `503`: no aparece respuesta de Pachi, desaparece «Revisando opciones…» y «Enviar» vuelve a estar disponible;
+   - que la prueba de la espera usa una promesa que no se resuelve de inmediato: si el doble responde al instante, «Revisando opciones…» no llega a verse;
+   - que las pruebas comprueban el cuerpo exacto `{ "message": "…" }` y que un segundo mensaje se envía sin el primero;
+   - cambios solo en los siete archivos de esta ficha, usando los componentes entregados (`MessageList`, `Composer`, `TopBar`) sin modificarlos.
+
+6. **Comprueba las pruebas**, desde la raíz:
+
+   ```powershell
+   npm.cmd test --workspace frontend
+   npm.cmd run typecheck
+   ```
+
+   Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`.
+
+7. **Comprueba en el navegador.** Con `dev:frontend` y `dev:api` en marcha, abre **http://127.0.0.1:5173** y las herramientas de desarrollo (`F12`). Activa el modo de dispositivos para el ancho de 360 px y abre la pestaña **Red** (Network) filtrada por `chat`. Revisa cada fila en los dos anchos:
+
+   | Qué revisar | 360 px | Escritorio |
+   | --- | --- | --- |
+   | Sin conversación: saludo «¿Qué se arma hoy?», marcador «Ej.: el domingo a mediodía, somos 4…» y «Enviar» deshabilitado | ☐ | ☐ |
+   | Al enviar: tu burbuja, «Revisando opciones…» y Pachi con expresión de espera | ☐ | ☐ |
+   | Llega la respuesta de Pachi y el marcador cambia a «Escribe un mensaje…» | ☐ | ☐ |
+   | En **Red**, el cuerpo de `POST /api/chat` es solo `{"message":"…"}` | ☐ | ☐ |
+   | Con más de 2000 caracteres, el aviso «El mensaje supera 2000 caracteres.» aparece **bajo el campo**, no en la fila del botón, y «Enviar» se deshabilita | ☐ | ☐ |
+   | Sin desplazamiento horizontal; un texto largo sin espacios hace salto de línea dentro de la burbuja | ☐ | ☐ |
+   | Con varios mensajes, la lista se desplaza y el campo sigue visible abajo | ☐ | ☐ |
+
+   Para probar el límite, escribe en la consola del navegador `copy("a".repeat(2001))` y pega el texto en el campo.
+
+   **Lo que puede confundirte:**
+
+   - **Con `api/.env`**, cada envío es una llamada real a Groq y consume tu cuota: uno o dos mensajes bastan. La respuesta puede mencionar lugares; en D1 son ideas sin verificar.
+   - **Sin `api/.env`**, ves tu burbuja y la espera, y después **ninguna respuesta ni aviso**: la API responde `503` y el aviso de error llega en B3.1. Es el comportamiento esperado en esta ficha, no un fallo.
+   - Las pruebas simuladas no sustituyen esta revisión: comprueban el comportamiento, no cómo se ve.
+
+8. Anota en la tabla de la sección 3 el estado y lo que observaste. Si hiciste llamadas reales, anota cuántas y con qué modelo, aparte de las pruebas simuladas. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: estados correctos; Red: solo `message`; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.1 — Error recuperable y cuota agotada
 

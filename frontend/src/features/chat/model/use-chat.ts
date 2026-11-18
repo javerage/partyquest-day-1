@@ -6,7 +6,9 @@ export type ChatFailure = { code: string; retryable: boolean; messageId: number;
 
 // TODO(D1·B2.4): Export `useChat(sendChatMessage)`. It keeps `messages`, the `pending`
 // request and returns `send(text)`. `sendChatMessage` has the type `SendChatMessage`
-// from `chat-result.ts`, so this file never imports transport code.
+// from `chat-result.ts`, so this file never imports transport code. Ignore `send`
+// while a request is pending. Until D1·B3.1, a thrown request only ends `pending`:
+// the user message stays visible, with no reply and no notice.
 // Read docs/01-chat-integration.md and docs/api-contract.md before this increment.
 //
 // TODO(D1·B3.1): Keep the `failure` of the last request and add `retry()` (only when

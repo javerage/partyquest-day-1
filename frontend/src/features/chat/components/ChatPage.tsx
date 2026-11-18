@@ -48,7 +48,8 @@ export function ChatPage() {
         <div className="flex flex-1 flex-col items-center justify-center gap-3 p-5 text-center">
           <Pachi className="h-[102px] w-24" />
           <h1 className="m-0 text-display font-extrabold">¿Qué se arma hoy?</h1>
-          {/* TODO(D1·B2.4): Remove this starter note when the chat is connected. */}
+          {/* TODO(D1·B2.4): Remove this starter note when the chat is connected, with no
+              replacement text: sample D1-01 shows only the greeting. */}
           <p className="m-0 max-w-sm text-body text-text-muted">
             Esta pantalla es la presentación inicial. Todavía no hay una conversación conectada.
           </p>
