@@ -10,7 +10,7 @@
 
 Escribe y ejecuta las pruebas en cada ficha, con proveedores simulados: RED antes de GREEN. **Nunca uses tus conversaciones reales como datos de prueba**: los documentos guardados se prueban con documentos ficticios en almacenamiento aislado. Si aparece una decisión de migración no acordada, el agente se detiene; no se resuelve reiniciando ni sobrescribiendo. Las llamadas reales requieren tu autorización aparte; sin ella, registra «No evaluado».
 
-**Informe y RED.** En el informe separa las pruebas con RED observado, las que pasaron desde antes de implementar (sin RED) y las comprobaciones manuales o de navegador pendientes. Enumera cada prueba existente que cambió y el motivo específico de esta ficha. Las anotaciones de ejemplo al final de las fichas no predicen el resultado: conserva solo el RED que realmente observaste y registra por separado los casos sin RED.
+**Informe y RED.** Sigue la sección «Cómo trabajar cada ficha» de [B1](b1.md). En cada ficha de implementación, registra el total y resultado de las pruebas aplicables y el typecheck antes del prompt 2, sobre el árbol actual y sin apartar cambios. Al terminar, compara la misma suite (`N → M`) y anota qué pruebas existentes cambiaste y por qué. Distingue «RED observado» (falló por comportamiento antes del cambio), «sin RED» (ya pasaba) y «RED no observado» (se escribió después de implementar). Guarda la salida completa del RED en una carpeta permanente, no temporal; registra su ruta y los nombres y motivos literales de los fallos en la [plantilla de avance](progress-template.md). Completa con lo que realmente observaste: «Base … → …; RED observado: …; sin RED: …; RED no observado: …; typecheck: …; comprobaciones pendientes: …». No copies los resultados de ejemplo.
 
 ---
 
@@ -97,7 +97,25 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola","history":[{"user":"Hola","pachi":{"kind":"conversation","text":"Hola","question":null,"applied":{"zone":null,"budget":null,"groupSize":null,"wantsFood":null,"nearMe":null},"shownPlaceIds":["la-mula"]}}],"writtenZone":null,"preferences":{"zone":null,"budget":null,"groupSize":null,"wantsFood":null,"nearMe":null},"location":null}'
    ```
 
-   Después, en el navegador, recarga tu conversación guardada y comprueba en **Application → Local Storage** que `partyquest.conversation` tiene `"version":2` y los mismos mensajes que antes.
+   **Comprueba la migración sin enviar mensajes.** Abre la aplicación en un perfil de navegador de prueba sin datos que quieras conservar. En **DevTools → Console**, carga este documento ficticio v1:
+
+   ```js
+   {
+     const preferences = { zone: null, budget: null, groupSize: null, wantsFood: null, nearMe: null };
+     const reply = "¡Hola! ¿Qué plan buscan?";
+     localStorage.setItem("partyquest.conversation", JSON.stringify({
+       version: 1,
+       writtenZone: "centro",
+       preferences,
+       messages: [
+         { role: "user", text: "Hola" },
+         { role: "pachi", text: reply, compact: { kind: "conversation", text: reply, question: null, applied: preferences } },
+       ],
+     }));
+   }
+   ```
+
+   Recarga y verifica que aparecen «Hola» y «¡Hola! ¿Qué plan buscan?». En **Application → Local Storage**, comprueba que `partyquest.conversation` ahora tiene `version: 2` y conserva los mensajes, `writtenZone` y las preferencias. Recarga otra vez: el documento ya v2 debe abrir sin cambios. No uses este ejemplo en un perfil con conversaciones reales.
 
    **Resultado esperado:**
 
@@ -149,6 +167,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    ```
 
 3. **Revisa la respuesta.** Las pruebas deben cubrir los criterios 1, 2, 3, 6 y 14 del contrato: plural restringido a los IDs mostrados aunque haya más coincidencias; ordinal según orden alfabético y por distancia; nombre único, ausente y ambiguo; sin lista vigente, ID inexistente y `placeId` fuera de la lista → `place_reference` sin filtrar; `place` con ID nulo → 200; `shown` con ID → 502; cada forma inválida → 502; e historial numerado solo en el turno de la lista vigente.
+   En las pruebas ordinales, usa lugares cuya segunda posición difiera entre el orden alfabético y por distancia. En cada escenario, «el segundo» debe seguir el orden mostrado, sin volver a ordenar la lista.
 
    **Si el agente pregunta…**
 
@@ -242,6 +261,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    ```
 
 3. **Revisa la respuesta.** Las pruebas deben cubrir los criterios 4, 5, 7, 8, 9, 11, 12, 13 y 15 del contrato, con los textos completos comparados exactos: continuación y búsqueda nueva; «¿y los otros?» con y sin pregunta, repetido y agotado; mismas preferencias con otro orden de claves; aviso en singular, dos y tres lugares; referencia sin pregunta con y sin cambios propuestos; avance de página sin lista vigente; y regresión de los demás turnos.
+   Incluye una sola secuencia: lista vigente → búsqueda nueva sin coincidencias → «el segundo». La referencia final no debe devolver el segundo lugar de la lista anterior.
 
    **Si el agente pregunta…**
 
