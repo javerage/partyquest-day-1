@@ -61,6 +61,12 @@ Las pruebas no se entregan. El agente las crea en `api/src/features/chat/tests/`
 
 Los componentes visuales están completos pero `ChatPage` todavía no usa `MessageList`, `InlineNotice`, `ConfirmDialog`, `UsagePanel` ni `LocationPrompt`: se conectan en sus incrementos. Las pruebas no se entregan; el agente las crea en `frontend/src/features/chat/tests/` y `frontend/src/features/location/tests/`.
 
+## Registro personal
+
+| Archivo | Qué entrega | TODO |
+|---|---|---|
+| `docs/day-1/progress-template.md` | Plantilla del registro de avance; se copia a `notes/day-1-progress.md`, excluido de Git | — |
+
 ## Qué no contiene el proyecto
 
 - Ruta de chat, validación, caso de uso ni adaptador de Groq.

@@ -54,33 +54,38 @@ Al terminar, la aplicación debe permitir:
 
 ## 3. Estado personal de incrementos
 
+**Tu registro de avance va en un archivo aparte**, no en esta tabla. Así no lo pierdes cuando recibes una versión nueva del roadmap, por ejemplo con `git pull`. Créalo una sola vez, desde la raíz:
+
+```powershell
+New-Item -ItemType Directory -Force notes | Out-Null
+Copy-Item docs\day-1\progress-template.md notes\day-1-progress.md
+```
+
+En macOS/Linux: `mkdir -p notes && cp docs/day-1/progress-template.md notes/day-1-progress.md`. La carpeta `notes/` está excluida de Git: el archivo queda solo en tu equipo. Esta tabla define cada incremento y lo que necesitas para cerrarlo; el estado, el tiempo y la evidencia van en tu registro.
+
 Estados permitidos: **pendiente**, **en curso**, **bloqueado** (anota qué falta) y **completado** (solo con la evidencia de la fila). No marques completado por quitar un `TODO` ni por el informe del agente. Anota en cada cierre el comando o acción, el resultado, los fallos y el tiempo que te llevó la ficha, desde el prompt 1 hasta tu última comprobación.
 
 En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 
-| ID | Resultado observable | Previo | Checks para cerrar | Tiempo | Estado / evidencia personal |
-|---|---|---|---|---|---|
-| [D1·B1.1](#d1b11--instalar-dependencias) | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces | — | Pendiente — |
-| [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos | — | Pendiente — |
-| [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado | — | Pendiente — |
-| [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo | — | Pendiente — |
-| [D1·B2.1](#d1b21--fijar-el-contrato-con-una-prueba) | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar | — | Pendiente — |
-| [D1·B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores | — | Pendiente — |
-| [D1·B2.3](#d1b23--adaptador-groq-en-el-servidor) | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs | — | Pendiente — |
-| [D1·B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial | — | Pendiente — |
-| [D1·B3.1](#d1b31--error-recuperable-y-cuota-agotada) | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede | — | Pendiente — |
-| [D1·B3.2](#d1b32--usage-y-costo-teórico) | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada | — | Pendiente — |
-| [D1·B4.1](#d1b41--comparar-instrucciones-de-sistema) | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave | — | Pendiente — |
-| [D1·B5.1](#d1b51--completar-las-pruebas-del-contrato) | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba | — | Pendiente — |
-| [D1·B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación | — | Pendiente — |
-| [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar | — | Pendiente — |
-| [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales | — | Pendiente — |
+| ID | Resultado observable | Previo | Checks para cerrar |
+|---|---|---|---|
+| [D1·B1.1](#d1b11--instalar-dependencias) | Instalar las dependencias fijadas del proyecto recibido | Node y npm disponibles | `npm.cmd ci` termina con código 0; `npm.cmd ls --depth=0` muestra los dos workspaces |
+| [D1·B1.2](#d1b12--comprobar-la-base) | Comprobar configuración, reglas del agente y archivos del proyecto | B1.1 | `npm.cmd run check:env` y `npm.cmd run typecheck` con código 0; `.gitignore` excluye `.env`; `api/.env.example` solo tiene valores falsos |
+| [D1·B1.3](#d1b13--abrir-la-pantalla) | Ver la pantalla inicial sin comportamiento de chat | B1.2 | `npm.cmd run dev:frontend`; la pantalla carga a 360 px y en escritorio; «Apariencia» cambia el tema; «Enviar» está deshabilitado |
+| [D1·B1.4](#d1b14--comprobar-api-y-proxy) | Comprobar `GET /api/health` directo y por el proxy | B1.3 | HTTP 200 `{"status":"ok"}` sin clave en `:8787` y en `:5173`; `POST /api/chat` responde 404; sin CORS permisivo |
+| [D1·B2.1](#d1b21--fijar-el-contrato-con-una-prueba) | Fijar con una prueba el contrato mínimo del mensaje actual | B1.4 | Prueba por la interfaz pública con status y cuerpo exactos; se observa que falla (RED) antes de implementar |
+| [D1·B2.2](#d1b22--validación-y-respuesta-con-gateway-sustituible) | Implementar validación y respuesta del servidor mediante un gateway sustituible | B2.1 | JSON inválido y campos extra rechazados antes del gateway; pruebas con gateway falso en verde; sin secretos en errores |
+| [D1·B2.3](#d1b23--adaptador-groq-en-el-servidor) | Conectar el adaptador Groq en la API, solo con variables de entorno del servidor | B2.2 | Clave ausente produce `configuration_error`; las pruebas siguen usando un `fetch` falso; la clave no aparece en bundle, petición ni logs |
+| [D1·B2.4](#d1b24--conectar-el-envío-desde-la-interfaz) | Conectar el envío desde la interfaz y mostrar la respuesta | B2.3 | El cuerpo enviado por el navegador contiene solo `{ "message": "…" }`; la respuesta aparece; no se envía historial |
+| [D1·B3.1](#d1b31--error-recuperable-y-cuota-agotada) | Mostrar error recuperable y cuota agotada | B2.4 | Respuestas HTTP falsas; textos de la ficha; reintento solo manual y solo cuando procede |
+| [D1·B3.2](#d1b32--usage-y-costo-teórico) | Mostrar y acumular usage y costo teórico | B2.4 | Usage parcial o ausente no pierde la respuesta ni se convierte en cero; costo contra la tarifa fechada |
+| [D1·B4.1](#d1b41--comparar-instrucciones-de-sistema) | Comparar instrucciones de sistema con el mismo mensaje | B2.4 | Registro de instrucción y observación, sin afirmar que el modelo comprueba hechos; ninguna llamada sin permiso ni clave |
+| [D1·B5.1](#d1b51--completar-las-pruebas-del-contrato) | Completar las pruebas deterministas del contrato | B2.1–B3.2 | Límites y errores que nombra el contrato cubiertos; anotado qué no demuestra cada prueba |
+| [D1·B6.1](#d1b61--ubicación-con-permiso-o-zona-escrita) | Capturar ubicación con permiso o zona escrita, sin enviarla a Groq | B2.4 | Permiso concedido, denegado y no disponible; la petición y el prompt no incluyen ubicación |
+| [D1·B6.2](#d1b62--confirmar-nuevo-plan) | Confirmar «Nuevo plan» y reiniciar solo la conversación | B3.2, B6.1 | Cancelar conserva; confirmar limpia intercambios, ubicación y usage, no cuota ni tema; nada persiste al recargar |
+| [D1·B6.3](#d1b63--cierre-local) | Cierre local completo con pruebas simuladas; llamada real opcional y separada | B1–B6 | Pruebas, typecheck, build y recorrido manual; si se prueba Groq, evidencia sin credenciales |
 
-**Registro de llamadas reales.** Las pruebas simuladas no gastan cuota; cada llamada real a Groq sí. Anota aquí las que hagas, aparte de la evidencia de las pruebas, y nunca copies la clave:
-
-| Ficha | Llamadas | Modelo | Resultado | Nota |
-| --- | --- | --- | --- | --- |
-| Ejemplo: D1·B3.2 | 2 | `openai/gpt-oss-20b` | 200 con usage | El costo acumulado aumentó |
+**Llamadas reales.** Las pruebas simuladas no gastan cuota; cada llamada real a Groq sí. Anótalas en la tabla de llamadas reales de tu registro de avance, aparte de la evidencia de las pruebas, y nunca copies la clave.
 
 ## 4. Cómo trabajar con el agente
 
@@ -89,7 +94,7 @@ En PowerShell escribe los comandos como `npm.cmd`; en otras terminales, `npm`.
 1. **Prompt 1 (alcance):** el agente lee la ficha y explica qué va a hacer, sin editar.
 2. **Prompt 2 (autorización):** después de revisar la explicación, autorizas solo esa ficha. Si hay una prueba aplicable, el agente la escribe primero y la ve fallar; luego implementa.
 
-Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en la sección 3. No modifiques los prompts: copia el bloque completo. Si el agente te planteó decisiones, escribe tu respuesta en el mismo mensaje, antes del prompt 2.
+Entre los dos prompts revisas la propuesta. Después compruebas con los checks de la ficha y anotas el resultado en tu registro de avance. No modifiques los prompts: copia el bloque completo. Si el agente te planteó decisiones, escribe tu respuesta en el mismo mensaje, antes del prompt 2.
 
 **Qué hace cada quien:**
 
@@ -98,7 +103,7 @@ Entre los dos prompts revisas la propuesta. Después compruebas con los checks d
 | Lee la ficha, propone el alcance y lo explica sin editar | Revisas la propuesta y autorizas solo esa ficha |
 | Escribe las pruebas, las ve fallar e implementa | Revisas su informe con la lista de la ficha |
 | Ejecuta pruebas y typecheck con proveedores falsos | Haces la revisión en el navegador y las llamadas reales a Groq |
-| Informa como pendiente lo que no observó | Marcas el estado y la evidencia en la sección 3 |
+| Informa como pendiente lo que no observó | Marcas el estado y la evidencia en tu registro de avance |
 
 El agente no hace llamadas reales ni revisión en navegador, y no necesita pedirte permiso para ellas: si te lo pregunta, respóndele que las haces tú.
 
@@ -183,7 +188,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
    Clonar descarga el código, pero no sus dependencias. Este comando necesita conexión para descargarlas y prepara ambas aplicaciones. Espera a que termine y vuelva el prompt; ejecuta inmediatamente `$LASTEXITCODE`: debe mostrar `0`. Si falla, conserva el error y consulta al instructor; no borres el lockfile ni actualices dependencias para intentar resolverlo.
 
-4. Ejecuta `npm.cmd ls --depth=0`. Debe mostrar los dos workspaces, API y frontend, sin dependencias faltantes. Anota el resultado en B1.1 de la sección 3.
+4. Ejecuta `npm.cmd ls --depth=0`. Debe mostrar los dos workspaces, API y frontend, sin dependencias faltantes. Anota el resultado en la fila B1.1 de tu registro de avance.
 
 #### D1·B1.2 — Comprobar la base
 
@@ -234,7 +239,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
    Las dos primeras deben responder HTTP `200` con `{"status":"ok"}`. El POST debe responder `404`: aún no existe la ruta del chat; **no es un fallo de instalación**. La última respuesta no debe incluir `Access-Control-Allow-Origin: *` ni autorizar `https://example.com`. En macOS/Linux usa `curl` en lugar de `curl.exe`.
 
-4. Anota B1.4 en la sección 3. Si los resultados no coinciden, detente y consulta al instructor.
+4. Anota B1.4 en tu registro de avance. Si los resultados no coinciden, detente y consulta al instructor.
 
 #### Equipo y base comprobados: comenzar los ejercicios
 
@@ -286,7 +291,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```
 
 5. Comprueba: `npm.cmd test --workspace api` falla porque la ruta no existe (404), no por un error de sintaxis. `typecheck` puede fallar hasta B2.2 porque la prueba usa una opción de `createApp` que aún no existe; anótalo.
-6. Anota en la tabla de la sección 3 el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+6. Anota en tu registro de avance el estado y lo que observaste. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.2 — Validación y respuesta con gateway sustituible
 
@@ -383,7 +388,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - Copia solo los comandos, no el resultado esperado.
    - `Failed to connect` significa que la API no está en marcha en `:8787`.
 
-7. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas en verde; typecheck 0; chat válido → 503 `configuration_error`; con `history` → 400 `invalid_request`». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+7. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas en verde; typecheck 0; chat válido → 503 `configuration_error`; con `history` → 400 `invalid_request`». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.3 — Adaptador Groq en el servidor
 
@@ -471,7 +476,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 8. **Llamada real (opcional).** ⚠️ Repetir el `POST` con la API configurada hace una llamada real a Groq y consume tu cuota; hazlo solo si quieres comprobar la conectividad. Esperado: `HTTP/1.1 200` con `reply`, `"model":"openai/gpt-oss-20b"` y `usage`. La respuesta puede mencionar lugares: en D1 son ideas sin verificar, no un error. Anota estado, modelo y si llegó usage, **sin copiar la clave**, y regístralo aparte de las pruebas simuladas.
 
-9. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck y build 0; bundle sin `GROQ`; sin configuración: chat 503 `configuration_error`, health 200; llamada real: no realizada / 200 con usage». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+9. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck y build 0; bundle sin `GROQ`; sin configuración: chat 503 `configuration_error`, health 200; llamada real: no realizada / 200 con usage». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B2.4 — Conectar el envío desde la interfaz
 
@@ -562,7 +567,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - **Sin `api/.env`**, ves tu burbuja y la espera, y después **ninguna respuesta ni aviso**: la API responde `503` y el aviso de error llega en B3.1. Es el comportamiento esperado en esta ficha, no un fallo.
    - Las pruebas simuladas no sustituyen esta revisión: comprueban el comportamiento, no cómo se ve.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Si hiciste llamadas reales, anota cuántas y con qué modelo, aparte de las pruebas simuladas. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: estados correctos; Red: solo `message`; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Si hiciste llamadas reales, anota cuántas y con qué modelo, aparte de las pruebas simuladas. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: estados correctos; Red: solo `message`; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.1 — Error recuperable y cuota agotada
 
@@ -658,7 +663,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - Tras «Editar mensaje», tu burbuja desaparece **a propósito**: el texto vuelve al campo para que lo corrijas y lo envíes de nuevo.
    - La prueba de B2.4 que esperaba que el cliente lanzara un error cambia en esta ficha: no es una regresión.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: no reintentable, editar, reintentable y reintentar correctos; cuota: solo pruebas; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador 360 px y escritorio: no reintentable, editar, reintentable y reintentar correctos; cuota: solo pruebas; 1 llamada real, 200». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B3.2 — Usage y costo teórico
 
@@ -747,7 +752,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - Si apartaste `api/.env`, la respuesta falla y el consumo no cambia: es lo esperado.
    - El panel se reinicia con «Nuevo plan» hasta B6.2; por ahora, recargar la página lo limpia porque nada se guarda.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: panel completo con costo y acumulado tras 2 llamadas reales; parcial y ausente: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: panel completo con costo y acumulado tras 2 llamadas reales; parcial y ausente: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B4.1 — Comparar instrucciones de sistema
 
@@ -819,7 +824,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - Una respuesta convincente no verifica nada: los lugares que mencione siguen siendo ideas sin verificar.
    - Sin clave no hay comparación: marca la ficha como **bloqueada** y anota que falta la observación.
 
-8. Anota en la tabla de la sección 3 el estado, qué variante quedó y por qué. Ejemplo de evidencia: «2 variantes, 2 llamadas reales; tabla registrada; quedó B porque pregunta por el presupuesto antes de sugerir; pruebas y typecheck 0». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado, qué variante quedó y por qué. Ejemplo de evidencia: «2 variantes, 2 llamadas reales; tabla registrada; quedó B porque pregunta por el presupuesto antes de sugerir; pruebas y typecheck 0». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B5.1 — Completar las pruebas del contrato
 
@@ -901,7 +906,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    Ambos deben terminar con `$LASTEXITCODE` igual a `0`. En macOS/Linux usa `npm` en lugar de `npm.cmd`. Esta ficha no necesita revisión en el navegador.
 
-7. Anota en la tabla de la sección 3 el estado, el mapa resumido y la nota de lo que no demuestran. Ejemplo de evidencia: «8/8 comprobaciones con evidencia (health en un archivo nuevo; recorrido HTTP completo con `fetch` falso en `chat-http.test.ts`; 3 y 4 ya cubiertas); N/N pruebas; typecheck 0; no demuestran conectividad real». Lo que cuenta son las 8 comprobaciones con evidencia, no el número de pruebas nuevas. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+7. Anota en tu registro de avance el estado, el mapa resumido y la nota de lo que no demuestran. Ejemplo de evidencia: «8/8 comprobaciones con evidencia (health en un archivo nuevo; recorrido HTTP completo con `fetch` falso en `chat-http.test.ts`; 3 y 4 ya cubiertas); N/N pruebas; typecheck 0; no demuestran conectividad real». Lo que cuenta son las 8 comprobaciones con evidencia, no el número de pruebas nuevas. Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.1 — Ubicación con permiso o zona escrita
 
@@ -995,7 +1000,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - **Sin «Cancelar».** Mientras escribes una zona no puedes enviar mensajes hasta guardarla. Es lo esperado en D1.
    - **La respuesta tardía no se ve a mano** con facilidad: el navegador responde rápido. La cubren las pruebas; anótalo así.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: concedido, denegado (incógnito) y zona escrita; red: solo `message`; respuesta tardía: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: concedido, denegado (incógnito) y zona escrita; red: solo `message`; respuesta tardía: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.2 — Confirmar «Nuevo plan»
 
@@ -1089,19 +1094,19 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    - **La respuesta tardía casi no se puede provocar a mano:** sin clave, el error llega enseguida. La cubren las pruebas; anótalo así.
    - **El permiso del navegador no se reinicia:** si concediste la ubicación, la próxima vez «Usar mi ubicación» no vuelve a preguntar. Es lo esperado.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: sin mensajes, cancelar, Escape, foco en «Cancelar» y confirmar; respuestas tardías: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «N/N pruebas; typecheck 0; navegador: sin mensajes, cancelar, Escape, foco en «Cancelar» y confirmar; respuestas tardías: solo pruebas». Detente aquí: la siguiente ficha empieza con su propio prompt 1.
 
 ### D1·B6.3 — Cierre local
 
 **Datos de la ficha**
 
-- **Abre:** la tabla de la sección 3 y el [contrato API](../api-contract.md)
+- **Abre:** tu registro de avance y el [contrato API](../api-contract.md)
 - **Archivos:** ninguno. Esta ficha **no tiene `TODO` ni cambia código**: comprueba que todo lo anterior funciona junto.
 - **Quién hace qué:** el agente ejecuta las comprobaciones automáticas e informa; tú haces el arranque, el recorrido en el navegador y, si quieres, una llamada real.
 
 **Paso a paso**
 
-1. Revisa en la tabla de la sección 3 que todas las fichas anteriores estén cerradas. Si alguna está **bloqueada** o **pendiente**, ciérrala antes o anota aquí por qué sigue abierta.
+1. Revisa en tu registro de avance que todas las fichas anteriores estén cerradas. Si alguna está **bloqueada** o **pendiente**, ciérrala antes o anota aquí por qué sigue abierta.
 2. Copia en OpenCode el **prompt 1 (alcance)**. El agente explica y no edita.
 
    ```text
@@ -1163,10 +1168,10 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    **Lo que puede confundirte:**
 
    - **La cuota agotada (429) y las respuestas tardías** no se provocan a mano: las cubren las pruebas. Anótalo así.
-   - **La llamada real es opcional.** Si la haces, anótala en el registro de llamadas reales de la sección 3. Si no, la ficha se puede cerrar con las comprobaciones simuladas y el recorrido sin clave.
+   - **La llamada real es opcional.** Si la haces, anótala en la tabla de llamadas reales de tu registro de avance. Si no, la ficha se puede cerrar con las comprobaciones simuladas y el recorrido sin clave.
    - **Lo que no demuestra este cierre:** la conectividad real con Groq (salvo que hagas la llamada opcional), la validez de una clave ni la calidad o veracidad de las respuestas de Pachi.
 
-8. Anota en la tabla de la sección 3 el estado y lo que observaste. Ejemplo de evidencia: «test, typecheck y build 0; sin `TODO(D1·` ni secretos en el bundle; recorrido sin clave a 360 px y escritorio; llamada real: 1, registrada (u omitida)». Con esta ficha termina el Día 1.
+8. Anota en tu registro de avance el estado y lo que observaste. Ejemplo de evidencia: «test, typecheck y build 0; sin `TODO(D1·` ni secretos en el bundle; recorrido sin clave a 360 px y escritorio; llamada real: 1, registrada (u omitida)». Con esta ficha termina el Día 1.
 
 ## 6. Modelo, consumo y cuotas
 

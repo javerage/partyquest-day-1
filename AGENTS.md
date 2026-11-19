@@ -7,7 +7,7 @@ Trabaja únicamente en el incremento D1 autorizado por la persona estudiante. El
 - Lee la fila completa del incremento activo, sus prerrequisitos y los contratos públicos vinculados.
 - Antes de editar, explica resultado observable, criterios, rutas candidatas y plan de verificación; espera autorización explícita para ese ID.
 - Implementa solo ese incremento. Si falta una decisión, detente y pregunta; no inventes el comportamiento ni cambies el contrato.
-- Conserva cambios ajenos. No marques el roadmap por la persona estudiante ni empieces el siguiente ID.
+- Conserva cambios ajenos. No marques el roadmap por la persona estudiante ni empieces el siguiente ID. No edites `notes/`: es su registro personal de avance.
 - Para cambios de comportamiento con pruebas deterministas, observa RED antes de GREEN. Prueba interfaces públicas y usa proveedores falsos; no uses claves reales.
 
 ## Arquitectura, UI y secretos
