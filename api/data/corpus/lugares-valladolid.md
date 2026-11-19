@@ -4,7 +4,7 @@ Texto legible que el asistente usa para responder preguntas abiertas sobre lugar
 
 ## Cómo se usa
 
-- Cada `###` es un fragmento recuperable. El índice se construye fragmentando por lugar según el [contrato B3](../specs/day-2/index-contract.md), aún no implementado; las secciones introductorias no se indexan.
+- Cada `###` es un fragmento recuperable. El índice se construye fragmentando por lugar según el [contrato B3](../../../docs/day-2/index-contract.md), aún no implementado; las secciones introductorias no se indexan.
 - El filtrado por zona, categoría y gasto estimado vive en el catálogo JSON, no aquí.
 - Cada fragmento cierra con una línea `Horario:` que declara el estado de su horario. La línea va dentro del fragmento a propósito: si el horario no está confirmado, el asistente debe recuperar esa advertencia junto con la descripción. El dato estructurado vive en [`../places.json`](../places.json), campo `openingHours`; esta línea lo refleja y no lo sustituye.
 - Este corpus es la fuente de verdad de las descripciones: si una respuesta no se apoya en un fragmento de este archivo, el asistente debe decir que no tiene el dato. El horario es la excepción y su fuente de verdad es el catálogo.
@@ -61,7 +61,7 @@ Un horario confirmado tampoco es disponibilidad en vivo: no cubre días festivos
 
 ## Procedencia
 
-Borrador inicial preparado el 2026-10-23 a partir de Wikipedia, Wikivoyage, vivevalladolid.mx, casaxuunan.com, valladolid.mx y Restaurant Guru. Las fuentes discrepan en precios y horarios incluso con un año de diferencia; por ese motivo los precios no se afirman como exactos y todos los horarios se declaran sin confirmar hasta que el instructor los verifique. El responsable del taller contrastó nombres y ubicaciones en Google Maps el 2026-10-24. Esta edición separa Xkeken y Samulá e incorpora 50 lugares curados y tres candidatos de pizzería hallados en fuentes públicas; estos últimos siguen pendientes de confirmación manual del instructor en Maps. El registro de decisiones está en [`validacion-google-maps.md`](validacion-google-maps.md).
+Borrador inicial preparado el 2026-10-23 a partir de Wikipedia, Wikivoyage, vivevalladolid.mx, casaxuunan.com, valladolid.mx y Restaurant Guru. Las fuentes discrepan en precios y horarios incluso con un año de diferencia; por ese motivo los precios no se afirman como exactos y todos los horarios se declaran sin confirmar hasta que el instructor los verifique. El responsable del taller contrastó nombres y ubicaciones en Google Maps el 2026-10-24. Esta edición separa Xkeken y Samulá e incorpora 50 lugares curados y tres candidatos de pizzería hallados en fuentes públicas; estos últimos siguen pendientes de confirmación manual del instructor en Maps. El registro de decisiones se conserva en el material del curso.
 
 ---
 
