@@ -4,6 +4,8 @@
 
 La pantalla y la estructura inicial del proyecto ya están preparadas para que puedas concentrarte en los ejercicios. Tú conectarás el chat, aprenderás a manejar sus respuestas y comprobarás su funcionamiento, paso a paso junto con el instructor.
 
+**Día 2: material preparado para ensayo por bloques.** Si ya terminaste D1, continúa con tu aplicación resuelta en [Entrada al Día 2](docs/day-2/roadmap.md). Si empiezas desde cero, sigue la preparación de abajo.
+
 ## Empieza aquí
 
 **Completa la preparación del equipo antes de empezar el proyecto, aunque ya hayas clonado el repositorio.** Sigue este orden. Si una herramienta ya está instalada, comprueba su funcionamiento; no la reinstales.

@@ -1,0 +1,21 @@
+{
+  "id": "replace-with-kebab-case-id",
+  "name": "replace-with-exact-place-name",
+  "category": null,
+  "zone": null,
+  "locationScope": null,
+  "coordinates": null,
+  "openingHours": {
+    "status": "unconfirmed",
+    "source": null,
+    "observedOn": null,
+    "weekly": null
+  },
+  "accessCost": { "status": "unknown", "amountMXN": null },
+  "foodService": {
+    "status": "unknown",
+    "foodTypes": null,
+    "estimatedSpendPerPersonMXN": null
+  },
+  "contact": { "email": null, "phone": null, "website": null, "address": null }
+}

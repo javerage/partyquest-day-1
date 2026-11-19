@@ -1,0 +1,1716 @@
+{
+  "schemaVersion": 6,
+  "places": [
+    {
+      "id": "parque-francisco-canton-rosado",
+      "name": "Parque Francisco Cantón Rosado",
+      "category": "public-space",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.690195944009805, "longitude": -88.20172266199543, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yt"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": null }
+    },
+    {
+      "id": "iglesia-de-san-servacio",
+      "name": "Iglesia de San Servacio",
+      "category": "religious-site",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689466680928422, "longitude": -88.20196124402652, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8ym"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Facebook (página de la iglesia)",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "13:00" }, { "opens": "17:00", "closes": "20:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "13:00" }, { "opens": "17:00", "closes": "20:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "13:00" }, { "opens": "17:00", "closes": "20:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "13:00" }, { "opens": "17:00", "closes": "20:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "05:00", "closes": "13:00" }, { "opens": "17:00", "closes": "20:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "13:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "13:00" }, { "opens": "17:00", "closes": "21:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858563116", "website": null, "address": "C. 41, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "mercado-municipal-donato-bates-herrera",
+      "name": "Mercado Municipal Donato Bates Herrera",
+      "category": "market",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.69245737071094, "longitude": -88.19536986199529, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m9nf"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "06:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529851130502", "website": null, "address": "C. 32 182-197, Sta Ana, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "casa-de-los-venados",
+      "name": "Casa de los Venados",
+      "category": "museum",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689216006835434, "longitude": -88.20094428309083, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yq"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "10:00", "closes": "16:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 100 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": "javenator1@gmail.com", "phone": "+529858562289", "website": "https://www.casadelosvenados.com", "address": "C. 40 Local 204-X 41, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "museo-de-san-roque",
+      "name": "Museo de San Roque",
+      "category": "museum",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689636826325202, "longitude": -88.19958303889602, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yr"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "20:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "20:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "20:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "20:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858562529", "website": null, "address": "Valladolid - Cancun, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "el-meson-del-marques",
+      "name": "El Mesón del Marqués",
+      "category": "restaurant",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.690856536619812, "longitude": -88.20157401897042, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yt"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["mexican", "yucatecan"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 400,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": null, "phone": "+529858562073", "website": "http://www.mesondelmarques.com/", "address": "203 X40, Calle 39 203 X40 Y 42, C. 39 Y 42, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "el-atrio-del-mayab",
+      "name": "El Atrio del Mayab",
+      "category": "restaurant",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689557544976367, "longitude": -88.20157816888403, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8ym"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:30", "closes": "23:30" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["yucatecan", "vegetarian", "breakfast"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 500,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": "elatriodelmayab@hotmail.com", "phone": "+529858562394", "website": "https://www.elatriodelmayab.com/", "address": "C. 41 204, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "la-palapita-de-los-tamales",
+      "name": "La Palapita de los Tamales",
+      "category": "restaurant",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.694170544269898, "longitude": -88.20280526199521, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8zk"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Facebook (página oficial del restaurante)",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "22:30" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["mexican", "yucatecan", "tamales"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": null, "phone": "+529858561701", "website": null, "address": "C. 42 Manzana nuero 181 x 33 y 35, Candelaria, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "el-tigrillo",
+      "name": "El Tigrillo",
+      "category": "food-stall",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.6895612377485, "longitude": -88.20343173080451, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yk"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["tacos", "tortas"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 50,
+          "max": 100,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": null, "phone": "+529851070399", "website": null, "address": "C. 41 212, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "idilio-folklore-cervecero",
+      "name": "Idilio Folklore Cervecero",
+      "category": "restaurant-bar",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.68718008922072, "longitude": -88.20870237028359, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8vb"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "thursday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "friday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "saturday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] },
+          { "day": "sunday", "intervals": [{ "opens": "17:00", "closes": "23:15" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pasta", "tacos", "burgers", "botanas"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 250,
+          "max": 450,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": null, "phone": "+529851105404", "website": null, "address": "Calle, Calz. de Los Frailes 230a, Sisal, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "la-joyita-cantina",
+      "name": "La Joyita Cantina",
+      "category": "cantina",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689476498714512, "longitude": -88.19945031564878, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yr"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["botanas"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 100,
+          "max": 200,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": null, "phone": "+529992642040", "website": null, "address": "C. 41 193B, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "st-patricks-irish-pub",
+      "name": "St. Patrick's Irish Pub",
+      "category": "pub",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.687867468904646, "longitude": -88.2022270151777, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yj"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "01:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "01:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pizza", "burgers"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": "stpatricksvalladolid@gmail.com", "phone": "+529851258088", "website": null, "address": "C. 42 205F, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "muluk-coffee-bar",
+      "name": "Muluk Coffee & Bar",
+      "category": "cafe-bar",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.687901500506147, "longitude": -88.19916333394767, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yp"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["breakfast", "pasta"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 500,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": "tunichnaj@gmail.com", "phone": "+529851051071", "website": null, "address": "C. 38 N 202 x, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "cantina-y-terraza-bar-tenampa",
+      "name": "Cantina y Terraza Bar Tenampa",
+      "category": "cantina",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689645535006743, "longitude": -88.20682546322168, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8y3"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["botanas", "yucatecan"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 100,
+          "max": 200,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": "cantinayterrazabartenampa@gmail.com", "phone": "+529858589193", "website": null, "address": "C. 41 230A, entre 48 y 50, Sisal, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "calzada-de-los-frailes",
+      "name": "Calzada de los Frailes",
+      "category": "street",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.688110669125837, "longitude": -88.20724878601439, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8y1"},
+      "openingHours": { "status": "no-schedule", "source": null, "observedOn": null, "weekly": null },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": "97784 Valladolid, Yuc." }
+    },
+    {
+      "id": "conato-1910",
+      "name": "Conato 1910",
+      "category": "restaurant",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.68631549892699, "longitude": -88.20066830432522, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8vy"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [] },
+          { "day": "wednesday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "13:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["yucatecan"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 500,
+          "max": 600,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": { "email": "hola@conato.mx", "phone": "+529851115533", "website": "https://conatomx.wordpress.com/", "address": "40, x 45 y 47, San Juan, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "coqui-coqui",
+      "name": "La Perfumería - Coqui Coqui Valladolid",
+      "category": "perfume-shop",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.688252465732052, "longitude": -88.2070797659977, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8y1"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "20:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529851029000", "website": "https://www.coquicoqui.com/", "address": "Calz. de Los Frailes 207, Sisal, 97784 Valladolid, Yuc." }
+    },
+    {
+      "id": "convento-de-san-bernardino-de-siena",
+      "name": "Convento de San Bernardino de Siena",
+      "category": "convent",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.685964021029452, "longitude": -88.21002176215116, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8tz"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 40 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858562160", "website": "https://vivevalladolid.mx/convento-de-san-bernardino-de-siena/", "address": "C. 50 210B, Sisal, 97784 Valladolid, Yuc." }
+    },
+    {
+      "id": "parque-de-sisal",
+      "name": "Sisal k'íiwik",
+      "category": "park",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.685982972099826, "longitude": -88.21081182209036, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8ty"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": "https://blog.valladolid.mx/mejor-recuerdo-de-valladolid/", "address": "97784 Valladolid, Yuc." }
+    },
+    {
+      "id": "yerbabuena-del-sisal",
+      "name": "Yerbabuena del Sisal",
+      "category": "restaurant",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.68556485771223, "longitude": -88.21122669409098, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8tw"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "16:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["vegetarian", "yucatecan", "breakfast"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 250,
+          "max": 350,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Yerbabuena del Sisal (sitio oficial)",
+          "observedOn": "2026-10-25"
+        }
+      },
+      "contact": { "email": "yerbabuenadelsisal@gmail.com", "phone": "+529851216742", "website": "https://www.yerbabuenadelsisal.com/", "address": "C. 54a 217, Sisal, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "parque-de-santa-lucia",
+      "name": "Parque de Santa Lucía",
+      "category": "park",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.69913564406344, "longitude": -88.20278722032808, "source": "Google Maps", "observedOn": "2026-11-05" , "geohash": "d59mbbh"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": "C. 29 143, Sta Lucía, 97782 Valladolid, Yuc." }
+    },
+    {
+      "id": "parque-de-santa-ana",
+      "name": "Parque Niños Heroes de Chapultepec",
+      "category": "park",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.68983652627212, "longitude": -88.19720080432543, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m9n2"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": "C. 41 186, Sta Ana, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "parque-de-candelaria",
+      "name": "Parque de Candelaria",
+      "category": "park",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.693257564704634, "longitude": -88.20358923232435, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8zh"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "00:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "free", "amountMXN": 0 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": null }
+    },
+    {
+      "id": "casa-italia",
+      "name": "Casa Italia Pizzeria Gourmet",
+      "category": "restaurant",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.69289312629522, "longitude": -88.20387814542963, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8z5"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [] },
+          { "day": "wednesday", "intervals": [] },
+          { "day": "thursday", "intervals": [{ "opens": "14:00", "closes": "20:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "14:00", "closes": "20:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "14:00", "closes": "20:30" }] },
+          { "day": "sunday", "intervals": [] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["italian", "pizza", "pasta"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 500,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-25"
+        }
+      },
+      "contact": { "email": null, "phone": "+529851070165", "website": "https://www.casaitaliamx.com/", "address": "C. 44 174, Candelaria, 97782 Valladolid, Yuc." }
+    },
+    {
+      "id": "cinemex-valladolid",
+      "name": "Cinemex Valladolid",
+      "category": "cinema",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.70195543364833, "longitude": -88.20051884433445, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59mbbw"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "11:00", "closes": "23:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "11:00", "closes": "23:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": null },
+      "foodService": { "status": "unknown", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": "Módulo de ventas izzi Plaza Bella, C. 42 Col, Sta Lucía, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "condesa-cocina-bar",
+      "name": "Condesa Cocina Bar",
+      "category": "restaurant-bar",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.689236438516133, "longitude": -88.20112417647206, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8ym"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "23:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pizza"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 250,
+          "max": 350,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-25"
+        }
+      },
+      "contact": { "email": "gerencia@condesacocinabar.com", "phone": null, "website": null, "address": "Calle 40 #201E entre 41 y 43, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "bar-el-yuktko",
+      "name": "Bar El Yukt’ko",
+      "category": "bar",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": { "status": "confirmed", "latitude": 20.691822353584772, "longitude": -88.20502467487758, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59m8yg"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-25",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "12:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["botanas"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-25"
+        }
+      },
+      "contact": { "email": null, "phone": null, "website": null, "address": "C. 46 236A, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "blondies-snack-coffee",
+      "name": "Blondie’s Snack & Coffee",
+      "category": "cafe",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.695323431487868,
+        "longitude": -88.20412872082863,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8z7"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "15:30", "closes": "23:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "15:00", "closes": "23:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "15:00", "closes": "23:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "15:00", "closes": "23:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "15:00", "closes": "23:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "15:00", "closes": "23:00" }] },
+          { "day": "sunday", "intervals": [] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pasta"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 150,
+          "max": 250,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": { "email": "blondiescoffe@hotmail.com", "phone": null, "website": null, "address": "Candelaria, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "los-frappes",
+      "name": "Los Frappés",
+      "category": "restaurant-bar",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.686610799314423,
+        "longitude": -88.21076888090812,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8ty"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:30", "closes": "02:30" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["burgers", "tacos", "empanadas"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 250,
+          "max": 400,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": { "email": null, "phone": null, "website": null, "address": "C. 54a 211, Sisal, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "cafe-bar-restaurant-mexico-magico",
+      "name": "Café-Bar Restaurant México Mágico",
+      "category": "cafe-bar",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.690375409287075,
+        "longitude": -88.20239940061724,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8ys"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:30", "closes": "21:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:30", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["breakfast", "regional-food"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 150,
+          "max": 250,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": { "email": null, "phone": null, "website": null, "address": "México 295 195-199, Centro, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "cafe-copalli",
+      "name": "Café Copalli",
+      "category": "cafe",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.698446171895608,
+        "longitude": -88.14184763316025,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59mf21"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] },
+          { "day": "wednesday", "intervals": [] },
+          { "day": "thursday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "18:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["breakfast", "tacos", "pasta"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": { "email": null, "phone": "+529851071624", "website": null, "address": "97793 Tesoco, Yucatán" }
+    },
+    {
+      "id": "rua-cafe",
+      "name": "Rúa Café",
+      "category": "cafe",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.687123935972433,
+        "longitude": -88.20239635290523,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8vu"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-10-24",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] },
+          { "day": "tuesday", "intervals": [] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "14:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["breakfast"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-10-24"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529851147664",
+        "website": "http://www.laruacafe.com/",
+        "address": "C. 45 208 a, San Juan, 97782 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "absenta-pub",
+      "name": "Absenta Pub",
+      "category": "pub",
+      "zone": "northern-neighborhoods",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.697541726009117,
+        "longitude": -88.21357860866966,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8xu"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "17:45", "closes": "02:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["nachos", "burgers", "pasta", "pizza"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 250,
+          "max": 400,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529858560763",
+        "website": null,
+        "address": "C. 56-B # 134, Flamboyanes, 97780 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "la-mula",
+      "name": "La Mula",
+      "category": "restaurant-bar",
+      "zone": "calzada-sisal",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.687595668379895,
+        "longitude": -88.20793488082906,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8y0"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "16:00", "closes": "00:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "16:00", "closes": "00:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "16:00", "closes": "00:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "16:00", "closes": "02:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "16:00", "closes": "02:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "13:00", "closes": "02:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "13:00", "closes": "00:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["snacks"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 600,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529851360454",
+        "website": null,
+        "address": "Calz. de Los Frailes d222, Sisal, 97784 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "vallazoo",
+      "name": "Vallazoo",
+      "category": "zoo",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.724973483007908,
+        "longitude": -88.20761867949012,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59mbuc"
+        },
+      "openingHours": { "status": "unconfirmed", "source": null, "observedOn": null, "weekly": null },
+      "accessCost": { "status": "paid", "amountMXN": 150 },
+      "foodService": { "status": "available", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": {
+        "email": "contacto@vallazoo.org",
+        "phone": "+529851097985",
+        "website": "https://www.vallazoo.mx/",
+        "address": "Libramiento Norte Km. 7 +300 Rancho Blancaflor, 97780 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "pizzeria-dalipizzas",
+      "name": "Pizzería Dalipizzas",
+      "category": "pizzeria",
+      "zone": "valladolid-unspecified",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.681981934328682,
+        "longitude": -88.18732385269277,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m9jp"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [] },
+          { "day": "tuesday", "intervals": [{ "opens": "17:00", "closes": "23:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "17:00", "closes": "23:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "17:00", "closes": "23:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "17:00", "closes": "23:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "14:00", "closes": "23:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pizza"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 200,
+          "max": 300,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529851470019",
+        "website": null,
+        "address": "C. 47A, San Francisco, 97783 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "san-giovanni-trattoria",
+      "name": "San Giovanni Trattoria",
+      "category": "restaurant",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.686501169533607,
+        "longitude": -88.20090689083052,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m8vy"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "13:30", "closes": "23:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": { "status": "available", "foodTypes": ["italian", "pizza", "pasta"], "estimatedSpendPerPersonMXN": null },
+      "contact": {
+        "email": null,
+        "phone": "+529851242727",
+        "website": "https://sangiovannitrattoria.com/",
+        "address": "Calle 40 entre 45 y 47 #217, C. 40 217A, San Juan, 97783 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "portofino-la-especial",
+      "name": "Restaurante y Pizzería Portofino La Especial",
+      "category": "pizzeria",
+      "zone": "valladolid-unspecified",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.67830428220008,
+        "longitude": -88.19663693316075,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m9h3"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "15:00", "closes": "22:00" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["pizza"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 500,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529851118935",
+        "website": null,
+        "address": "C. 57 192, San Antonio, 97783 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "cenote-zaci",
+      "name": "Cenote Zací",
+      "category": "cenote",
+      "zone": "historic-center",
+      "locationScope": "city",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.691632404259202,
+        "longitude": -88.19734942359686,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59m9nb"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 150 },
+      "foodService": { "status": "not-applicable", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": {
+        "email": "Cenotezaci.admon@outlook.com",
+        "phone": "+529858560721",
+        "website": null,
+        "address": "Sta Ana, 97780 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "cenote-suytun",
+      "name": "Cenote Suytun",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": {
+        "status": "confirmed",
+        "latitude": 20.698862208276985,
+        "longitude": -88.12456390432524,
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+          "geohash": "d59mf8j"
+        },
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": {
+        "status": "available",
+        "foodTypes": ["regional-food"],
+        "estimatedSpendPerPersonMXN": {
+          "min": 300,
+          "max": 500,
+          "currency": "MXN",
+          "basis": "reported-average",
+          "source": "Google Maps",
+          "observedOn": "2026-11-01"
+        }
+      },
+      "contact": {
+        "email": null,
+        "phone": "+529992275696",
+        "website": "http://cenotessuytun.com/",
+        "address": "Carretera Ticuch Km 8 S/n, 97780 Valladolid, Yuc."
+      }
+    },
+    {
+      "id": "cenote-oxman",
+      "name": "Hacienda Cenote Oxmán",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.667475724903692, "longitude": -88.23015472376866, "source": "Google Maps", "observedOn": "2026-11-01" , "geohash": "d59m862"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-01",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": { "min": 250, "max": 350, "currency": "MXN", "basis": "reported-average", "source": "Google Maps", "observedOn": "2026-11-02" } },
+      "contact": { "email": null, "phone": "+529851065066", "website": null, "address": "Periférico, 97780 Valladolid, Yuc." }
+    },
+    {
+      "id": "cenote-xkeken",
+      "name": "Cenote Xkeken",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.66082180327472, "longitude": -88.24266190432611, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59jxcp"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529852570460", "website": "https://parquexkeken.com/", "address": "97795 Valladolid, Yuc." }
+    },
+    {
+      "id": "cenote-samula",
+      "name": "Cenote Samulá",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.662420356122524, "longitude": -88.24478585548194, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59jxcq"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": null }
+    },
+    {
+      "id": "cenote-saamal",
+      "name": "Cenote Saamal",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.676406913021818, "longitude": -88.2426044165688, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59jxup"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": "Cenote Selva Maya, 97795 Valladolid, Yuc." }
+    },
+    {
+      "id": "cenote-hubiku",
+      "name": "Cenote Hubiku",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.818298680786793, "longitude": -88.17289177548761, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59q3tf"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["mexican"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529981956537", "website": null, "address": "Carretera, Valladolid - Tizimin Km 1.5, 97740 Temozón, Yuc." }
+    },
+    {
+      "id": "cenote-palomitas",
+      "name": "Cenote Palomitas",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.819576224209314, "longitude": -88.05587626199254, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59qknp"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 200 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": { "min": 250, "max": 350, "currency": "MXN", "basis": "reported-average", "source": "Google Maps", "observedOn": "2026-11-02" } },
+      "contact": { "email": null, "phone": "+529999905896", "website": null, "address": "97744 Yalcobá, Yuc." }
+    },
+    {
+      "id": "cenotes-agua-dulce-adventures",
+      "name": "Cenotes Agua Dulce Adventures",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.817029923872372, "longitude": -88.05419014665267, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59qkm8"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858562200", "website": null, "address": "km 3, Yaxcabá, Yuc." }
+    },
+    {
+      "id": "cenote-ik-kil",
+      "name": "Cenote Ik Kil",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.661003063749675, "longitude": -88.55042073151986, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59j8cp"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 180 },
+      "foodService": { "status": "available", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": "ikkilcenote@gmail.com", "phone": "+529993293654", "website": "https://cenoteikkil.com/", "address": "Carretera Mérida-Puerto Juárez, Km 120, 97751, Pisté, Yucatán." }
+    },
+    {
+      "id": "cenote-chichikan",
+      "name": "Cenote Chichikan",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.74550434491867, "longitude": -88.20942338564683, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59q08x"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Vive Valladolid",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "16:30" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": "admin@chichikan.com.mx", "phone": "+529999026005", "website": "https://www.chichikan.com.mx/", "address": "Km 7 carretera Valladolid – Chan Sacaba" }
+    },
+    {
+      "id": "cenote-noolha",
+      "name": "Cenote Noolha",
+      "category": "cenote",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.708265094671237, "longitude": -88.20643147315721, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59mbcf"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "thursday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "friday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "saturday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] },
+          { "day": "sunday", "intervals": [{ "opens": "09:00", "closes": "17:00" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 250 },
+      "foodService": { "status": "available", "foodTypes": ["regional-food"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858580102", "website": "https://www.chichikan.com.mx/", "address": "Tablaje catastral 1495-km1, 97784 Valladolid, Yuc." }
+    },
+    {
+      "id": "zona-arqueologica-chichen-itza",
+      "name": "Zona arqueológica de Chichén Itzá",
+      "category": "archaeological-site",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.684355244154688, "longitude": -88.56782784486903, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59j8t6"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 648 },
+      "foodService": { "status": "unknown", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529858510137", "website": "https://www.inah.gob.mx/zonas/146-zona-arqueologica-de-chichen-itza", "address": "97751 Yuc." }
+    },
+    {
+      "id": "zona-arqueologica-ek-balam",
+      "name": "Zona arqueológica de Ek Balam",
+      "category": "archaeological-site",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.89131061065771, "longitude": -88.13629352600756, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59qf7j"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "INAH (ficha de la zona)",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "08:00", "closes": "16:30" }] }
+        ]
+      },
+      "accessCost": { "status": "paid", "amountMXN": 242 },
+      "foodService": { "status": "unknown", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529999134034", "website": "https://culturyucatan.com/destinos/ek-balam", "address": "VVQ8+F4, 97743 Ekbalam, Yuc." }
+    },
+    {
+      "id": "uayma",
+      "name": "Uayma",
+      "category": "locality",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.716655867294595, "longitude": -88.31670597445785, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59jy73"},
+      "openingHours": { "status": "no-schedule", "source": null, "observedOn": null, "weekly": null },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": { "status": "unknown", "foodTypes": null, "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": null, "website": null, "address": null }
+    },
+    {
+      "id": "carnes-ahumadas-mozon-temozon",
+      "name": "Carnes Ahumadas “Mozon” — Temozón",
+      "category": "restaurant",
+      "zone": "surroundings",
+      "locationScope": "surroundings",
+      "coordinates": { "status": "confirmed", "latitude": 20.798469821417168, "longitude": -88.20134153315801, "source": "Google Maps", "observedOn": "2026-11-02" , "geohash": "d59q2fj"},
+      "openingHours": {
+        "status": "confirmed",
+        "source": "Google Maps",
+        "observedOn": "2026-11-02",
+        "weekly": [
+          { "day": "monday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "tuesday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "wednesday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "thursday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "friday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "saturday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] },
+          { "day": "sunday", "intervals": [{ "opens": "07:30", "closes": "19:30" }] }
+        ]
+      },
+      "accessCost": { "status": "not-applicable", "amountMXN": null },
+      "foodService": { "status": "available", "foodTypes": ["smoked-meat"], "estimatedSpendPerPersonMXN": null },
+      "contact": { "email": null, "phone": "+529851266508", "website": null, "address": "Valladolid - Tizimin 7824, Temozón, 97740 Temozón, Yuc." }
+    }
+  ]
+}
