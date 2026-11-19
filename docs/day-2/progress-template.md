@@ -5,7 +5,10 @@ Copia personal; no guardes claves, coordenadas ni conversaciones privadas. Regis
 | Ficha | Estado | Esperado y obtenido (comando/código o acción/observación) | Tiempo | Pendiente |
 |---|---|---|---|---|
 | Entrada D1 | Pendiente | | | |
-| B1 | Pendiente | | | |
+| D2·B1.1 Documento y validación | Pendiente | | | |
+| D2·B1.2 Persistencia y fallos | Pendiente | | | |
+| D2·B1.3 Contexto y Nuevo plan | Pendiente | | | |
+| D2·B1.4 Envío interrumpido e integración | Pendiente | | | |
 | B2 | Pendiente | | | |
 | B3 | Pendiente | | | |
 | B4 | Pendiente | | | |
