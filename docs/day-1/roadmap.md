@@ -855,15 +855,16 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    ```text
    Vamos a trabajar únicamente en D1·B5.1. Lee AGENTS.md, la ficha de D1·B5.1 en
-   docs/day-1/roadmap.md y las ocho comprobaciones de aceptación del contrato. Objetivo: Completar únicamente la cobertura determinista que deriva
-   del contrato y revisar las regresiones de lo ya construido. No agregues
-   capacidades. Enumera requisito por requisito la evidencia que falta antes de
-   editar. Todavía no edites ni ejecutes cambios. Explícame el resultado
-   observable, el concepto, los archivos que vas a tocar, las pruebas y
-   comprobaciones, y cualquier decisión que falte. Para cada decisión, cita el
-   archivo y la línea que la definen, y separa lo que ya fijan el contrato, los
-   TODO o las pruebas existentes de lo que propones tú. Si una prueba de una ficha
-   anterior ya fija un valor, úsalo. Espera mi autorización explícita.
+   docs/day-1/roadmap.md y las ocho comprobaciones de aceptación del contrato.
+   Objetivo: Completar únicamente la cobertura determinista que deriva del contrato
+   y revisar las regresiones de lo ya construido. No agregues capacidades. Enumera
+   requisito por requisito la evidencia que falta antes de editar. Todavía no
+   edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
+   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
+   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
+   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
+   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
+   mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha: solo archivos de pruebas en las carpetas `tests/` de `api/` y `frontend/`. Esta ficha no tiene `TODO`: la guía es la sección de comprobaciones de aceptación del contrato. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -894,14 +895,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    ```text
    Autorizo únicamente D1·B5.1 según el alcance que explicaste. Usa los archivos,
    nombres y textos que indican los TODO, la ficha, el contrato y las pruebas ya
-   escritas; no elijas otra estructura ni agregues dependencias. Agrega solo las pruebas que falten. Si pasan
-   al primer intento, repórtalo sin provocar un fallo. Si una prueba revela un
-   incumplimiento, conserva la prueba, informa el resultado esperado y el observado
-   y detente sin modificar producción. No resuelvas TODO de otros ID,
-   no cambies contratos y no hagas commits ni push. No hagas llamadas reales al
-   proveedor ni revisión en navegador: las hago yo después; repórtalas como
-   pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones no
-   ejecutadas. No marques el roadmap por mí y detente antes del siguiente
+   escritas; no elijas otra estructura ni agregues dependencias. Agrega solo las
+   pruebas que falten. Si pasan al primer intento, repórtalo sin provocar un fallo.
+   Si una prueba revela un incumplimiento, conserva la prueba, informa el resultado
+   esperado y el observado y detente sin modificar producción. No resuelvas TODO de
+   otros ID, no cambies contratos y no hagas commits ni push. No hagas llamadas
+   reales al proveedor ni revisión en navegador: las hago yo después; repórtalas
+   como pendientes. Informa archivos, comandos, resultados, fallos y comprobaciones
+   no ejecutadas. No marques el roadmap por mí y detente antes del siguiente
    incremento.
    ```
 
