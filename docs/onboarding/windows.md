@@ -57,6 +57,10 @@ Resultado esperado: una versión, no una solicitud de credenciales. El binario n
 
 Para el diagnóstico automático, `opencode` debe estar disponible en el PATH. Si usas solo la ruta completa, registra esa limitación: el diagnóstico reportará la herramienta como ausente.
 
+### Opcional: usar Gemini en la terminal de OpenCode
+
+Si quieres usar Gemini como asistente en OpenCode, consulta la [guía paso a paso en Markdown](opencode-gemini-windows.md) o abre la [guía ilustrada en HTML](opencode-gemini-windows.html) en tu navegador desde la copia descargada del repositorio. El plugin no es oficial: revisa la advertencia antes de autorizar tu cuenta de Google. Este paso no es necesario para el taller ni cambia el proveedor de PartyQuest.
+
 ## 4. Continuar la preparación del equipo
 
 Cuando `node --version`, `npm.cmd --version` y `opencode --version` funcionen en una terminal nueva, continúa con **Go y Gentle AI**, pasos 4 y 5 de la [preparación del equipo](README.md#1-preparar-las-herramientas-en-este-orden). Todavía no abras los ejercicios ni pidas cambios al agente.

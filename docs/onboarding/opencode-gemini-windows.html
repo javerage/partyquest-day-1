@@ -1,0 +1,72 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Gemini en OpenCode · Guía para Windows</title><style>*{box-sizing:border-box}html{background:#f4f5ef;color:#162e37;font:17px/1.6 system-ui,sans-serif}main{max-width:52rem;margin:auto;padding:clamp(1rem,4vw,3rem);background:#fff}h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.07;max-width:21ch;margin:.4em 0}small,.lang{font-weight:700;letter-spacing:.08em;color:#17685f}h2{border-top:2px solid #abc8bf;padding-top:1rem;margin-top:2.4rem;line-height:1.25}aside,nav{padding:1rem;background:#fff2cf}nav{background:#edf5f3;margin-top:1rem}a{color:#075c66}code{overflow-wrap:anywhere}pre{background:#142d36;color:white;padding:1rem;overflow:auto;margin-top:0}pre code{overflow-wrap:normal}.lang{text-transform:uppercase;font-size:.78rem}figure{max-width:32rem;margin:1rem 0}svg{width:100%;display:block}figcaption{font-size:.84rem;color:#4b6165}dt{font-weight:700;margin-top:.9rem}dd{margin-left:0}@media print{main{max-width:none;padding:0}nav{display:none}pre{white-space:pre-wrap;color:black;background:white;border:1px solid}figure,pre{break-inside:avoid}}</style><main><header><small>MANUAL DE INSTALACIÓN &nbsp; / &nbsp; WINDOWS</small><h1>Cómo usar Gemini en OpenCode desde Windows</h1></header>
+<p>Esta guía explica cómo configurar <code>opencode-antigravity-auth</code> en OpenCode 2.x desde PowerShell e iniciar sesión con Google. No necesitas clonar el repositorio, compilar el plugin ni generar una API key. Los pasos se basan en el <a href="https://github.com/NoeFabris/opencode-antigravity-auth#setup">README del plugin</a>; no se han probado en un equipo Windows para esta guía.</p>
+<aside><strong>Antes de autorizar:</strong> el plugin no es oficial. Su mantenedor advierte que Google puede restringir cuentas que usen clientes de terceros. Si usas una cuenta de trabajo o de estudios, confirma que tu organización lo permite.</aside><nav aria-label="Índice"><a href="#s1">Requisitos</a> · <a href="#s2">Configuración</a> · <a href="#s3">Cuenta</a> · <a href="#s4">Prueba</a> · <a href="#s5">Uso rápido</a> · <a href="#s6">Problemas</a></nav>
+<h2 id="s1">1. Comprueba los requisitos</h2>
+<figure><svg viewBox="0 0 480 145" role="img" aria-label="Windows Terminal · PowerShell" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="145" rx="10" fill="#162e37"/><text x="20" y="29" fill="#89ddd2" font-size="16">Windows Terminal · PowerShell</text><path d="M0 42H480" stroke="#54747b"/><text x="20" y="69" font-family="monospace" font-size="16" fill="white">PS&gt; node --version</text><text x="20" y="98" font-family="monospace" font-size="16" fill="white">PS&gt; opencode --version</text></svg><figcaption>Ilustración orientativa; no es una captura de pantalla.</figcaption></figure>
+<p>Abre <strong>Windows Terminal → PowerShell</strong> y ejecuta:</p>
+<div class="lang">powershell</div><pre tabindex="0"><code>node --version
+opencode --version</code></pre>
+<p>Necesitas <strong>Node.js 20 o posterior</strong> y <strong>OpenCode 2.1.2 o posterior</strong> para seguir estos pasos. Si falta alguno, instala una <a href="https://nodejs.org/">versión LTS compatible de Node.js</a> o sigue las <a href="https://opencode.ai/docs/#install">instrucciones de instalación de la CLI de OpenCode</a>. Abre otra terminal y vuelve a comprobar las versiones. OpenCode 1.x tiene un flujo heredado con un menú distinto.</p>
+<h2 id="s2">2. Agrega el plugin sin perder tu configuración</h2>
+<figure><svg viewBox="0 0 480 145" role="img" aria-label="Ubicación en tu perfil de Windows" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="145" rx="10" fill="#162e37"/><text x="20" y="29" fill="#89ddd2" font-size="16">Ubicación en tu perfil de Windows</text><path d="M0 42H480" stroke="#54747b"/><text x="20" y="69" font-family="monospace" font-size="16" fill="white">%USERPROFILE%</text><text x="20" y="98" font-family="monospace" font-size="16" fill="white">  └─ .config / opencode</text><text x="20" y="127" font-family="monospace" font-size="16" fill="white">       └─ opencode.json</text></svg><figcaption>Ilustración orientativa; no es una captura de pantalla.</figcaption></figure>
+<h3>2.1. En PowerShell: pega y ejecuta el bloque completo</h3>
+<p>No necesitas crear un archivo <code>.ps1</code>. Copia desde <code>$dir =</code> hasta <code>notepad.exe $config</code>, pega el bloque directamente en PowerShell y presiona Enter. Si Windows Terminal te pregunta si quieres pegar varias líneas, esa advertencia se refiere a este bloque de comandos.</p>
+<pre tabindex="0"><code>$dir = Join-Path $HOME &#x27;.config\opencode&#x27;
+$config = Join-Path $dir &#x27;opencode.json&#x27;
+New-Item -ItemType Directory -Path $dir -Force | Out-Null
+
+if (Test-Path $config) {
+    Copy-Item $config &quot;$config.bak-$(Get-Date -Format yyyyMMdd-HHmmss)&quot;
+} else {
+    New-Item -ItemType File -Path $config | Out-Null
+}
+
+notepad.exe $config</code></pre>
+<p><strong>Resultado esperado:</strong> se abre <code>%USERPROFILE%\.config\opencode\opencode.json</code> en el Bloc de notas. Si el archivo ya existía, el bloque guarda una copia de respaldo en la misma carpeta antes de abrirlo.</p>
+<h3>2.2. En el Bloc de notas: edita la configuración</h3>
+<p><strong>Si el archivo está vacío</strong>, pega el siguiente JSON completo en el Bloc de notas, incluidas las llaves. No lo pegues en PowerShell.</p>
+<pre tabindex="0"><code>{
+  &quot;$schema&quot;: &quot;https://opencode.ai/config.json&quot;,
+  &quot;plugins&quot;: [&quot;opencode-antigravity-auth@2.1.2&quot;]
+}</code></pre>
+<p><strong>Si el archivo ya tiene contenido</strong>, no lo reemplaces. Si ya existe la lista <code>plugins</code>, agrega el nuevo nombre entre comillas, separado del anterior por una coma. No lo agregues dos veces. Este ejemplo muestra solo la lista: conserva los nombres reales y el resto de tu archivo.</p>
+<p>Antes (ejemplo):</p>
+<pre tabindex="0"><code>[&quot;mi-plugin-existente&quot;]</code></pre>
+<p>Después (ejemplo):</p>
+<pre tabindex="0"><code>[&quot;mi-plugin-existente&quot;, &quot;opencode-antigravity-auth@2.1.2&quot;]</code></pre>
+<p>Si todavía no existe <code>plugins</code>, agrega <code>&quot;plugins&quot;: [&quot;opencode-antigravity-auth@2.1.2&quot;]</code> como última propiedad antes de la llave de cierre. Si hay una propiedad anterior, añade una coma al final de esa propiedad para separarlas.</p>
+<h3>2.3. Guarda y vuelve a PowerShell</h3>
+<p>En el Bloc de notas, presiona <code>Ctrl+S</code> y cierra la ventana. <strong>No ejecutes <code>opencode.json</code>:</strong> OpenCode lo lee como configuración. Regresa a PowerShell y continúa con el inicio de sesión del paso 3.</p>
+<p>Si ejecutas OpenCode en <strong>WSL</strong>, edita <code>~/.config/opencode/opencode.json</code> dentro de esa distribución y ejecuta OpenCode allí. Los bloques de PowerShell de esta guía son para Windows nativo.</p>
+<h2 id="s3">3. Inicia sesión con Google</h2>
+<figure><svg viewBox="0 0 480 145" role="img" aria-label="Inicio de sesión · recorrido" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="145" rx="10" fill="#162e37"/><text x="20" y="29" fill="#89ddd2" font-size="16">Inicio de sesión · recorrido</text><path d="M0 42H480" stroke="#54747b"/><text x="20" y="69" font-family="monospace" font-size="16" fill="white">1  Terminal: Google OAuth (Antigravity)</text><text x="20" y="98" font-family="monospace" font-size="16" fill="white">2  Navegador: revisa y autoriza</text><text x="20" y="127" font-family="monospace" font-size="16" fill="white">3  Terminal: completa el inicio de sesión</text></svg><figcaption>Ilustración orientativa; no es una captura de pantalla.</figcaption></figure>
+<p>Cierra las sesiones interactivas de OpenCode que estuvieran abiertas. Desde PowerShell ejecuta:</p>
+<div class="lang">powershell</div><pre tabindex="0"><code>opencode auth login google</code></pre>
+<p>1. Selecciona <strong>Google OAuth (Antigravity)</strong>, no la opción de API key.</p>
+<p>2. Sigue las indicaciones de la terminal. En el navegador, revisa la cuenta y los permisos antes de aceptar.</p>
+<p>3. Regresa a la terminal para completar el flujo. El plugin puede reutilizar una cuenta ya registrada.</p>
+<p>El archivo <code>~/.config/opencode/antigravity-accounts.json</code> contiene <strong>credenciales</strong>. No lo compartas, no lo subas a Git y no pegues su contenido en solicitudes de soporte.</p>
+<h2 id="s4">4. Comprueba que Gemini responde</h2>
+
+<p>Lista los modelos disponibles para tu cuenta:</p>
+<div class="lang">powershell</div><pre tabindex="0"><code>opencode models | Select-String &#x27;antigravity-gemini&#x27;</code></pre>
+<p>Copia un ID completo de la salida, incluido <code>google/</code>. Ejecuta este bloque en PowerShell y pega el ID cuando se te solicite:</p>
+<div class="lang">powershell</div><pre tabindex="0"><code>$modelo = Read-Host &#x27;Pega el ID completo del modelo Gemini&#x27;
+opencode run --model=&quot;$modelo&quot; &#x27;Responde en español con una sola frase: ¿qué es una prueba unitaria?&#x27;</code></pre>
+<p>El README muestra <code>google/antigravity-gemini-3.8-flash-high</code> como ejemplo, pero la disponibilidad depende de tu cuenta y plan. <strong>Ver un modelo en la lista confirma que OpenCode lo detecta; recibir una respuesta confirma que puedes usarlo.</strong></p>
+<h2 id="s5">Guía rápida de uso</h2>
+
+<p>Los comandos con <code>$modelo</code> reutilizan la variable del paso 4 en la misma sesión de PowerShell.</p>
+<dl>
+<dt>Hacer una pregunta puntual</dt><dd>En PowerShell: <code>opencode run --model=&quot;$modelo&quot; &#x27;Explica la diferencia entre Git y GitHub.&#x27;</code></dd>
+<dt>Conversar sobre un proyecto</dt><dd>Abre PowerShell en la carpeta del proyecto y ejecuta <code>opencode --model=&quot;$modelo&quot;</code>. Prueba: «Explícame cómo está organizado este proyecto. No modifiques archivos».</dd>
+<dt>Elegir entre Flash y Pro</dt><dd>Si ambos aparecen en tu lista, prueba <strong>Flash</strong> para consultas breves y resúmenes; prueba <strong>Pro</strong> para comparar alternativas o analizar varias restricciones.</dd>
+<dt>Ver cuotas y tiempos de restablecimiento</dt><dd>Dentro de OpenCode, escribe <code>/ag</code> o <code>/antigravity</code> y selecciona <strong>Check quotas / verify enabled accounts</strong>.</dd>
+<dt>Actualizar el catálogo de modelos</dt><dd>Abre <code>/ag</code> dentro de OpenCode y selecciona la opción para actualizar la lista. El plugin guarda el catálogo en caché durante una hora.</dd>
+</dl>
+<h2 id="s6">Si algo no funciona</h2>
+
+<p><strong>No aparece Google OAuth (Antigravity):</strong> revisa <code>opencode --version</code>, la propiedad <code>plugins</code> y que hayas editado el archivo del entorno que usas (Windows o WSL). Cierra OpenCode y vuelve a ejecutar el inicio de sesión.</p>
+<p><strong>No aparece el Gemini del ejemplo:</strong> comprueba en <code>/ag</code> que la cuenta esté habilitada, actualiza el catálogo y usa un ID de tu propia lista.</p>
+<p><strong>Ya no aparecen los modelos de Google por API key:</strong> el plugin los oculta mientras está seleccionado OAuth de Antigravity. Vuelven al cambiar a una conexión por API key.</p>
+<p><strong>Referencias del mantenedor:</strong> <a href="https://github.com/NoeFabris/opencode-antigravity-auth#setup">Instalación y uso</a> · <a href="https://github.com/NoeFabris/opencode-antigravity-auth/blob/HEAD/docs/OPENCODE-V2.md">Migración a OpenCode 2</a> · <a href="https://github.com/NoeFabris/opencode-antigravity-auth/blob/HEAD/docs/TROUBLESHOOTING.md">Solución de problemas</a>.</p></main></html>
