@@ -124,6 +124,14 @@ dice que […]. Mantén el resto del alcance de la ficha.
 
 **La línea `Risk:` del informe.** El agente termina con `Risk: none` o `Risk: item N (motivo)`. Es su propia valoración de qué podría romperse sin que una prueba lo detecte. Léela como un aviso, no como una aprobación: la revisión del informe y las comprobaciones de la ficha siguen siendo tuyas. A veces el agente lanza por su cuenta una «verificación independiente» con otro agente; si no regresa, no bloquea la ficha. La evidencia son las pruebas, el typecheck y tu revisión.
 
+**Una ficha terminada ya no tiene `TODO`.** Cuando cierras una ficha, sus `TODO(D1·Bx.y)` desaparecen del código. Si el agente propone implementar una ficha cuyo `TODO` ya no existe, no lo autorices: probablemente pegaste el prompt de otra ficha. Puedes comprobarlo tú, desde la raíz (cambia el ID):
+
+```powershell
+Get-ChildItem -Recurse -Include *.ts,*.tsx api\src, frontend\src | Select-String -Pattern 'TODO\(D1.B2\.2\)'
+```
+
+En macOS/Linux: `grep -rn "TODO(D1·B2.2)" api/src frontend/src`. Si no imprime nada, esa ficha ya no tiene trabajo pendiente. B5.1 y B6.3 no tienen `TODO`: se reconocen por su registro de avance.
+
 **Una sesión nueva de OpenCode por ficha.** Si continúas en la misma sesión, el agente puede seguir razonando con versiones de archivos que ya cambiaron. Los **ajustes de la ficha en curso** sí van en la misma sesión: la sesión nueva es para la ficha siguiente.
 
 **Cómo pedir un ajuste.** Si al revisar el informe encuentras algo que corregir, describe el escenario **en pasos, en el orden en que ocurren**, no como una condición. «Si el campo está abierto y el navegador concede» admite dos lecturas; «1. Abro el campo. 2. Pulso «Usar mi ubicación». 3. El navegador concede» admite una sola. Usa esta plantilla:
@@ -192,7 +200,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 #### D1·B1.2 — Comprobar la base
 
-1. En la misma terminal y carpeta, ejecuta `npm.cmd run check:env`. Al terminar, consulta `$LASTEXITCODE`: debe ser `0`. El diagnóstico comprueba herramientas y archivos, no credenciales ni conectividad con Groq. Si informa `OpenCode: no disponible (requerido)`, OpenCode no quedó listo en la preparación del equipo: comprueba `opencode --version` en una terminal nueva y sigue [«Si algo falla» de la guía de Windows](../onboarding/windows.md#si-algo-falla). No continúes con B1.3 hasta que el diagnóstico termine en `0`. `Git (opcional)` no hace fallar el diagnóstico.
+1. En la misma terminal y carpeta, ejecuta `npm.cmd run check:env`. Al terminar, consulta `$LASTEXITCODE`: debe ser `0`. El diagnóstico comprueba herramientas y archivos, no credenciales ni conectividad con Groq. Si informa `OpenCode: no disponible (requerido)`, OpenCode no quedó listo en la preparación del equipo: comprueba `opencode --version` en una terminal nueva y sigue [«Si algo falla» de la guía de Windows](../onboarding/windows.md#si-algo-falla). Si informa `OpenCode: disponible, no se pudo consultar la versión`, ejecuta `opencode --version` en una terminal nueva: si imprime una versión, repite `check:env`; si no, consulta al instructor. No continúes con B1.3 hasta que el diagnóstico termine en `0`. `Git (opcional)` no hace fallar el diagnóstico.
 2. Ejecuta `npm.cmd run typecheck`. Debe terminar sin errores de TypeScript y con `$LASTEXITCODE` igual a `0`.
 3. Lee `AGENTS.md` y comprueba en el editor los criterios de configuración de la fila B1.2 de la sección 3. No necesitas una clave de Groq para comprobar la base. Registra el resultado.
 
@@ -265,7 +273,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B2.1) de los archivos que indica y sus
    lecturas. Objetivo: Especificar y probar solo el contrato del mensaje actual por
    la API pública, con un gateway falso. Propón las pruebas deterministas y sus
-   resultados observables. No implementes la ruta todavía. Todavía no edites ni
+   resultados observables. No implementes la ruta todavía. Si ya no queda ningún
+   TODO(D1·B2.1), dilo y detente sin proponer cambios. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
    Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
@@ -312,13 +321,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B2.2) de los archivos que indica y sus
    lecturas. Objetivo: Implementar solo la validación HTTP, el caso de uso y la
    ruta sobre el puerto del gateway ya definido. No conectes el proveedor real ni
-   la interfaz. Lo inválido se rechaza antes de llamar al gateway. Todavía no
-   edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
-   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
-   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
-   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
-   mi autorización explícita.
+   la interfaz. Lo inválido se rechaza antes de llamar al gateway. Si ya no queda
+   ningún TODO(D1·B2.2), dilo y detente sin proponer cambios. Todavía no edites ni
+   ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
+   que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
+   Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
+   ya fijan el contrato, los TODO o las pruebas existentes de lo que propones tú.
+   Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera mi
+   autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `parse-chat-request.ts`, `generate-reply.ts`, `chat-route.ts`, `api-error.ts`, `create-app.ts`, `generate-reply.test.ts`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -410,7 +420,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B2.3) de los archivos que indica y sus
    lecturas. Objetivo: Conectar el adaptador de Groq exclusivamente en el servidor,
    con `groq-sdk` ya instalado. Las pruebas usan un `fetch` falso y nunca llaman al
-   proveedor. Explica primero cómo se maneja la configuración ausente. Todavía no
+   proveedor. Explica primero cómo se maneja la configuración ausente. Si ya no
+   queda ningún TODO(D1·B2.3), dilo y detente sin proponer cambios. Todavía no
    edites ni ejecutes cambios. Explícame el resultado observable, el concepto, los
    archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
    falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
@@ -499,6 +510,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    lecturas. Objetivo: Conectar el formulario al endpoint y mostrar la respuesta
    con los componentes entregados. Se envía solo el mensaje actual: sin historial,
    ubicación ni clave. No agregues todavía errores, usage, ubicación ni reinicio.
+   Si ya no queda ningún TODO(D1·B2.4), dilo y detente sin proponer cambios.
    Todavía no edites ni ejecutes cambios. Explícame el resultado observable, el
    concepto, los archivos que vas a tocar, las pruebas y comprobaciones, y
    cualquier decisión que falte. Para cada decisión, cita el archivo y la línea que
@@ -589,12 +601,13 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B3.1) de los archivos que indica y sus
    lecturas. Objetivo: Representar solo los errores de red o contrato y la cuota
    agotada. Las pruebas usan respuestas falsas; no provoques errores reales de
-   cuota ni reintentes automáticamente. Todavía no edites ni ejecutes cambios.
-   Explícame el resultado observable, el concepto, los archivos que vas a tocar,
-   las pruebas y comprobaciones, y cualquier decisión que falte. Para cada
-   decisión, cita el archivo y la línea que la definen, y separa lo que ya fijan el
-   contrato, los TODO o las pruebas existentes de lo que propones tú. Si una prueba
-   de una ficha anterior ya fija un valor, úsalo. Espera mi autorización explícita.
+   cuota ni reintentes automáticamente. Si ya no queda ningún TODO(D1·B3.1), dilo y
+   detente sin proponer cambios. Todavía no edites ni ejecutes cambios. Explícame
+   el resultado observable, el concepto, los archivos que vas a tocar, las pruebas
+   y comprobaciones, y cualquier decisión que falte. Para cada decisión, cita el
+   archivo y la línea que la definen, y separa lo que ya fijan el contrato, los
+   TODO o las pruebas existentes de lo que propones tú. Si una prueba de una ficha
+   anterior ya fija un valor, úsalo. Espera mi autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `chat-client.ts`, `use-chat.ts`, `ChatPage.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
@@ -684,7 +697,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B3.2) de los archivos que indica y sus
    lecturas. Objetivo: Mostrar y acumular usage y costo según el contrato. Prueba
    usage completo, parcial y ausente. Una respuesta válida no se pierde si falta
-   usage y un campo desconocido no se convierte en cero. Todavía no edites ni
+   usage y un campo desconocido no se convierte en cero. Si ya no queda ningún
+   TODO(D1·B3.2), dilo y detente sin proponer cambios. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
    Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
@@ -772,7 +786,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    lecturas. Objetivo: Preparar una comparación controlada de instrucciones de
    sistema con el mismo mensaje de usuario. No modifiques el contrato ni presentes
    una salida convincente como verificación de hechos. Explica qué evidencia
-   registrar. Todavía no edites ni ejecutes cambios. Explícame el resultado
+   registrar. Si ya no queda ningún TODO(D1·B4.1), dilo y detente sin proponer
+   cambios. Todavía no edites ni ejecutes cambios. Explícame el resultado
    observable, el concepto, los archivos que vas a tocar, las pruebas y
    comprobaciones, y cualquier decisión que falte. Para cada decisión, cita el
    archivo y la línea que la definen, y separa lo que ya fijan el contrato, los
@@ -928,7 +943,8 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B6.1) de los archivos que indica y sus
    lecturas. Objetivo: Implementar ubicación con permiso o zona escrita, guardada
    solo en el navegador. No se envía al endpoint ni al prompt. Prueba permiso
-   concedido, denegado y no disponible con una API falsa. Todavía no edites ni
+   concedido, denegado y no disponible con una API falsa. Si ya no queda ningún
+   TODO(D1·B6.1), dilo y detente sin proponer cambios. Todavía no edites ni
    ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
    que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
    Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
@@ -1022,13 +1038,14 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
    docs/day-1/roadmap.md, los TODO(D1·B6.2) de los archivos que indica y sus
    lecturas. Objetivo: Implementar solo confirmar o cancelar «Nuevo plan».
    Confirmar limpia intercambios, ubicación o zona y usage de esta sesión; no
-   cambia permisos, cuota ni tema, y nada persiste al recargar. Todavía no edites
-   ni ejecutes cambios. Explícame el resultado observable, el concepto, los
-   archivos que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que
-   falte. Para cada decisión, cita el archivo y la línea que la definen, y separa
-   lo que ya fijan el contrato, los TODO o las pruebas existentes de lo que
-   propones tú. Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera
-   mi autorización explícita.
+   cambia permisos, cuota ni tema, y nada persiste al recargar. Si ya no queda
+   ningún TODO(D1·B6.2), dilo y detente sin proponer cambios. Todavía no edites ni
+   ejecutes cambios. Explícame el resultado observable, el concepto, los archivos
+   que vas a tocar, las pruebas y comprobaciones, y cualquier decisión que falte.
+   Para cada decisión, cita el archivo y la línea que la definen, y separa lo que
+   ya fijan el contrato, los TODO o las pruebas existentes de lo que propones tú.
+   Si una prueba de una ficha anterior ya fija un valor, úsalo. Espera mi
+   autorización explícita.
    ```
 
 3. Revisa la respuesta. Debe limitarse a esta ficha, con estos archivos: `ChatPage.tsx`, `use-chat.ts`, `chat-page.test.tsx`. Si menciona otro ID o archivos distintos, pídele que se ajuste a la ficha antes de autorizar.
