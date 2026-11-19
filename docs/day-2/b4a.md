@@ -69,9 +69,16 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    proveedores reales. No hagas commits ni push. Informa archivos, comandos,
    resultados y comprobaciones no ejecutadas, y detente antes de la siguiente
    ficha.
+
+   Si escribes una prueba para esta ficha, guarda la salida completa de la
+   corrida RED (sin head ni recortes) e informa los nombres literales de las
+   pruebas que fallan. Si escribes una prueba después de implementar,
+   repórtala como «RED no observado».
    ```
 
 5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; documentos ficticios; `version: 1` abre sin perder mensajes; ningún dato borrado; pruebas de B4 siguen en verde.
+   Si hubo RED, verifica los nombres y motivos literales, no deducidos; si no se conservó la salida completa, registra qué evidencia falta. Las pruebas escritas después de implementar se reportan como «RED no observado». Confirma que el agente no dejó worktrees, entradas de stash ni archivos temporales propios; no toques los de otras fichas.
+
 6. **Comprueba tú**, desde la raíz. Con la API en marcha (`npm.cmd run dev:api`), envía un historial con `shownPlaceIds` en un turno que no es `results`; es inválido y no llega a Groq:
 
    ```powershell
@@ -105,7 +112,7 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    - Los resultados guardados antes de esta ficha no tienen lista: una referencia a ellos pedirá aclaración. Es esperado.
    - Si vuelves a una versión anterior de tu interfaz, el documento `version: 2` se tratará como incompatible.
 
-7. Anota: «N/N pruebas; RED en `shownPlaceIds` de cuatro; v1 → v2 sin perder mensajes; 400 en turno no `results`». Detente aquí.
+7. Anota: «N/N pruebas; RED en `shownPlaceIds` de cuatro; v1 → v2 sin perder mensajes; 400 en turno no `results`». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.1 Lista mostrada y documento v2"`. Detente aquí.
 
 ---
 
@@ -161,9 +168,16 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    pruebas de B4. No llames a proveedores reales ni toques la interfaz. No
    hagas commits ni push. Informa archivos, comandos, resultados, contenido de
    las llamadas simuladas y comprobaciones no ejecutadas, y detente.
+
+   Si escribes una prueba para esta ficha, guarda la salida completa de la
+   corrida RED (sin head ni recortes) e informa los nombres literales de las
+   pruebas que fallan. Si escribes una prueba después de implementar,
+   repórtala como «RED no observado».
    ```
 
 5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; elegibles limitados a la lista; `place_reference` con su texto exacto y sin filtrar; 502 en cada forma inválida; el modelo recibe solo nombre e ID de la lista vigente; pruebas de B4 en verde.
+   Si hubo RED, verifica los nombres y motivos literales, no deducidos; si no se conservó la salida completa, registra qué evidencia falta. Las pruebas escritas después de implementar se reportan como «RED no observado». Confirma que el agente no dejó worktrees, entradas de stash ni archivos temporales propios; no toques los de otras fichas.
+
 6. **Comprueba tú**, desde la raíz:
 
    ```powershell
@@ -191,7 +205,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    - Las pruebas simuladas fijan qué devuelve el modelo; no muestran si el modelo real entiende bien «el segundo». Eso es D2·B4a.4.
    - El ID va en el historial porque el modelo lo necesita para indicar un `place`; nunca van precios ni distancias.
 
-7. Anota: «N/N pruebas; RED en ordinal por distancia y en ID inexistente; `place_reference` 200; `shown` con ID 502». Detente aquí.
+7. Anota: «N/N pruebas; RED en ordinal por distancia y en ID inexistente; `place_reference` 200; `shown` con ID 502». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.2 Referencia y resolución"`. Detente aquí.
 
 ---
 
@@ -249,9 +263,16 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    en verde. Conserva B4 y D2·B4a.2. No llames a proveedores reales ni toques
    la interfaz. No hagas commits ni push. Informa archivos, comandos,
    resultados y comprobaciones no ejecutadas, y detente.
+
+   Si escribes una prueba para esta ficha, guarda la salida completa de la
+   corrida RED (sin head ni recortes) e informa los nombres literales de las
+   pruebas que fallan. Si escribes una prueba después de implementar,
+   repórtala como «RED no observado».
    ```
 
 5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; textos exactos; «¿y los otros?» nunca repite lugares de la búsqueda en curso; el aviso no excluye lugares; regresión de B4 en verde.
+   Si hubo RED, verifica los nombres y motivos literales, no deducidos; si no se conservó la salida completa, registra qué evidencia falta. Las pruebas escritas después de implementar se reportan como «RED no observado». Confirma que el agente no dejó worktrees, entradas de stash ni archivos temporales propios; no toques los de otras fichas.
+
 6. **Comprueba tú**, desde la raíz:
 
    ```powershell
@@ -278,7 +299,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    - Con la regla de avance de página, «gracias» después de una lista muestra la página siguiente. Es un límite conocido del contrato.
    - La lista solo cubre la ventana de seis intercambios: una página más antigua puede volver a mostrarse.
 
-7. Anota: «N/N pruebas; RED en agotamiento y en aviso de dos lugares; regresión B4 en verde». Detente aquí.
+7. Anota: «N/N pruebas; RED en agotamiento y en aviso de dos lugares; regresión B4 en verde». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.3 Continuaciones y otras opciones"`. Detente aquí.
 
 ---
 
@@ -343,4 +364,4 @@ La interfaz no cambia: los seguimientos se ven en las burbujas existentes. Mensa
    - En la evaluación del taller, el modelo real no alcanzó el umbral: puede responder sobre un lugar que la persona no eligió. Si te pasa, es un hallazgo que se registra, no un error de tu código.
    - HTTP 200 no significa que Pachi entendió bien.
 
-7. Anota por pregunta lo esperado, lo obtenido y si pasa, o «No evaluado», y la revisión visual. Detente aquí. Siguiente bloque: [B5](b5.md).
+7. Anota por pregunta lo esperado, lo obtenido y si pasa, o «No evaluado», y la revisión visual. Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.4 Revisión y evaluación real"`. Detente aquí. Siguiente bloque: [B5](b5.md).

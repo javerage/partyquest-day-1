@@ -76,6 +76,22 @@ Comprueba el resultado listando `docs/day-2` en el proyecto (`Get-ChildItem docs
 4. Confirma que tienes `api/data/places.json`, `api/data/corpus/lugares-valladolid.md` y `.agents/skills/partyquest-place-contribution/`. El índice **no** forma parte de la entrada: lo construirás en B3.
 5. Crea tu registro personal una sola vez: copia [la plantilla de evidencia](progress-template.md) a `notes/day-2-progress.md`. En PowerShell: `New-Item -ItemType Directory -Force notes | Out-Null; Copy-Item docs\day-2\progress-template.md notes\day-2-progress.md`. En macOS/Linux: `mkdir -p notes && cp docs/day-2/progress-template.md notes/day-2-progress.md`. Si ya existe `notes/day-2-progress.md`, no lo sobrescribas: continúa usando tu copia. `notes/` nunca forma parte de la copia de archivos del Día 2.
 
+## Punto de partida
+
+Antes de empezar la primera ficha del Día 2, confirma tu identidad local de Git. Revisa `git config user.name` y `git config user.email`; si alguno está vacío, configúralo con tu nombre y correo elegidos (`git config user.name "Tu nombre"` y `git config user.email "tu-correo@example.com"`). Después comprueba que `.env` está ignorado: `git check-ignore .env` debe imprimir `.env`. Si no lo imprime, detente y pide ayuda; no hagas el commit.
+
+Sigue el checklist de abajo y guarda el estado de D1 con `git commit -m "D1 completo"` si hay cambios de D1 sin registrar. Si el estado ya está en un commit, anota su identificador. Si ya avanzaste en D2 sin commits, guarda el estado actual con un mensaje que describa lo que incluye; no lo etiquetes como D1 ni lo uses como base de fichas ya implementadas.
+
+### Guardar un punto de control
+
+Después de comprobar una ficha, guarda tú el resultado. Los comandos son los mismos en PowerShell y macOS/Linux; ejecútalos desde la raíz:
+
+1. Ejecuta `git status --short`. No prepares archivos `.env` reales, credenciales, notas privadas, índices generados ni cambios ajenos a la ficha. Si ves un secreto ya preparado o versionado, detente y pide ayuda.
+2. Usa `git add --` seguido de las rutas exactas que revisaste. Comprueba los archivos preparados con `git diff --cached --name-only` y revisa su contenido localmente antes de confirmar. No pegues el diff en el chat.
+3. Si solo están preparados los cambios esperados, ejecuta el `git commit -m` que indica la ficha y anota el resultado de `git rev-parse --short HEAD` en tu registro. Si la ficha fue solo una comprobación y no hay cambios que guardar, registra el commit actual; no crees un commit vacío.
+
+El commit queda en tu computadora y es el punto de partida para la siguiente ficha. No necesitas conectar un remoto ni hacer push. El agente no hace el commit por ti.
+
 ## Una ficha a la vez
 
 | Ficha | Señal que buscarás |

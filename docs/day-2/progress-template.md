@@ -1,8 +1,8 @@
 # Mi ensayo del Día 2
 
-Copia personal; no guardes claves, coordenadas ni conversaciones privadas. Registra el commit inicial, sistema operativo y modelo de OpenCode: ____. No marques una ficha por el número de pruebas.
+Copia personal; no guardes claves, coordenadas ni conversaciones privadas. Registra el commit inicial, sistema operativo y modelo de OpenCode: ____. Anota el commit local de cada ficha. No marques una ficha por el número de pruebas.
 
-| Ficha | Estado | Pruebas base → final, esperado y obtenido (comando/código o acción/observación) | Tiempo | Pendiente |
+| Ficha | Estado | Commit | Pruebas base → final, esperado y obtenido (comando/código o acción/observación) | Tiempo | Pendiente |
 |---|---|---|---|---|
 | Entrada D1 | Pendiente | | | |
 | D2·B1.1 Documento y validación | Pendiente | | | |
