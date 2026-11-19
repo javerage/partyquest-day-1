@@ -10,6 +10,8 @@
 
 Escribe y ejecuta las pruebas en cada ficha, con proveedores simulados: RED antes de GREEN. **Nunca uses tus conversaciones reales como datos de prueba**: los documentos guardados se prueban con documentos ficticios en almacenamiento aislado. Si aparece una decisión de migración no acordada, el agente se detiene; no se resuelve reiniciando ni sobrescribiendo. Las llamadas reales requieren tu autorización aparte; sin ella, registra «No evaluado».
 
+**Informe y RED.** En el informe separa las pruebas con RED observado, las que pasaron desde antes de implementar (sin RED) y las comprobaciones manuales o de navegador pendientes. Enumera cada prueba existente que cambió y el motivo específico de esta ficha. Las anotaciones de ejemplo al final de las fichas no predicen el resultado: conserva solo el RED que realmente observaste y registra por separado los casos sin RED.
+
 ---
 
 ## D2·B4a.1 — Lista mostrada y documento versión 2
