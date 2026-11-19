@@ -69,7 +69,7 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    ficha.
    ```
 
-5. **Revisa el informe del agente.** RED antes de GREEN; documentos ficticios; `version: 1` abre sin perder mensajes; ningún dato borrado; pruebas de B4 siguen en verde.
+5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; documentos ficticios; `version: 1` abre sin perder mensajes; ningún dato borrado; pruebas de B4 siguen en verde.
 6. **Comprueba tú**, desde la raíz. Con la API en marcha (`npm.cmd run dev:api`), envía un historial con `shownPlaceIds` en un turno que no es `results`; es inválido y no llega a Groq:
 
    ```powershell
@@ -161,7 +161,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    las llamadas simuladas y comprobaciones no ejecutadas, y detente.
    ```
 
-5. **Revisa el informe del agente.** RED antes de GREEN; elegibles limitados a la lista; `place_reference` con su texto exacto y sin filtrar; 502 en cada forma inválida; el modelo recibe solo nombre e ID de la lista vigente; pruebas de B4 en verde.
+5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; elegibles limitados a la lista; `place_reference` con su texto exacto y sin filtrar; 502 en cada forma inválida; el modelo recibe solo nombre e ID de la lista vigente; pruebas de B4 en verde.
 6. **Comprueba tú**, desde la raíz:
 
    ```powershell
@@ -249,7 +249,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    resultados y comprobaciones no ejecutadas, y detente.
    ```
 
-5. **Revisa el informe del agente.** RED antes de GREEN; textos exactos; «¿y los otros?» nunca repite lugares de la búsqueda en curso; el aviso no excluye lugares; regresión de B4 en verde.
+5. **Revisa el informe del agente.** RED antes de GREEN, por resultado y no solo por importación; total de pruebas = estado base + nuevas; textos exactos; «¿y los otros?» nunca repite lugares de la búsqueda en curso; el aviso no excluye lugares; regresión de B4 en verde.
 6. **Comprueba tú**, desde la raíz:
 
    ```powershell

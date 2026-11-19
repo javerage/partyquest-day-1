@@ -82,8 +82,9 @@ Comprueba el resultado listando `docs/day-2` en el proyecto (`Get-ChildItem docs
 |---|---|
 | [D2·B1.1 · Documento y validación](b1.md#d2b11--documento-y-validación) | Documento versionado y validación estricta. |
 | [D2·B1.2 · Persistencia y fallos](b1.md#d2b12--persistencia-y-fallos) | Restauración y manejo de fallos de guardado. |
-| [D2·B1.3 · Contexto y Nuevo plan](b1.md#d2b13--contexto-y-nuevo-plan) | Contexto acotado y reinicio controlado. |
-| [D2·B1.4 · Envío interrumpido e integración](b1.md#d2b14--envío-interrumpido-e-integración) | Recuperación de un envío interrumpido. |
+| [D2·B1.3 · Historial y compacto en la API](b1.md#d2b13--historial-y-compacto-en-la-api) | La API acepta historial, devuelve el compacto y cuenta el límite en UTF-16. |
+| [D2·B1.4 · Contexto y Nuevo plan](b1.md#d2b14--contexto-y-nuevo-plan) | Contexto acotado y reinicio controlado. |
+| [D2·B1.5 · Envío interrumpido e integración](b1.md#d2b15--envío-interrumpido-e-integración) | Recuperación de un envío interrumpido. |
 | [B2 · Preferencias](b2.md) | Una preferencia clara se aplica; una ambigua genera una pregunta. Preparas aportes con fuentes. |
 | [B3 · Índice](b3.md) | Puedes recuperar el aporte desde el índice reconstruido y explicar su procedencia. |
 | [B4 · Respuesta con fuentes](b4.md) | Pachi cita evidencia recuperada o reconoce que falta el dato. |
@@ -91,5 +92,12 @@ Comprueba el resultado listando `docs/day-2` en el proyecto (`Get-ChildItem docs
 | [B5 · Streaming](b5.md) | Un corte no se guarda como respuesta completa. |
 | [B6 · Preparación](b6.md) | Explicas cómo llegarán frontend, API y datos a Vercel; no despliegas hoy. |
 | [Demostración final](demo.md) | Distingues lo que probaste localmente de lo observado con proveedores reales. |
+
+**Cuatro reglas para cada ficha:**
+
+1. **Anota el estado base** antes de pegar el prompt 2: cuántas pruebas pasan y si el typecheck da `0`. Al terminar, el total debe ser el de antes más las pruebas nuevas.
+2. **Una autorización por mensaje.** Pega solo el prompt 2 de la ficha cuyo prompt 1 acabas de revisar. Si mezclas dos fichas, el agente debe negarse.
+3. **RED por comportamiento.** Si la ficha crea un módulo nuevo, «no existe el archivo» no basta como RED: cada regla necesita una prueba que falle por su resultado.
+4. **Si el typecheck falla por los datos de las pruebas**, se corrige en las pruebas, no en el código que implementa la regla.
 
 **En OpenCode:** copia los prompts de cada ficha tal como están; ya llevan el ID y los archivos que el agente debe leer. Trabaja una ficha cada vez: el prompt 1 pide alcance, archivos, resultado esperado y comprobaciones **sin editar**. Revisa la respuesta; si coincide con la ficha y no amplía su alcance, usa el prompt 2 para autorizar únicamente ese incremento. Si el agente propone otra ficha, copiar una solución o usar servicios, deténlo. Si hay pruebas aplicables, verifica en su informe que se probaron antes de implementar (RED) y que pasan después (GREEN). Comprueba tú los resultados y registra evidencia; preparar una prueba no equivale a ejecutarla. Ante una comprobación fallida, guarda esperado y obtenido antes de decidir una corrección. Una llamada real requiere autorización aparte; si no se hace, registra «No evaluado». Tú llevas el registro personal.
