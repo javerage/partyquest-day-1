@@ -28,6 +28,8 @@ PartyQuest interpreta preferencias expresadas o confirmadas por la persona, filt
 
 La forma anterior es ilustrativa: `budget` y `location` pueden ser `null`; `history` contiene de 0 a 6 pares completos; `writtenZone` vacía o solo espacios equivale a `null`. `amount` es entero MXN de 1 a 100.000; `groupSize` entero de 1 a 30. Las cinco claves de preferencias siempre están presentes. `valladolid-unspecified` no es una zona pedible. `category` y `foodTypes` no son filtros. No se envían `sessionId`, `userId` ni `conversationId`. Coordenadas solo en memoria, no persistidas ni enviadas al modelo. La API deriva `locationAvailable`.
 
+**En B2.1:** `message`, `writtenZone`, `preferences` y `location` son obligatorios; omitir `history` equivale a `[]`. Para `writtenZone`, `null`, vacío o solo espacios equivalen a `null`; en otro caso, mide el máximo de 200 unidades UTF-16 sobre el valor recibido, incluidos los espacios exteriores. Las coordenadas son números finitos, no cadenas.
+
 Petición inválida, campos extra, más de seis pares o valores fuera de dominio: HTTP 400 `invalid_request`, `retryable: false`, proveedor no llamado. Validar el estado recibido del cliente: es entrada no confiable.
 
 ## Preferencias e interpretación
@@ -61,6 +63,8 @@ Copias exactas de aclaraciones: «¿El presupuesto es por persona o total del gr
 ## Compactos, respuesta y privacidad
 
 Turno compacto: `{ "kind": "conversation | clarification | results | no_matches", "text": "string | null", "question": "string | null", "applied": Preferencias }`. `text` solo para conversation; `question` solo para clarification. B2 nuevos compactos no incluyen nombres, precios, distancias ni otros datos de lugares; una pregunta conserva su texto. Objetivo terminal no disponible y guía sin preferencias usan `conversation`.
+
+En B2.1 aún no hay interpretación: la respuesta devuelve las preferencias recibidas y validadas, también en `compact.applied`. El turno `conversation` devuelto debe poder usarse como historial de la petición siguiente, incluso con preferencias no nulas.
 
 Respuesta exitosa incluye `reply`, `model`, `usage`, `compact` y `preferences` completas y validadas; cliente reemplaza su estado local solo con ese estado validado. Persistir preferencias estructuradas separadas del historial, incluso si el mensaje de origen sale de la ventana. Historial incluye mensajes completos de persona y respuestas de Pachi compactas, aceptando `conversation` heredado de B1. Turnos `clarification`, `results`, `no_matches` se pasan al modelo como frase corta sin datos de lugar ni claves del compacto. Texto heredado B1 puede contener menciones no verificadas; no son datos del catálogo.
 

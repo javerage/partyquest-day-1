@@ -2,6 +2,8 @@
 
 Trabaja en la aplicación con la que cerraste D1. No clones el starter encima de ella: perderías la distinción entre tu solución y el ejercicio inicial. Si te falta alguna parte, vuelve al [cierre de D1](../day-1/roadmap.md) o pide al instructor una copia D1 terminada. No uses una solución D2 para empezar.
 
+**Si tu proyecto viene de una copia anterior de D1:** compara la regla de alcance de tu `AGENTS.md` con la del paquete actualizado. Si solo permite D1, pide al docente que revise esa regla antes de usar el primer prompt de D2. No reemplaces el archivo completo: podría contener instrucciones propias.
+
 ## Trae los archivos del Día 2 a tu proyecto
 
 Descarga el repositorio público como ZIP desde https://github.com/javerage/partyquest-day-1 y descomprímelo en una carpeta separada, o clónalo allí. **Nunca** lo clones dentro de tu proyecto D1 ni sobre él. Por ejemplo, desde la carpeta que contiene tu proyecto:
@@ -117,3 +119,9 @@ El commit queda en tu computadora y es el punto de partida para la siguiente fic
 4. **Si el typecheck falla por los datos de las pruebas**, se corrige en las pruebas, no en el código que implementa la regla.
 
 **En OpenCode:** copia los prompts de cada ficha tal como están; ya llevan el ID y los archivos que el agente debe leer. Trabaja una ficha cada vez: el prompt 1 pide alcance, archivos, resultado esperado y comprobaciones **sin editar**. Revisa la respuesta; si coincide con la ficha y no amplía su alcance, usa el prompt 2 para autorizar únicamente ese incremento. Si el agente propone otra ficha, copiar una solución o usar servicios, deténlo. Si hay pruebas aplicables, verifica en su informe que se probaron antes de implementar (RED) y que pasan después (GREEN). Comprueba tú los resultados y registra evidencia; preparar una prueba no equivale a ejecutarla. Ante una comprobación fallida, guarda esperado y obtenido antes de decidir una corrección. Una llamada real requiere autorización aparte; si no se hace, registra «No evaluado». Tú llevas el registro personal.
+
+## Si se interrumpe una ficha
+
+No repitas el prompt 2 a ciegas. Pide primero un diagnóstico sin ediciones: confirmar carpeta y rama, contrastar el último resultado observado con el resumen del agente y revisar cambios preparados, no preparados y archivos nuevos. Si se mezclan cambios de dos fichas, señala qué no se puede atribuir; no uses `stash`, `reset` ni `restore` para separarlos.
+
+En el [registro de avance](progress-template.md), separa la base, la corrida posterior al corte y las comprobaciones finales. Un fallo observado después de editar producción no demuestra RED previo. Si falta esa evidencia, anótalo; no intentes recrearla deshaciendo trabajo. Antes de reanudar, confirma el alcance pendiente con la persona estudiante.

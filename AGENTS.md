@@ -1,6 +1,6 @@
 # Reglas del proyecto estudiante PartyQuest
 
-Trabaja únicamente en el incremento D1 autorizado por la persona estudiante. El [roadmap](docs/day-1/roadmap.md) fija el orden y la evidencia; el [contrato API](docs/api-contract.md) y las especificaciones enlazadas fijan el comportamiento.
+Trabaja únicamente en la ficha que la persona estudiante autorice explícitamente. La autorización de una ficha no incluye las siguientes. Consulta el roadmap del día activo ([D1](docs/day-1/roadmap.md) o [D2](docs/day-2/roadmap.md)) y los contratos que enlaza la ficha. El [contrato API de D1](docs/api-contract.md) describe D1; no sustituye los contratos de D2.
 
 ## Antes y durante cada cambio
 

@@ -42,3 +42,5 @@ Copia personal; no guardes claves, coordenadas ni conversaciones privadas. Regis
 | Demo | Pendiente | | | |
 
 Separa pruebas simuladas, recorrido manual (360 px y escritorio) y llamadas reales. Para estas últimas anota autorización, proveedor, propósito y resultado, o «No evaluado» y motivo. No pegues respuestas con datos personales.
+
+**Solo si hubo una interrupción** — Ficha: …; base previa (comando y resultado): …; corrida posterior a los cambios: …; RED previo observado y ruta, o «RED no observado»: …; comprobaciones finales realizadas o pendientes: …. No sustituyas la base por una corrida posterior.
