@@ -113,8 +113,8 @@ El commit queda en tu computadora y es el punto de partida para la siguiente fic
 
 **Cuatro reglas para cada ficha:**
 
-1. **Anota el estado base** antes de pegar el prompt 2: cuántas pruebas pasan y si el typecheck da `0`. Al terminar, el total debe ser el de antes más las pruebas nuevas.
-2. **Una autorización por mensaje.** Pega solo el prompt 2 de la ficha cuyo prompt 1 acabas de revisar. Si mezclas dos fichas, el agente debe negarse.
+1. **Anota el estado base** antes de pegar el prompt 2: cuántas pruebas pasan y si el typecheck da `0`. Al terminar, el total debe ser el de antes más las pruebas nuevas; mide con el mismo comando y alcance al principio y al final.
+2. **Una autorización por mensaje.** Pega solo el prompt 2 de la ficha cuyo prompt 1 acabas de revisar, y antes compara el identificador, el título y el resultado observable de la ficha con los de la propuesta del agente: si no coinciden, no lo pegues. Si mezclas dos fichas, el agente debe negarse.
 3. **RED por comportamiento.** Si la ficha crea un módulo nuevo, «no existe el archivo» no basta como RED: cada regla necesita una prueba que falle por su resultado.
 4. **Si el typecheck falla por los datos de las pruebas**, se corrige en las pruebas, no en el código que implementa la regla.
 
