@@ -1,6 +1,6 @@
 # Cómo usar Gemini en OpenCode desde Windows
 
-Esta guía explica cómo configurar `opencode-antigravity-auth` en OpenCode 2.x desde PowerShell e iniciar sesión con Google. No necesitas clonar el repositorio, compilar el plugin ni generar una API key. Los pasos se basan en el [README del plugin](https://github.com/NoeFabris/opencode-antigravity-auth#setup); no se han probado en un equipo Windows para esta guía.
+Esta guía explica cómo configurar `opencode-antigravity-auth` en OpenCode 2.x desde PowerShell e iniciar sesión con Google. No necesitas instalar la aplicación Antigravity, clonar el repositorio, compilar el plugin ni generar una API key: el plugin usa tu cuenta de Google para conectarse. Los pasos se basan en el [README del plugin](https://github.com/NoeFabris/opencode-antigravity-auth#setup); no se han probado en un equipo Windows para esta guía.
 
 > **Antes de autorizar:** el plugin no es oficial. Su mantenedor advierte que Google puede restringir cuentas que usen clientes de terceros. Si usas una cuenta de trabajo o de estudios, confirma que tu organización lo permite.
 
@@ -80,7 +80,8 @@ opencode auth login google
 
 1. Selecciona **Google OAuth (Antigravity)**, no la opción de API key.
 2. Sigue las indicaciones de la terminal. En el navegador, revisa la cuenta y los permisos antes de aceptar.
-3. Regresa a la terminal para completar el flujo. El plugin puede reutilizar una cuenta ya registrada.
+3. Después de autorizar Google, el navegador puede intentar abrir `http://localhost:51121/oauth-callback`. `localhost` no es una aplicación que tengas que instalar. En este flujo, OpenCode solicita que pegues un código de autorización o la URL completa del callback: si el navegador muestra `ERR_CONNECTION_REFUSED`, copia la dirección final de la barra del navegador y pégala en esa solicitud de la terminal. **No pegues la URL inicial de Google** que imprimió OpenCode.
+4. Espera a que la terminal confirme el inicio de sesión. La dirección final del callback contiene datos temporales de autorización; no la compartas ni la pegues en solicitudes de soporte.
 
 El archivo `~/.config/opencode/antigravity-accounts.json` contiene **credenciales**. No lo compartas, no lo subas a Git y no pegues su contenido en solicitudes de soporte.
 
@@ -115,7 +116,9 @@ Los comandos con `$modelo` reutilizan la variable del paso 4 en la misma sesión
 
 ## Si algo no funciona
 
-- **No aparece Google OAuth (Antigravity):** revisa `opencode --version`, la propiedad `plugins` y que hayas editado el archivo del entorno que usas (Windows o WSL). Cierra OpenCode y vuelve a ejecutar el inicio de sesión.
+- **Solo aparece API key y no Google OAuth (Antigravity):** eso indica que el plugin no registró su método OAuth en esa ejecución. Revisa que `plugins` incluya `opencode-antigravity-auth@2.1.2`, que uses OpenCode 2.1.2 o posterior y que editaste la configuración del mismo entorno desde el que ejecutas el comando (Windows o WSL).
+- **El navegador muestra `ERR_CONNECTION_REFUSED` al volver a `localhost`:** en el flujo manual, esto puede ocurrir porque el navegador no tiene un receptor local; no significa por sí solo que Google haya rechazado tu cuenta. Copia la URL final de `localhost` de la barra del navegador y pégala en la solicitud `Paste an authorization code or callback URL` de la terminal. No pegues la URL inicial de Google ni reutilices una URL de un intento cancelado. Si Google muestra `redirect_uri_mismatch` en vez de intentar abrir localhost, anota ese texto: es un error distinto.
+- **La terminal no acepta la URL final:** cancela el intento, inicia `opencode auth login` otra vez y repite el flujo con la nueva URL inicial. La URL final contiene datos temporales (`code` y `state`); no la compartas ni la pegues en solicitudes de soporte.
 - **No aparece el Gemini del ejemplo:** comprueba en `/ag` que la cuenta esté habilitada, actualiza el catálogo y usa un ID de tu propia lista.
 - **Ya no aparecen los modelos de Google por API key:** el plugin los oculta mientras está seleccionado OAuth de Antigravity. Vuelven al cambiar a una conexión por API key.
 
