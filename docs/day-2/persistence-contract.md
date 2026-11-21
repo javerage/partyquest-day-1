@@ -43,6 +43,10 @@ Parsea y valida el documento completo antes de usarlo como estado o incluirlo en
 - Si no hay documento guardado, inicia vacío, sin aviso ni confirmación.
 - Si el documento es inválido o incompatible, solicita confirmación con «¿Empezar una conversación nueva?» y «No pude abrir la conversación guardada. Si empiezas una nueva, la reemplazará.» Ofrece «Cancelar» y «Empezar una nueva». Cancelar conserva el valor original intacto; permite una conversación temporal que no se guarda y muestra «Conversación temporal» / «Se perderá al recargar.»
 - El documento serializado completo (JSON.stringify del documento) no puede exceder 200.000 unidades UTF-16. Si cargarlo excede el límite, es inválido; si el estado nuevo lo excede al guardarse, se conserva en memoria con el aviso de fallo de guardado. No trunques ni borres mensajes automáticamente.
+- Antes de escribir, comprueba que el documento resultante cumple estas mismas reglas (persona ≤2.000, zona ≤200, documento ≤200.000 unidades UTF-16). Si no, no lo escribas: conserva el valor anterior, continúa en memoria y muestra el aviso de fallo de guardado.
+- Si **leer** la clave lanza una excepción, no es una clave ausente: continúa solo en memoria, sin aviso ni diálogo, y no escribas ni borres la clave, tampoco después de conversar.
+- Al confirmar «Empezar una nueva», reemplaza el valor con un documento vacío válido en una sola escritura, sin borrarlo antes. Si la escritura falla, el original queda intacto, la conversación continúa en memoria con el aviso de fallo de guardado y no se anuncia éxito.
+- Restaurar la zona no añade un mensaje al historial ni reescribe la clave.
 
 ## Persistencia y errores
 
