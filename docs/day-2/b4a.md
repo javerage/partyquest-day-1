@@ -104,20 +104,21 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    ```js
    {
      const preferences = { zone: null, budget: null, groupSize: null, wantsFood: null, nearMe: null };
-     const reply = "¡Hola! ¿Qué plan buscan?";
+     const visible = "¡Hola! ¿Qué plan buscan?";
+     const compactText = "Pachi saludó y preguntó qué plan buscan.";
      localStorage.setItem("partyquest.conversation", JSON.stringify({
        version: 1,
        writtenZone: "centro",
        preferences,
        messages: [
          { role: "user", text: "Hola" },
-         { role: "pachi", text: reply, compact: { kind: "conversation", text: reply, question: null, applied: preferences } },
+         { role: "pachi", text: visible, compact: { kind: "conversation", text: compactText, question: null, applied: preferences } },
        ],
      }));
    }
    ```
 
-   Recarga y verifica que aparecen «Hola» y «¡Hola! ¿Qué plan buscan?». En **Application → Local Storage**, comprueba que `partyquest.conversation` ahora tiene `version: 2` y conserva los mensajes, `writtenZone` y las preferencias. Recarga otra vez: el documento ya v2 debe abrir sin cambios. No uses este ejemplo en un perfil con conversaciones reales.
+   Recarga y verifica que aparecen «Hola» y «¡Hola! ¿Qué plan buscan?». En **Application → Local Storage**, comprueba que `partyquest.conversation` ahora tiene `version: 2` y conserva los mensajes, `writtenZone` y las preferencias, y que `compact.text` sigue siendo «Pachi saludó y preguntó qué plan buscan.» (no el texto visible de la burbuja). Recarga otra vez: el documento ya v2 debe abrir sin cambios. No uses este ejemplo en un perfil con conversaciones reales.
 
    **Resultado esperado:**
 
@@ -132,7 +133,7 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    - Los resultados guardados antes de esta ficha no tienen lista: una referencia a ellos pedirá aclaración. Es esperado.
    - Si vuelves a una versión anterior de tu interfaz, el documento `version: 2` se tratará como incompatible.
 
-7. Anota: «N/N pruebas; RED en `shownPlaceIds` de cuatro; v1 → v2 sin perder mensajes; 400 en turno no `results`». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.1 Lista mostrada y documento v2"`. Detente aquí.
+7. Anota: «N → M pruebas; RED observado en: …; sin RED en: …; RED no observado: …; v1 → v2 (mensajes, `compact.text`, zona y preferencias conservados): …; turno no `results` (respuesta HTTP): …». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.1 Lista mostrada y documento v2"`. Detente aquí.
 
 ---
 
@@ -228,7 +229,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    - Las pruebas simuladas fijan qué devuelve el modelo; no muestran si el modelo real entiende bien «el segundo». Eso es D2·B4a.4.
    - El ID va en el historial porque el modelo lo necesita para indicar un `place`; nunca van precios ni distancias.
 
-7. Anota: «N/N pruebas; RED en ordinal por distancia y en ID inexistente; `place_reference` 200; `shown` con ID 502». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.2 Referencia y resolución"`. Detente aquí.
+7. Anota: «N → M pruebas; RED observado en: …; sin RED en: …; RED no observado: …; `place_reference`: …; `shown`: …». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.2 Referencia y resolución"`. Detente aquí.
 
 ---
 
@@ -325,7 +326,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    - Con la regla de avance de página, «gracias» después de una lista muestra la página siguiente. Es un límite conocido del contrato.
    - La lista solo cubre la ventana de seis intercambios: una página más antigua puede volver a mostrarse.
 
-7. Anota: «N/N pruebas; RED en agotamiento y en aviso de dos lugares; regresión B4 en verde». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.3 Continuaciones y otras opciones"`. Detente aquí.
+7. Anota: «N → M pruebas; RED observado en: …; sin RED en: …; RED no observado: …; regresión B4: …». Si todo pasó, sigue el [checklist de Git](roadmap.md#guardar-un-punto-de-control) y haz tú el commit local: `git commit -m "D2·B4a.3 Continuaciones y otras opciones"`. Detente aquí.
 
 ---
 
