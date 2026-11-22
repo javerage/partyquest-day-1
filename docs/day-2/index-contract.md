@@ -33,6 +33,7 @@ Al consultar, valida esquema y coincidencia con los fragmentos actuales: cantida
 
 Define y ejecuta los scripts desde el directorio de la API:
 
+**macOS/Linux/WSL — shell POSIX (Bash/Zsh):**
 ```sh
 npm run index:build -- --catalog ./data/places.json --corpus ./data/corpus/lugares-valladolid.md --output ./data/places-index.json
 npm run index:query -- --catalog ./data/places.json --corpus ./data/corpus/lugares-valladolid.md --index ./data/places-index.json --text "¿Dónde puedo probar tamales cocinados a leña?"

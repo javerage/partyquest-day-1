@@ -15,6 +15,7 @@ Esta es la receta de B1, no la solución de chat. La receta completa aún no se 
 
 En PowerShell, desde tu carpeta de trabajo:
 
+**Windows — PowerShell:**
 ```powershell
 New-Item -ItemType Directory -Path partyquest
 Set-Location partyquest
@@ -22,6 +23,7 @@ Set-Location partyquest
 
 Indica la ruta real de los materiales **extraídos**, no la del ZIP:
 
+**Windows — PowerShell:**
 ```powershell
 $materials = Read-Host 'Ruta completa de la carpeta de materiales'
 Copy-Item -LiteralPath (Join-Path $materials 'package.json') -Destination .
@@ -32,6 +34,7 @@ Copy-Item -LiteralPath (Join-Path $materials 'api') -Destination . -Recurse
 
 Los manifiestos deben declarar los dos workspaces y versiones fijas. Se usa **un solo lockfile raíz**; no generes otros dentro de frontend o API.
 
+**Windows — PowerShell:**
 ```powershell
 npm.cmd ci
 npm.cmd ls --depth=0
@@ -41,6 +44,7 @@ npm.cmd ls --depth=0
 
 ## B1.2 — Incorporar las reglas y la configuración
 
+**Windows — PowerShell:**
 ```powershell
 Copy-Item -LiteralPath (Join-Path $materials '.gitignore') -Destination .
 Copy-Item -LiteralPath (Join-Path $materials 'AGENTS.md') -Destination .
@@ -51,6 +55,7 @@ Copy-Item -LiteralPath (Join-Path $materials 'docs') -Destination . -Recurse
 
 No copies `.git`, `node_modules`, credenciales ni archivos `.env` reales. No necesitas `GROQ_API_KEY` ni crear `.env` para B1. El ejemplo `api/.env.example` está pendiente en esta entrega por un bloqueo de escritura; su ausencia debe registrarse, no darse por resuelta. Las claves se configuran más adelante, solo en el servidor.
 
+**Windows — PowerShell:**
 ```powershell
 npm.cmd run typecheck
 node ./scripts/check-environment.mjs
@@ -64,12 +69,14 @@ Abre **dos terminales** en la raíz de `partyquest/`.
 
 Terminal A:
 
+**Windows — PowerShell:**
 ```powershell
 npm.cmd run dev:api
 ```
 
 Terminal B:
 
+**Windows — PowerShell:**
 ```powershell
 npm.cmd run dev:frontend
 ```
@@ -82,6 +89,7 @@ Comprueba la pantalla inicial y el selector «Apariencia». El envío está desh
 
 En una tercera terminal, sin configurar claves:
 
+**Windows — PowerShell:**
 ```powershell
 $direct = Invoke-WebRequest -Uri 'http://127.0.0.1:8787/api/health'
 $direct.StatusCode

@@ -34,6 +34,7 @@ En Windows, Gentle AI se instala por ahora compilándolo con Go, porque todavía
 2. Conserva las opciones predeterminadas, salvo que el instructor indique otra cosa.
 3. Cierra y vuelve a abrir PowerShell, y comprueba:
 
+**Windows — PowerShell:**
 ```powershell
 git --version
 ```
@@ -46,12 +47,14 @@ Sigue la [guía de instalación de Go en Windows](go.md) y vuelve aquí cuando `
 
 En PowerShell, desde cualquier carpeta:
 
+**Windows — PowerShell:**
 ```powershell
 go install github.com/gentleman-programming/gentle-ai/v4/cmd/gentle-ai@latest
 ```
 
 La descarga y compilación pueden tardar algunos minutos. Después, abre una terminal nueva y comprueba:
 
+**Windows — PowerShell:**
 ```powershell
 gentle-ai version
 ```
@@ -72,12 +75,14 @@ Para el taller usaremos esta selección:
 
 Primero revisa qué cambiaría, **sin aplicar nada**:
 
+**Windows — PowerShell:**
 ```powershell
 gentle-ai install --dry-run --agent opencode --component engram,skills,context7,persona,permissions --persona gentleman
 ```
 
 Lee el plan que aparece. Si solo menciona OpenCode y los componentes de la tabla, aplícalo:
 
+**Windows — PowerShell:**
 ```powershell
 gentle-ai install --agent opencode --component engram,skills,context7,persona,permissions --persona gentleman
 ```
@@ -88,6 +93,7 @@ Gentle AI guarda una copia de tu configuración antes de cada cambio. Al termina
 
 Gentle AI incluye un sistema de revisión formal de cambios, llamado **RDD**, que viene activado. En el taller cada ficha ya define sus comprobaciones, así que lo desactivaremos para ahorrar tiempo de clase:
 
+**Windows — PowerShell:**
 ```powershell
 gentle-ai review mode disable
 gentle-ai review mode status
@@ -97,6 +103,7 @@ El segundo comando debe indicar que la revisión está desactivada. Las pruebas 
 
 ## 6. Comprobar la instalación
 
+**Windows — PowerShell:**
 ```powershell
 gentle-ai doctor
 ```

@@ -56,6 +56,7 @@ Al terminar, la aplicación debe permitir:
 
 **Tu registro de avance va en un archivo aparte**, no en esta tabla. Así no lo pierdes cuando recibes una versión nueva del roadmap, por ejemplo con `git pull`. Créalo una sola vez, desde la raíz:
 
+**Windows — PowerShell:**
 ```powershell
 New-Item -ItemType Directory -Force notes | Out-Null
 Copy-Item docs\day-1\progress-template.md notes\day-1-progress.md
@@ -126,6 +127,7 @@ dice que […]. Mantén el resto del alcance de la ficha.
 
 **Una ficha terminada ya no tiene `TODO`.** Cuando cierras una ficha, sus `TODO(D1·Bx.y)` desaparecen del código. Si el agente propone implementar una ficha cuyo `TODO` ya no existe, no lo autorices: probablemente pegaste el prompt de otra ficha. Puedes comprobarlo tú, desde la raíz (cambia el ID):
 
+**Windows — PowerShell:**
 ```powershell
 Get-ChildItem -Recurse -Include *.ts,*.tsx api\src, frontend\src | Select-String -Pattern 'TODO\(D1.B2\.2\)'
 ```
@@ -162,6 +164,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 1. Si ya clonaste, usa esa carpeta y no repitas la descarga. Si aún no tienes el proyecto, abre PowerShell en la carpeta donde quieras guardarlo y ejecuta:
 
+   **Windows — PowerShell:**
    ```powershell
    git clone https://github.com/javerage/partyquest-day-1.git
    cd partyquest-day-1
@@ -169,6 +172,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
    Abre PowerShell en la raíz del repositorio clonado, no dentro de `api/` ni de `frontend/`. Comprueba:
 
+   **Windows — PowerShell:**
    ```powershell
    Get-Location
    Test-Path package.json
@@ -179,6 +183,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 2. Comprueba Node.js y npm:
 
+   **Windows — PowerShell:**
    ```powershell
    node --version
    npm.cmd --version
@@ -190,6 +195,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 3. Desde esa misma raíz, instala las versiones fijadas en el proyecto:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd ci
    ```
@@ -210,6 +216,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 1. En esta terminal, desde la raíz, ejecuta:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd run dev:frontend
    ```
@@ -223,6 +230,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 1. Abre una **segunda terminal PowerShell en la misma raíz** y ejecuta:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd run dev:api
    ```
@@ -238,6 +246,7 @@ Las rutas son relativas a la raíz del proyecto. «Abre» es el archivo cuyo `TO
 
 3. Abre una **tercera terminal PowerShell**, dejando las otras dos en ejecución, y comprueba las respuestas HTTP:
 
+   **Windows — PowerShell:**
    ```powershell
    curl.exe -i http://127.0.0.1:8787/api/health
    curl.exe -i http://127.0.0.1:5173/api/health
@@ -362,6 +371,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba tú**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test --workspace api
    npm.cmd run typecheck
@@ -369,6 +379,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    Ambos deben terminar con `$LASTEXITCODE` igual a `0`. Después, con la API en marcha en su terminal (`npm.cmd run dev:api`; si ya estaba abierta, se recarga sola), ejecuta en otra terminal los comandos siguientes. Las comillas del JSON cambian entre versiones de PowerShell, así que el cuerpo se escribe primero en un archivo temporal y `curl.exe` lo envía tal cual.
 
+   **Windows — PowerShell:**
    ```powershell
    $body = Join-Path $env:TEMP "partyquest-chat.json"
    [IO.File]::WriteAllText($body, '{"message":"Hola, Pachi"}')
@@ -379,6 +390,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    En macOS/Linux:
 
+   **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola, Pachi"}'
    curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola","history":[]}'
@@ -463,6 +475,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba tú sin configuración**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test --workspace api
    npm.cmd run typecheck
@@ -474,6 +487,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
    Si ya tenías `api/.env`, apártalo un momento con `Rename-Item api\.env .env.off` (macOS/Linux: `mv api/.env api/.env.off`). Detén la API con `Ctrl+C`, vuelve a iniciarla con `npm.cmd run dev:api` y, en otra terminal, envía el mismo mensaje que en B2.2:
 
+   **Windows — PowerShell:**
    ```powershell
    $body = Join-Path $env:TEMP "partyquest-chat.json"
    [IO.File]::WriteAllText($body, '{"message":"Hola, Pachi"}')
@@ -552,6 +566,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test --workspace frontend
    npm.cmd run typecheck
@@ -649,6 +664,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -743,6 +759,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -915,6 +932,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -992,6 +1010,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -1087,6 +1106,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Comprueba las pruebas**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -1163,6 +1183,7 @@ Comprueba las [skills del proyecto](../onboarding/skills.md) antes de solicitar 
 
 6. **Repite las comprobaciones automáticas tú**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck

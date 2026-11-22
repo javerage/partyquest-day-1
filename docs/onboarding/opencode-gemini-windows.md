@@ -8,6 +8,7 @@ Esta guía explica cómo configurar `opencode-antigravity-auth` en OpenCode 2.x 
 
 Abre **Windows Terminal → PowerShell** y ejecuta:
 
+**Windows — PowerShell:**
 ```powershell
 node --version
 opencode --version
@@ -21,6 +22,7 @@ Necesitas **Node.js 20 o posterior** y **OpenCode 2.1.2 o posterior** para segui
 
 No necesitas crear un archivo `.ps1`. Copia desde `$dir =` hasta `notepad.exe $config`, pega el bloque directamente en PowerShell y presiona Enter. Si Windows Terminal te pregunta si quieres pegar varias líneas, esa advertencia se refiere a este bloque de comandos.
 
+**Windows — PowerShell:**
 ```powershell
 $dir = Join-Path $HOME '.config\opencode'
 $config = Join-Path $dir 'opencode.json'
@@ -74,6 +76,7 @@ Si ejecutas OpenCode en **WSL**, edita `~/.config/opencode/opencode.json` dentro
 
 Cierra las sesiones interactivas de OpenCode que estuvieran abiertas. Desde PowerShell ejecuta:
 
+**Windows — PowerShell:**
 ```powershell
 opencode auth login google
 ```
@@ -89,12 +92,14 @@ El archivo `~/.config/opencode/antigravity-accounts.json` contiene **credenciale
 
 Lista los modelos disponibles para tu cuenta:
 
+**Windows — PowerShell:**
 ```powershell
 opencode models | Select-String 'antigravity-gemini'
 ```
 
 Copia un ID completo de la salida, incluido `google/`. Ejecuta este bloque en PowerShell y pega el ID cuando se te solicite:
 
+**Windows — PowerShell:**
 ```powershell
 $modelo = Read-Host 'Pega el ID completo del modelo Gemini'
 opencode run --model="$modelo" 'Responde en español con una sola frase: ¿qué es una prueba unitaria?'

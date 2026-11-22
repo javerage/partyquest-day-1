@@ -4,6 +4,10 @@ Trabaja en la aplicación con la que cerraste D1. No clones el starter encima de
 
 **Si tu proyecto viene de una copia anterior de D1:** compara la regla de alcance de tu `AGENTS.md` con la del paquete actualizado. Si solo permite D1, pide al docente que revise esa regla antes de usar el primer prompt de D2. No reemplaces el archivo completo: podría contener instrucciones propias.
 
+## Elige los comandos de tu terminal
+
+Los bloques identifican el sistema operativo y la terminal antes del código. Usa solo el bloque correspondiente: **Windows — PowerShell**, **Windows — CMD** o **macOS/Linux/WSL — Bash o Zsh**. WSL usa el bloque Bash/Zsh. Los pasos con sintaxis PowerShell (`$env:`, `Join-Path`, `$LASTEXITCODE`) requieren PowerShell; no los pegues en CMD. Los comandos que solo invocan npm pueden ejecutarse en ambos shells de Windows con `npm.cmd`. Si no hay un bloque para tu terminal, pide ayuda al docente en lugar de traducirlo.
+
 ## Trae los archivos del Día 2 a tu proyecto
 
 Descarga el repositorio público como ZIP desde https://github.com/javerage/partyquest-day-1 y descomprímelo en una carpeta separada, o clónalo allí. **Nunca** lo clones dentro de tu proyecto D1 ni sobre él. Por ejemplo, desde la carpeta que contiene tu proyecto:
@@ -16,6 +20,7 @@ Con ZIP, usa el nombre de la carpeta que creó la extracción. En los comandos s
 
 **Antes de copiar, lista los conflictos** (archivos que ya existen en ambos lados). PowerShell, ajusta las dos rutas:
 
+**Windows — PowerShell:**
 ```powershell
 $fuente = "..\partyquest-day-1-descarga"
 $proyecto = "."
@@ -31,6 +36,7 @@ foreach ($ruta in $rutas) {
 
 macOS/Linux (ajusta `fuente` y `proyecto`):
 
+**macOS/Linux/WSL — Bash o Zsh:**
 ```bash
 fuente="../partyquest-day-1-descarga"
 proyecto="."
@@ -44,6 +50,7 @@ done
 
 Si aparece cualquier archivo, **detente**: compara las dos versiones y conserva tu versión. No reemplaces ni borres archivos para continuar; consulta al instructor si no sabes cómo integrar una diferencia. Si no hay conflictos, copia solo los archivos inexistentes. Usa la misma ventana de PowerShell, porque este bloque reutiliza `$fuente`, `$proyecto` y `$rutas`; comprueba `Test-Path` antes de copiar cada archivo:
 
+**Windows — PowerShell:**
 ```powershell
 foreach ($ruta in $rutas) {
   Get-ChildItem (Join-Path $fuente $ruta) -File -Recurse | ForEach-Object {
@@ -61,6 +68,7 @@ foreach ($ruta in $rutas) {
 
 macOS/Linux: primero revisa la lista de conflictos como arriba; `-n` evita sobrescribir incluso si aparece uno entre la revisión y la copia.
 
+**macOS/Linux/WSL — Bash o Zsh:**
 ```bash
 for ruta in docs/day-2 api/data .agents/skills/partyquest-place-contribution; do
   mkdir -p "$proyecto/$ruta"

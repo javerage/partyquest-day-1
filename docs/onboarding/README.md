@@ -37,6 +37,7 @@ Si algo falla, detente aquí y consulta al instructor. No avances al roadmap par
 
 Este diagnóstico corresponde a B1.2, después de preparar el equipo e instalar dependencias. No es otro paso previo. En PowerShell puedes consultar las herramientas con:
 
+**Windows — PowerShell:**
 ```powershell
 Get-Command node, npm.cmd, opencode -ErrorAction SilentlyContinue
 node --version
@@ -45,6 +46,7 @@ npm.cmd --version
 
 Si Node falta, sigue [Windows](windows.md) antes de continuar. Desde la raíz que contiene `package.json`:
 
+**Windows — PowerShell:**
 ```powershell
 node ./scripts/check-environment.mjs
 $LASTEXITCODE

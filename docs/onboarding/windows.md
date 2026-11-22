@@ -10,6 +10,7 @@ Desde una terminal nueva puedes consultar las versiones de Node.js, npm y OpenCo
 2. Elige una carpeta escribible de tu usuario para el taller. Evita carpetas del sistema y rutas compartidas del docente.
 3. Abre PowerShell sin privilegios de administrador y consulta:
 
+**Windows — PowerShell:**
 ```powershell
 Get-Command node, npm.cmd, opencode -ErrorAction SilentlyContinue
 ```
@@ -24,6 +25,7 @@ Si una herramienta ya existe, comprueba su versión antes de reinstalar. No borr
 4. Cierra y vuelve a abrir PowerShell.
 5. Comprueba:
 
+**Windows — PowerShell:**
 ```powershell
 node --version
 npm.cmd --version
@@ -42,6 +44,7 @@ La [documentación oficial consultada](https://opencode.ai/docs/) describe OpenC
 3. Extrae el ZIP en una carpeta de tu usuario; no ejecutes directamente desde el ZIP.
 4. Abre esa carpeta en PowerShell y prueba:
 
+**Windows — PowerShell:**
 ```powershell
 .\opencode.exe --version
 ```
@@ -51,6 +54,7 @@ Resultado esperado: una versión, no una solicitud de credenciales. El binario n
 5. Opcionalmente agrega esa carpeta al **PATH de usuario** desde la interfaz de variables de entorno de Windows. Conserva las entradas existentes; no reemplaces todo el PATH. Abre otra terminal y consulta `opencode --version`.
 6. Si no modificas el PATH, usa la ruta completa. Ejemplo ilustrativo: sustituye la ruta por la carpeta real que elegiste.
 
+**Windows — PowerShell:**
 ```powershell
 & 'C:\Users\TU_USUARIO\Tools\OpenCode\opencode.exe' --version
 ```

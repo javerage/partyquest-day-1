@@ -12,6 +12,7 @@ En una terminal nueva de PowerShell, `go version` muestra la versión **1.25.10 
 
 Abre PowerShell y escribe:
 
+**Windows — PowerShell:**
 ```powershell
 go version
 ```
@@ -45,6 +46,7 @@ Usa el archivo `.msi`, no el `.zip`: el instalador configura el sistema por ti.
 
 La página de descargas muestra una huella **SHA256** junto a cada archivo. En PowerShell, desde la carpeta de descargas:
 
+**Windows — PowerShell:**
 ```powershell
 Get-FileHash .\go1.27.4.windows-amd64.msi -Algorithm SHA256
 ```
@@ -61,6 +63,7 @@ Cambia el nombre por el del archivo que descargaste. El valor `Hash` debe coinci
 
 Comprueba:
 
+**Windows — PowerShell:**
 ```powershell
 go version
 ```
@@ -69,6 +72,7 @@ go version
 
 Gentle AI quedará instalado en la carpeta de programas de Go de tu usuario. Revisa cuál es:
 
+**Windows — PowerShell:**
 ```powershell
 go env GOPATH
 ```
@@ -77,6 +81,7 @@ Normalmente muestra `C:\Users\TU_USUARIO\go`. Los programas que instales con Go 
 
 Revisa que esa carpeta esté en tu PATH, la lista de carpetas donde Windows busca programas:
 
+**Windows — PowerShell:**
 ```powershell
 $env:Path -split ';' | Select-String 'go\\bin'
 ```

@@ -81,6 +81,7 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
 
 6. **Comprueba tú**, desde la raíz. Con la API en marcha (`npm.cmd run dev:api`), envía un historial con `shownPlaceIds` en un turno que no es `results`; es inválido y no llega a Groq:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test
    npm.cmd run typecheck
@@ -92,6 +93,7 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
 
    En macOS/Linux:
 
+   **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    npm test && npm run typecheck
    curl -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" -d '{"message":"Hola","history":[{"user":"Hola","pachi":{"kind":"conversation","text":"Hola","question":null,"applied":{"zone":null,"budget":null,"groupSize":null,"wantsFood":null,"nearMe":null},"shownPlaceIds":["la-mula"]}}],"writtenZone":null,"preferences":{"zone":null,"budget":null,"groupSize":null,"wantsFood":null,"nearMe":null},"location":null}'
@@ -199,6 +201,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
 
 6. **Comprueba tú**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test --workspace api
    npm.cmd run typecheck
@@ -206,6 +209,7 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
 
    En macOS/Linux:
 
+   **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    npm test --workspace api && npm run typecheck
    ```
@@ -295,6 +299,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
 
 6. **Comprueba tú**, desde la raíz:
 
+   **Windows — PowerShell:**
    ```powershell
    npm.cmd test --workspace api
    npm.cmd run typecheck
@@ -302,6 +307,7 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
 
    En macOS/Linux:
 
+   **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    npm test --workspace api && npm run typecheck
    ```

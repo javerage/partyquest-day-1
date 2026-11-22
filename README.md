@@ -19,6 +19,12 @@ La pantalla y la estructura inicial del proyecto ya están preparadas para que p
 
 La guía de preparación termina con una lista de comprobación y el enlace a B1.1. No empieces los ejercicios hasta completar ese recorrido. La [guía del aula](docs/onboarding/classroom-guide.md) explica cómo trabajar por incrementos.
 
+### Elige los comandos de tu terminal
+
+Cada bloque de comandos indica **sistema operativo y terminal** antes del código. Copia únicamente el bloque que coincida con tu terminal: **Windows — PowerShell**, **Windows — Símbolo del sistema (CMD)** o **macOS/Linux/WSL — Bash o Zsh**. Windows Terminal puede abrir PowerShell o CMD; revisa cuál indica la pestaña. WSL usa el bloque Bash/Zsh.
+
+En instrucciones que solo ejecutan npm, Windows puede usar `npm.cmd` tanto en PowerShell como en CMD. Si un bloque usa sintaxis propia de PowerShell (por ejemplo, `$env:`, `Join-Path` o `$LASTEXITCODE`), no la pegues en CMD ni intentes traducirla: abre PowerShell. Los bloques Bash/Zsh tampoco son comandos de CMD.
+
 El acceso al modelo de **OpenCode** se prepara en la etapa 1. La clave de **Groq para PartyQuest** se configura al llegar a B2.3. Cohere y Vercel corresponden a etapas posteriores: no necesitas preparar esas cuentas para comenzar D1.
 
 ## Qué vas a aprender
@@ -71,6 +77,7 @@ Cuando una ficha lo indique, consulta también la [guía del ejercicio de conexi
 
 Después de instalar Node.js, abre PowerShell en la carpeta del proyecto y ejecuta:
 
+**Windows — PowerShell:**
 ```powershell
 node --version
 npm.cmd --version
