@@ -91,8 +91,6 @@ El turno `results` guarda `shownPlaceIds`: hasta tres IDs del catálogo en el or
    curl.exe -i -X POST http://127.0.0.1:8787/api/chat -H "Content-Type: application/json" --data-binary "@$body"
    ```
 
-   En macOS/Linux:
-
    **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    npm test && npm run typecheck
@@ -208,8 +206,6 @@ La salida de interpretación agrega el campo obligatorio `reference`: `null` o `
    npm.cmd run typecheck
    ```
 
-   En macOS/Linux:
-
    **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
    npm test --workspace api && npm run typecheck
@@ -305,8 +301,6 @@ A3: una continuación conserva preferencias y limita el contexto a la lista vige
    npm.cmd test --workspace api
    npm.cmd run typecheck
    ```
-
-   En macOS/Linux:
 
    **macOS/Linux/WSL — Bash o Zsh:**
    ```bash
