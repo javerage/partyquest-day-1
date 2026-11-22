@@ -1,12 +1,12 @@
 # Entrada al Día 2: continúa con tu PartyQuest
 
-Trabaja en la aplicación con la que cerraste D1. No clones el starter encima de ella: perderías la distinción entre tu solución y el ejercicio inicial. Si te falta alguna parte, vuelve al [cierre de D1](../day-1/roadmap.md) o pide al instructor una copia D1 terminada. No uses una solución D2 para empezar.
+Trabaja en la aplicación con la que cerraste D1. No clones el starter encima de ella: perderías la distinción entre tu solución y el ejercicio inicial. Si te falta alguna parte, puedes volver al [cierre de D1](../day-1/roadmap.md). Si prefieres continuar con una copia funcional, sigue [Si no terminaste el día 1: prepara PartyQuest para el día 2](start-package.md) en lugar de importar archivos sobre tu proyecto. No uses una solución D2 para empezar.
 
 **Si tu proyecto viene de una copia anterior de D1:** compara la regla de alcance de tu `AGENTS.md` con la del paquete actualizado. Si solo permite D1, pide al docente que revise esa regla antes de usar el primer prompt de D2. No reemplaces el archivo completo: podría contener instrucciones propias.
 
 ## Elige los comandos de tu terminal
 
-Los bloques identifican el sistema operativo y la terminal antes del código. Usa solo el bloque correspondiente: **Windows — PowerShell**, **Windows — CMD** o **macOS/Linux/WSL — Bash o Zsh**. WSL usa el bloque Bash/Zsh. Los pasos con sintaxis PowerShell (`$env:`, `Join-Path`, `$LASTEXITCODE`) requieren PowerShell; no los pegues en CMD. Los comandos que solo invocan npm pueden ejecutarse en ambos shells de Windows con `npm.cmd`. Si no hay un bloque para tu terminal, pide ayuda al docente en lugar de traducirlo.
+Los bloques de esta guía identifican el sistema operativo y la terminal antes del código. Usa solo el bloque correspondiente: **Windows — PowerShell**, **Windows — CMD** o **macOS/Linux/WSL — Bash o Zsh**. Windows Terminal puede abrir PowerShell o CMD; fíjate en cuál estás usando. WSL usa el bloque Bash/Zsh. Los pasos con sintaxis PowerShell (`$env:`, `Join-Path`, `$LASTEXITCODE`) requieren PowerShell; no los pegues en CMD. Los comandos que solo invocan npm pueden ejecutarse en ambos shells de Windows con `npm.cmd`. Si no hay bloque para tu terminal, pide ayuda al docente en lugar de traducirlo.
 
 ## Trae los archivos del Día 2 a tu proyecto
 
@@ -101,6 +101,8 @@ Después de comprobar una ficha, guarda tú el resultado. Los comandos son los m
 3. Si solo están preparados los cambios esperados, ejecuta el `git commit -m` que indica la ficha y anota el resultado de `git rev-parse --short HEAD` en tu registro. Si la ficha fue solo una comprobación y no hay cambios que guardar, registra el commit actual; no crees un commit vacío.
 
 El commit queda en tu computadora y es el punto de partida para la siguiente ficha. No necesitas conectar un remoto ni hacer push. El agente no hace el commit por ti.
+
+Git es lo recomendado, pero no un requisito para hacer las fichas. Si trabajas desde un ZIP o tu carpeta no tiene un repositorio que funcione, no podrás revisar el diff ni volver atrás: pide al agente que no use Git, registra tus resultados («Commit omitido: sin Git») y continúa. No repares ni inicialices un repositorio durante una ficha.
 
 ## Una ficha a la vez
 
